@@ -42,5 +42,5 @@ jobs:
         with:
           token: ${{ secrets.FATTUREINCLOUD_BOT_TOKEN }}
           repository: ${{ env.GIT_OPENAPI_REPO_PATH }}
-          event-type: generate-python-legacy
+          event-type: generate-python
           client-payload: '{"version": "${{ env.openapi_version }}", "from-openapi": false}'
