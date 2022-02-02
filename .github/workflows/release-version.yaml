@@ -1,5 +1,5 @@
 name: Release Python SDK
-on: [workflow_dispatch]
+on: workflow_dispatch
   inputs:
     env:
       default: 'test' 
@@ -107,7 +107,7 @@ jobs:
           repository_url: https://test.pypi.org/
 
       - id: pypi-publish
-        name: Publish distribution 📦 to PyPI
+        name: Publish to PyPI
           if: ${{ !env.ACT }} && ${{ github.event.inputs.env != 'test' }}
           uses: pypa/gh-action-pypi-publish@master
           with:
