@@ -101,10 +101,10 @@ jobs:
       - id: test-pypi-publish
         name: Publish to Test PyPI
         if: ${{ !env.ACT }} && ${{ github.event.inputs.env = 'test' }}
-          uses: pypa/gh-action-pypi-publish@master
-          with:
-            password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-            repository_url: https://test.pypi.org/
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository_url: https://test.pypi.org/
 
       - id: pypi-publish
         name: Publish distribution 📦 to PyPI
