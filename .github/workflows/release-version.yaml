@@ -1,14 +1,15 @@
 name: Release Python SDK
-on: workflow_dispatch
-  inputs:
-    env:
-      default: 'test' 
-      description: 'PyPi env'    
-      required: true
-      type: choice
-      options:
-      - test
-      - prod
+on: 
+  workflow_dispatch:
+    inputs:
+      env:
+        default: 'test' 
+        description: 'PyPi env'    
+        required: true
+        type: choice
+        options:
+        - test
+        - prod
 jobs:
   release-version:
     runs-on: ubuntu-latest
