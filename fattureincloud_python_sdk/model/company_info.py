@@ -98,7 +98,7 @@ class CompanyInfo(ModelNormal):
             'type': (CompanyType, none_type),  # noqa: E501
             'access_info': (CompanyInfoAccessInfo, none_type),  # noqa: E501
             'plan_info': (CompanyInfoPlanInfo, none_type),  # noqa: E501
-            'accountant_id': (int, none_type, none_type),  # noqa: E501
+            'accountant_id': (int, none_type),  # noqa: E501
             'is_accountant': (bool, none_type),  # noqa: E501
         }
 
@@ -165,7 +165,7 @@ class CompanyInfo(ModelNormal):
             type (CompanyType): [optional]  # noqa: E501
             access_info (CompanyInfoAccessInfo): [optional]  # noqa: E501
             plan_info (CompanyInfoPlanInfo): [optional]  # noqa: E501
-            accountant_id (int, none_type): Accountant unique identifier.. [optional]  # noqa: E501
+            accountant_id (int): Accountant unique identifier.. [optional]  # noqa: E501
             is_accountant (bool): Determine if the logged account is an accountant.. [optional]  # noqa: E501
         """
 
@@ -254,7 +254,7 @@ class CompanyInfo(ModelNormal):
             type (CompanyType): [optional]  # noqa: E501
             access_info (CompanyInfoAccessInfo): [optional]  # noqa: E501
             plan_info (CompanyInfoPlanInfo): [optional]  # noqa: E501
-            accountant_id (int, none_type): Accountant unique identifier.. [optional]  # noqa: E501
+            accountant_id (int): Accountant unique identifier.. [optional]  # noqa: E501
             is_accountant (bool): Determine if the logged account is an accountant.. [optional]  # noqa: E501
         """
 

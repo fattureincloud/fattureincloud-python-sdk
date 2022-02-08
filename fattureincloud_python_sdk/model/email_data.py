@@ -90,7 +90,7 @@ class EmailData(ModelNormal):
         """
         lazy_import()
         return {
-            'recipient_email': (str, none_type, none_type),  # noqa: E501
+            'recipient_email': (str, none_type),  # noqa: E501
             'default_sender_email': (EmailDataDefaultSenderEmail, none_type),  # noqa: E501
             'sender_emails_list': ([SenderEmail], none_type),  # noqa: E501
             'cc_email': (str, none_type),  # noqa: E501
@@ -129,21 +129,8 @@ class EmailData(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, recipient_email, default_sender_email, sender_emails_list, cc_email, subject, body, document_exists, delivery_note_exists, attachment_exists, accompanying_invoice_exists, default_attach_pdf, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """EmailData - a model defined in OpenAPI
-
-        Args:
-            recipient_email (str, none_type): Recipient's email
-            default_sender_email (EmailDataDefaultSenderEmail):
-            sender_emails_list ([SenderEmail]): List of all emails from which the document can be sent
-            cc_email (str): By default is the logged company email. This is the email address to which a copy will be sent.
-            subject (str): Email subject
-            body (str): Email body
-            document_exists (bool): If the document is not a delivery note, this flag will be set to true
-            delivery_note_exists (bool): If the document is a delivery note, this flag will be set to true
-            attachment_exists (bool): If the document has one or more attachments, this flag will be set to true
-            accompanying_invoice_exists (bool): If an accompanying invoice exists, this flag will be set to true
-            default_attach_pdf (bool): If a pdf is attached, this flag will be set to true
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -176,6 +163,17 @@ class EmailData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            recipient_email (str): Recipient's email. [optional]  # noqa: E501
+            default_sender_email (EmailDataDefaultSenderEmail): [optional]  # noqa: E501
+            sender_emails_list ([SenderEmail]): List of all emails from which the document can be sent. [optional]  # noqa: E501
+            cc_email (str): By default is the logged company email. This is the email address to which a copy will be sent.. [optional]  # noqa: E501
+            subject (str): Email subject. [optional]  # noqa: E501
+            body (str): Email body. [optional]  # noqa: E501
+            document_exists (bool): If the document is not a delivery note, this flag will be set to true. [optional]  # noqa: E501
+            delivery_note_exists (bool): If the document is a delivery note, this flag will be set to true. [optional]  # noqa: E501
+            attachment_exists (bool): If the document has one or more attachments, this flag will be set to true. [optional]  # noqa: E501
+            accompanying_invoice_exists (bool): If an accompanying invoice exists, this flag will be set to true. [optional]  # noqa: E501
+            default_attach_pdf (bool): If a pdf is attached, this flag will be set to true. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -203,17 +201,6 @@ class EmailData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.recipient_email = recipient_email
-        self.default_sender_email = default_sender_email
-        self.sender_emails_list = sender_emails_list
-        self.cc_email = cc_email
-        self.subject = subject
-        self.body = body
-        self.document_exists = document_exists
-        self.delivery_note_exists = delivery_note_exists
-        self.attachment_exists = attachment_exists
-        self.accompanying_invoice_exists = accompanying_invoice_exists
-        self.default_attach_pdf = default_attach_pdf
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -234,21 +221,8 @@ class EmailData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recipient_email, default_sender_email, sender_emails_list, cc_email, subject, body, document_exists, delivery_note_exists, attachment_exists, accompanying_invoice_exists, default_attach_pdf, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """EmailData - a model defined in OpenAPI
-
-        Args:
-            recipient_email (str, none_type): Recipient's email
-            default_sender_email (EmailDataDefaultSenderEmail):
-            sender_emails_list ([SenderEmail]): List of all emails from which the document can be sent
-            cc_email (str): By default is the logged company email. This is the email address to which a copy will be sent.
-            subject (str): Email subject
-            body (str): Email body
-            document_exists (bool): If the document is not a delivery note, this flag will be set to true
-            delivery_note_exists (bool): If the document is a delivery note, this flag will be set to true
-            attachment_exists (bool): If the document has one or more attachments, this flag will be set to true
-            accompanying_invoice_exists (bool): If an accompanying invoice exists, this flag will be set to true
-            default_attach_pdf (bool): If a pdf is attached, this flag will be set to true
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -281,6 +255,17 @@ class EmailData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            recipient_email (str): Recipient's email. [optional]  # noqa: E501
+            default_sender_email (EmailDataDefaultSenderEmail): [optional]  # noqa: E501
+            sender_emails_list ([SenderEmail]): List of all emails from which the document can be sent. [optional]  # noqa: E501
+            cc_email (str): By default is the logged company email. This is the email address to which a copy will be sent.. [optional]  # noqa: E501
+            subject (str): Email subject. [optional]  # noqa: E501
+            body (str): Email body. [optional]  # noqa: E501
+            document_exists (bool): If the document is not a delivery note, this flag will be set to true. [optional]  # noqa: E501
+            delivery_note_exists (bool): If the document is a delivery note, this flag will be set to true. [optional]  # noqa: E501
+            attachment_exists (bool): If the document has one or more attachments, this flag will be set to true. [optional]  # noqa: E501
+            accompanying_invoice_exists (bool): If an accompanying invoice exists, this flag will be set to true. [optional]  # noqa: E501
+            default_attach_pdf (bool): If a pdf is attached, this flag will be set to true. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -306,17 +291,6 @@ class EmailData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.recipient_email = recipient_email
-        self.default_sender_email = default_sender_email
-        self.sender_emails_list = sender_emails_list
-        self.cc_email = cc_email
-        self.subject = subject
-        self.body = body
-        self.document_exists = document_exists
-        self.delivery_note_exists = delivery_note_exists
-        self.attachment_exists = attachment_exists
-        self.accompanying_invoice_exists = accompanying_invoice_exists
-        self.default_attach_pdf = default_attach_pdf
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

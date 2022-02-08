@@ -89,21 +89,21 @@ class IssuedDocumentTotals(ModelNormal):
         lazy_import()
         return {
             'amount_net': (float, none_type),  # noqa: E501
-            'amount_vat': (float, none_type),  # noqa: E501
-            'amount_gross': (float, none_type),  # noqa: E501
-            'amount_due': (float, none_type),  # noqa: E501
-            'payments_sum': (float, none_type),  # noqa: E501
             'amount_rivalsa': (float, none_type),  # noqa: E501
             'amount_net_with_rivalsa': (float, none_type),  # noqa: E501
             'amount_cassa': (float, none_type),  # noqa: E501
             'taxable_amount': (float, none_type),  # noqa: E501
             'not_taxable_amount': (float, none_type),  # noqa: E501
+            'amount_vat': (float, none_type),  # noqa: E501
+            'amount_gross': (float, none_type),  # noqa: E501
             'taxable_amount_withholding_tax': (float, none_type),  # noqa: E501
             'amount_withholding_tax': (float, none_type),  # noqa: E501
             'taxable_amount_other_withholding_tax': (float, none_type),  # noqa: E501
             'amount_other_withholding_tax': (float, none_type),  # noqa: E501
             'stamp_duty': (float, none_type),  # noqa: E501
-            'is_enasarco_maximal_exceeded': (bool, none_type, none_type),  # noqa: E501
+            'amount_due': (float, none_type),  # noqa: E501
+            'is_enasarco_maximal_exceeded': (bool, none_type),  # noqa: E501
+            'payments_sum': (float, none_type),  # noqa: E501
             'vat_list': (IssuedDocumentTotalsVatList, none_type),  # noqa: E501
         }
 
@@ -114,21 +114,21 @@ class IssuedDocumentTotals(ModelNormal):
 
     attribute_map = {
         'amount_net': 'amount_net',  # noqa: E501
-        'amount_vat': 'amount_vat',  # noqa: E501
-        'amount_gross': 'amount_gross',  # noqa: E501
-        'amount_due': 'amount_due',  # noqa: E501
-        'payments_sum': 'payments_sum',  # noqa: E501
         'amount_rivalsa': 'amount_rivalsa',  # noqa: E501
         'amount_net_with_rivalsa': 'amount_net_with_rivalsa',  # noqa: E501
         'amount_cassa': 'amount_cassa',  # noqa: E501
         'taxable_amount': 'taxable_amount',  # noqa: E501
         'not_taxable_amount': 'not_taxable_amount',  # noqa: E501
+        'amount_vat': 'amount_vat',  # noqa: E501
+        'amount_gross': 'amount_gross',  # noqa: E501
         'taxable_amount_withholding_tax': 'taxable_amount_withholding_tax',  # noqa: E501
         'amount_withholding_tax': 'amount_withholding_tax',  # noqa: E501
         'taxable_amount_other_withholding_tax': 'taxable_amount_other_withholding_tax',  # noqa: E501
         'amount_other_withholding_tax': 'amount_other_withholding_tax',  # noqa: E501
         'stamp_duty': 'stamp_duty',  # noqa: E501
+        'amount_due': 'amount_due',  # noqa: E501
         'is_enasarco_maximal_exceeded': 'is_enasarco_maximal_exceeded',  # noqa: E501
+        'payments_sum': 'payments_sum',  # noqa: E501
         'vat_list': 'vat_list',  # noqa: E501
     }
 
@@ -139,15 +139,8 @@ class IssuedDocumentTotals(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, amount_net, amount_vat, amount_gross, amount_due, payments_sum, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """IssuedDocumentTotals - a model defined in OpenAPI
-
-        Args:
-            amount_net (float): Total net amount.
-            amount_vat (float): Total vat amount.
-            amount_gross (float): Total grosas amount.
-            amount_due (float): Total amount due.
-            payments_sum (float): Payments sum.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,17 +173,22 @@ class IssuedDocumentTotals(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            amount_net (float): Total net amount.. [optional]  # noqa: E501
             amount_rivalsa (float): Rivalsa amount.. [optional]  # noqa: E501
             amount_net_with_rivalsa (float): Net amount with rivalsa.. [optional]  # noqa: E501
             amount_cassa (float): Cassa amount.. [optional]  # noqa: E501
             taxable_amount (float): Taxable amount.. [optional]  # noqa: E501
             not_taxable_amount (float): Not taxable amount.. [optional]  # noqa: E501
+            amount_vat (float): Total vat amount.. [optional]  # noqa: E501
+            amount_gross (float): Total grosas amount.. [optional]  # noqa: E501
             taxable_amount_withholding_tax (float): Taxable withholding tax amount.. [optional]  # noqa: E501
             amount_withholding_tax (float): Withholding tax amount.. [optional]  # noqa: E501
             taxable_amount_other_withholding_tax (float): Other withholding tax taxable amount.. [optional]  # noqa: E501
             amount_other_withholding_tax (float): Other withholding tax amount.. [optional]  # noqa: E501
             stamp_duty (float): Stamp duty value [0 if not present].. [optional]  # noqa: E501
-            is_enasarco_maximal_exceeded (bool, none_type): [optional]  # noqa: E501
+            amount_due (float): Total amount due.. [optional]  # noqa: E501
+            is_enasarco_maximal_exceeded (bool): [optional]  # noqa: E501
+            payments_sum (float): Payments sum.. [optional]  # noqa: E501
             vat_list (IssuedDocumentTotalsVatList): [optional]  # noqa: E501
         """
 
@@ -219,11 +217,6 @@ class IssuedDocumentTotals(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount_net = amount_net
-        self.amount_vat = amount_vat
-        self.amount_gross = amount_gross
-        self.amount_due = amount_due
-        self.payments_sum = payments_sum
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -244,15 +237,8 @@ class IssuedDocumentTotals(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount_net, amount_vat, amount_gross, amount_due, payments_sum, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """IssuedDocumentTotals - a model defined in OpenAPI
-
-        Args:
-            amount_net (float): Total net amount.
-            amount_vat (float): Total vat amount.
-            amount_gross (float): Total grosas amount.
-            amount_due (float): Total amount due.
-            payments_sum (float): Payments sum.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -285,17 +271,22 @@ class IssuedDocumentTotals(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            amount_net (float): Total net amount.. [optional]  # noqa: E501
             amount_rivalsa (float): Rivalsa amount.. [optional]  # noqa: E501
             amount_net_with_rivalsa (float): Net amount with rivalsa.. [optional]  # noqa: E501
             amount_cassa (float): Cassa amount.. [optional]  # noqa: E501
             taxable_amount (float): Taxable amount.. [optional]  # noqa: E501
             not_taxable_amount (float): Not taxable amount.. [optional]  # noqa: E501
+            amount_vat (float): Total vat amount.. [optional]  # noqa: E501
+            amount_gross (float): Total grosas amount.. [optional]  # noqa: E501
             taxable_amount_withholding_tax (float): Taxable withholding tax amount.. [optional]  # noqa: E501
             amount_withholding_tax (float): Withholding tax amount.. [optional]  # noqa: E501
             taxable_amount_other_withholding_tax (float): Other withholding tax taxable amount.. [optional]  # noqa: E501
             amount_other_withholding_tax (float): Other withholding tax amount.. [optional]  # noqa: E501
             stamp_duty (float): Stamp duty value [0 if not present].. [optional]  # noqa: E501
-            is_enasarco_maximal_exceeded (bool, none_type): [optional]  # noqa: E501
+            amount_due (float): Total amount due.. [optional]  # noqa: E501
+            is_enasarco_maximal_exceeded (bool): [optional]  # noqa: E501
+            payments_sum (float): Payments sum.. [optional]  # noqa: E501
             vat_list (IssuedDocumentTotalsVatList): [optional]  # noqa: E501
         """
 
@@ -322,11 +313,6 @@ class IssuedDocumentTotals(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount_net = amount_net
-        self.amount_vat = amount_vat
-        self.amount_gross = amount_gross
-        self.amount_due = amount_due
-        self.payments_sum = payments_sum
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

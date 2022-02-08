@@ -53,7 +53,6 @@ class CashbookEntryType(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'None': None,
             'IN': "in",
             'OUT': "out",
         },
@@ -64,7 +63,7 @@ class CashbookEntryType(ModelSimple):
 
     additional_properties_type = None
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():

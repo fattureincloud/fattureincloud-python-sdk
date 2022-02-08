@@ -82,11 +82,11 @@ class ArchiveDocument(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'id': (int, none_type),  # noqa: E501
             'date': (date, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
-            'category': (str, none_type),  # noqa: E501
-            'id': (int, none_type),  # noqa: E501
             'attachment_url': (str, none_type),  # noqa: E501
+            'category': (str, none_type),  # noqa: E501
             'attachment_token': (str, none_type),  # noqa: E501
         }
 
@@ -96,11 +96,11 @@ class ArchiveDocument(ModelNormal):
 
 
     attribute_map = {
+        'id': 'id',  # noqa: E501
         'date': 'date',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'category': 'category',  # noqa: E501
-        'id': 'id',  # noqa: E501
         'attachment_url': 'attachment_url',  # noqa: E501
+        'category': 'category',  # noqa: E501
         'attachment_token': 'attachment_token',  # noqa: E501
     }
 
@@ -112,13 +112,8 @@ class ArchiveDocument(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, date, description, category, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """ArchiveDocument - a model defined in OpenAPI
-
-        Args:
-            date (date): Archive document date.
-            description (str): Archive Document description.
-            category (str): Archive document category.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,7 +147,10 @@ class ArchiveDocument(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Archive document unique identifier.. [optional]  # noqa: E501
+            date (date): Archive document date.. [optional]  # noqa: E501
+            description (str): Archive Document description.. [optional]  # noqa: E501
             attachment_url (str): [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /archive or PUT /archive/{documentId}.. [optional]  # noqa: E501
+            category (str): Archive document category.. [optional]  # noqa: E501
             attachment_token (str): [Write Only]  [Required] Attachment token returned by POST /archive/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
         """
 
@@ -181,9 +179,6 @@ class ArchiveDocument(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.date = date
-        self.description = description
-        self.category = category
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -204,13 +199,8 @@ class ArchiveDocument(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, date, description, category, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ArchiveDocument - a model defined in OpenAPI
-
-        Args:
-            date (date): Archive document date.
-            description (str): Archive Document description.
-            category (str): Archive document category.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,7 +234,10 @@ class ArchiveDocument(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Archive document unique identifier.. [optional]  # noqa: E501
+            date (date): Archive document date.. [optional]  # noqa: E501
+            description (str): Archive Document description.. [optional]  # noqa: E501
             attachment_url (str): [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /archive or PUT /archive/{documentId}.. [optional]  # noqa: E501
+            category (str): Archive document category.. [optional]  # noqa: E501
             attachment_token (str): [Write Only]  [Required] Attachment token returned by POST /archive/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
         """
 
@@ -271,9 +264,6 @@ class ArchiveDocument(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.date = date
-        self.description = description
-        self.category = category
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

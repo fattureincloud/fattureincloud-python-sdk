@@ -74,7 +74,7 @@ class PaymentAccount(ModelNormal):
         lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():
@@ -88,11 +88,11 @@ class PaymentAccount(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
             'type': (PaymentAccountType, none_type),  # noqa: E501
-            'iban': (str, none_type, none_type),  # noqa: E501
-            'sia': (str, none_type, none_type),  # noqa: E501
+            'iban': (str, none_type),  # noqa: E501
+            'sia': (str, none_type),  # noqa: E501
             'cuc': (str, none_type),  # noqa: E501
             'virtual': (bool, none_type),  # noqa: E501
         }
@@ -103,8 +103,8 @@ class PaymentAccount(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
         'iban': 'iban',  # noqa: E501
         'sia': 'sia',  # noqa: E501
@@ -119,11 +119,8 @@ class PaymentAccount(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """PaymentAccount - a model defined in OpenAPI
-
-        Args:
-            name (str): Payment account name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,9 +154,10 @@ class PaymentAccount(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
+            name (str): Payment account name.. [optional]  # noqa: E501
             type (PaymentAccountType): [optional]  # noqa: E501
-            iban (str, none_type): Payment account iban.. [optional]  # noqa: E501
-            sia (str, none_type): Payment account sia.. [optional]  # noqa: E501
+            iban (str): Payment account iban.. [optional]  # noqa: E501
+            sia (str): Payment account sia.. [optional]  # noqa: E501
             cuc (str): Payment account cuc.. [optional]  # noqa: E501
             virtual (bool): Determine if the payment method is virtual.. [optional]  # noqa: E501
         """
@@ -189,7 +187,6 @@ class PaymentAccount(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -210,11 +207,8 @@ class PaymentAccount(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """PaymentAccount - a model defined in OpenAPI
-
-        Args:
-            name (str): Payment account name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -248,9 +242,10 @@ class PaymentAccount(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
+            name (str): Payment account name.. [optional]  # noqa: E501
             type (PaymentAccountType): [optional]  # noqa: E501
-            iban (str, none_type): Payment account iban.. [optional]  # noqa: E501
-            sia (str, none_type): Payment account sia.. [optional]  # noqa: E501
+            iban (str): Payment account iban.. [optional]  # noqa: E501
+            sia (str): Payment account sia.. [optional]  # noqa: E501
             cuc (str): Payment account cuc.. [optional]  # noqa: E501
             virtual (bool): Determine if the payment method is virtual.. [optional]  # noqa: E501
         """
@@ -278,7 +273,6 @@ class PaymentAccount(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

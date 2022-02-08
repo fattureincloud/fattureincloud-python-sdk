@@ -90,14 +90,14 @@ class F24(ModelNormal):
         """
         lazy_import()
         return {
-            'due_date': (date, none_type),  # noqa: E501
-            'amount': (float, none_type),  # noqa: E501
-            'description': (str, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
+            'due_date': (date, none_type),  # noqa: E501
             'status': (F24Status, none_type),  # noqa: E501
             'payment_account': (PaymentAccount, none_type),  # noqa: E501
-            'attachment_url': (str, none_type, none_type),  # noqa: E501
-            'attachment_token': (str, none_type, none_type),  # noqa: E501
+            'amount': (float, none_type),  # noqa: E501
+            'attachment_url': (str, none_type),  # noqa: E501
+            'attachment_token': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -106,14 +106,14 @@ class F24(ModelNormal):
 
 
     attribute_map = {
-        'due_date': 'due_date',  # noqa: E501
-        'amount': 'amount',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'due_date': 'due_date',  # noqa: E501
         'status': 'status',  # noqa: E501
         'payment_account': 'payment_account',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
         'attachment_url': 'attachment_url',  # noqa: E501
         'attachment_token': 'attachment_token',  # noqa: E501
+        'description': 'description',  # noqa: E501
     }
 
     read_only_vars = {
@@ -124,13 +124,8 @@ class F24(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, due_date, amount, description, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """F24 - a model defined in OpenAPI
-
-        Args:
-            due_date (date): Due date.
-            amount (float): Taxes amount.
-            description (str): Name or brief description.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -164,10 +159,13 @@ class F24(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique F24 identifier.. [optional]  # noqa: E501
+            due_date (date): Due date.. [optional]  # noqa: E501
             status (F24Status): [optional]  # noqa: E501
             payment_account (PaymentAccount): [optional]  # noqa: E501
-            attachment_url (str, none_type): [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /taxes or PUT /taxes/{documentId}.. [optional]  # noqa: E501
-            attachment_token (str, none_type): [Write Only] Attachment token returned by POST /taxes/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
+            amount (float): Taxes amount.. [optional]  # noqa: E501
+            attachment_url (str): [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /taxes or PUT /taxes/{documentId}.. [optional]  # noqa: E501
+            attachment_token (str): [Write Only] Attachment token returned by POST /taxes/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
+            description (str): Name or brief description.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -195,9 +193,6 @@ class F24(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.due_date = due_date
-        self.amount = amount
-        self.description = description
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -218,13 +213,8 @@ class F24(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, due_date, amount, description, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """F24 - a model defined in OpenAPI
-
-        Args:
-            due_date (date): Due date.
-            amount (float): Taxes amount.
-            description (str): Name or brief description.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -258,10 +248,13 @@ class F24(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique F24 identifier.. [optional]  # noqa: E501
+            due_date (date): Due date.. [optional]  # noqa: E501
             status (F24Status): [optional]  # noqa: E501
             payment_account (PaymentAccount): [optional]  # noqa: E501
-            attachment_url (str, none_type): [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /taxes or PUT /taxes/{documentId}.. [optional]  # noqa: E501
-            attachment_token (str, none_type): [Write Only] Attachment token returned by POST /taxes/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
+            amount (float): Taxes amount.. [optional]  # noqa: E501
+            attachment_url (str): [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /taxes or PUT /taxes/{documentId}.. [optional]  # noqa: E501
+            attachment_token (str): [Write Only] Attachment token returned by POST /taxes/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
+            description (str): Name or brief description.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -287,9 +280,6 @@ class F24(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.due_date = due_date
-        self.amount = amount
-        self.description = description
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

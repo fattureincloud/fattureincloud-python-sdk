@@ -53,7 +53,6 @@ class OriginalDocumentType(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'None': None,
             'ORDINE': "ordine",
             'CONTRATTO': "contratto",
             'CONVENZIONE': "convenzione",
@@ -65,7 +64,7 @@ class OriginalDocumentType(ModelSimple):
 
     additional_properties_type = None
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():

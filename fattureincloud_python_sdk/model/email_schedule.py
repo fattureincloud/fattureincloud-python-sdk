@@ -88,14 +88,14 @@ class EmailSchedule(ModelNormal):
         """
         lazy_import()
         return {
+            'sender_id': (int, none_type),  # noqa: E501
+            'sender_email': (str, none_type),  # noqa: E501
             'recipient_email': (str, none_type),  # noqa: E501
             'subject': (str, none_type),  # noqa: E501
             'body': (str, none_type),  # noqa: E501
             'include': (EmailScheduleInclude, none_type),  # noqa: E501
             'attach_pdf': (bool, none_type),  # noqa: E501
             'send_copy': (bool, none_type),  # noqa: E501
-            'sender_id': (int, none_type),  # noqa: E501
-            'sender_email': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -104,14 +104,14 @@ class EmailSchedule(ModelNormal):
 
 
     attribute_map = {
+        'sender_id': 'sender_id',  # noqa: E501
+        'sender_email': 'sender_email',  # noqa: E501
         'recipient_email': 'recipient_email',  # noqa: E501
         'subject': 'subject',  # noqa: E501
         'body': 'body',  # noqa: E501
         'include': 'include',  # noqa: E501
         'attach_pdf': 'attach_pdf',  # noqa: E501
         'send_copy': 'send_copy',  # noqa: E501
-        'sender_id': 'sender_id',  # noqa: E501
-        'sender_email': 'sender_email',  # noqa: E501
     }
 
     read_only_vars = {
@@ -121,16 +121,8 @@ class EmailSchedule(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, recipient_email, subject, body, include, attach_pdf, send_copy, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """EmailSchedule - a model defined in OpenAPI
-
-        Args:
-            recipient_email (str): One or more comma separated recipient emails
-            subject (str): Email subject
-            body (str): Email body
-            include (EmailScheduleInclude):
-            attach_pdf (bool): If set to true, documents will be sent as PDF attachments too
-            send_copy (bool): If set to true, a copy of the email will be sent to the `cc_email` specified by `Get email data`
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,6 +157,12 @@ class EmailSchedule(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             sender_id (int): Sender id. Required if `sender_email` is not specified. [optional]  # noqa: E501
             sender_email (str): Sender email. Required if `sender_id` is not specified. [optional]  # noqa: E501
+            recipient_email (str): One or more comma separated recipient emails. [optional]  # noqa: E501
+            subject (str): Email subject. [optional]  # noqa: E501
+            body (str): Email body. [optional]  # noqa: E501
+            include (EmailScheduleInclude): [optional]  # noqa: E501
+            attach_pdf (bool): If set to true, documents will be sent as PDF attachments too. [optional]  # noqa: E501
+            send_copy (bool): If set to true, a copy of the email will be sent to the `cc_email` specified by `Get email data`. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,12 +190,6 @@ class EmailSchedule(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.recipient_email = recipient_email
-        self.subject = subject
-        self.body = body
-        self.include = include
-        self.attach_pdf = attach_pdf
-        self.send_copy = send_copy
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -218,16 +210,8 @@ class EmailSchedule(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recipient_email, subject, body, include, attach_pdf, send_copy, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """EmailSchedule - a model defined in OpenAPI
-
-        Args:
-            recipient_email (str): One or more comma separated recipient emails
-            subject (str): Email subject
-            body (str): Email body
-            include (EmailScheduleInclude):
-            attach_pdf (bool): If set to true, documents will be sent as PDF attachments too
-            send_copy (bool): If set to true, a copy of the email will be sent to the `cc_email` specified by `Get email data`
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -262,6 +246,12 @@ class EmailSchedule(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             sender_id (int): Sender id. Required if `sender_email` is not specified. [optional]  # noqa: E501
             sender_email (str): Sender email. Required if `sender_id` is not specified. [optional]  # noqa: E501
+            recipient_email (str): One or more comma separated recipient emails. [optional]  # noqa: E501
+            subject (str): Email subject. [optional]  # noqa: E501
+            body (str): Email body. [optional]  # noqa: E501
+            include (EmailScheduleInclude): [optional]  # noqa: E501
+            attach_pdf (bool): If set to true, documents will be sent as PDF attachments too. [optional]  # noqa: E501
+            send_copy (bool): If set to true, a copy of the email will be sent to the `cc_email` specified by `Get email data`. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -287,12 +277,6 @@ class EmailSchedule(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.recipient_email = recipient_email
-        self.subject = subject
-        self.body = body
-        self.include = include
-        self.attach_pdf = attach_pdf
-        self.send_copy = send_copy
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

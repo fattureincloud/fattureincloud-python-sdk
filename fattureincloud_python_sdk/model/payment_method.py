@@ -95,15 +95,15 @@ class PaymentMethod(ModelNormal):
         """
         lazy_import()
         return {
+            'id': (int, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
-            'id': (int, none_type, none_type),  # noqa: E501
             'type': (PaymentMethodType, none_type),  # noqa: E501
             'is_default': (bool, none_type),  # noqa: E501
             'default_payment_account': (PaymentAccount, none_type),  # noqa: E501
-            'details': ([PaymentMethodDetails], none_type, none_type),  # noqa: E501
-            'bank_iban': (str, none_type, none_type),  # noqa: E501
-            'bank_name': (str, none_type, none_type),  # noqa: E501
-            'bank_beneficiary': (str, none_type, none_type),  # noqa: E501
+            'details': ([PaymentMethodDetails], none_type),  # noqa: E501
+            'bank_iban': (str, none_type),  # noqa: E501
+            'bank_name': (str, none_type),  # noqa: E501
+            'bank_beneficiary': (str, none_type),  # noqa: E501
             'ei_payment_method': (str, none_type),  # noqa: E501
         }
 
@@ -113,8 +113,8 @@ class PaymentMethod(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
         'is_default': 'is_default',  # noqa: E501
         'default_payment_account': 'default_payment_account',  # noqa: E501
@@ -132,11 +132,8 @@ class PaymentMethod(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """PaymentMethod - a model defined in OpenAPI
-
-        Args:
-            name (str): Name of the payment method
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,14 +166,15 @@ class PaymentMethod(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (int, none_type): Unique identifier. [optional]  # noqa: E501
+            id (int): Unique identifier. [optional]  # noqa: E501
+            name (str): Name of the payment method. [optional]  # noqa: E501
             type (PaymentMethodType): [optional]  # noqa: E501
             is_default (bool): Determines if this is the default payment method.. [optional]  # noqa: E501
             default_payment_account (PaymentAccount): [optional]  # noqa: E501
-            details ([PaymentMethodDetails], none_type): Method details rows. [optional]  # noqa: E501
-            bank_iban (str, none_type): Bank iban. [optional]  # noqa: E501
-            bank_name (str, none_type): Bank name. [optional]  # noqa: E501
-            bank_beneficiary (str, none_type): Bank beneficiary. [optional]  # noqa: E501
+            details ([PaymentMethodDetails]): Method details rows. [optional]  # noqa: E501
+            bank_iban (str): Bank iban. [optional]  # noqa: E501
+            bank_name (str): Bank name. [optional]  # noqa: E501
+            bank_beneficiary (str): Bank beneficiary. [optional]  # noqa: E501
             ei_payment_method (str): EInvoice payment method. [optional]  # noqa: E501
         """
 
@@ -205,7 +203,6 @@ class PaymentMethod(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -226,11 +223,8 @@ class PaymentMethod(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """PaymentMethod - a model defined in OpenAPI
-
-        Args:
-            name (str): Name of the payment method
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -263,14 +257,15 @@ class PaymentMethod(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (int, none_type): Unique identifier. [optional]  # noqa: E501
+            id (int): Unique identifier. [optional]  # noqa: E501
+            name (str): Name of the payment method. [optional]  # noqa: E501
             type (PaymentMethodType): [optional]  # noqa: E501
             is_default (bool): Determines if this is the default payment method.. [optional]  # noqa: E501
             default_payment_account (PaymentAccount): [optional]  # noqa: E501
-            details ([PaymentMethodDetails], none_type): Method details rows. [optional]  # noqa: E501
-            bank_iban (str, none_type): Bank iban. [optional]  # noqa: E501
-            bank_name (str, none_type): Bank name. [optional]  # noqa: E501
-            bank_beneficiary (str, none_type): Bank beneficiary. [optional]  # noqa: E501
+            details ([PaymentMethodDetails]): Method details rows. [optional]  # noqa: E501
+            bank_iban (str): Bank iban. [optional]  # noqa: E501
+            bank_name (str): Bank name. [optional]  # noqa: E501
+            bank_beneficiary (str): Bank beneficiary. [optional]  # noqa: E501
             ei_payment_method (str): EInvoice payment method. [optional]  # noqa: E501
         """
 
@@ -297,7 +292,6 @@ class PaymentMethod(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

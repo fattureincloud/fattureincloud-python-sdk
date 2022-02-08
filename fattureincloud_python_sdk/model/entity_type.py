@@ -53,7 +53,6 @@ class EntityType(ModelSimple):
 
     allowed_values = {
         ('value',): {
-            'None': None,
             'COMPANY': "company",
             'PERSON': "person",
             'PA': "pa",
@@ -66,7 +65,7 @@ class EntityType(ModelSimple):
 
     additional_properties_type = None
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():

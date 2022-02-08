@@ -94,9 +94,9 @@ class Entity(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
             'code': (str, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
             'type': (EntityType, none_type),  # noqa: E501
             'first_name': (str, none_type),  # noqa: E501
             'last_name': (str, none_type),  # noqa: E501
@@ -115,17 +115,17 @@ class Entity(ModelNormal):
             'fax': (str, none_type),  # noqa: E501
             'notes': (str, none_type),  # noqa: E501
             'default_vat': (VatType, none_type),  # noqa: E501
-            'default_payment_terms': (int, none_type, none_type),  # noqa: E501
+            'default_payment_terms': (int, none_type),  # noqa: E501
             'default_payment_terms_type': (DefaultPaymentTermsType, none_type),  # noqa: E501
             'default_payment_method': (PaymentMethod, none_type),  # noqa: E501
-            'bank_name': (str, none_type, none_type),  # noqa: E501
-            'bank_iban': (str, none_type, none_type),  # noqa: E501
-            'bank_swift_code': (str, none_type, none_type),  # noqa: E501
-            'shipping_address': (str, none_type, none_type),  # noqa: E501
-            'e_invoice': (bool, none_type, none_type),  # noqa: E501
-            'ei_code': (str, none_type, none_type),  # noqa: E501
-            'created_at': (str, none_type, none_type),  # noqa: E501
-            'updated_at': (str, none_type, none_type),  # noqa: E501
+            'bank_name': (str, none_type),  # noqa: E501
+            'bank_iban': (str, none_type),  # noqa: E501
+            'bank_swift_code': (str, none_type),  # noqa: E501
+            'shipping_address': (str, none_type),  # noqa: E501
+            'e_invoice': (bool, none_type),  # noqa: E501
+            'ei_code': (str, none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'updated_at': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -134,9 +134,9 @@ class Entity(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
         'code': 'code',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
         'first_name': 'first_name',  # noqa: E501
         'last_name': 'last_name',  # noqa: E501
@@ -175,11 +175,8 @@ class Entity(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """Entity - a model defined in OpenAPI
-
-        Args:
-            name (str): Name
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -214,6 +211,7 @@ class Entity(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
             code (str): Code.. [optional]  # noqa: E501
+            name (str): Name. [optional]  # noqa: E501
             type (EntityType): [optional]  # noqa: E501
             first_name (str): First name.. [optional]  # noqa: E501
             last_name (str): Last name.. [optional]  # noqa: E501
@@ -232,17 +230,17 @@ class Entity(ModelNormal):
             fax (str): Fax.. [optional]  # noqa: E501
             notes (str): Extra notes.. [optional]  # noqa: E501
             default_vat (VatType): [optional]  # noqa: E501
-            default_payment_terms (int, none_type): [Only for client] Default payment terms.. [optional]  # noqa: E501
+            default_payment_terms (int): [Only for client] Default payment terms.. [optional]  # noqa: E501
             default_payment_terms_type (DefaultPaymentTermsType): [optional]  # noqa: E501
             default_payment_method (PaymentMethod): [optional]  # noqa: E501
-            bank_name (str, none_type): [Only for client] Bank name.. [optional]  # noqa: E501
-            bank_iban (str, none_type): [Only for client] Iban.. [optional]  # noqa: E501
-            bank_swift_code (str, none_type): [Only for client] Bank swift code.. [optional]  # noqa: E501
-            shipping_address (str, none_type): [Only for client] Shipping address.. [optional]  # noqa: E501
-            e_invoice (bool, none_type): [Only for client] Use e-invoices.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            ei_code (str, none_type): [Only for client] E-invoices code.. [optional]  # noqa: E501
-            created_at (str, none_type): [optional]  # noqa: E501
-            updated_at (str, none_type): [optional]  # noqa: E501
+            bank_name (str): [Only for client] Bank name.. [optional]  # noqa: E501
+            bank_iban (str): [Only for client] Iban.. [optional]  # noqa: E501
+            bank_swift_code (str): [Only for client] Bank swift code.. [optional]  # noqa: E501
+            shipping_address (str): [Only for client] Shipping address.. [optional]  # noqa: E501
+            e_invoice (bool): [Only for client] Use e-invoices.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            ei_code (str): [Only for client] E-invoices code.. [optional]  # noqa: E501
+            created_at (str): [optional]  # noqa: E501
+            updated_at (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -270,7 +268,6 @@ class Entity(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -291,11 +288,8 @@ class Entity(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """Entity - a model defined in OpenAPI
-
-        Args:
-            name (str): Name
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -330,6 +324,7 @@ class Entity(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
             code (str): Code.. [optional]  # noqa: E501
+            name (str): Name. [optional]  # noqa: E501
             type (EntityType): [optional]  # noqa: E501
             first_name (str): First name.. [optional]  # noqa: E501
             last_name (str): Last name.. [optional]  # noqa: E501
@@ -348,17 +343,17 @@ class Entity(ModelNormal):
             fax (str): Fax.. [optional]  # noqa: E501
             notes (str): Extra notes.. [optional]  # noqa: E501
             default_vat (VatType): [optional]  # noqa: E501
-            default_payment_terms (int, none_type): [Only for client] Default payment terms.. [optional]  # noqa: E501
+            default_payment_terms (int): [Only for client] Default payment terms.. [optional]  # noqa: E501
             default_payment_terms_type (DefaultPaymentTermsType): [optional]  # noqa: E501
             default_payment_method (PaymentMethod): [optional]  # noqa: E501
-            bank_name (str, none_type): [Only for client] Bank name.. [optional]  # noqa: E501
-            bank_iban (str, none_type): [Only for client] Iban.. [optional]  # noqa: E501
-            bank_swift_code (str, none_type): [Only for client] Bank swift code.. [optional]  # noqa: E501
-            shipping_address (str, none_type): [Only for client] Shipping address.. [optional]  # noqa: E501
-            e_invoice (bool, none_type): [Only for client] Use e-invoices.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            ei_code (str, none_type): [Only for client] E-invoices code.. [optional]  # noqa: E501
-            created_at (str, none_type): [optional]  # noqa: E501
-            updated_at (str, none_type): [optional]  # noqa: E501
+            bank_name (str): [Only for client] Bank name.. [optional]  # noqa: E501
+            bank_iban (str): [Only for client] Iban.. [optional]  # noqa: E501
+            bank_swift_code (str): [Only for client] Bank swift code.. [optional]  # noqa: E501
+            shipping_address (str): [Only for client] Shipping address.. [optional]  # noqa: E501
+            e_invoice (bool): [Only for client] Use e-invoices.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            ei_code (str): [Only for client] E-invoices code.. [optional]  # noqa: E501
+            created_at (str): [optional]  # noqa: E501
+            updated_at (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -384,7 +379,6 @@ class Entity(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

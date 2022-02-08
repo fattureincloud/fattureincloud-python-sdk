@@ -69,7 +69,7 @@ class IssuedDocumentExtraData(ModelNormal):
         """
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():
@@ -82,19 +82,19 @@ class IssuedDocumentExtraData(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'show_sofort_button': (bool, none_type, none_type),  # noqa: E501
-            'multifatture_sent': (int, none_type, none_type),  # noqa: E501
-            'ts_communication': (bool, none_type, none_type),  # noqa: E501
-            'ts_flag_tipo_spesa': (float, none_type, none_type),  # noqa: E501
-            'ts_pagamento_tracciato': (bool, none_type, none_type),  # noqa: E501
-            'ts_tipo_spesa': (str, none_type, none_type),  # noqa: E501
-            'ts_opposizione': (bool, none_type, none_type),  # noqa: E501
-            'ts_status': (int, none_type, none_type),  # noqa: E501
-            'ts_file_id': (str, none_type, none_type),  # noqa: E501
-            'ts_sent_date': (date, none_type, none_type),  # noqa: E501
-            'ts_full_amount': (bool, none_type, none_type),  # noqa: E501
-            'imported_by': (str, none_type, none_type),  # noqa: E501
-            'ts_single_sending': (bool, none_type, none_type),  # noqa: E501
+            'show_sofort_button': (bool, none_type),  # noqa: E501
+            'multifatture_sent': (int, none_type),  # noqa: E501
+            'ts_communication': (bool, none_type),  # noqa: E501
+            'ts_flag_tipo_spesa': (float, none_type),  # noqa: E501
+            'ts_pagamento_tracciato': (bool, none_type),  # noqa: E501
+            'ts_tipo_spesa': (str, none_type),  # noqa: E501
+            'ts_opposizione': (bool, none_type),  # noqa: E501
+            'ts_status': (int, none_type),  # noqa: E501
+            'ts_file_id': (str, none_type),  # noqa: E501
+            'ts_sent_date': (date, none_type),  # noqa: E501
+            'ts_full_amount': (bool, none_type),  # noqa: E501
+            'imported_by': (str, none_type),  # noqa: E501
+            'ts_single_sending': (bool, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -159,19 +159,19 @@ class IssuedDocumentExtraData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            show_sofort_button (bool, none_type): [optional]  # noqa: E501
-            multifatture_sent (int, none_type): [optional]  # noqa: E501
-            ts_communication (bool, none_type): [optional]  # noqa: E501
-            ts_flag_tipo_spesa (float, none_type): 1 => TK (Ticket di pronto soccorso); 2 => SR (Visita in intramoenia). [optional]  # noqa: E501
-            ts_pagamento_tracciato (bool, none_type): [optional]  # noqa: E501
-            ts_tipo_spesa (str, none_type): Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more.. [optional]  # noqa: E501
-            ts_opposizione (bool, none_type): [optional]  # noqa: E501
-            ts_status (int, none_type): [optional]  # noqa: E501
-            ts_file_id (str, none_type): [optional]  # noqa: E501
-            ts_sent_date (date, none_type): [optional]  # noqa: E501
-            ts_full_amount (bool, none_type): [optional]  # noqa: E501
-            imported_by (str, none_type): [optional]  # noqa: E501
-            ts_single_sending (bool, none_type): [optional]  # noqa: E501
+            show_sofort_button (bool): [optional]  # noqa: E501
+            multifatture_sent (int): [optional]  # noqa: E501
+            ts_communication (bool): [optional]  # noqa: E501
+            ts_flag_tipo_spesa (float): 1 => TK (Ticket di pronto soccorso); 2 => SR (Visita in intramoenia). [optional]  # noqa: E501
+            ts_pagamento_tracciato (bool): [optional]  # noqa: E501
+            ts_tipo_spesa (str): Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more.. [optional]  # noqa: E501
+            ts_opposizione (bool): [optional]  # noqa: E501
+            ts_status (int): [optional]  # noqa: E501
+            ts_file_id (str): [optional]  # noqa: E501
+            ts_sent_date (date): [optional]  # noqa: E501
+            ts_full_amount (bool): [optional]  # noqa: E501
+            imported_by (str): [optional]  # noqa: E501
+            ts_single_sending (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -253,19 +253,19 @@ class IssuedDocumentExtraData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            show_sofort_button (bool, none_type): [optional]  # noqa: E501
-            multifatture_sent (int, none_type): [optional]  # noqa: E501
-            ts_communication (bool, none_type): [optional]  # noqa: E501
-            ts_flag_tipo_spesa (float, none_type): 1 => TK (Ticket di pronto soccorso); 2 => SR (Visita in intramoenia). [optional]  # noqa: E501
-            ts_pagamento_tracciato (bool, none_type): [optional]  # noqa: E501
-            ts_tipo_spesa (str, none_type): Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more.. [optional]  # noqa: E501
-            ts_opposizione (bool, none_type): [optional]  # noqa: E501
-            ts_status (int, none_type): [optional]  # noqa: E501
-            ts_file_id (str, none_type): [optional]  # noqa: E501
-            ts_sent_date (date, none_type): [optional]  # noqa: E501
-            ts_full_amount (bool, none_type): [optional]  # noqa: E501
-            imported_by (str, none_type): [optional]  # noqa: E501
-            ts_single_sending (bool, none_type): [optional]  # noqa: E501
+            show_sofort_button (bool): [optional]  # noqa: E501
+            multifatture_sent (int): [optional]  # noqa: E501
+            ts_communication (bool): [optional]  # noqa: E501
+            ts_flag_tipo_spesa (float): 1 => TK (Ticket di pronto soccorso); 2 => SR (Visita in intramoenia). [optional]  # noqa: E501
+            ts_pagamento_tracciato (bool): [optional]  # noqa: E501
+            ts_tipo_spesa (str): Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more.. [optional]  # noqa: E501
+            ts_opposizione (bool): [optional]  # noqa: E501
+            ts_status (int): [optional]  # noqa: E501
+            ts_file_id (str): [optional]  # noqa: E501
+            ts_sent_date (date): [optional]  # noqa: E501
+            ts_full_amount (bool): [optional]  # noqa: E501
+            imported_by (str): [optional]  # noqa: E501
+            ts_single_sending (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

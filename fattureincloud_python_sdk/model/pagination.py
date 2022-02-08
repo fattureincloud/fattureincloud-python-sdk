@@ -84,14 +84,14 @@ class Pagination(ModelNormal):
         return {
             'current_page': (int, none_type),  # noqa: E501
             'first_page_url': (str, none_type),  # noqa: E501
-            '_from': (int, none_type, none_type),  # noqa: E501
+            '_from': (int, none_type),  # noqa: E501
             'last_page': (int, none_type),  # noqa: E501
             'last_page_url': (str, none_type),  # noqa: E501
-            'next_page_url': (str, none_type, none_type),  # noqa: E501
+            'next_page_url': (str, none_type),  # noqa: E501
             'path': (str, none_type),  # noqa: E501
             'per_page': (int, none_type),  # noqa: E501
-            'prev_page_url': (str, none_type, none_type),  # noqa: E501
-            'to': (int, none_type, none_type),  # noqa: E501
+            'prev_page_url': (str, none_type),  # noqa: E501
+            'to': (int, none_type),  # noqa: E501
             'total': (int, none_type),  # noqa: E501
         }
 
@@ -157,14 +157,14 @@ class Pagination(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             current_page (int): Current page number.. [optional]  # noqa: E501
             first_page_url (str): First page url.. [optional]  # noqa: E501
-            _from (int, none_type): First result of the page.. [optional]  # noqa: E501
+            _from (int): First result of the page.. [optional]  # noqa: E501
             last_page (int): Last page number.. [optional]  # noqa: E501
             last_page_url (str): Last page url.. [optional]  # noqa: E501
-            next_page_url (str, none_type): Next page url. [optional]  # noqa: E501
+            next_page_url (str): Next page url. [optional]  # noqa: E501
             path (str): Request path.. [optional]  # noqa: E501
             per_page (int): Number of result per page.. [optional]  # noqa: E501
-            prev_page_url (str, none_type): Previous page url.. [optional]  # noqa: E501
-            to (int, none_type): Last result of the page.. [optional]  # noqa: E501
+            prev_page_url (str): Previous page url.. [optional]  # noqa: E501
+            to (int): Last result of the page.. [optional]  # noqa: E501
             total (int): Total number of results. [optional]  # noqa: E501
         """
 
@@ -249,14 +249,14 @@ class Pagination(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             current_page (int): Current page number.. [optional]  # noqa: E501
             first_page_url (str): First page url.. [optional]  # noqa: E501
-            _from (int, none_type): First result of the page.. [optional]  # noqa: E501
+            _from (int): First result of the page.. [optional]  # noqa: E501
             last_page (int): Last page number.. [optional]  # noqa: E501
             last_page_url (str): Last page url.. [optional]  # noqa: E501
-            next_page_url (str, none_type): Next page url. [optional]  # noqa: E501
+            next_page_url (str): Next page url. [optional]  # noqa: E501
             path (str): Request path.. [optional]  # noqa: E501
             per_page (int): Number of result per page.. [optional]  # noqa: E501
-            prev_page_url (str, none_type): Previous page url.. [optional]  # noqa: E501
-            to (int, none_type): Last result of the page.. [optional]  # noqa: E501
+            prev_page_url (str): Previous page url.. [optional]  # noqa: E501
+            to (int): Last result of the page.. [optional]  # noqa: E501
             total (int): Total number of results. [optional]  # noqa: E501
         """
 

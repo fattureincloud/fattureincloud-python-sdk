@@ -84,7 +84,7 @@ class Currency(ModelNormal):
         return {
             'id': (str, none_type),  # noqa: E501
             'symbol': (str, none_type),  # noqa: E501
-            'exchange_rate': (str, none_type, none_type),  # noqa: E501
+            'exchange_rate': (str, none_type),  # noqa: E501
             'html_symbol': (str, none_type),  # noqa: E501
         }
 
@@ -143,7 +143,7 @@ class Currency(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): Currency code.. [optional]  # noqa: E501
             symbol (str): Currency symbol.. [optional]  # noqa: E501
-            exchange_rate (str, none_type): Currency exchange rate (EUR to this).. [optional]  # noqa: E501
+            exchange_rate (str): Currency exchange rate (EUR to this).. [optional]  # noqa: E501
             html_symbol (str): Currency html code.. [optional]  # noqa: E501
         """
 
@@ -228,7 +228,7 @@ class Currency(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): Currency code.. [optional]  # noqa: E501
             symbol (str): Currency symbol.. [optional]  # noqa: E501
-            exchange_rate (str, none_type): Currency exchange rate (EUR to this).. [optional]  # noqa: E501
+            exchange_rate (str): Currency exchange rate (EUR to this).. [optional]  # noqa: E501
             html_symbol (str): Currency html code.. [optional]  # noqa: E501
         """
 

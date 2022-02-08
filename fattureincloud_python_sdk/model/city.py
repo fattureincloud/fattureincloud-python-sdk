@@ -105,13 +105,8 @@ class City(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, postal_code, city, province, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """City - a model defined in OpenAPI
-
-        Args:
-            postal_code (str): City postal code.
-            city (str): City name.
-            province (str): Province.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -144,6 +139,9 @@ class City(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            postal_code (str): City postal code.. [optional]  # noqa: E501
+            city (str): City name.. [optional]  # noqa: E501
+            province (str): Province.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -171,9 +169,6 @@ class City(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.postal_code = postal_code
-        self.city = city
-        self.province = province
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -194,13 +189,8 @@ class City(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, postal_code, city, province, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """City - a model defined in OpenAPI
-
-        Args:
-            postal_code (str): City postal code.
-            city (str): City name.
-            province (str): Province.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -233,6 +223,9 @@ class City(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            postal_code (str): City postal code.. [optional]  # noqa: E501
+            city (str): City name.. [optional]  # noqa: E501
+            province (str): Province.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -258,9 +251,6 @@ class City(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.postal_code = postal_code
-        self.city = city
-        self.province = province
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

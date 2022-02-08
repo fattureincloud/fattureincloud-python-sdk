@@ -85,10 +85,10 @@ class ReceivedDocumentTotals(ModelNormal):
             'amount_net': (float, none_type),  # noqa: E501
             'amount_vat': (float, none_type),  # noqa: E501
             'amount_gross': (float, none_type),  # noqa: E501
-            'amount_due': (float, none_type),  # noqa: E501
-            'payments_sum': (float, none_type),  # noqa: E501
             'amount_withholding_tax': (float, none_type),  # noqa: E501
             'amount_other_withholding_tax': (float, none_type),  # noqa: E501
+            'amount_due': (float, none_type),  # noqa: E501
+            'payments_sum': (float, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -100,10 +100,10 @@ class ReceivedDocumentTotals(ModelNormal):
         'amount_net': 'amount_net',  # noqa: E501
         'amount_vat': 'amount_vat',  # noqa: E501
         'amount_gross': 'amount_gross',  # noqa: E501
-        'amount_due': 'amount_due',  # noqa: E501
-        'payments_sum': 'payments_sum',  # noqa: E501
         'amount_withholding_tax': 'amount_withholding_tax',  # noqa: E501
         'amount_other_withholding_tax': 'amount_other_withholding_tax',  # noqa: E501
+        'amount_due': 'amount_due',  # noqa: E501
+        'payments_sum': 'payments_sum',  # noqa: E501
     }
 
     read_only_vars = {
@@ -113,15 +113,8 @@ class ReceivedDocumentTotals(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, amount_net, amount_vat, amount_gross, amount_due, payments_sum, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """ReceivedDocumentTotals - a model defined in OpenAPI
-
-        Args:
-            amount_net (float): Total net amount.
-            amount_vat (float): Total vat amount.
-            amount_gross (float): Total gross amount.
-            amount_due (float): Total amount due.
-            payments_sum (float): Payments sum.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -154,8 +147,13 @@ class ReceivedDocumentTotals(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            amount_net (float): Total net amount.. [optional]  # noqa: E501
+            amount_vat (float): Total vat amount.. [optional]  # noqa: E501
+            amount_gross (float): Total gross amount.. [optional]  # noqa: E501
             amount_withholding_tax (float): Total withholding tax amount.. [optional]  # noqa: E501
             amount_other_withholding_tax (float): Total other withholding tax amount.. [optional]  # noqa: E501
+            amount_due (float): Total amount due.. [optional]  # noqa: E501
+            payments_sum (float): Payments sum.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -183,11 +181,6 @@ class ReceivedDocumentTotals(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount_net = amount_net
-        self.amount_vat = amount_vat
-        self.amount_gross = amount_gross
-        self.amount_due = amount_due
-        self.payments_sum = payments_sum
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -208,15 +201,8 @@ class ReceivedDocumentTotals(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount_net, amount_vat, amount_gross, amount_due, payments_sum, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ReceivedDocumentTotals - a model defined in OpenAPI
-
-        Args:
-            amount_net (float): Total net amount.
-            amount_vat (float): Total vat amount.
-            amount_gross (float): Total gross amount.
-            amount_due (float): Total amount due.
-            payments_sum (float): Payments sum.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -249,8 +235,13 @@ class ReceivedDocumentTotals(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            amount_net (float): Total net amount.. [optional]  # noqa: E501
+            amount_vat (float): Total vat amount.. [optional]  # noqa: E501
+            amount_gross (float): Total gross amount.. [optional]  # noqa: E501
             amount_withholding_tax (float): Total withholding tax amount.. [optional]  # noqa: E501
             amount_other_withholding_tax (float): Total other withholding tax amount.. [optional]  # noqa: E501
+            amount_due (float): Total amount due.. [optional]  # noqa: E501
+            payments_sum (float): Payments sum.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -276,11 +267,6 @@ class ReceivedDocumentTotals(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount_net = amount_net
-        self.amount_vat = amount_vat
-        self.amount_gross = amount_gross
-        self.amount_due = amount_due
-        self.payments_sum = payments_sum
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

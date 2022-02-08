@@ -174,13 +174,13 @@ class IssuedDocument(ModelNormal):
             'cassa': (float, none_type),  # noqa: E501
             'amount_cassa': (float, none_type),  # noqa: E501
             'cassa_taxable': (float, none_type),  # noqa: E501
-            'amount_cassa_taxable': (float, none_type, none_type),  # noqa: E501
+            'amount_cassa_taxable': (float, none_type),  # noqa: E501
             'cassa2': (float, none_type),  # noqa: E501
-            'amount_cassa2': (float, none_type, none_type),  # noqa: E501
+            'amount_cassa2': (float, none_type),  # noqa: E501
             'cassa2_taxable': (float, none_type),  # noqa: E501
-            'amount_cassa2_taxable': (float, none_type, none_type),  # noqa: E501
+            'amount_cassa2_taxable': (float, none_type),  # noqa: E501
             'global_cassa_taxable': (float, none_type),  # noqa: E501
-            'amount_global_cassa_taxable': (float, none_type, none_type),  # noqa: E501
+            'amount_global_cassa_taxable': (float, none_type),  # noqa: E501
             'withholding_tax': (float, none_type),  # noqa: E501
             'withholding_tax_taxable': (float, none_type),  # noqa: E501
             'other_withholding_tax': (float, none_type),  # noqa: E501
@@ -190,13 +190,13 @@ class IssuedDocument(ModelNormal):
             'use_gross_prices': (bool, none_type),  # noqa: E501
             'e_invoice': (bool, none_type),  # noqa: E501
             'ei_data': (IssuedDocumentEiData, none_type),  # noqa: E501
-            'ei_cassa_type': (str, none_type, none_type),  # noqa: E501
-            'ei_cassa2_type': (str, none_type, none_type),  # noqa: E501
-            'ei_withholding_tax_causal': (str, none_type, none_type),  # noqa: E501
-            'ei_other_withholding_tax_type': (str, none_type, none_type),  # noqa: E501
-            'ei_other_withholding_tax_causal': (str, none_type, none_type),  # noqa: E501
-            'items_list': ([IssuedDocumentItemsListItem], none_type, none_type),  # noqa: E501
-            'payments_list': ([IssuedDocumentPaymentsListItem], none_type, none_type),  # noqa: E501
+            'ei_cassa_type': (str, none_type),  # noqa: E501
+            'ei_cassa2_type': (str, none_type),  # noqa: E501
+            'ei_withholding_tax_causal': (str, none_type),  # noqa: E501
+            'ei_other_withholding_tax_type': (str, none_type),  # noqa: E501
+            'ei_other_withholding_tax_causal': (str, none_type),  # noqa: E501
+            'items_list': ([IssuedDocumentItemsListItem], none_type),  # noqa: E501
+            'payments_list': ([IssuedDocumentPaymentsListItem], none_type),  # noqa: E501
             'template': (DocumentTemplate, none_type),  # noqa: E501
             'delivery_note_template': (DocumentTemplate, none_type),  # noqa: E501
             'acc_inv_template': (DocumentTemplate, none_type),  # noqa: E501
@@ -207,36 +207,36 @@ class IssuedDocument(ModelNormal):
             'show_totals': (ShowTotalsMode, none_type),  # noqa: E501
             'show_paypal_button': (bool, none_type),  # noqa: E501
             'show_notification_button': (bool, none_type),  # noqa: E501
-            'show_tspay_button': (bool, none_type, none_type),  # noqa: E501
+            'show_tspay_button': (bool, none_type),  # noqa: E501
             'delivery_note': (bool, none_type),  # noqa: E501
             'accompanying_invoice': (bool, none_type),  # noqa: E501
             'dn_number': (int, none_type),  # noqa: E501
             'dn_date': (date, none_type),  # noqa: E501
-            'dn_ai_packages_number': (str, none_type, none_type),  # noqa: E501
-            'dn_ai_weight': (str, none_type, none_type),  # noqa: E501
-            'dn_ai_causal': (str, none_type, none_type),  # noqa: E501
-            'dn_ai_destination': (str, none_type, none_type),  # noqa: E501
-            'dn_ai_transporter': (str, none_type, none_type),  # noqa: E501
-            'dn_ai_notes': (str, none_type, none_type),  # noqa: E501
+            'dn_ai_packages_number': (str, none_type),  # noqa: E501
+            'dn_ai_weight': (str, none_type),  # noqa: E501
+            'dn_ai_causal': (str, none_type),  # noqa: E501
+            'dn_ai_destination': (str, none_type),  # noqa: E501
+            'dn_ai_transporter': (str, none_type),  # noqa: E501
+            'dn_ai_notes': (str, none_type),  # noqa: E501
             'is_marked': (bool, none_type),  # noqa: E501
             'amount_net': (float, none_type),  # noqa: E501
             'amount_vat': (float, none_type),  # noqa: E501
             'amount_gross': (float, none_type),  # noqa: E501
             'amount_due_discount': (float, none_type),  # noqa: E501
             'amount_rivalsa': (float, none_type),  # noqa: E501
-            'amount_rivalsa_taxable': (float, none_type, none_type),  # noqa: E501
+            'amount_rivalsa_taxable': (float, none_type),  # noqa: E501
             'amount_withholding_tax': (float, none_type),  # noqa: E501
-            'amount_withholding_tax_taxable': (float, none_type, none_type),  # noqa: E501
+            'amount_withholding_tax_taxable': (float, none_type),  # noqa: E501
             'amount_other_withholding_tax': (float, none_type),  # noqa: E501
-            'amount_other_withholding_tax_taxable': (float, none_type, none_type),  # noqa: E501
-            'amount_enasarco_taxable': (float, none_type, none_type),  # noqa: E501
+            'amount_other_withholding_tax_taxable': (float, none_type),  # noqa: E501
+            'amount_enasarco_taxable': (float, none_type),  # noqa: E501
             'extra_data': (IssuedDocumentExtraData, none_type),  # noqa: E501
-            'seen_date': (date, none_type, none_type),  # noqa: E501
-            'next_due_date': (date, none_type, none_type),  # noqa: E501
+            'seen_date': (date, none_type),  # noqa: E501
+            'next_due_date': (date, none_type),  # noqa: E501
             'url': (str, none_type),  # noqa: E501
             'attachment_url': (str, none_type),  # noqa: E501
-            'attachment_token': (str, none_type, none_type),  # noqa: E501
-            'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type),  # noqa: E501
+            'attachment_token': (str, none_type),  # noqa: E501
+            'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type),  # noqa: E501
             'ei_status': (str, none_type),  # noqa: E501
         }
 
@@ -396,13 +396,13 @@ class IssuedDocument(ModelNormal):
             cassa (float): \"Cassa previdenziale\" percentual value. [optional]  # noqa: E501
             amount_cassa (float): [Read Only] Cassa amount.. [optional]  # noqa: E501
             cassa_taxable (float): Cassa taxable percentage. [optional]  # noqa: E501
-            amount_cassa_taxable (float, none_type): [Can be set only if cassa_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
+            amount_cassa_taxable (float): [Can be set only if cassa_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
             cassa2 (float): \"Cassa previdenziale 2\" percentual value. [optional]  # noqa: E501
-            amount_cassa2 (float, none_type): [Read Only] Cassa amount.. [optional]  # noqa: E501
+            amount_cassa2 (float): [Read Only] Cassa amount.. [optional]  # noqa: E501
             cassa2_taxable (float): Cassa2 taxable percentage. [optional]  # noqa: E501
-            amount_cassa2_taxable (float, none_type): [Can be set only if cassa2_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
+            amount_cassa2_taxable (float): [Can be set only if cassa2_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
             global_cassa_taxable (float): Global cassa taxable percentage. [optional]  # noqa: E501
-            amount_global_cassa_taxable (float, none_type): [Can be set only if global_cassa_taxable is NULL] Global cassa taxable amount. [optional]  # noqa: E501
+            amount_global_cassa_taxable (float): [Can be set only if global_cassa_taxable is NULL] Global cassa taxable amount. [optional]  # noqa: E501
             withholding_tax (float): Withholding tax (ritenuta d'acconto) percentual value. [optional]  # noqa: E501
             withholding_tax_taxable (float): Withholding tax taxable (imponibile) percentual value. [optional]  # noqa: E501
             other_withholding_tax (float): Other withholding tax (altra ritenuta) percentual value. [optional]  # noqa: E501
@@ -412,13 +412,13 @@ class IssuedDocument(ModelNormal):
             use_gross_prices (bool): Use gross prices. [optional] if omitted the server will use the default value of False  # noqa: E501
             e_invoice (bool): Indicates if this is an e-invoice.. [optional] if omitted the server will use the default value of False  # noqa: E501
             ei_data (IssuedDocumentEiData): [optional]  # noqa: E501
-            ei_cassa_type (str, none_type): Einvoice cassa type. [optional]  # noqa: E501
-            ei_cassa2_type (str, none_type): Einvoice cassa2 type. [optional]  # noqa: E501
-            ei_withholding_tax_causal (str, none_type): Einvoice withholding tax causal. [optional]  # noqa: E501
-            ei_other_withholding_tax_type (str, none_type): Einvoice other withholding tax type. [optional]  # noqa: E501
-            ei_other_withholding_tax_causal (str, none_type): Einvoice other withholding tax causal. [optional]  # noqa: E501
-            items_list ([IssuedDocumentItemsListItem], none_type): [optional]  # noqa: E501
-            payments_list ([IssuedDocumentPaymentsListItem], none_type): [optional]  # noqa: E501
+            ei_cassa_type (str): Einvoice cassa type. [optional]  # noqa: E501
+            ei_cassa2_type (str): Einvoice cassa2 type. [optional]  # noqa: E501
+            ei_withholding_tax_causal (str): Einvoice withholding tax causal. [optional]  # noqa: E501
+            ei_other_withholding_tax_type (str): Einvoice other withholding tax type. [optional]  # noqa: E501
+            ei_other_withholding_tax_causal (str): Einvoice other withholding tax causal. [optional]  # noqa: E501
+            items_list ([IssuedDocumentItemsListItem]): [optional]  # noqa: E501
+            payments_list ([IssuedDocumentPaymentsListItem]): [optional]  # noqa: E501
             template (DocumentTemplate): [optional]  # noqa: E501
             delivery_note_template (DocumentTemplate): [optional]  # noqa: E501
             acc_inv_template (DocumentTemplate): [optional]  # noqa: E501
@@ -429,36 +429,36 @@ class IssuedDocument(ModelNormal):
             show_totals (ShowTotalsMode): [optional]  # noqa: E501
             show_paypal_button (bool): Show paypal button. [optional] if omitted the server will use the default value of False  # noqa: E501
             show_notification_button (bool): Show notification button. [optional] if omitted the server will use the default value of False  # noqa: E501
-            show_tspay_button (bool, none_type): Show ts pay button.. [optional]  # noqa: E501
+            show_tspay_button (bool): Show ts pay button.. [optional]  # noqa: E501
             delivery_note (bool): [optional]  # noqa: E501
             accompanying_invoice (bool): Attach an accompanying invoice.. [optional] if omitted the server will use the default value of False  # noqa: E501
             dn_number (int): Number (for the attached delivery note).. [optional]  # noqa: E501
             dn_date (date): Date (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_packages_number (str, none_type): Number of packages (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_weight (str, none_type): Weight (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_causal (str, none_type): Causal (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_destination (str, none_type): Destination (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_transporter (str, none_type): Transporter (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_notes (str, none_type): Notes (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_packages_number (str): Number of packages (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_weight (str): Weight (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_causal (str): Causal (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_destination (str): Destination (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_transporter (str): Transporter (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_notes (str): Notes (for the attached delivery note).. [optional]  # noqa: E501
             is_marked (bool): This is true if the document is marked.. [optional]  # noqa: E501
             amount_net (float): [Read Only] Total net amount (competenze).. [optional]  # noqa: E501
             amount_vat (float): [Read Only] Total vat amount (IVA).. [optional]  # noqa: E501
             amount_gross (float): [Read Only] Total gross amount (totale documento).. [optional]  # noqa: E501
             amount_due_discount (float): Amount due discount. [optional]  # noqa: E501
             amount_rivalsa (float): [Read Only] Rivalsa amount.. [optional]  # noqa: E501
-            amount_rivalsa_taxable (float, none_type): Taxable rivalsa amount. [optional]  # noqa: E501
+            amount_rivalsa_taxable (float): Taxable rivalsa amount. [optional]  # noqa: E501
             amount_withholding_tax (float): [Read Only] Withholding tax amount (ritenuta d'acconto).. [optional]  # noqa: E501
-            amount_withholding_tax_taxable (float, none_type): Taxable withholding tax amount. [optional]  # noqa: E501
+            amount_withholding_tax_taxable (float): Taxable withholding tax amount. [optional]  # noqa: E501
             amount_other_withholding_tax (float): [Read Only] Other withholding tax amount (altra ritenuta).. [optional]  # noqa: E501
-            amount_other_withholding_tax_taxable (float, none_type): Taxable other withholding tax amount. [optional]  # noqa: E501
-            amount_enasarco_taxable (float, none_type): Taxable enasarco amount. [optional]  # noqa: E501
+            amount_other_withholding_tax_taxable (float): Taxable other withholding tax amount. [optional]  # noqa: E501
+            amount_enasarco_taxable (float): Taxable enasarco amount. [optional]  # noqa: E501
             extra_data (IssuedDocumentExtraData): [optional]  # noqa: E501
-            seen_date (date, none_type): Date when the client/supplier has seen the document.. [optional]  # noqa: E501
-            next_due_date (date, none_type): Date of the next not paid payment.. [optional]  # noqa: E501
+            seen_date (date): Date when the client/supplier has seen the document.. [optional]  # noqa: E501
+            next_due_date (date): Date of the next not paid payment.. [optional]  # noqa: E501
             url (str): Public url of the document PDF file.. [optional]  # noqa: E501
             attachment_url (str): [Read Only] Public url of the attached file. Authomatically set if a valid attachment token is passed via POST /issued_documents or PUT /issued_documents/{documentId}.. [optional]  # noqa: E501
-            attachment_token (str, none_type): [Write Only] Attachment token returned by POST /issued_documents/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
-            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
+            attachment_token (str): [Write Only] Attachment token returned by POST /issued_documents/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
+            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
             ei_status (str): [Read only] Status of the e-invoice.   * `attempt` - We are trying to send the invoice, please wait up to 2 hours   * `missing` - The invoice is missing   * `not_sent` - The invoice has yet to be sent   * `pending` - The checks for the digital signature and sending are in progress   * `processing` - The SDI is delivering the invoice to the customer   * `error` - An error occurred while handling the invoice, please try to resend it or contact support   * `discarded` - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * `not_delivered` - The SDI was unable to deliver the invoice   * `accepted` - The customer accepted the invoice   * `rejected` - The customer rejected the invoice, so it must be corrected   * `no_response` - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice . [optional]  # noqa: E501
         """
 
@@ -558,13 +558,13 @@ class IssuedDocument(ModelNormal):
             cassa (float): \"Cassa previdenziale\" percentual value. [optional]  # noqa: E501
             amount_cassa (float): [Read Only] Cassa amount.. [optional]  # noqa: E501
             cassa_taxable (float): Cassa taxable percentage. [optional]  # noqa: E501
-            amount_cassa_taxable (float, none_type): [Can be set only if cassa_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
+            amount_cassa_taxable (float): [Can be set only if cassa_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
             cassa2 (float): \"Cassa previdenziale 2\" percentual value. [optional]  # noqa: E501
-            amount_cassa2 (float, none_type): [Read Only] Cassa amount.. [optional]  # noqa: E501
+            amount_cassa2 (float): [Read Only] Cassa amount.. [optional]  # noqa: E501
             cassa2_taxable (float): Cassa2 taxable percentage. [optional]  # noqa: E501
-            amount_cassa2_taxable (float, none_type): [Can be set only if cassa2_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
+            amount_cassa2_taxable (float): [Can be set only if cassa2_taxable is NULL] Cassa2 taxable amount. [optional]  # noqa: E501
             global_cassa_taxable (float): Global cassa taxable percentage. [optional]  # noqa: E501
-            amount_global_cassa_taxable (float, none_type): [Can be set only if global_cassa_taxable is NULL] Global cassa taxable amount. [optional]  # noqa: E501
+            amount_global_cassa_taxable (float): [Can be set only if global_cassa_taxable is NULL] Global cassa taxable amount. [optional]  # noqa: E501
             withholding_tax (float): Withholding tax (ritenuta d'acconto) percentual value. [optional]  # noqa: E501
             withholding_tax_taxable (float): Withholding tax taxable (imponibile) percentual value. [optional]  # noqa: E501
             other_withholding_tax (float): Other withholding tax (altra ritenuta) percentual value. [optional]  # noqa: E501
@@ -574,13 +574,13 @@ class IssuedDocument(ModelNormal):
             use_gross_prices (bool): Use gross prices. [optional] if omitted the server will use the default value of False  # noqa: E501
             e_invoice (bool): Indicates if this is an e-invoice.. [optional] if omitted the server will use the default value of False  # noqa: E501
             ei_data (IssuedDocumentEiData): [optional]  # noqa: E501
-            ei_cassa_type (str, none_type): Einvoice cassa type. [optional]  # noqa: E501
-            ei_cassa2_type (str, none_type): Einvoice cassa2 type. [optional]  # noqa: E501
-            ei_withholding_tax_causal (str, none_type): Einvoice withholding tax causal. [optional]  # noqa: E501
-            ei_other_withholding_tax_type (str, none_type): Einvoice other withholding tax type. [optional]  # noqa: E501
-            ei_other_withholding_tax_causal (str, none_type): Einvoice other withholding tax causal. [optional]  # noqa: E501
-            items_list ([IssuedDocumentItemsListItem], none_type): [optional]  # noqa: E501
-            payments_list ([IssuedDocumentPaymentsListItem], none_type): [optional]  # noqa: E501
+            ei_cassa_type (str): Einvoice cassa type. [optional]  # noqa: E501
+            ei_cassa2_type (str): Einvoice cassa2 type. [optional]  # noqa: E501
+            ei_withholding_tax_causal (str): Einvoice withholding tax causal. [optional]  # noqa: E501
+            ei_other_withholding_tax_type (str): Einvoice other withholding tax type. [optional]  # noqa: E501
+            ei_other_withholding_tax_causal (str): Einvoice other withholding tax causal. [optional]  # noqa: E501
+            items_list ([IssuedDocumentItemsListItem]): [optional]  # noqa: E501
+            payments_list ([IssuedDocumentPaymentsListItem]): [optional]  # noqa: E501
             template (DocumentTemplate): [optional]  # noqa: E501
             delivery_note_template (DocumentTemplate): [optional]  # noqa: E501
             acc_inv_template (DocumentTemplate): [optional]  # noqa: E501
@@ -591,36 +591,36 @@ class IssuedDocument(ModelNormal):
             show_totals (ShowTotalsMode): [optional]  # noqa: E501
             show_paypal_button (bool): Show paypal button. [optional] if omitted the server will use the default value of False  # noqa: E501
             show_notification_button (bool): Show notification button. [optional] if omitted the server will use the default value of False  # noqa: E501
-            show_tspay_button (bool, none_type): Show ts pay button.. [optional]  # noqa: E501
+            show_tspay_button (bool): Show ts pay button.. [optional]  # noqa: E501
             delivery_note (bool): [optional]  # noqa: E501
             accompanying_invoice (bool): Attach an accompanying invoice.. [optional] if omitted the server will use the default value of False  # noqa: E501
             dn_number (int): Number (for the attached delivery note).. [optional]  # noqa: E501
             dn_date (date): Date (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_packages_number (str, none_type): Number of packages (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_weight (str, none_type): Weight (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_causal (str, none_type): Causal (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_destination (str, none_type): Destination (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_transporter (str, none_type): Transporter (for the attached delivery note).. [optional]  # noqa: E501
-            dn_ai_notes (str, none_type): Notes (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_packages_number (str): Number of packages (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_weight (str): Weight (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_causal (str): Causal (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_destination (str): Destination (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_transporter (str): Transporter (for the attached delivery note).. [optional]  # noqa: E501
+            dn_ai_notes (str): Notes (for the attached delivery note).. [optional]  # noqa: E501
             is_marked (bool): This is true if the document is marked.. [optional]  # noqa: E501
             amount_net (float): [Read Only] Total net amount (competenze).. [optional]  # noqa: E501
             amount_vat (float): [Read Only] Total vat amount (IVA).. [optional]  # noqa: E501
             amount_gross (float): [Read Only] Total gross amount (totale documento).. [optional]  # noqa: E501
             amount_due_discount (float): Amount due discount. [optional]  # noqa: E501
             amount_rivalsa (float): [Read Only] Rivalsa amount.. [optional]  # noqa: E501
-            amount_rivalsa_taxable (float, none_type): Taxable rivalsa amount. [optional]  # noqa: E501
+            amount_rivalsa_taxable (float): Taxable rivalsa amount. [optional]  # noqa: E501
             amount_withholding_tax (float): [Read Only] Withholding tax amount (ritenuta d'acconto).. [optional]  # noqa: E501
-            amount_withholding_tax_taxable (float, none_type): Taxable withholding tax amount. [optional]  # noqa: E501
+            amount_withholding_tax_taxable (float): Taxable withholding tax amount. [optional]  # noqa: E501
             amount_other_withholding_tax (float): [Read Only] Other withholding tax amount (altra ritenuta).. [optional]  # noqa: E501
-            amount_other_withholding_tax_taxable (float, none_type): Taxable other withholding tax amount. [optional]  # noqa: E501
-            amount_enasarco_taxable (float, none_type): Taxable enasarco amount. [optional]  # noqa: E501
+            amount_other_withholding_tax_taxable (float): Taxable other withholding tax amount. [optional]  # noqa: E501
+            amount_enasarco_taxable (float): Taxable enasarco amount. [optional]  # noqa: E501
             extra_data (IssuedDocumentExtraData): [optional]  # noqa: E501
-            seen_date (date, none_type): Date when the client/supplier has seen the document.. [optional]  # noqa: E501
-            next_due_date (date, none_type): Date of the next not paid payment.. [optional]  # noqa: E501
+            seen_date (date): Date when the client/supplier has seen the document.. [optional]  # noqa: E501
+            next_due_date (date): Date of the next not paid payment.. [optional]  # noqa: E501
             url (str): Public url of the document PDF file.. [optional]  # noqa: E501
             attachment_url (str): [Read Only] Public url of the attached file. Authomatically set if a valid attachment token is passed via POST /issued_documents or PUT /issued_documents/{documentId}.. [optional]  # noqa: E501
-            attachment_token (str, none_type): [Write Only] Attachment token returned by POST /issued_documents/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
-            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
+            attachment_token (str): [Write Only] Attachment token returned by POST /issued_documents/attachment. Used to attach the file already uploaded.. [optional]  # noqa: E501
+            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
             ei_status (str): [Read only] Status of the e-invoice.   * `attempt` - We are trying to send the invoice, please wait up to 2 hours   * `missing` - The invoice is missing   * `not_sent` - The invoice has yet to be sent   * `pending` - The checks for the digital signature and sending are in progress   * `processing` - The SDI is delivering the invoice to the customer   * `error` - An error occurred while handling the invoice, please try to resend it or contact support   * `discarded` - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * `not_delivered` - The SDI was unable to deliver the invoice   * `accepted` - The customer accepted the invoice   * `rejected` - The customer rejected the invoice, so it must be corrected   * `no_response` - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice . [optional]  # noqa: E501
         """
 

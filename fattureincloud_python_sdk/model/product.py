@@ -88,25 +88,25 @@ class Product(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
-            'code': (str, none_type, none_type),  # noqa: E501
-            'net_price': (float, none_type, none_type),  # noqa: E501
-            'gross_price': (float, none_type, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'code': (str, none_type),  # noqa: E501
+            'net_price': (float, none_type),  # noqa: E501
+            'gross_price': (float, none_type),  # noqa: E501
             'use_gross_price': (bool, none_type),  # noqa: E501
             'default_vat': (VatType, none_type),  # noqa: E501
-            'net_cost': (float, none_type, none_type),  # noqa: E501
-            'measure': (str, none_type, none_type),  # noqa: E501
-            'description': (str, none_type, none_type),  # noqa: E501
+            'net_cost': (float, none_type),  # noqa: E501
+            'measure': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
             'category': (str, none_type),  # noqa: E501
-            'notes': (str, none_type, none_type),  # noqa: E501
+            'notes': (str, none_type),  # noqa: E501
             'in_stock': (bool, none_type),  # noqa: E501
             'stock_initial': (float, none_type),  # noqa: E501
             'stock_current': (float, none_type),  # noqa: E501
             'average_cost': (float, none_type),  # noqa: E501
             'average_price': (float, none_type),  # noqa: E501
-            'created_at': (str, none_type, none_type),  # noqa: E501
-            'updated_at': (str, none_type, none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'updated_at': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -115,8 +115,8 @@ class Product(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'code': 'code',  # noqa: E501
         'net_price': 'net_price',  # noqa: E501
         'gross_price': 'gross_price',  # noqa: E501
@@ -144,11 +144,8 @@ class Product(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """Product - a model defined in OpenAPI
-
-        Args:
-            name (str): Product name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -182,23 +179,24 @@ class Product(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier.. [optional]  # noqa: E501
-            code (str, none_type): Product code.. [optional]  # noqa: E501
-            net_price (float, none_type): Net sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
-            gross_price (float, none_type): Gross sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
+            name (str): Product name.. [optional]  # noqa: E501
+            code (str): Product code.. [optional]  # noqa: E501
+            net_price (float): Net sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
+            gross_price (float): Gross sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
             use_gross_price (bool): Determine which price to use for calculations.. [optional]  # noqa: E501
             default_vat (VatType): [optional]  # noqa: E501
-            net_cost (float, none_type): Net cost of the product (used for received documents).. [optional]  # noqa: E501
-            measure (str, none_type): Unit of measure.. [optional]  # noqa: E501
-            description (str, none_type): Product description.. [optional]  # noqa: E501
+            net_cost (float): Net cost of the product (used for received documents).. [optional]  # noqa: E501
+            measure (str): Unit of measure.. [optional]  # noqa: E501
+            description (str): Product description.. [optional]  # noqa: E501
             category (str): Product category.. [optional]  # noqa: E501
-            notes (str, none_type): Extra notes.. [optional]  # noqa: E501
+            notes (str): Extra notes.. [optional]  # noqa: E501
             in_stock (bool): Determine if the product is in stock.. [optional]  # noqa: E501
             stock_initial (float): Product initial stock.. [optional]  # noqa: E501
             stock_current (float): [Read Only] Product current stock.. [optional]  # noqa: E501
             average_cost (float): Product average cost.. [optional]  # noqa: E501
             average_price (float): Product average price.. [optional]  # noqa: E501
-            created_at (str, none_type): [optional]  # noqa: E501
-            updated_at (str, none_type): [optional]  # noqa: E501
+            created_at (str): [optional]  # noqa: E501
+            updated_at (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -226,7 +224,6 @@ class Product(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -247,11 +244,8 @@ class Product(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """Product - a model defined in OpenAPI
-
-        Args:
-            name (str): Product name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -285,23 +279,24 @@ class Product(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier.. [optional]  # noqa: E501
-            code (str, none_type): Product code.. [optional]  # noqa: E501
-            net_price (float, none_type): Net sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
-            gross_price (float, none_type): Gross sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
+            name (str): Product name.. [optional]  # noqa: E501
+            code (str): Product code.. [optional]  # noqa: E501
+            net_price (float): Net sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
+            gross_price (float): Gross sale price (used if use_gross_price is false, otherwise it's competed automatically).. [optional]  # noqa: E501
             use_gross_price (bool): Determine which price to use for calculations.. [optional]  # noqa: E501
             default_vat (VatType): [optional]  # noqa: E501
-            net_cost (float, none_type): Net cost of the product (used for received documents).. [optional]  # noqa: E501
-            measure (str, none_type): Unit of measure.. [optional]  # noqa: E501
-            description (str, none_type): Product description.. [optional]  # noqa: E501
+            net_cost (float): Net cost of the product (used for received documents).. [optional]  # noqa: E501
+            measure (str): Unit of measure.. [optional]  # noqa: E501
+            description (str): Product description.. [optional]  # noqa: E501
             category (str): Product category.. [optional]  # noqa: E501
-            notes (str, none_type): Extra notes.. [optional]  # noqa: E501
+            notes (str): Extra notes.. [optional]  # noqa: E501
             in_stock (bool): Determine if the product is in stock.. [optional]  # noqa: E501
             stock_initial (float): Product initial stock.. [optional]  # noqa: E501
             stock_current (float): [Read Only] Product current stock.. [optional]  # noqa: E501
             average_cost (float): Product average cost.. [optional]  # noqa: E501
             average_price (float): Product average price.. [optional]  # noqa: E501
-            created_at (str, none_type): [optional]  # noqa: E501
-            updated_at (str, none_type): [optional]  # noqa: E501
+            created_at (str): [optional]  # noqa: E501
+            updated_at (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -327,7 +322,6 @@ class Product(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

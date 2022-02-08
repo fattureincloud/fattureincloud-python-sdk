@@ -5,9 +5,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Client name | 
 **id** | **int** | Unique identifier | [optional] 
 **code** | **str** | Client code. | [optional] 
+**name** | **str** | Client name | [optional] 
 **type** | [**ClientType**](ClientType.md) |  | [optional] 
 **first_name** | **str** | Client first name. | [optional] 
 **last_name** | **str** | Client last name. | [optional] 
@@ -37,8 +37,8 @@ Name | Type | Description | Notes
 **ei_code** | **str** | E-invoice code | [optional] 
 **discount_highlight** | **bool** | Discount Highlight. | [optional] 
 **default_discount** | **float** | Default discount. | [optional] 
-**created_at** | **str, none_type** |  | [optional] 
-**updated_at** | **str, none_type** |  | [optional] 
+**created_at** | **str** |  | [optional] 
+**updated_at** | **str** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -83,12 +83,12 @@ class User(ModelNormal):
         """
         return {
             'id': (int, none_type),  # noqa: E501
-            'name': (str, none_type, none_type),  # noqa: E501
-            'first_name': (str, none_type, none_type),  # noqa: E501
-            'last_name': (str, none_type, none_type),  # noqa: E501
-            'email': (str, none_type, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'first_name': (str, none_type),  # noqa: E501
+            'last_name': (str, none_type),  # noqa: E501
+            'email': (str, none_type),  # noqa: E501
             'hash': (str, none_type),  # noqa: E501
-            'picture': (str, none_type, none_type),  # noqa: E501
+            'picture': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -148,12 +148,12 @@ class User(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): User identifier.. [optional]  # noqa: E501
-            name (str, none_type): Full name of the user.. [optional]  # noqa: E501
-            first_name (str, none_type): First name of the user.. [optional]  # noqa: E501
-            last_name (str, none_type): Last name of the user.. [optional]  # noqa: E501
-            email (str, none_type): Email of the user.. [optional]  # noqa: E501
+            name (str): Full name of the user.. [optional]  # noqa: E501
+            first_name (str): First name of the user.. [optional]  # noqa: E501
+            last_name (str): Last name of the user.. [optional]  # noqa: E501
+            email (str): Email of the user.. [optional]  # noqa: E501
             hash (str): [optional]  # noqa: E501
-            picture (str, none_type): Picture of the user.. [optional]  # noqa: E501
+            picture (str): Picture of the user.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -236,12 +236,12 @@ class User(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): User identifier.. [optional]  # noqa: E501
-            name (str, none_type): Full name of the user.. [optional]  # noqa: E501
-            first_name (str, none_type): First name of the user.. [optional]  # noqa: E501
-            last_name (str, none_type): Last name of the user.. [optional]  # noqa: E501
-            email (str, none_type): Email of the user.. [optional]  # noqa: E501
+            name (str): Full name of the user.. [optional]  # noqa: E501
+            first_name (str): First name of the user.. [optional]  # noqa: E501
+            last_name (str): Last name of the user.. [optional]  # noqa: E501
+            email (str): Email of the user.. [optional]  # noqa: E501
             hash (str): [optional]  # noqa: E501
-            picture (str, none_type): Picture of the user.. [optional]  # noqa: E501
+            picture (str): Picture of the user.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

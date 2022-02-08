@@ -88,9 +88,9 @@ class Supplier(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
             'code': (str, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
             'type': (SupplierType, none_type),  # noqa: E501
             'first_name': (str, none_type),  # noqa: E501
             'last_name': (str, none_type),  # noqa: E501
@@ -108,8 +108,8 @@ class Supplier(ModelNormal):
             'phone': (str, none_type),  # noqa: E501
             'fax': (str, none_type),  # noqa: E501
             'notes': (str, none_type),  # noqa: E501
-            'created_at': (str, none_type, none_type),  # noqa: E501
-            'updated_at': (str, none_type, none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'updated_at': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -118,9 +118,9 @@ class Supplier(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
         'code': 'code',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
         'first_name': 'first_name',  # noqa: E501
         'last_name': 'last_name',  # noqa: E501
@@ -149,11 +149,8 @@ class Supplier(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """Supplier - a model defined in OpenAPI
-
-        Args:
-            name (str): Supplier name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -188,6 +185,7 @@ class Supplier(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
             code (str): Supplier code.. [optional]  # noqa: E501
+            name (str): Supplier name.. [optional]  # noqa: E501
             type (SupplierType): [optional]  # noqa: E501
             first_name (str): Supplier first name.. [optional]  # noqa: E501
             last_name (str): Supplier last name.. [optional]  # noqa: E501
@@ -205,8 +203,8 @@ class Supplier(ModelNormal):
             phone (str): Supplier phone.. [optional]  # noqa: E501
             fax (str): Supplier fax.. [optional]  # noqa: E501
             notes (str): Supplier extra notes.. [optional]  # noqa: E501
-            created_at (str, none_type): [optional]  # noqa: E501
-            updated_at (str, none_type): [optional]  # noqa: E501
+            created_at (str): [optional]  # noqa: E501
+            updated_at (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,7 +232,6 @@ class Supplier(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -255,11 +252,8 @@ class Supplier(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """Supplier - a model defined in OpenAPI
-
-        Args:
-            name (str): Supplier name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -294,6 +288,7 @@ class Supplier(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
             code (str): Supplier code.. [optional]  # noqa: E501
+            name (str): Supplier name.. [optional]  # noqa: E501
             type (SupplierType): [optional]  # noqa: E501
             first_name (str): Supplier first name.. [optional]  # noqa: E501
             last_name (str): Supplier last name.. [optional]  # noqa: E501
@@ -311,8 +306,8 @@ class Supplier(ModelNormal):
             phone (str): Supplier phone.. [optional]  # noqa: E501
             fax (str): Supplier fax.. [optional]  # noqa: E501
             notes (str): Supplier extra notes.. [optional]  # noqa: E501
-            created_at (str, none_type): [optional]  # noqa: E501
-            updated_at (str, none_type): [optional]  # noqa: E501
+            created_at (str): [optional]  # noqa: E501
+            updated_at (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -338,7 +333,6 @@ class Supplier(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

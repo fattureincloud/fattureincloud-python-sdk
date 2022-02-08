@@ -88,8 +88,8 @@ class CreateReceivedDocumentRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (ReceivedDocument, none_type),  # noqa: E501
             'pending_id': (int, none_type),  # noqa: E501
+            'data': (ReceivedDocument, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +98,8 @@ class CreateReceivedDocumentRequest(ModelNormal):
 
 
     attribute_map = {
-        'data': 'data',  # noqa: E501
         'pending_id': 'pending_id',  # noqa: E501
+        'data': 'data',  # noqa: E501
     }
 
     read_only_vars = {
@@ -109,11 +109,8 @@ class CreateReceivedDocumentRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, data, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateReceivedDocumentRequest - a model defined in OpenAPI
-
-        Args:
-            data (ReceivedDocument):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,6 +144,7 @@ class CreateReceivedDocumentRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             pending_id (int): Pending received document id of the document from which the new document is created.. [optional]  # noqa: E501
+            data (ReceivedDocument): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,7 +172,6 @@ class CreateReceivedDocumentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.data = data
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -195,11 +192,8 @@ class CreateReceivedDocumentRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, data, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateReceivedDocumentRequest - a model defined in OpenAPI
-
-        Args:
-            data (ReceivedDocument):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -233,6 +227,7 @@ class CreateReceivedDocumentRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             pending_id (int): Pending received document id of the document from which the new document is created.. [optional]  # noqa: E501
+            data (ReceivedDocument): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -258,7 +253,6 @@ class CreateReceivedDocumentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.data = data
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

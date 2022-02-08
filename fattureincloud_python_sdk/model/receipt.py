@@ -92,21 +92,21 @@ class Receipt(ModelNormal):
         """
         lazy_import()
         return {
-            'date': (date, none_type),  # noqa: E501
-            'type': (ReceiptType, none_type),  # noqa: E501
-            'payment_account': (PaymentAccount, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
-            'number': (float, none_type, none_type),  # noqa: E501
+            'date': (date, none_type),  # noqa: E501
+            'number': (float, none_type),  # noqa: E501
             'numeration': (str, none_type),  # noqa: E501
             'amount_net': (float, none_type),  # noqa: E501
             'amount_vat': (float, none_type),  # noqa: E501
             'amount_gross': (float, none_type),  # noqa: E501
             'use_gross_prices': (bool, none_type),  # noqa: E501
+            'type': (ReceiptType, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'rc_center': (str, none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'updated_at': (str, none_type),  # noqa: E501
-            'items_list': ([ReceiptItemsListItem], none_type, none_type),  # noqa: E501
+            'payment_account': (PaymentAccount, none_type),  # noqa: E501
+            'items_list': ([ReceiptItemsListItem], none_type),  # noqa: E501
         }
 
     @cached_property
@@ -115,20 +115,20 @@ class Receipt(ModelNormal):
 
 
     attribute_map = {
-        'date': 'date',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'payment_account': 'payment_account',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'date': 'date',  # noqa: E501
         'number': 'number',  # noqa: E501
         'numeration': 'numeration',  # noqa: E501
         'amount_net': 'amount_net',  # noqa: E501
         'amount_vat': 'amount_vat',  # noqa: E501
         'amount_gross': 'amount_gross',  # noqa: E501
         'use_gross_prices': 'use_gross_prices',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'description': 'description',  # noqa: E501
         'rc_center': 'rc_center',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
+        'payment_account': 'payment_account',  # noqa: E501
         'items_list': 'items_list',  # noqa: E501
     }
 
@@ -139,13 +139,8 @@ class Receipt(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, date, type, payment_account, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """Receipt - a model defined in OpenAPI
-
-        Args:
-            date (date): Receipt date.
-            type (ReceiptType):
-            payment_account (PaymentAccount):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,17 +174,20 @@ class Receipt(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Receipt unique identifier.. [optional]  # noqa: E501
-            number (float, none_type): Receipt number.. [optional]  # noqa: E501
+            date (date): Receipt date.. [optional]  # noqa: E501
+            number (float): Receipt number.. [optional]  # noqa: E501
             numeration (str): If it's null or empty string use the default numeration.. [optional]  # noqa: E501
             amount_net (float): Total net amount.. [optional]  # noqa: E501
             amount_vat (float): Total vat amount.. [optional]  # noqa: E501
             amount_gross (float): Total gross amount.. [optional]  # noqa: E501
             use_gross_prices (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            type (ReceiptType): [optional]  # noqa: E501
             description (str): Receipt description.. [optional]  # noqa: E501
             rc_center (str): Revenue center.. [optional]  # noqa: E501
             created_at (str): [optional]  # noqa: E501
             updated_at (str): [optional]  # noqa: E501
-            items_list ([ReceiptItemsListItem], none_type): [optional]  # noqa: E501
+            payment_account (PaymentAccount): [optional]  # noqa: E501
+            items_list ([ReceiptItemsListItem]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,9 +215,6 @@ class Receipt(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.date = date
-        self.type = type
-        self.payment_account = payment_account
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -240,13 +235,8 @@ class Receipt(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, date, type, payment_account, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """Receipt - a model defined in OpenAPI
-
-        Args:
-            date (date): Receipt date.
-            type (ReceiptType):
-            payment_account (PaymentAccount):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -280,17 +270,20 @@ class Receipt(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Receipt unique identifier.. [optional]  # noqa: E501
-            number (float, none_type): Receipt number.. [optional]  # noqa: E501
+            date (date): Receipt date.. [optional]  # noqa: E501
+            number (float): Receipt number.. [optional]  # noqa: E501
             numeration (str): If it's null or empty string use the default numeration.. [optional]  # noqa: E501
             amount_net (float): Total net amount.. [optional]  # noqa: E501
             amount_vat (float): Total vat amount.. [optional]  # noqa: E501
             amount_gross (float): Total gross amount.. [optional]  # noqa: E501
             use_gross_prices (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
+            type (ReceiptType): [optional]  # noqa: E501
             description (str): Receipt description.. [optional]  # noqa: E501
             rc_center (str): Revenue center.. [optional]  # noqa: E501
             created_at (str): [optional]  # noqa: E501
             updated_at (str): [optional]  # noqa: E501
-            items_list ([ReceiptItemsListItem], none_type): [optional]  # noqa: E501
+            payment_account (PaymentAccount): [optional]  # noqa: E501
+            items_list ([ReceiptItemsListItem]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -316,9 +309,6 @@ class Receipt(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.date = date
-        self.type = type
-        self.payment_account = payment_account
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

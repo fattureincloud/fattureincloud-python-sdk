@@ -119,16 +119,8 @@ class ReceiptPreCreateInfo(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, numerations, numerations_list, rc_centers_list, payment_accounts_list, categories_list, vat_types_list, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """ReceiptPreCreateInfo - a model defined in OpenAPI
-
-        Args:
-            numerations ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Next number by year, receipt type and numeration name.
-            numerations_list ([str]): List of series used in the past.
-            rc_centers_list ([str]): List of revenue centers used in the past.
-            payment_accounts_list ([PaymentAccount]): User payment accounts list.
-            categories_list ([str]): List of categories used in the past.
-            vat_types_list ([VatType]): List of user vat types with the default 22%, 10%, 4% and 0% vats.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -161,6 +153,12 @@ class ReceiptPreCreateInfo(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            numerations ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Next number by year, receipt type and numeration name.. [optional]  # noqa: E501
+            numerations_list ([str]): List of series used in the past.. [optional]  # noqa: E501
+            rc_centers_list ([str]): List of revenue centers used in the past.. [optional]  # noqa: E501
+            payment_accounts_list ([PaymentAccount]): User payment accounts list.. [optional]  # noqa: E501
+            categories_list ([str]): List of categories used in the past.. [optional]  # noqa: E501
+            vat_types_list ([VatType]): List of user vat types with the default 22%, 10%, 4% and 0% vats.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -188,12 +186,6 @@ class ReceiptPreCreateInfo(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.numerations = numerations
-        self.numerations_list = numerations_list
-        self.rc_centers_list = rc_centers_list
-        self.payment_accounts_list = payment_accounts_list
-        self.categories_list = categories_list
-        self.vat_types_list = vat_types_list
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -214,16 +206,8 @@ class ReceiptPreCreateInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, numerations, numerations_list, rc_centers_list, payment_accounts_list, categories_list, vat_types_list, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ReceiptPreCreateInfo - a model defined in OpenAPI
-
-        Args:
-            numerations ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Next number by year, receipt type and numeration name.
-            numerations_list ([str]): List of series used in the past.
-            rc_centers_list ([str]): List of revenue centers used in the past.
-            payment_accounts_list ([PaymentAccount]): User payment accounts list.
-            categories_list ([str]): List of categories used in the past.
-            vat_types_list ([VatType]): List of user vat types with the default 22%, 10%, 4% and 0% vats.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -256,6 +240,12 @@ class ReceiptPreCreateInfo(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            numerations ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Next number by year, receipt type and numeration name.. [optional]  # noqa: E501
+            numerations_list ([str]): List of series used in the past.. [optional]  # noqa: E501
+            rc_centers_list ([str]): List of revenue centers used in the past.. [optional]  # noqa: E501
+            payment_accounts_list ([PaymentAccount]): User payment accounts list.. [optional]  # noqa: E501
+            categories_list ([str]): List of categories used in the past.. [optional]  # noqa: E501
+            vat_types_list ([VatType]): List of user vat types with the default 22%, 10%, 4% and 0% vats.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -281,12 +271,6 @@ class ReceiptPreCreateInfo(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.numerations = numerations
-        self.numerations_list = numerations_list
-        self.rc_centers_list = rc_centers_list
-        self.payment_accounts_list = payment_accounts_list
-        self.categories_list = categories_list
-        self.vat_types_list = vat_types_list
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

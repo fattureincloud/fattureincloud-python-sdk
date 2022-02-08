@@ -82,7 +82,7 @@ class ReceivedDocumentInfoItemsDefaultValues(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'vat': (float, none_type, none_type),  # noqa: E501
+            'vat': (float, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -135,7 +135,7 @@ class ReceivedDocumentInfoItemsDefaultValues(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            vat (float, none_type): Default vat value.. [optional]  # noqa: E501
+            vat (float): Default vat value.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,7 +217,7 @@ class ReceivedDocumentInfoItemsDefaultValues(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            vat (float, none_type): Default vat value.. [optional]  # noqa: E501
+            vat (float): Default vat value.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

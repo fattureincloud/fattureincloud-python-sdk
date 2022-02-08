@@ -99,11 +99,11 @@ class CashbookEntry(ModelNormal):
             'description': (str, none_type),  # noqa: E501
             'kind': (CashbookEntryKind, none_type),  # noqa: E501
             'type': (CashbookEntryType, none_type),  # noqa: E501
-            'entity_name': (str, none_type, none_type),  # noqa: E501
+            'entity_name': (str, none_type),  # noqa: E501
             'document': (CashbookEntryDocument, none_type),  # noqa: E501
-            'amount_in': (float, none_type, none_type),  # noqa: E501
+            'amount_in': (float, none_type),  # noqa: E501
             'payment_account_in': (PaymentAccount, none_type),  # noqa: E501
-            'amount_out': (float, none_type, none_type),  # noqa: E501
+            'amount_out': (float, none_type),  # noqa: E501
             'payment_account_out': (PaymentAccount, none_type),  # noqa: E501
         }
 
@@ -133,14 +133,8 @@ class CashbookEntry(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, date, description, kind, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CashbookEntry - a model defined in OpenAPI
-
-        Args:
-            id (str): Cashbook unique identifier.
-            date (date): Cashbook date.
-            description (str): Cashbook description.
-            kind (CashbookEntryKind):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,12 +167,16 @@ class CashbookEntry(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (str): Cashbook unique identifier.. [optional]  # noqa: E501
+            date (date): Cashbook date.. [optional]  # noqa: E501
+            description (str): Cashbook description.. [optional]  # noqa: E501
+            kind (CashbookEntryKind): [optional]  # noqa: E501
             type (CashbookEntryType): [optional]  # noqa: E501
-            entity_name (str, none_type): Entity name.. [optional]  # noqa: E501
+            entity_name (str): Entity name.. [optional]  # noqa: E501
             document (CashbookEntryDocument): [optional]  # noqa: E501
-            amount_in (float, none_type): [Only for cashbook entry in] Total amount in.. [optional]  # noqa: E501
+            amount_in (float): [Only for cashbook entry in] Total amount in.. [optional]  # noqa: E501
             payment_account_in (PaymentAccount): [optional]  # noqa: E501
-            amount_out (float, none_type): [Only for cashbook entry out] Total amount out.. [optional]  # noqa: E501
+            amount_out (float): [Only for cashbook entry out] Total amount out.. [optional]  # noqa: E501
             payment_account_out (PaymentAccount): [optional]  # noqa: E501
         """
 
@@ -207,10 +205,6 @@ class CashbookEntry(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.id = id
-        self.date = date
-        self.description = description
-        self.kind = kind
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -231,14 +225,8 @@ class CashbookEntry(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, date, description, kind, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CashbookEntry - a model defined in OpenAPI
-
-        Args:
-            id (str): Cashbook unique identifier.
-            date (date): Cashbook date.
-            description (str): Cashbook description.
-            kind (CashbookEntryKind):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -271,12 +259,16 @@ class CashbookEntry(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (str): Cashbook unique identifier.. [optional]  # noqa: E501
+            date (date): Cashbook date.. [optional]  # noqa: E501
+            description (str): Cashbook description.. [optional]  # noqa: E501
+            kind (CashbookEntryKind): [optional]  # noqa: E501
             type (CashbookEntryType): [optional]  # noqa: E501
-            entity_name (str, none_type): Entity name.. [optional]  # noqa: E501
+            entity_name (str): Entity name.. [optional]  # noqa: E501
             document (CashbookEntryDocument): [optional]  # noqa: E501
-            amount_in (float, none_type): [Only for cashbook entry in] Total amount in.. [optional]  # noqa: E501
+            amount_in (float): [Only for cashbook entry in] Total amount in.. [optional]  # noqa: E501
             payment_account_in (PaymentAccount): [optional]  # noqa: E501
-            amount_out (float, none_type): [Only for cashbook entry out] Total amount out.. [optional]  # noqa: E501
+            amount_out (float): [Only for cashbook entry out] Total amount out.. [optional]  # noqa: E501
             payment_account_out (PaymentAccount): [optional]  # noqa: E501
         """
 
@@ -303,10 +295,6 @@ class CashbookEntry(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.id = id
-        self.date = date
-        self.description = description
-        self.kind = kind
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

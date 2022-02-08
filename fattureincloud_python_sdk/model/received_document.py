@@ -104,11 +104,11 @@ class ReceivedDocument(ModelNormal):
         """
         lazy_import()
         return {
-            'entity': (ReceivedDocumentEntity, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
             'type': (ReceivedDocumentType, none_type),  # noqa: E501
+            'entity': (ReceivedDocumentEntity, none_type),  # noqa: E501
             'date': (date, none_type),  # noqa: E501
-            'category': (str, none_type, none_type),  # noqa: E501
+            'category': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'amount_net': (float, none_type),  # noqa: E501
             'amount_vat': (float, none_type),  # noqa: E501
@@ -121,15 +121,15 @@ class ReceivedDocument(ModelNormal):
             'is_marked': (bool, none_type),  # noqa: E501
             'is_detailed': (bool, none_type),  # noqa: E501
             'e_invoice': (bool, none_type),  # noqa: E501
-            'next_due_date': (date, none_type, none_type),  # noqa: E501
+            'next_due_date': (date, none_type),  # noqa: E501
             'currency': (Currency, none_type),  # noqa: E501
             'tax_deductibility': (float, none_type),  # noqa: E501
             'vat_deductibility': (float, none_type),  # noqa: E501
-            'items_list': ([ReceivedDocumentItemsListItem], none_type, none_type),  # noqa: E501
+            'items_list': ([ReceivedDocumentItemsListItem], none_type),  # noqa: E501
             'payments_list': ([ReceivedDocumentPaymentsListItem], none_type),  # noqa: E501
             'attachment_url': (str, none_type),  # noqa: E501
             'attachment_preview_url': (str, none_type),  # noqa: E501
-            'attachment_token': (str, none_type, none_type),  # noqa: E501
+            'attachment_token': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -138,9 +138,9 @@ class ReceivedDocument(ModelNormal):
 
 
     attribute_map = {
-        'entity': 'entity',  # noqa: E501
         'id': 'id',  # noqa: E501
         'type': 'type',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
         'date': 'date',  # noqa: E501
         'category': 'category',  # noqa: E501
         'description': 'description',  # noqa: E501
@@ -177,11 +177,8 @@ class ReceivedDocument(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, entity, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """ReceivedDocument - a model defined in OpenAPI
-
-        Args:
-            entity (ReceivedDocumentEntity):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -216,8 +213,9 @@ class ReceivedDocument(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier of the document.. [optional]  # noqa: E501
             type (ReceivedDocumentType): [optional]  # noqa: E501
+            entity (ReceivedDocumentEntity): [optional]  # noqa: E501
             date (date): Date of the document [If not specified, today date is used].. [optional]  # noqa: E501
-            category (str, none_type): Document category.. [optional]  # noqa: E501
+            category (str): Document category.. [optional]  # noqa: E501
             description (str): Document description.. [optional]  # noqa: E501
             amount_net (float): Total net amount.. [optional]  # noqa: E501
             amount_vat (float): Total vat amount.. [optional]  # noqa: E501
@@ -230,15 +228,15 @@ class ReceivedDocument(ModelNormal):
             is_marked (bool): [optional]  # noqa: E501
             is_detailed (bool): [optional]  # noqa: E501
             e_invoice (bool): [Read Only] Indicates if this is an e-invoice.. [optional]  # noqa: E501
-            next_due_date (date, none_type): [Read Only] Next due date.. [optional]  # noqa: E501
+            next_due_date (date): [Read Only] Next due date.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             tax_deductibility (float): Tax deducibility percentage.. [optional]  # noqa: E501
             vat_deductibility (float): Vat deducibility percentage.. [optional]  # noqa: E501
-            items_list ([ReceivedDocumentItemsListItem], none_type): [optional]  # noqa: E501
+            items_list ([ReceivedDocumentItemsListItem]): [optional]  # noqa: E501
             payments_list ([ReceivedDocumentPaymentsListItem]): [optional]  # noqa: E501
             attachment_url (str): [Read Only] Attachment url.. [optional]  # noqa: E501
             attachment_preview_url (str): [Read Only] Attachment preview url.. [optional]  # noqa: E501
-            attachment_token (str, none_type): Uploaded attachement token.. [optional]  # noqa: E501
+            attachment_token (str): Uploaded attachement token.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -266,7 +264,6 @@ class ReceivedDocument(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.entity = entity
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -287,11 +284,8 @@ class ReceivedDocument(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, entity, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ReceivedDocument - a model defined in OpenAPI
-
-        Args:
-            entity (ReceivedDocumentEntity):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -326,8 +320,9 @@ class ReceivedDocument(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier of the document.. [optional]  # noqa: E501
             type (ReceivedDocumentType): [optional]  # noqa: E501
+            entity (ReceivedDocumentEntity): [optional]  # noqa: E501
             date (date): Date of the document [If not specified, today date is used].. [optional]  # noqa: E501
-            category (str, none_type): Document category.. [optional]  # noqa: E501
+            category (str): Document category.. [optional]  # noqa: E501
             description (str): Document description.. [optional]  # noqa: E501
             amount_net (float): Total net amount.. [optional]  # noqa: E501
             amount_vat (float): Total vat amount.. [optional]  # noqa: E501
@@ -340,15 +335,15 @@ class ReceivedDocument(ModelNormal):
             is_marked (bool): [optional]  # noqa: E501
             is_detailed (bool): [optional]  # noqa: E501
             e_invoice (bool): [Read Only] Indicates if this is an e-invoice.. [optional]  # noqa: E501
-            next_due_date (date, none_type): [Read Only] Next due date.. [optional]  # noqa: E501
+            next_due_date (date): [Read Only] Next due date.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             tax_deductibility (float): Tax deducibility percentage.. [optional]  # noqa: E501
             vat_deductibility (float): Vat deducibility percentage.. [optional]  # noqa: E501
-            items_list ([ReceivedDocumentItemsListItem], none_type): [optional]  # noqa: E501
+            items_list ([ReceivedDocumentItemsListItem]): [optional]  # noqa: E501
             payments_list ([ReceivedDocumentPaymentsListItem]): [optional]  # noqa: E501
             attachment_url (str): [Read Only] Attachment url.. [optional]  # noqa: E501
             attachment_preview_url (str): [Read Only] Attachment preview url.. [optional]  # noqa: E501
-            attachment_token (str, none_type): Uploaded attachement token.. [optional]  # noqa: E501
+            attachment_token (str): Uploaded attachement token.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -374,7 +369,6 @@ class ReceivedDocument(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.entity = entity
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

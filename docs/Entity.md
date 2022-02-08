@@ -5,9 +5,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Name | 
 **id** | **int** | Unique identifier | [optional] 
 **code** | **str** | Code. | [optional] 
+**name** | **str** | Name | [optional] 
 **type** | [**EntityType**](EntityType.md) |  | [optional] 
 **first_name** | **str** | First name. | [optional] 
 **last_name** | **str** | Last name. | [optional] 
@@ -26,17 +26,17 @@ Name | Type | Description | Notes
 **fax** | **str** | Fax. | [optional] 
 **notes** | **str** | Extra notes. | [optional] 
 **default_vat** | [**VatType**](VatType.md) |  | [optional] 
-**default_payment_terms** | **int, none_type** | [Only for client] Default payment terms. | [optional] 
+**default_payment_terms** | **int** | [Only for client] Default payment terms. | [optional] 
 **default_payment_terms_type** | [**DefaultPaymentTermsType**](DefaultPaymentTermsType.md) |  | [optional] 
 **default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
-**bank_name** | **str, none_type** | [Only for client] Bank name. | [optional] 
-**bank_iban** | **str, none_type** | [Only for client] Iban. | [optional] 
-**bank_swift_code** | **str, none_type** | [Only for client] Bank swift code. | [optional] 
-**shipping_address** | **str, none_type** | [Only for client] Shipping address. | [optional] 
-**e_invoice** | **bool, none_type** | [Only for client] Use e-invoices. | [optional]  if omitted the server will use the default value of False
-**ei_code** | **str, none_type** | [Only for client] E-invoices code. | [optional] 
-**created_at** | **str, none_type** |  | [optional] 
-**updated_at** | **str, none_type** |  | [optional] 
+**bank_name** | **str** | [Only for client] Bank name. | [optional] 
+**bank_iban** | **str** | [Only for client] Iban. | [optional] 
+**bank_swift_code** | **str** | [Only for client] Bank swift code. | [optional] 
+**shipping_address** | **str** | [Only for client] Shipping address. | [optional] 
+**e_invoice** | **bool** | [Only for client] Use e-invoices. | [optional]  if omitted the server will use the default value of False
+**ei_code** | **str** | [Only for client] E-invoices code. | [optional] 
+**created_at** | **str** |  | [optional] 
+**updated_at** | **str** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

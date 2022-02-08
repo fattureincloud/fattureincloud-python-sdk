@@ -96,7 +96,7 @@ class IssuedDocumentPaymentsListItem(ModelNormal):
             'status': (IssuedDocumentStatus, none_type),  # noqa: E501
             'payment_account': (PaymentAccount, none_type),  # noqa: E501
             'paid_date': (date, none_type),  # noqa: E501
-            'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type, none_type),  # noqa: E501
+            'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -161,7 +161,7 @@ class IssuedDocumentPaymentsListItem(ModelNormal):
             status (IssuedDocumentStatus): [optional]  # noqa: E501
             payment_account (PaymentAccount): [optional]  # noqa: E501
             paid_date (date): Payment date. [Only if status is paid]. [optional]  # noqa: E501
-            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
+            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -249,7 +249,7 @@ class IssuedDocumentPaymentsListItem(ModelNormal):
             status (IssuedDocumentStatus): [optional]  # noqa: E501
             payment_account (PaymentAccount): [optional]  # noqa: E501
             paid_date (date): Payment date. [Only if status is paid]. [optional]  # noqa: E501
-            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
+            ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

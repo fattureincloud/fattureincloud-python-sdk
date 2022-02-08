@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**entity** | [**ReceivedDocumentEntity**](ReceivedDocumentEntity.md) |  | 
 **id** | **int** | Unique identifier of the document. | [optional] 
 **type** | [**ReceivedDocumentType**](ReceivedDocumentType.md) |  | [optional] 
+**entity** | [**ReceivedDocumentEntity**](ReceivedDocumentEntity.md) |  | [optional] 
 **date** | **date** | Date of the document [If not specified, today date is used]. | [optional] 
-**category** | **str, none_type** | Document category. | [optional] 
+**category** | **str** | Document category. | [optional] 
 **description** | **str** | Document description. | [optional] 
 **amount_net** | **float** | Total net amount. | [optional] 
 **amount_vat** | **float** | Total vat amount. | [optional] 
@@ -21,15 +21,15 @@ Name | Type | Description | Notes
 **is_marked** | **bool** |  | [optional] 
 **is_detailed** | **bool** |  | [optional] 
 **e_invoice** | **bool** | [Read Only] Indicates if this is an e-invoice. | [optional] 
-**next_due_date** | **date, none_type** | [Read Only] Next due date. | [optional] [readonly] 
+**next_due_date** | **date** | [Read Only] Next due date. | [optional] [readonly] 
 **currency** | [**Currency**](Currency.md) |  | [optional] 
 **tax_deductibility** | **float** | Tax deducibility percentage. | [optional] 
 **vat_deductibility** | **float** | Vat deducibility percentage. | [optional] 
-**items_list** | [**[ReceivedDocumentItemsListItem], none_type**](ReceivedDocumentItemsListItem.md) |  | [optional] 
+**items_list** | [**[ReceivedDocumentItemsListItem]**](ReceivedDocumentItemsListItem.md) |  | [optional] 
 **payments_list** | [**[ReceivedDocumentPaymentsListItem]**](ReceivedDocumentPaymentsListItem.md) |  | [optional] 
 **attachment_url** | **str** | [Read Only] Attachment url. | [optional] [readonly] 
 **attachment_preview_url** | **str** | [Read Only] Attachment preview url. | [optional] [readonly] 
-**attachment_token** | **str, none_type** | Uploaded attachement token. | [optional] 
+**attachment_token** | **str** | Uploaded attachement token. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

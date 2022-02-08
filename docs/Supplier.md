@@ -5,9 +5,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Supplier name. | 
 **id** | **int** | Unique identifier | [optional] 
 **code** | **str** | Supplier code. | [optional] 
+**name** | **str** | Supplier name. | [optional] 
 **type** | [**SupplierType**](SupplierType.md) |  | [optional] 
 **first_name** | **str** | Supplier first name. | [optional] 
 **last_name** | **str** | Supplier last name. | [optional] 
@@ -25,8 +25,8 @@ Name | Type | Description | Notes
 **phone** | **str** | Supplier phone. | [optional] 
 **fax** | **str** | Supplier fax. | [optional] 
 **notes** | **str** | Supplier extra notes. | [optional] 
-**created_at** | **str, none_type** |  | [optional] 
-**updated_at** | **str, none_type** |  | [optional] 
+**created_at** | **str** |  | [optional] 
+**updated_at** | **str** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

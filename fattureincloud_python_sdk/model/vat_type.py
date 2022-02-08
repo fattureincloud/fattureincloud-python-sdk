@@ -73,7 +73,7 @@ class VatType(ModelNormal):
         """
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():
@@ -86,8 +86,8 @@ class VatType(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'value': (float, none_type),  # noqa: E501
             'id': (int, none_type),  # noqa: E501
+            'value': (float, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'notes': (str, none_type),  # noqa: E501
             'e_invoice': (bool, none_type),  # noqa: E501
@@ -103,8 +103,8 @@ class VatType(ModelNormal):
 
 
     attribute_map = {
-        'value': 'value',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'value': 'value',  # noqa: E501
         'description': 'description',  # noqa: E501
         'notes': 'notes',  # noqa: E501
         'e_invoice': 'e_invoice',  # noqa: E501
@@ -122,11 +122,8 @@ class VatType(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, value, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """VatType - a model defined in OpenAPI
-
-        Args:
-            value (float): [Read Only] Percentual value.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,6 +157,7 @@ class VatType(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
+            value (float): [Read Only] Percentual value.. [optional]  # noqa: E501
             description (str): Short description.. [optional]  # noqa: E501
             notes (str): Long description and notes shown in documents.. [optional]  # noqa: E501
             e_invoice (bool): Usable for e-invoices.. [optional]  # noqa: E501
@@ -194,7 +192,6 @@ class VatType(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.value = value
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -215,11 +212,8 @@ class VatType(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, value, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """VatType - a model defined in OpenAPI
-
-        Args:
-            value (float): [Read Only] Percentual value.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -253,6 +247,7 @@ class VatType(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier. [optional]  # noqa: E501
+            value (float): [Read Only] Percentual value.. [optional]  # noqa: E501
             description (str): Short description.. [optional]  # noqa: E501
             notes (str): Long description and notes shown in documents.. [optional]  # noqa: E501
             e_invoice (bool): Usable for e-invoices.. [optional]  # noqa: E501
@@ -285,7 +280,6 @@ class VatType(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.value = value
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

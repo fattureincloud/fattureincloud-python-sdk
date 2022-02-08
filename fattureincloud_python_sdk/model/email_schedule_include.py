@@ -107,14 +107,8 @@ class EmailScheduleInclude(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, document, delivery_note, attachment, accompanying_invoice, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """EmailScheduleInclude - a model defined in OpenAPI
-
-        Args:
-            document (bool): If set to true, the email will have a button to view the document
-            delivery_note (bool): If set to true, the email will have a button to view the delivery note
-            attachment (bool): If set to true, the email will have a button to view the attachment
-            accompanying_invoice (bool): If set to true, the email will have a button to view the accompanying invoice
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,6 +141,10 @@ class EmailScheduleInclude(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            document (bool): If set to true, the email will have a button to view the document. [optional]  # noqa: E501
+            delivery_note (bool): If set to true, the email will have a button to view the delivery note. [optional]  # noqa: E501
+            attachment (bool): If set to true, the email will have a button to view the attachment. [optional]  # noqa: E501
+            accompanying_invoice (bool): If set to true, the email will have a button to view the accompanying invoice. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,10 +172,6 @@ class EmailScheduleInclude(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.document = document
-        self.delivery_note = delivery_note
-        self.attachment = attachment
-        self.accompanying_invoice = accompanying_invoice
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -198,14 +192,8 @@ class EmailScheduleInclude(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, document, delivery_note, attachment, accompanying_invoice, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """EmailScheduleInclude - a model defined in OpenAPI
-
-        Args:
-            document (bool): If set to true, the email will have a button to view the document
-            delivery_note (bool): If set to true, the email will have a button to view the delivery note
-            attachment (bool): If set to true, the email will have a button to view the attachment
-            accompanying_invoice (bool): If set to true, the email will have a button to view the accompanying invoice
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -238,6 +226,10 @@ class EmailScheduleInclude(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            document (bool): If set to true, the email will have a button to view the document. [optional]  # noqa: E501
+            delivery_note (bool): If set to true, the email will have a button to view the delivery note. [optional]  # noqa: E501
+            attachment (bool): If set to true, the email will have a button to view the attachment. [optional]  # noqa: E501
+            accompanying_invoice (bool): If set to true, the email will have a button to view the accompanying invoice. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -263,10 +255,6 @@ class EmailScheduleInclude(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.document = document
-        self.delivery_note = delivery_note
-        self.attachment = attachment
-        self.accompanying_invoice = accompanying_invoice
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

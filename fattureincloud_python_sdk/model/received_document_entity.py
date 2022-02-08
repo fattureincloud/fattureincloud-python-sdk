@@ -82,7 +82,7 @@ class ReceivedDocumentEntity(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type, none_type),  # noqa: E501
+            'id': (int, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
         }
 
@@ -137,7 +137,7 @@ class ReceivedDocumentEntity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (int, none_type): Entity unique identifier.. [optional]  # noqa: E501
+            id (int): Entity unique identifier.. [optional]  # noqa: E501
             name (str): Entity name.. [optional]  # noqa: E501
         """
 
@@ -220,7 +220,7 @@ class ReceivedDocumentEntity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (int, none_type): Entity unique identifier.. [optional]  # noqa: E501
+            id (int): Entity unique identifier.. [optional]  # noqa: E501
             name (str): Entity name.. [optional]  # noqa: E501
         """
 

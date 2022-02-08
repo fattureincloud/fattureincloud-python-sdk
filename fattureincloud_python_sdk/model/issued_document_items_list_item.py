@@ -93,7 +93,7 @@ class IssuedDocumentItemsListItem(ModelNormal):
         lazy_import()
         return {
             'id': (int, none_type),  # noqa: E501
-            'product_id': (int, none_type, none_type),  # noqa: E501
+            'product_id': (int, none_type),  # noqa: E501
             'code': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
             'category': (str, none_type),  # noqa: E501
@@ -101,14 +101,14 @@ class IssuedDocumentItemsListItem(ModelNormal):
             'qty': (float, none_type),  # noqa: E501
             'measure': (str, none_type),  # noqa: E501
             'net_price': (float, none_type),  # noqa: E501
-            'gross_price': (float, none_type, none_type),  # noqa: E501
+            'gross_price': (float, none_type),  # noqa: E501
             'vat': (VatType, none_type),  # noqa: E501
             'not_taxable': (bool, none_type),  # noqa: E501
             'apply_withholding_taxes': (bool, none_type),  # noqa: E501
             'discount': (float, none_type),  # noqa: E501
             'discount_highlight': (bool, none_type),  # noqa: E501
             'in_ddt': (bool, none_type),  # noqa: E501
-            'stock': (bool, none_type, none_type),  # noqa: E501
+            'stock': (bool, none_type),  # noqa: E501
             'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type),  # noqa: E501
         }
 
@@ -180,7 +180,7 @@ class IssuedDocumentItemsListItem(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier.. [optional]  # noqa: E501
-            product_id (int, none_type): Unique identifier of the product.. [optional]  # noqa: E501
+            product_id (int): Unique identifier of the product.. [optional]  # noqa: E501
             code (str): Product code.. [optional]  # noqa: E501
             name (str): Product name.. [optional]  # noqa: E501
             category (str): Product category. [optional]  # noqa: E501
@@ -188,14 +188,14 @@ class IssuedDocumentItemsListItem(ModelNormal):
             qty (float): Items quantity,. [optional]  # noqa: E501
             measure (str): Item measure.. [optional]  # noqa: E501
             net_price (float): Net price.. [optional]  # noqa: E501
-            gross_price (float, none_type): Gross price.. [optional]  # noqa: E501
+            gross_price (float): Gross price.. [optional]  # noqa: E501
             vat (VatType): [optional]  # noqa: E501
             not_taxable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             apply_withholding_taxes (bool): Apply withholding taxes, rivalsa and cassa.. [optional] if omitted the server will use the default value of True  # noqa: E501
             discount (float): Discount percentual value.. [optional]  # noqa: E501
             discount_highlight (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             in_ddt (bool): [optional] if omitted the server will use the default value of True  # noqa: E501
-            stock (bool, none_type): [optional]  # noqa: E501
+            stock (bool): [optional]  # noqa: E501
             ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
         """
 
@@ -279,7 +279,7 @@ class IssuedDocumentItemsListItem(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (int): Unique identifier.. [optional]  # noqa: E501
-            product_id (int, none_type): Unique identifier of the product.. [optional]  # noqa: E501
+            product_id (int): Unique identifier of the product.. [optional]  # noqa: E501
             code (str): Product code.. [optional]  # noqa: E501
             name (str): Product name.. [optional]  # noqa: E501
             category (str): Product category. [optional]  # noqa: E501
@@ -287,14 +287,14 @@ class IssuedDocumentItemsListItem(ModelNormal):
             qty (float): Items quantity,. [optional]  # noqa: E501
             measure (str): Item measure.. [optional]  # noqa: E501
             net_price (float): Net price.. [optional]  # noqa: E501
-            gross_price (float, none_type): Gross price.. [optional]  # noqa: E501
+            gross_price (float): Gross price.. [optional]  # noqa: E501
             vat (VatType): [optional]  # noqa: E501
             not_taxable (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             apply_withholding_taxes (bool): Apply withholding taxes, rivalsa and cassa.. [optional] if omitted the server will use the default value of True  # noqa: E501
             discount (float): Discount percentual value.. [optional]  # noqa: E501
             discount_highlight (bool): [optional] if omitted the server will use the default value of False  # noqa: E501
             in_ddt (bool): [optional] if omitted the server will use the default value of True  # noqa: E501
-            stock (bool, none_type): [optional]  # noqa: E501
+            stock (bool): [optional]  # noqa: E501
             ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
         """
 

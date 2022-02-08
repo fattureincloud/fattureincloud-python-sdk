@@ -82,11 +82,11 @@ class EinvoiceRejectionReason(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'reason': (str, none_type, none_type),  # noqa: E501
-            'ei_status': (str, none_type, none_type),  # noqa: E501
-            'solution': (str, none_type, none_type),  # noqa: E501
-            'code': (str, none_type, none_type),  # noqa: E501
-            'date': (date, none_type, none_type),  # noqa: E501
+            'reason': (str, none_type),  # noqa: E501
+            'ei_status': (str, none_type),  # noqa: E501
+            'solution': (str, none_type),  # noqa: E501
+            'code': (str, none_type),  # noqa: E501
+            'date': (date, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -143,11 +143,11 @@ class EinvoiceRejectionReason(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            reason (str, none_type): Rejection reason.. [optional]  # noqa: E501
-            ei_status (str, none_type): EInvoice status.. [optional]  # noqa: E501
-            solution (str, none_type): Error solution.. [optional]  # noqa: E501
-            code (str, none_type): Error code.. [optional]  # noqa: E501
-            date (date, none_type): Rejection date.. [optional]  # noqa: E501
+            reason (str): Rejection reason.. [optional]  # noqa: E501
+            ei_status (str): EInvoice status.. [optional]  # noqa: E501
+            solution (str): Error solution.. [optional]  # noqa: E501
+            code (str): Error code.. [optional]  # noqa: E501
+            date (date): Rejection date.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,11 +229,11 @@ class EinvoiceRejectionReason(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            reason (str, none_type): Rejection reason.. [optional]  # noqa: E501
-            ei_status (str, none_type): EInvoice status.. [optional]  # noqa: E501
-            solution (str, none_type): Error solution.. [optional]  # noqa: E501
-            code (str, none_type): Error code.. [optional]  # noqa: E501
-            date (date, none_type): Rejection date.. [optional]  # noqa: E501
+            reason (str): Rejection reason.. [optional]  # noqa: E501
+            ei_status (str): EInvoice status.. [optional]  # noqa: E501
+            solution (str): Error solution.. [optional]  # noqa: E501
+            code (str): Error code.. [optional]  # noqa: E501
+            date (date): Rejection date.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

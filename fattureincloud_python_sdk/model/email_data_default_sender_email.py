@@ -103,12 +103,8 @@ class EmailDataDefaultSenderEmail(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, email, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """EmailDataDefaultSenderEmail - a model defined in OpenAPI
-
-        Args:
-            id (int): Id
-            email (str): Email address
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -141,6 +137,8 @@ class EmailDataDefaultSenderEmail(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (int): Id. [optional]  # noqa: E501
+            email (str): Email address. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -168,8 +166,6 @@ class EmailDataDefaultSenderEmail(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.id = id
-        self.email = email
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -190,12 +186,8 @@ class EmailDataDefaultSenderEmail(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, email, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """EmailDataDefaultSenderEmail - a model defined in OpenAPI
-
-        Args:
-            id (int): Id
-            email (str): Email address
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -228,6 +220,8 @@ class EmailDataDefaultSenderEmail(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (int): Id. [optional]  # noqa: E501
+            email (str): Email address. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -253,8 +247,6 @@ class EmailDataDefaultSenderEmail(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.id = id
-        self.email = email
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

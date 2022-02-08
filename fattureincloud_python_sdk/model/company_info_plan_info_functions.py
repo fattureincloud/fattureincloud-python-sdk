@@ -98,7 +98,7 @@ class CompanyInfoPlanInfoFunctions(ModelNormal):
             'subaccounts': (bool, none_type),  # noqa: E501
             'tessera_sanitaria': (bool, none_type),  # noqa: E501
             'ts_digital': (bool, none_type),  # noqa: E501
-            'ts_invoice_trading': (bool, none_type, none_type),  # noqa: E501
+            'ts_invoice_trading': (bool, none_type),  # noqa: E501
             'ts_pay': (bool, none_type),  # noqa: E501
         }
 
@@ -185,7 +185,7 @@ class CompanyInfoPlanInfoFunctions(ModelNormal):
             subaccounts (bool): [optional]  # noqa: E501
             tessera_sanitaria (bool): [optional]  # noqa: E501
             ts_digital (bool): [optional]  # noqa: E501
-            ts_invoice_trading (bool, none_type): [optional]  # noqa: E501
+            ts_invoice_trading (bool): [optional]  # noqa: E501
             ts_pay (bool): [optional]  # noqa: E501
         """
 
@@ -284,7 +284,7 @@ class CompanyInfoPlanInfoFunctions(ModelNormal):
             subaccounts (bool): [optional]  # noqa: E501
             tessera_sanitaria (bool): [optional]  # noqa: E501
             ts_digital (bool): [optional]  # noqa: E501
-            ts_invoice_trading (bool, none_type): [optional]  # noqa: E501
+            ts_invoice_trading (bool): [optional]  # noqa: E501
             ts_pay (bool): [optional]  # noqa: E501
         """
 

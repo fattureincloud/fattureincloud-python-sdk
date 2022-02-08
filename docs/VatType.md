@@ -5,8 +5,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | **float** | [Read Only] Percentual value. | 
 **id** | **int** | Unique identifier | [optional] 
+**value** | **float** | [Read Only] Percentual value. | [optional] 
 **description** | **str** | Short description. | [optional] 
 **notes** | **str** | Long description and notes shown in documents. | [optional] 
 **e_invoice** | **bool** | Usable for e-invoices. | [optional] 
