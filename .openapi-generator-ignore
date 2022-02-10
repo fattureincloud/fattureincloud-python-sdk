@@ -23,3 +23,5 @@
 #!docs/README.md
 git_push.sh
 .gitignore
+.gitlab-ci.yml 
+tox.ini
