@@ -14,8 +14,6 @@ import unittest.mock
 import functions
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
-from functions import json_serial
-from functions import create_from_json
 from fattureincloud_python_sdk.api.clients_api import ClientsApi
 from fattureincloud_python_sdk.model.client import Client
 from fattureincloud_python_sdk.model.client_type import ClientType
@@ -36,11 +34,7 @@ class TestClientsApi(unittest.TestCase):
     """ClientsApi unit test stubs"""
 
     def setUp(self):
-        configuration = fattureincloud_python_sdk.Configuration(
-            host = "https://api-v2.fattureincloud.it"
-        )
-        configuration.access_token = 'a/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWYiOiJ6OG1HVmRBbThnTVFpcWd6ZU9ybEZaZWg4SDViSmQ5eSJ9.lXdhLBK1QrvjOWw6sguylp2R0NPmKS6D2DUa9ez69uk'
-        self.api = ClientsApi(fattureincloud_python_sdk.ApiClient(configuration))
+        self.api = ClientsApi()
 
     def tearDown(self):
         pass

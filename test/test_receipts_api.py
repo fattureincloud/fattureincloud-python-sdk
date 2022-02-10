@@ -36,11 +36,7 @@ class TestReceiptsApi(unittest.TestCase):
     """ReceiptsApi unit test stubs"""
 
     def setUp(self):
-        configuration = fattureincloud_python_sdk.Configuration(
-            host = "https://api-v2.fattureincloud.it"
-        )
-        configuration.access_token = 'a/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWYiOiJ6OG1HVmRBbThnTVFpcWd6ZU9ybEZaZWg4SDViSmQ5eSJ9.lXdhLBK1QrvjOWw6sguylp2R0NPmKS6D2DUa9ez69uk'
-        self.api = ReceiptsApi(fattureincloud_python_sdk.ApiClient(configuration))
+        self.api = ReceiptsApi()
 
     def tearDown(self):
         pass
