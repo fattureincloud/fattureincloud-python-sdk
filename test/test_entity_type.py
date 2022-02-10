@@ -27,9 +27,10 @@ class TestEntityType(unittest.TestCase):
 
     def testEntityType(self):
         """Test EntityType"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EntityType()  # noqa: E501
-        pass
+        model = EntityType("person")
+        expected_json = "person"
+        actual_json = model.value
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':

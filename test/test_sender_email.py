@@ -9,9 +9,11 @@
 """
 
 
+import json
 import sys
 import unittest
-
+from functions import json_serial
+from functions import create_from_json
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.sender_email import SenderEmail
 
@@ -27,9 +29,13 @@ class TestSenderEmail(unittest.TestCase):
 
     def testSenderEmail(self):
         """Test SenderEmail"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SenderEmail()  # noqa: E501
-        pass
+        model = SenderEmail(
+            id=1,
+            email="ex.email@provider.co"
+        )
+        expected_json = "{\"id\": 1, \"email\": \"ex.email@provider.co\"}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':
