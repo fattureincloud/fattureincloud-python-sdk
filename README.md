@@ -18,7 +18,7 @@ Python >= 3.6
 ## Installation & Usage
 ### pip install
 
-If the python package is hosted on a repository, you can install directly using:
+You can install our python package directly using:
 
 ```sh
 pip install fattureincloud-python-sdk
