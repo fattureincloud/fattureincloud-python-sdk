@@ -12,7 +12,6 @@
 import json
 import sys
 import unittest
-from xml.dom.minidom import Entity
 import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
