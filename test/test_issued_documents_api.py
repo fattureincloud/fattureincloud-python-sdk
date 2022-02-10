@@ -66,10 +66,34 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         assert actual == expected
 
     def test_delete_issued_document(self):
-        pass
+        resp = {
+            'status': 200,
+            'data': b'{}',
+            'reason': "OK"
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+
+        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(return_value = mock_resp)
+        actual = self.api.delete_issued_document(2, 12345)
+        assert actual == None
 
     def test_delete_issued_document_attachment(self):
-        pass
+        resp = {
+            'status': 200,
+            'data': b'{}',
+            'reason': "OK"
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+
+        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(return_value = mock_resp)
+        actual = self.api.delete_issued_document_attachment(2, 12345)
+        assert actual == None
 
     def test_get_email_data(self):
         resp = {
@@ -191,7 +215,19 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         assert actual == expected
 
     def test_schedule_email(self):
-        pass
+        resp = {
+            'status': 200,
+            'data': b'{}',
+            'reason': "OK"
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+
+        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(return_value = mock_resp)
+        actual = self.api.schedule_email(2, 12345)
+        assert actual == None
 
     def test_upload_issued_document_attachment(self):
         resp = {

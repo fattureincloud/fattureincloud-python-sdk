@@ -59,7 +59,19 @@ class TestReceiptsApi(unittest.TestCase):
         assert actual == expected
 
     def test_delete_receipt(self):
-        pass
+        resp = {
+            'status': 200,
+            'data': b'{}',
+            'reason': "OK"
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+
+        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(return_value = mock_resp)
+        actual = self.api.delete_receipt(2, 12345)
+        assert actual == None
 
     def test_get_receipt(self):
         resp = {
