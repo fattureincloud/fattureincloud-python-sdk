@@ -9,9 +9,11 @@
 """
 
 
+import json
 import sys
 import unittest
-
+from functions import json_serial
+from functions import create_from_json
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import ReceivedDocumentPaymentsListItemPaymentTerms
 
@@ -27,9 +29,13 @@ class TestReceivedDocumentPaymentsListItemPaymentTerms(unittest.TestCase):
 
     def testReceivedDocumentPaymentsListItemPaymentTerms(self):
         """Test ReceivedDocumentPaymentsListItemPaymentTerms"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ReceivedDocumentPaymentsListItemPaymentTerms()  # noqa: E501
-        pass
+        model = ReceivedDocumentPaymentsListItemPaymentTerms(
+            days=20,
+            type="dn"
+        )
+        expected_json = "{\"days\": 20, \"type\": \"dn\"}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':
