@@ -8,6 +8,7 @@ on:
         required: true
         type: choice
         options:
+        - dev
         - test
         - prod
 jobs:
@@ -98,6 +99,12 @@ jobs:
           --wheel
           --outdir dist/
           .
+        
+      - id: skip-pypi-publish
+        name: Skipping publishing
+        if: ${{ env.ACT }} || ${{ github.event.inputs.env = 'dev' }}
+        run: |
+          echo "Skipping publishing"
 
       - id: test-pypi-publish
         name: Publish to Test PyPI
@@ -109,7 +116,7 @@ jobs:
 
       - id: pypi-publish
         name: Publish to PyPI
-          if: ${{ !env.ACT }} && ${{ github.event.inputs.env != 'test' }}
-          uses: pypa/gh-action-pypi-publish@master
-          with:
-            password: ${{ secrets.PYPI_API_TOKEN }}
+        if: ${{ !env.ACT }} && ${{ github.event.inputs.env = 'prod' }}
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
