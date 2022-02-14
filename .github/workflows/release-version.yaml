@@ -72,13 +72,13 @@ jobs:
 
       - id: git-push
         name: Pushing to Git repo
-        if: ${{ !env.ACT }}
+        if: ${{ !env.ACT }} && ${{ github.event.inputs.env == 'prod' }}
         run: |
           git push origin
 
       - id: create-tag
         name: Create tag
-        if: ${{ !env.ACT }}
+        if: ${{ !env.ACT }} && ${{ github.event.inputs.env == 'prod' }}
         uses: actions/github-script@v3
         with:
           github-token: ${{ github.token }}
