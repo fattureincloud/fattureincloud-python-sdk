@@ -84,8 +84,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 exchange_rate="1",
                 html_symbol="EUR",
             ),
-            tax_deductibility=0,
-            vat_deductibility=0,
+            tax_deductibility=3.14,
+            vat_deductibility=3.14,
             items_list=[
                 ReceivedDocumentItemsListItem(
                     id=1,
@@ -411,8 +411,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 exchange_rate="1",
                 html_symbol="EUR",
             ),
-            tax_deductibility=0,
-            vat_deductibility=0,
+            tax_deductibility=3.14,
+            vat_deductibility=3.14,
             items_list=[
                 ReceivedDocumentItemsListItem(
                     id=1,
@@ -578,8 +578,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 exchange_rate="1",
                 html_symbol="EUR",
             ),
-            tax_deductibility=0,
-            vat_deductibility=0,
+            tax_deductibility=3.14,
+            vat_deductibility=3.14,
             items_list=[
                 ReceivedDocumentItemsListItem(
                     id=1,
@@ -1022,8 +1022,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 exchange_rate="1",
                 html_symbol="EUR",
             ),
-            tax_deductibility=0,
-            vat_deductibility=0,
+            tax_deductibility=3.14,
+            vat_deductibility=3.14,
             items_list=[
                 ReceivedDocumentItemsListItem(
                     id=1,
@@ -1163,8 +1163,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = "attachment.pdf" # str | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
+    attachment = open('/path/to/file', 'rb') # file_type, none_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -1190,8 +1190,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
- **filename** | **str**| Name of the file. | [optional]
- **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **filename** | **str, none_type**| Name of the file. | [optional]
+ **attachment** | **file_type, none_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
 
 ### Return type
 
