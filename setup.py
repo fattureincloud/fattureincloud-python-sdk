@@ -29,10 +29,12 @@ def readme():
     with open('README.md') as f:
         return f.read()
 
+desc = readme()
+
 setup(
     name=NAME,
     version=VERSION,
-    description="Fatture in Cloud API v2 - API Reference",
+    description="Python SDK for the Fatture in Cloud API",
     author="Fatture in Cloud",
     author_email="info@fattureincloud.it",
     url="https://github.com/fattureincloud/fattureincloud-python-sdk",
@@ -42,5 +44,6 @@ setup(
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     license="MIT",
-    long_description=readme()  # noqa: E501
+    long_description=desc,  # noqa: E501
+    long_description_content_type='text/markdown'
 )
