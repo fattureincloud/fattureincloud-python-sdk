@@ -36,11 +36,6 @@ class TestGetReceiptPreCreateInfoResponse(unittest.TestCase):
         """Test GetReceiptPreCreateInfoResponse"""
         model = GetReceiptPreCreateInfoResponse(
             data=ReceiptPreCreateInfo(
-                numerations={},
-                numerations_list=[
-                    "a/",
-                    "b/"
-                ],
                 rc_centers_list=[
                     "bg",
                     "mi"
@@ -63,7 +58,7 @@ class TestGetReceiptPreCreateInfoResponse(unittest.TestCase):
             )          
         )
 
-        expected_json = '{"data": {"numerations": {}, "numerations_list": ["a/", "b/"], "rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}}'
+        expected_json = '{"data": {"rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

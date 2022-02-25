@@ -27,8 +27,7 @@ class TestNumerationItem(unittest.TestCase):
 
     def testNumerationItem(self):
         """Test NumerationItem"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = NumerationItem()  # noqa: E501
+        model = NumerationItem()  # noqa: E501
         pass
 
 
