@@ -12,11 +12,8 @@
 import json
 import sys
 import unittest
-from xml.parsers.expat import model
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.numeration import Numeration
-from fattureincloud_python_sdk.model.numeration_item import NumerationItem
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.currency import Currency
