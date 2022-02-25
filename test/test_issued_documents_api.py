@@ -149,7 +149,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_get_issued_document_pre_create_info(self):
         resp = {
             'status': 200,
-            'data': b'{"data": {"numerations": {}, "dn_numerations": {}, "default_values": {"rivalsa": 10.0}, "extra_data_default_values": {"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}, "items_default_values": {"vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}, "countries_list": ["italy"]}}',
+            'data': b'{"data": {"default_values": {"rivalsa": 10.0}, "extra_data_default_values": {"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}, "items_default_values": {"vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}, "countries_list": ["italy"]}}',
             'reason': "OK"
         }
 
@@ -158,7 +158,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
 
         self.api.api_client.rest_client.GET = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = GetIssuedDocumentPreCreateInfoResponse(data = IssuedDocumentPreCreateInfo( numerations={}, dn_numerations={}, default_values=IssuedDocumentPreCreateInfoDefaultValues( rivalsa=10.0 ), extra_data_default_values=IssuedDocumentPreCreateInfoExtraDataDefaultValues( ts_communication=True, ts_tipo_spesa="string", ts_flag_tipo_spesa=0, ts_pagamento_tracciato=True ), items_default_values=IssuedDocumentPreCreateInfoItemsDefaultValues( vat=VatType( id=1, value=22.0, description="Non imponibile art. 123", notes="IVA non imponibile ai sensi dell articolo 123, comma 2", e_invoice=True, ei_type="2", ei_description="ei_description_example", is_disabled=True, ), ), countries_list=[ "italy" ] )  )
+        expected = GetIssuedDocumentPreCreateInfoResponse(data = IssuedDocumentPreCreateInfo( default_values=IssuedDocumentPreCreateInfoDefaultValues( rivalsa=10.0 ), extra_data_default_values=IssuedDocumentPreCreateInfoExtraDataDefaultValues( ts_communication=True, ts_tipo_spesa="string", ts_flag_tipo_spesa=0, ts_pagamento_tracciato=True ), items_default_values=IssuedDocumentPreCreateInfoItemsDefaultValues( vat=VatType( id=1, value=22.0, description="Non imponibile art. 123", notes="IVA non imponibile ai sensi dell articolo 123, comma 2", e_invoice=True, ei_type="2", ei_description="ei_description_example", is_disabled=True, ), ), countries_list=[ "italy" ] )  )
         actual = self.api.get_issued_document_pre_create_info(2, "invoice")
         assert actual == expected
 

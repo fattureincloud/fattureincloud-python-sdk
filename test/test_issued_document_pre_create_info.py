@@ -47,8 +47,6 @@ class TestIssuedDocumentPreCreateInfo(unittest.TestCase):
     def testIssuedDocumentPreCreateInfo(self):
         """Test IssuedDocumentPreCreateInfo"""
         model = IssuedDocumentPreCreateInfo(
-            numerations={},
-            dn_numerations={},
             default_values=IssuedDocumentPreCreateInfoDefaultValues(
                 rivalsa=10.0
             ),
@@ -75,7 +73,7 @@ class TestIssuedDocumentPreCreateInfo(unittest.TestCase):
             ]
         )
 
-        expected_json = '{"numerations": {}, "dn_numerations": {}, "default_values": {"rivalsa": 10.0}, "extra_data_default_values": {"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}, "items_default_values": {"vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}, "countries_list": ["italy"]}'
+        expected_json = '{"default_values": {"rivalsa": 10.0}, "extra_data_default_values": {"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}, "items_default_values": {"vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}, "countries_list": ["italy"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

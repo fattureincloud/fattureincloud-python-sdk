@@ -27,8 +27,7 @@ class TestVatItem(unittest.TestCase):
 
     def testVatItem(self):
         """Test VatItem"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VatItem()  # noqa: E501
+        model = VatItem()  # noqa: E501
         pass
 
 
