@@ -36,22 +36,11 @@ from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.create_issued_document_request import CreateIssuedDocumentRequest
 from fattureincloud_python_sdk.model.create_issued_document_response import CreateIssuedDocumentResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -123,7 +112,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_iban="bank_iban_example",
                 bank_swift_code="bank_swift_code_example",
                 shipping_address="shipping_address_example",
-                e_invoice=False,
+                e_invoice=True,
                 ei_code="ei_code_example",
                 created_at="created_at_example",
                 updated_at="updated_at_example",
@@ -147,18 +136,18 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             visible_subject="visible_subject_example",
             rc_center="rc_center_example",
             notes="notes_example",
-            rivalsa=0,
-            cassa=0,
-            cassa_taxable=0,
+            rivalsa=3.14,
+            cassa=3.14,
+            cassa_taxable=3.14,
             amount_cassa_taxable=3.14,
-            cassa2=0,
-            cassa2_taxable=0,
+            cassa2=3.14,
+            cassa2_taxable=3.14,
             amount_cassa2_taxable=3.14,
-            global_cassa_taxable=0,
+            global_cassa_taxable=3.14,
             amount_global_cassa_taxable=3.14,
-            withholding_tax=0,
-            withholding_tax_taxable=0,
-            other_withholding_tax=0,
+            withholding_tax=3.14,
+            withholding_tax_taxable=3.14,
+            other_withholding_tax=3.14,
             stamp_duty=3.14,
             payment_method=PaymentMethod(
                 id=1,
@@ -185,9 +174,9 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_beneficiary="bank_beneficiary_example",
                 ei_payment_method="ei_payment_method_example",
             ),
-            use_split_payment=False,
-            use_gross_prices=False,
-            e_invoice=False,
+            use_split_payment=True,
+            use_gross_prices=True,
+            e_invoice=True,
             ei_data=IssuedDocumentEiData(
                 vat_kind=VatKind("vat_kind_example"),
                 original_document_type=OriginalDocumentType("ordine"),
@@ -229,10 +218,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         ei_description="ei_description_example",
                         is_disabled=True,
                     ),
-                    not_taxable=False,
+                    not_taxable=True,
                     apply_withholding_taxes=True,
-                    discount=0,
-                    discount_highlight=False,
+                    discount=3.14,
+                    discount_highlight=True,
                     in_ddt=True,
                     stock=True,
                     ei_raw={},
@@ -241,7 +230,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -253,7 +242,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -277,11 +266,11 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             show_payments=True,
             show_payment_method=True,
             show_totals=ShowTotalsMode("all"),
-            show_paypal_button=False,
-            show_notification_button=False,
+            show_paypal_button=True,
+            show_notification_button=True,
             show_tspay_button=True,
             delivery_note=True,
-            accompanying_invoice=False,
+            accompanying_invoice=True,
             dn_number=1,
             dn_date=dateutil_parser('1970-01-01').date(),
             dn_ai_packages_number="dn_ai_packages_number_example",
@@ -317,6 +306,9 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
+        ),
+        options=IssuedDocumentOptions(
+            fix_payments=True,
         ),
     ) # CreateIssuedDocumentRequest | The Issued Document (optional)
 
@@ -385,22 +377,11 @@ import time
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -465,22 +446,11 @@ import time
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -546,22 +516,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.get_email_data_response import GetEmailDataResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -627,22 +586,11 @@ from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.get_existing_issued_document_totals_request import GetExistingIssuedDocumentTotalsRequest
 from fattureincloud_python_sdk.model.get_existing_issued_document_totals_response import GetExistingIssuedDocumentTotalsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -715,7 +663,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_iban="bank_iban_example",
                 bank_swift_code="bank_swift_code_example",
                 shipping_address="shipping_address_example",
-                e_invoice=False,
+                e_invoice=True,
                 ei_code="ei_code_example",
                 created_at="created_at_example",
                 updated_at="updated_at_example",
@@ -739,18 +687,18 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             visible_subject="visible_subject_example",
             rc_center="rc_center_example",
             notes="notes_example",
-            rivalsa=0,
-            cassa=0,
-            cassa_taxable=0,
+            rivalsa=3.14,
+            cassa=3.14,
+            cassa_taxable=3.14,
             amount_cassa_taxable=3.14,
-            cassa2=0,
-            cassa2_taxable=0,
+            cassa2=3.14,
+            cassa2_taxable=3.14,
             amount_cassa2_taxable=3.14,
-            global_cassa_taxable=0,
+            global_cassa_taxable=3.14,
             amount_global_cassa_taxable=3.14,
-            withholding_tax=0,
-            withholding_tax_taxable=0,
-            other_withholding_tax=0,
+            withholding_tax=3.14,
+            withholding_tax_taxable=3.14,
+            other_withholding_tax=3.14,
             stamp_duty=3.14,
             payment_method=PaymentMethod(
                 id=1,
@@ -777,9 +725,9 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_beneficiary="bank_beneficiary_example",
                 ei_payment_method="ei_payment_method_example",
             ),
-            use_split_payment=False,
-            use_gross_prices=False,
-            e_invoice=False,
+            use_split_payment=True,
+            use_gross_prices=True,
+            e_invoice=True,
             ei_data=IssuedDocumentEiData(
                 vat_kind=VatKind("vat_kind_example"),
                 original_document_type=OriginalDocumentType("ordine"),
@@ -821,10 +769,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         ei_description="ei_description_example",
                         is_disabled=True,
                     ),
-                    not_taxable=False,
+                    not_taxable=True,
                     apply_withholding_taxes=True,
-                    discount=0,
-                    discount_highlight=False,
+                    discount=3.14,
+                    discount_highlight=True,
                     in_ddt=True,
                     stock=True,
                     ei_raw={},
@@ -833,7 +781,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -845,7 +793,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -869,11 +817,11 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             show_payments=True,
             show_payment_method=True,
             show_totals=ShowTotalsMode("all"),
-            show_paypal_button=False,
-            show_notification_button=False,
+            show_paypal_button=True,
+            show_notification_button=True,
             show_tspay_button=True,
             delivery_note=True,
-            accompanying_invoice=False,
+            accompanying_invoice=True,
             dn_number=1,
             dn_date=dateutil_parser('1970-01-01').date(),
             dn_ai_packages_number="dn_ai_packages_number_example",
@@ -980,22 +928,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.get_issued_document_response import GetIssuedDocumentResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -1075,22 +1012,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import GetIssuedDocumentPreCreateInfoResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -1156,22 +1082,11 @@ from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import GetNewIssuedDocumentTotalsResponse
 from fattureincloud_python_sdk.model.get_new_issued_document_totals_request import GetNewIssuedDocumentTotalsRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -1243,7 +1158,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_iban="bank_iban_example",
                 bank_swift_code="bank_swift_code_example",
                 shipping_address="shipping_address_example",
-                e_invoice=False,
+                e_invoice=True,
                 ei_code="ei_code_example",
                 created_at="created_at_example",
                 updated_at="updated_at_example",
@@ -1267,18 +1182,18 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             visible_subject="visible_subject_example",
             rc_center="rc_center_example",
             notes="notes_example",
-            rivalsa=0,
-            cassa=0,
-            cassa_taxable=0,
+            rivalsa=3.14,
+            cassa=3.14,
+            cassa_taxable=3.14,
             amount_cassa_taxable=3.14,
-            cassa2=0,
-            cassa2_taxable=0,
+            cassa2=3.14,
+            cassa2_taxable=3.14,
             amount_cassa2_taxable=3.14,
-            global_cassa_taxable=0,
+            global_cassa_taxable=3.14,
             amount_global_cassa_taxable=3.14,
-            withholding_tax=0,
-            withholding_tax_taxable=0,
-            other_withholding_tax=0,
+            withholding_tax=3.14,
+            withholding_tax_taxable=3.14,
+            other_withholding_tax=3.14,
             stamp_duty=3.14,
             payment_method=PaymentMethod(
                 id=1,
@@ -1305,9 +1220,9 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_beneficiary="bank_beneficiary_example",
                 ei_payment_method="ei_payment_method_example",
             ),
-            use_split_payment=False,
-            use_gross_prices=False,
-            e_invoice=False,
+            use_split_payment=True,
+            use_gross_prices=True,
+            e_invoice=True,
             ei_data=IssuedDocumentEiData(
                 vat_kind=VatKind("vat_kind_example"),
                 original_document_type=OriginalDocumentType("ordine"),
@@ -1349,10 +1264,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         ei_description="ei_description_example",
                         is_disabled=True,
                     ),
-                    not_taxable=False,
+                    not_taxable=True,
                     apply_withholding_taxes=True,
-                    discount=0,
-                    discount_highlight=False,
+                    discount=3.14,
+                    discount_highlight=True,
                     in_ddt=True,
                     stock=True,
                     ei_raw={},
@@ -1361,7 +1276,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -1373,7 +1288,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -1397,11 +1312,11 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             show_payments=True,
             show_payment_method=True,
             show_totals=ShowTotalsMode("all"),
-            show_paypal_button=False,
-            show_notification_button=False,
+            show_paypal_button=True,
+            show_notification_button=True,
             show_tspay_button=True,
             delivery_note=True,
-            accompanying_invoice=False,
+            accompanying_invoice=True,
             dn_number=1,
             dn_date=dateutil_parser('1970-01-01').date(),
             dn_ai_packages_number="dn_ai_packages_number_example",
@@ -1506,22 +1421,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.list_issued_documents_response import ListIssuedDocumentsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -1608,22 +1512,11 @@ from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.modify_issued_document_request import ModifyIssuedDocumentRequest
 from fattureincloud_python_sdk.model.modify_issued_document_response import ModifyIssuedDocumentResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -1696,7 +1589,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_iban="bank_iban_example",
                 bank_swift_code="bank_swift_code_example",
                 shipping_address="shipping_address_example",
-                e_invoice=False,
+                e_invoice=True,
                 ei_code="ei_code_example",
                 created_at="created_at_example",
                 updated_at="updated_at_example",
@@ -1720,18 +1613,18 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             visible_subject="visible_subject_example",
             rc_center="rc_center_example",
             notes="notes_example",
-            rivalsa=0,
-            cassa=0,
-            cassa_taxable=0,
+            rivalsa=3.14,
+            cassa=3.14,
+            cassa_taxable=3.14,
             amount_cassa_taxable=3.14,
-            cassa2=0,
-            cassa2_taxable=0,
+            cassa2=3.14,
+            cassa2_taxable=3.14,
             amount_cassa2_taxable=3.14,
-            global_cassa_taxable=0,
+            global_cassa_taxable=3.14,
             amount_global_cassa_taxable=3.14,
-            withholding_tax=0,
-            withholding_tax_taxable=0,
-            other_withholding_tax=0,
+            withholding_tax=3.14,
+            withholding_tax_taxable=3.14,
+            other_withholding_tax=3.14,
             stamp_duty=3.14,
             payment_method=PaymentMethod(
                 id=1,
@@ -1758,9 +1651,9 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 bank_beneficiary="bank_beneficiary_example",
                 ei_payment_method="ei_payment_method_example",
             ),
-            use_split_payment=False,
-            use_gross_prices=False,
-            e_invoice=False,
+            use_split_payment=True,
+            use_gross_prices=True,
+            e_invoice=True,
             ei_data=IssuedDocumentEiData(
                 vat_kind=VatKind("vat_kind_example"),
                 original_document_type=OriginalDocumentType("ordine"),
@@ -1802,10 +1695,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         ei_description="ei_description_example",
                         is_disabled=True,
                     ),
-                    not_taxable=False,
+                    not_taxable=True,
                     apply_withholding_taxes=True,
-                    discount=0,
-                    discount_highlight=False,
+                    discount=3.14,
+                    discount_highlight=True,
                     in_ddt=True,
                     stock=True,
                     ei_raw={},
@@ -1814,7 +1707,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -1826,7 +1719,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 02:00:00 CEST 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -1850,11 +1743,11 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             show_payments=True,
             show_payment_method=True,
             show_totals=ShowTotalsMode("all"),
-            show_paypal_button=False,
-            show_notification_button=False,
+            show_paypal_button=True,
+            show_notification_button=True,
             show_tspay_button=True,
             delivery_note=True,
-            accompanying_invoice=False,
+            accompanying_invoice=True,
             dn_number=1,
             dn_date=dateutil_parser('1970-01-01').date(),
             dn_ai_packages_number="dn_ai_packages_number_example",
@@ -1890,6 +1783,9 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
+        ),
+        options=IssuedDocumentOptions(
+            fix_payments=True,
         ),
     ) # ModifyIssuedDocumentRequest | The modified document (optional)
 
@@ -1961,22 +1857,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.schedule_email_request import ScheduleEmailRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -2068,30 +1953,19 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_documents_api
 from fattureincloud_python_sdk.model.upload_issued_document_attachment_response import UploadIssuedDocumentAttachmentResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = issued_documents_api.IssuedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = "attachment.pdf" # str | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
+    attachment = open('/path/to/file', 'rb') # file_type, none_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -2117,8 +1991,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
- **filename** | **str**| Name of the file. | [optional]
- **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **filename** | **str, none_type**| Name of the file. | [optional]
+ **attachment** | **file_type, none_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
 
 ### Return type
 

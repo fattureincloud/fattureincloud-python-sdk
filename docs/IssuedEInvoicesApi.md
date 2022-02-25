@@ -27,22 +27,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_e_invoices_api
 from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -106,22 +95,11 @@ import time
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_e_invoices_api
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -200,22 +178,11 @@ from fattureincloud_python_sdk.api import issued_e_invoices_api
 from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
 from fattureincloud_python_sdk.model.send_e_invoice_request import SendEInvoiceRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -299,22 +266,11 @@ from fattureincloud_python_sdk.api import issued_e_invoices_api
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import VerifyEInvoiceXmlResponse
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import VerifyEInvoiceXmlErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
