@@ -9,11 +9,13 @@
 """
 
 
+import json
 import sys
 import unittest
 
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.vat_item import VatItem
+from functions import json_serial
 globals()['VatItem'] = VatItem
 from fattureincloud_python_sdk.model.vat_list import VatList
 
@@ -29,9 +31,15 @@ class TestVatList(unittest.TestCase):
 
     def testVatList(self):
         """Test VatList"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VatList()  # noqa: E501
-        pass
+        model = VatList( 
+            vat_item=VatItem(
+                amount_net=100.0,
+                amount_vat=22.0
+            )
+        )
+        expected_json = "{\"vat_item\": {\"amount_net\": 100.0, \"amount_vat\": 22.0}}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':

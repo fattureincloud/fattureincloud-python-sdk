@@ -16,8 +16,8 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_totals_vat_list import IssuedDocumentTotalsVatList
-globals()['IssuedDocumentTotalsVatList'] = IssuedDocumentTotalsVatList
+from fattureincloud_python_sdk.model.vat_list import VatList
+globals()['VatList'] = VatList
 from fattureincloud_python_sdk.model.issued_document_totals import IssuedDocumentTotals
 
 
