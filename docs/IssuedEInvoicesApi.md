@@ -4,18 +4,18 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_e_invoice_rejection_reason**](IssuedEInvoicesApi.md#get_e_invoice_rejection_reason) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/error_reason | Get EInvoice rejection reason
+[**get_e_invoice_rejection_reason**](IssuedEInvoicesApi.md#get_e_invoice_rejection_reason) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/error_reason | Get e-invoice rejection reason
 [**get_e_invoice_xml**](IssuedEInvoicesApi.md#get_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml | Get e-invoice XML
 [**send_e_invoice**](IssuedEInvoicesApi.md#send_e_invoice) | **POST** /c/{company_id}/issued_documents/{document_id}/e_invoice/send | Send the e-invoice
-[**verify_e_invoice_xml**](IssuedEInvoicesApi.md#verify_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml_verify | Verify e-invoice xml
+[**verify_e_invoice_xml**](IssuedEInvoicesApi.md#verify_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml_verify | Verify e-invoice XML
 
 
 # **get_e_invoice_rejection_reason**
 > GetEInvoiceRejectionReasonResponse get_e_invoice_rejection_reason(company_id, document_id)
 
-Get EInvoice rejection reason
+Get e-invoice rejection reason
 
-Get EInvoice rejection reason
+Get e-invoice rejection reason
 
 ### Example
 
@@ -27,22 +27,11 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_e_invoices_api
 from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -53,7 +42,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Get EInvoice rejection reason
+        # Get e-invoice rejection reason
         api_response = api_instance.get_e_invoice_rejection_reason(company_id, document_id)
         pprint(api_response)
     except fattureincloud_python_sdk.ApiException as e:
@@ -106,22 +95,11 @@ import time
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api import issued_e_invoices_api
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -200,22 +178,11 @@ from fattureincloud_python_sdk.api import issued_e_invoices_api
 from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
 from fattureincloud_python_sdk.model.send_e_invoice_request import SendEInvoiceRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -284,9 +251,9 @@ Name | Type | Description  | Notes
 # **verify_e_invoice_xml**
 > VerifyEInvoiceXmlResponse verify_e_invoice_xml(company_id, document_id)
 
-Verify e-invoice xml
+Verify e-invoice XML
 
-Verifies the e-invoice xml format. Checks if all of the mandatory fields are filled and compliant to the right format.
+Verifies the e-invoice XML format. Checks if all of the mandatory fields are filled and compliant to the right format.
 
 ### Example
 
@@ -299,22 +266,11 @@ from fattureincloud_python_sdk.api import issued_e_invoices_api
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import VerifyEInvoiceXmlResponse
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import VerifyEInvoiceXmlErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
 # Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
 configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
+    access_token = "YOUR_ACCESS_TOKEN"
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
@@ -325,7 +281,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Verify e-invoice xml
+        # Verify e-invoice XML
         api_response = api_instance.verify_e_invoice_xml(company_id, document_id)
         pprint(api_response)
     except fattureincloud_python_sdk.ApiException as e:
