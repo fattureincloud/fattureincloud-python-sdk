@@ -9,10 +9,12 @@
 """
 
 
+import json
 import sys
 import unittest
-
+import datetime
 import fattureincloud_python_sdk
+from functions import json_serial
 from fattureincloud_python_sdk.model.e_invoice_rejection_reason import EInvoiceRejectionReason
 
 
@@ -27,9 +29,15 @@ class TestEInvoiceRejectionReason(unittest.TestCase):
 
     def testEInvoiceRejectionReason(self):
         """Test EInvoiceRejectionReason"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EInvoiceRejectionReason()  # noqa: E501
-        pass
+        model = EInvoiceRejectionReason(
+            reason="invalid date",
+            code="c01",
+            ei_status="rejected",
+            date=datetime.datetime.strptime('2022-01-01', '%Y-%m-%d').date()
+        )
+        expected_json = "{\"reason\": \"invalid date\", \"code\": \"c01\", \"ei_status\": \"rejected\", \"date\": \"2022-01-01\"}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':

@@ -13,6 +13,8 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
+import json
+from functions import json_serial
 from fattureincloud_python_sdk.model.issued_document_options import IssuedDocumentOptions
 
 
@@ -27,9 +29,12 @@ class TestIssuedDocumentOptions(unittest.TestCase):
 
     def testIssuedDocumentOptions(self):
         """Test IssuedDocumentOptions"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = IssuedDocumentOptions()  # noqa: E501
-        pass
+        model = IssuedDocumentOptions(
+            fix_payments=True
+        )
+        expected_json = "{\"fix_payments\": true}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':

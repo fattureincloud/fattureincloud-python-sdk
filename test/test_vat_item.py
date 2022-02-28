@@ -9,11 +9,13 @@
 """
 
 
+import json
 import sys
 import unittest
 
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.vat_item import VatItem
+from functions import json_serial
 
 
 class TestVatItem(unittest.TestCase):
@@ -27,9 +29,13 @@ class TestVatItem(unittest.TestCase):
 
     def testVatItem(self):
         """Test VatItem"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VatItem()  # noqa: E501
-        pass
+        model = VatItem(
+            amount_net=100.0,
+            amount_vat=22.0
+        )
+        expected_json = "{\"amount_net\": 100.0, \"amount_vat\": 22.0}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':

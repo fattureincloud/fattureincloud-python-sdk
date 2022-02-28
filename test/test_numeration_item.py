@@ -9,11 +9,13 @@
 """
 
 
+import json
 import sys
 import unittest
 
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.numeration_item import NumerationItem
+from functions import json_serial
 
 
 class TestNumerationItem(unittest.TestCase):
@@ -27,9 +29,14 @@ class TestNumerationItem(unittest.TestCase):
 
     def testNumerationItem(self):
         """Test NumerationItem"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = NumerationItem()  # noqa: E501
-        pass
+        model = NumerationItem(
+            num=9,
+            num2=6
+        )
+
+        expected_json = "{\"num\": 9, \"num2\": 6}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':
