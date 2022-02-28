@@ -17,8 +17,8 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.einvoice_rejection_reason import EinvoiceRejectionReason
-globals()['EinvoiceRejectionReason'] = EinvoiceRejectionReason
+from fattureincloud_python_sdk.model.e_invoice_rejection_reason import EInvoiceRejectionReason
+globals()['EInvoiceRejectionReason'] = EInvoiceRejectionReason
 from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
 
 
@@ -34,7 +34,7 @@ class TestGetEInvoiceRejectionReasonResponse(unittest.TestCase):
     def testGetEInvoiceRejectionReasonResponse(self):
         """Test GetEInvoiceRejectionReasonResponse"""
         model = GetEInvoiceRejectionReasonResponse(
-            data = EinvoiceRejectionReason(
+            data = EInvoiceRejectionReason(
                 reason="invalid date",
                 code="c01",
                 ei_status="rejected",

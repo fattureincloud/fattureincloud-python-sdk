@@ -20,7 +20,7 @@ from fattureincloud_python_sdk.model.send_e_invoice_response_data import SendEIn
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import VerifyEInvoiceXmlResponse
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_response_data import VerifyEInvoiceXmlResponseData
 from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
-from fattureincloud_python_sdk.model.einvoice_rejection_reason import EinvoiceRejectionReason
+from fattureincloud_python_sdk.model.e_invoice_rejection_reason import EInvoiceRejectionReason
 
 
 class TestIssuedEInvoicesApi(unittest.TestCase):
@@ -77,7 +77,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
 
         self.api.api_client.rest_client.GET = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = GetEInvoiceRejectionReasonResponse(data = EinvoiceRejectionReason(reason="invalid date"))
+        expected = GetEInvoiceRejectionReasonResponse(data = EInvoiceRejectionReason(reason="invalid date"))
         actual = self.api.get_e_invoice_rejection_reason(2, 1234)
         assert actual == expected
 
