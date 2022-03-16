@@ -21,6 +21,8 @@ from fattureincloud_python_sdk.model.document_template import DocumentTemplate
 from fattureincloud_python_sdk.model.language import Language
 from fattureincloud_python_sdk.model.list_archive_categories_response import ListArchiveCategoriesResponse
 from fattureincloud_python_sdk.model.list_cities_response import ListCitiesResponse
+from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
+from fattureincloud_python_sdk.model.list_detailed_countries_response import ListDetailedCountriesResponse
 from fattureincloud_python_sdk.model.list_cost_centers_response import ListCostCentersResponse
 from fattureincloud_python_sdk.model.list_countries_response import ListCountriesResponse
 from fattureincloud_python_sdk.model.list_currencies_response import ListCurrenciesResponse
@@ -117,6 +119,23 @@ class TestInfoApi(unittest.TestCase):
         expected = ListCountriesResponse(data = ["Spagna", "Albania"])
         actual = self.api.list_countries()
         actual.data[1] = "Albania"
+        assert actual == expected
+
+    def test_list_detailed_countries(self):
+        resp = {
+            'status': 200,
+            'data': b'{"data": [{"name": "Italia", "settings_name": "Italia", "iso": "IT", "fiscal_iso": "IT", "uic": "086"}, {"name": "Albania", "settings_name": "Albania", "iso": "AL", "fiscal_iso": "AL", "uic": "087"}]}',
+            'reason': "OK"
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+
+        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(return_value = mock_resp)
+        expected = ListDetailedCountriesResponse( data=[ DetailedCountry( name="Italia", settings_name="Italia", iso="IT", fiscal_iso="IT", uic="086" ), DetailedCountry( name="Albania", settings_name="Albania", iso="AL", fiscal_iso="AL", uic="087" ) ] )
+        actual = self.api.list_detailed_countries()
+        actual.data[1].name = "Albania"
         assert actual == expected
 
     def test_list_currencies(self):

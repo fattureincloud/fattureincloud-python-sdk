@@ -9,10 +9,12 @@
 """
 
 
+import json
 import sys
 import unittest
 
 import fattureincloud_python_sdk
+from functions import json_serial
 from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
 
 
@@ -27,9 +29,16 @@ class TestDetailedCountry(unittest.TestCase):
 
     def testDetailedCountry(self):
         """Test DetailedCountry"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DetailedCountry()  # noqa: E501
-        pass
+        model = DetailedCountry(
+            name="Italia",
+            settings_name="Italia",
+            iso="IT",
+            fiscal_iso="IT",
+            uic="086"
+        )
+        expected_json = "{\"name\": \"Italia\", \"settings_name\": \"Italia\", \"iso\": \"IT\", \"fiscal_iso\": \"IT\", \"uic\": \"086\"}"
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':
