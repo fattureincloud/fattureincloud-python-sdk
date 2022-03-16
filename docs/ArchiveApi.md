@@ -287,6 +287,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
     page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
     per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
+    q = "q_example" # str | Query for filtering the results. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -300,7 +301,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List Archive Documents
-        api_response = api_instance.list_archive_documents(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page)
+        api_response = api_instance.list_archive_documents(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
         pprint(api_response)
     except fattureincloud_python_sdk.ApiException as e:
         print("Exception when calling ArchiveApi->list_archive_documents: %s\n" % e)
@@ -317,6 +318,7 @@ Name | Type | Description  | Notes
  **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
  **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
  **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
+ **q** | **str**| Query for filtering the results. | [optional]
 
 ### Return type
 

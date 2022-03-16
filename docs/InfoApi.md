@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**list_countries**](InfoApi.md#list_countries) | **GET** /info/countries | List Countries
 [**list_currencies**](InfoApi.md#list_currencies) | **GET** /info/currencies | List Currencies
 [**list_delivery_notes_default_causals**](InfoApi.md#list_delivery_notes_default_causals) | **GET** /info/dn_causals | List Delivery Notes Default Causals
+[**list_detailed_countries**](InfoApi.md#list_detailed_countries) | **GET** /info/detailed_countries | List Detailed Countries
 [**list_languages**](InfoApi.md#list_languages) | **GET** /info/languages | List Languages
 [**list_payment_accounts**](InfoApi.md#list_payment_accounts) | **GET** /c/{company_id}/info/payment_accounts | List Payment Accounts
 [**list_payment_methods**](InfoApi.md#list_payment_methods) | **GET** /c/{company_id}/info/payment_methods | List Payment Methods
@@ -417,6 +418,70 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of Delivery Notes Default Causals |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_detailed_countries**
+> ListDetailedCountriesResponse list_detailed_countries()
+
+List Detailed Countries
+
+Lists the supported countries.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import time
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.api import info_api
+from fattureincloud_python_sdk.model.list_detailed_countries_response import ListDetailedCountriesResponse
+from pprint import pprint
+
+# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
+configuration = fattureincloud_python_sdk.Configuration(
+    access_token = "YOUR_ACCESS_TOKEN"
+)
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = info_api.InfoApi(api_client)
+
+    # example, this endpoint has no required or optional parameters
+    try:
+        # List Detailed Countries
+        api_response = api_instance.list_detailed_countries()
+        pprint(api_response)
+    except fattureincloud_python_sdk.ApiException as e:
+        print("Exception when calling InfoApi->list_detailed_countries: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListDetailedCountriesResponse**](ListDetailedCountriesResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of detailed countries |  -  |
 **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
