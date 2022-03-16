@@ -9,9 +9,10 @@
 """
 
 
+import json
 import sys
 import unittest
-
+from functions import json_serial
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
 globals()['DetailedCountry'] = DetailedCountry
@@ -29,9 +30,27 @@ class TestListDetailedCountriesResponse(unittest.TestCase):
 
     def testListDetailedCountriesResponse(self):
         """Test ListDetailedCountriesResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListDetailedCountriesResponse()  # noqa: E501
-        pass
+        model = ListDetailedCountriesResponse(
+            data=[
+                DetailedCountry(
+                    name="Italia",
+                    settings_name="Italia",
+                    iso="IT",
+                    fiscal_iso="IT",
+                    uic="086"
+                ),
+                DetailedCountry(
+                    name="Albania",
+                    settings_name="Albania",
+                    iso="AL",
+                    fiscal_iso="AL",
+                    uic="087"
+                )
+            ]
+        )
+        expected_json = '{"data": [{"name": "Italia", "settings_name": "Italia", "iso": "IT", "fiscal_iso": "IT", "uic": "086"}, {"name": "Albania", "settings_name": "Albania", "iso": "AL", "fiscal_iso": "AL", "uic": "087"}]}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == '__main__':
