@@ -465,6 +465,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
     per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
     sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    q = "q_example" # str | Query for filtering the results. (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -478,7 +479,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # List Receipts
-        api_response = api_instance.list_receipts(company_id, fields=fields, fieldset=fieldset, page=page, per_page=per_page, sort=sort)
+        api_response = api_instance.list_receipts(company_id, fields=fields, fieldset=fieldset, page=page, per_page=per_page, sort=sort, q=q)
         pprint(api_response)
     except fattureincloud_python_sdk.ApiException as e:
         print("Exception when calling ReceiptsApi->list_receipts: %s\n" % e)
@@ -495,6 +496,7 @@ Name | Type | Description  | Notes
  **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
  **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
  **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
+ **q** | **str**| Query for filtering the results. | [optional]
 
 ### Return type
 

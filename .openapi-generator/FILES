@@ -48,6 +48,7 @@ docs/CreateVatTypeRequest.md
 docs/CreateVatTypeResponse.md
 docs/Currency.md
 docs/DefaultPaymentTermsType.md
+docs/DetailedCountry.md
 docs/DocumentTemplate.md
 docs/EInvoiceRejectionReason.md
 docs/EmailData.md
@@ -117,6 +118,7 @@ docs/ListCostCentersResponse.md
 docs/ListCountriesResponse.md
 docs/ListCurrenciesResponse.md
 docs/ListDeliveryNotesDefaultCausalsResponse.md
+docs/ListDetailedCountriesResponse.md
 docs/ListF24Response.md
 docs/ListF24ResponseAggregatedData.md
 docs/ListF24ResponseAggregation.md
@@ -290,6 +292,7 @@ fattureincloud_python_sdk/model/create_vat_type_request.py
 fattureincloud_python_sdk/model/create_vat_type_response.py
 fattureincloud_python_sdk/model/currency.py
 fattureincloud_python_sdk/model/default_payment_terms_type.py
+fattureincloud_python_sdk/model/detailed_country.py
 fattureincloud_python_sdk/model/document_template.py
 fattureincloud_python_sdk/model/e_invoice_rejection_reason.py
 fattureincloud_python_sdk/model/email_data.py
@@ -356,6 +359,7 @@ fattureincloud_python_sdk/model/list_cost_centers_response.py
 fattureincloud_python_sdk/model/list_countries_response.py
 fattureincloud_python_sdk/model/list_currencies_response.py
 fattureincloud_python_sdk/model/list_delivery_notes_default_causals_response.py
+fattureincloud_python_sdk/model/list_detailed_countries_response.py
 fattureincloud_python_sdk/model/list_f24_response.py
 fattureincloud_python_sdk/model/list_f24_response_aggregated_data.py
 fattureincloud_python_sdk/model/list_f24_response_aggregation.py
@@ -465,9 +469,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_e_invoice_rejection_reason.py
-test/test_issued_document_options.py
-test/test_numeration.py
-test/test_numeration_item.py
-test/test_vat_item.py
-test/test_vat_list.py
+test/test_detailed_country.py
+test/test_list_detailed_countries_response.py
