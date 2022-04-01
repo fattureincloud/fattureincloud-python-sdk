@@ -11,8 +11,8 @@ class Filter():
 
     def __init__(self, expression: Expression = None):
         self.__expression = expression
-    
-    def __eq__(self, other): 
+
+    def __eq__(self, other):
         if not isinstance(other, Filter):
             # don't attempt to compare against unrelated types
             return NotImplemented
