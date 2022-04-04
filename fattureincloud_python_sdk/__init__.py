@@ -11,7 +11,7 @@
 """
 
 
-__version__ = "2.0.3"
+__version__ = "0.0.0"
 
 # import ApiClient
 from fattureincloud_python_sdk.api_client import ApiClient

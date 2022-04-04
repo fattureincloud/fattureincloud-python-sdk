@@ -45,7 +45,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     create_f24_request = CreateF24Request(
         data=F24(
             id=1,
-            due_date=dateutil_parser('Mon Feb 12 00:00:00 UTC 2018').date(),
+            due_date=dateutil_parser('Mon Feb 12 00:00:00 GMT 2018').date(),
             status=F24Status("paid"),
             payment_account=PaymentAccount(
                 id=1,
@@ -456,7 +456,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     modify_f24_request = ModifyF24Request(
         data=F24(
             id=1,
-            due_date=dateutil_parser('Mon Feb 12 00:00:00 UTC 2018').date(),
+            due_date=dateutil_parser('Mon Feb 12 00:00:00 GMT 2018').date(),
             status=F24Status("paid"),
             payment_account=PaymentAccount(
                 id=1,

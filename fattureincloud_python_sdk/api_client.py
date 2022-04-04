@@ -77,7 +77,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'FattureInCloud/2.0.3/Python-SDK'
+        self.user_agent = 'FattureInCloud/0.0.0/Python-SDK'
 
     def __enter__(self):
         return self
