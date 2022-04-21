@@ -469,5 +469,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_detailed_country.py
-test/test_list_detailed_countries_response.py
