@@ -29,14 +29,11 @@ class TestVatItem(unittest.TestCase):
 
     def testVatItem(self):
         """Test VatItem"""
-        model = VatItem(
-            amount_net=100.0,
-            amount_vat=22.0
-        )
-        expected_json = "{\"amount_net\": 100.0, \"amount_vat\": 22.0}"
+        model = VatItem(amount_net=100.0, amount_vat=22.0)
+        expected_json = '{"amount_net": 100.0, "amount_vat": 22.0}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

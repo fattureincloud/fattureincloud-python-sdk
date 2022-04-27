@@ -18,14 +18,21 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.currency import Currency
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.received_document_info_default_values import ReceivedDocumentInfoDefaultValues
-from fattureincloud_python_sdk.model.received_document_info_items_default_values import ReceivedDocumentInfoItemsDefaultValues
+from fattureincloud_python_sdk.model.received_document_info_default_values import (
+    ReceivedDocumentInfoDefaultValues,
+)
+from fattureincloud_python_sdk.model.received_document_info_items_default_values import (
+    ReceivedDocumentInfoItemsDefaultValues,
+)
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['Currency'] = Currency
-globals()['PaymentAccount'] = PaymentAccount
-globals()['ReceivedDocumentInfoDefaultValues'] = ReceivedDocumentInfoDefaultValues
-globals()['ReceivedDocumentInfoItemsDefaultValues'] = ReceivedDocumentInfoItemsDefaultValues
-globals()['VatType'] = VatType
+
+globals()["Currency"] = Currency
+globals()["PaymentAccount"] = PaymentAccount
+globals()["ReceivedDocumentInfoDefaultValues"] = ReceivedDocumentInfoDefaultValues
+globals()[
+    "ReceivedDocumentInfoItemsDefaultValues"
+] = ReceivedDocumentInfoItemsDefaultValues
+globals()["VatType"] = VatType
 from fattureincloud_python_sdk.model.received_document_info import ReceivedDocumentInfo
 
 
@@ -41,36 +48,17 @@ class TestReceivedDocumentInfo(unittest.TestCase):
     def testReceivedDocumentInfo(self):
         """Test ReceivedDocumentInfo"""
         model = ReceivedDocumentInfo(
-            default_values=ReceivedDocumentInfoDefaultValues(
-                detailed=True
-            ),
-            items_default_values=ReceivedDocumentInfoItemsDefaultValues(
-                vat=22.0
-            ),
-            countries_list=[
-                "IT",
-                "US"
-            ],
-            payment_accounts_list=[
-                PaymentAccount(
-                    id=1,
-                    name="bank"
-                )
-            ],
-            categories_list=[
-                "cat5",
-                "cat6"
-            ],
-            vat_types_list=[
-                VatType(
-                    value=22.0
-                )
-            ]
+            default_values=ReceivedDocumentInfoDefaultValues(detailed=True),
+            items_default_values=ReceivedDocumentInfoItemsDefaultValues(vat=22.0),
+            countries_list=["IT", "US"],
+            payment_accounts_list=[PaymentAccount(id=1, name="bank")],
+            categories_list=["cat5", "cat6"],
+            vat_types_list=[VatType(value=22.0)],
         )
         expected_json = '{"default_values": {"detailed": true}, "items_default_values": {"vat": 22.0}, "countries_list": ["IT", "US"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

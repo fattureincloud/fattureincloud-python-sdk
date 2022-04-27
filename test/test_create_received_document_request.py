@@ -20,14 +20,25 @@ from fattureincloud_python_sdk.model.received_document import ReceivedDocument
 from fattureincloud_python_sdk.model.currency import Currency
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.received_document_entity import ReceivedDocumentEntity
-from fattureincloud_python_sdk.model.received_document_items_list_item import ReceivedDocumentItemsListItem
-from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import ReceivedDocumentPaymentsListItemPaymentTerms
-from fattureincloud_python_sdk.model.received_document_payments_list_item import ReceivedDocumentPaymentsListItem
+from fattureincloud_python_sdk.model.received_document_entity import (
+    ReceivedDocumentEntity,
+)
+from fattureincloud_python_sdk.model.received_document_items_list_item import (
+    ReceivedDocumentItemsListItem,
+)
+from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import (
+    ReceivedDocumentPaymentsListItemPaymentTerms,
+)
+from fattureincloud_python_sdk.model.received_document_payments_list_item import (
+    ReceivedDocumentPaymentsListItem,
+)
 from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['ReceivedDocument'] = ReceivedDocument
-from fattureincloud_python_sdk.model.create_received_document_request import CreateReceivedDocumentRequest
+
+globals()["ReceivedDocument"] = ReceivedDocument
+from fattureincloud_python_sdk.model.create_received_document_request import (
+    CreateReceivedDocumentRequest,
+)
 
 
 class TestCreateReceivedDocumentRequest(unittest.TestCase):
@@ -50,7 +61,7 @@ class TestCreateReceivedDocumentRequest(unittest.TestCase):
                     id=1,
                     name="name_example",
                 ),
-                date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                 category="category_example",
                 description="description_example",
                 amount_net=3.14,
@@ -87,13 +98,13 @@ class TestCreateReceivedDocumentRequest(unittest.TestCase):
                         ),
                         stock=3.14,
                     ),
-                ]
-            )
+                ],
+            ),
         )
         expected_json = '{"pending_id": 1, "data": {"id": 1, "type": "expense", "entity": {"id": 1, "name": "name_example"}, "date": "2022-01-01", "category": "category_example", "description": "description_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_withholding_tax": 3.14, "amount_other_withholding_tax": 3.14, "amortization": 3.14, "rc_center": "rc_center_example", "invoice_number": "invoice_number_example", "is_marked": true, "is_detailed": true, "e_invoice": true, "tax_deductibility": 0.0, "vat_deductibility": 0.0, "items_list": [{"id": 1, "product_id": 1, "code": "code_example", "name": "name_example", "measure": "measure_example", "net_price": 3.14, "category": "category_example", "qty": 3.14, "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}, "stock": 3.14}]}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

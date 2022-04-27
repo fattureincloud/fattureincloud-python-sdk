@@ -12,15 +12,18 @@ from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
 
+
 def json_serial(obj):
     """JSON serializer for objects not serializable by default json code"""
 
     if isinstance(obj, (datetime.datetime, datetime.date)):
         return obj.isoformat()
-    raise TypeError ("Type %s not serializable" % type(obj))
+    raise TypeError("Type %s not serializable" % type(obj))
+
 
 def str_to_class(str):
     return getattr(sys.modules[__name__], str)
+
 
 def create_from_json(json_str, type):
     json_dict = json.loads(json_str)
@@ -31,9 +34,10 @@ def create_from_json(json_str, type):
         new_dict[key] = cast_to_type(value, types_dict[key][0])
     return obj._from_openapi_data(**new_dict)
 
+
 def cast_to_type(val, type):
     if type == datetime.date:
-        return datetime.datetime.strptime(val, '%Y-%m-%d').date()
+        return datetime.datetime.strptime(val, "%Y-%m-%d").date()
     elif type == F24Status:
         return F24Status(val)
     elif type == PaymentAccountType:
@@ -45,8 +49,9 @@ def cast_to_type(val, type):
     else:
         return val
 
+
 class Dict2Class(object):
     def __init__(self, my_dict):
-        
+
         for key in my_dict:
             setattr(self, key, my_dict[key])

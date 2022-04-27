@@ -16,8 +16,11 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.send_e_invoice_response_data import SendEInvoiceResponseData
-globals()['SendEInvoiceResponseData'] = SendEInvoiceResponseData
+from fattureincloud_python_sdk.model.send_e_invoice_response_data import (
+    SendEInvoiceResponseData,
+)
+
+globals()["SendEInvoiceResponseData"] = SendEInvoiceResponseData
 from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
 
 
@@ -33,15 +36,12 @@ class TestSendEInvoiceResponse(unittest.TestCase):
     def testSendEInvoiceResponse(self):
         """Test SendEInvoiceResponse"""
         model = SendEInvoiceResponse(
-            data=SendEInvoiceResponseData(
-                name="msg",
-                date="2022-01-01"
-            )
+            data=SendEInvoiceResponseData(name="msg", date="2022-01-01")
         )
-        expected_json = "{\"data\": {\"name\": \"msg\", \"date\": \"2022-01-01\"}}"
+        expected_json = '{"data": {"name": "msg", "date": "2022-01-01"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
