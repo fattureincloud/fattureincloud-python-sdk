@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_response import ListDeliveryNotesDefaultCausalsResponse
+from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_response import (
+    ListDeliveryNotesDefaultCausalsResponse,
+)
 
 
 class TestListDeliveryNotesDefaultCausalsResponse(unittest.TestCase):
@@ -30,16 +32,11 @@ class TestListDeliveryNotesDefaultCausalsResponse(unittest.TestCase):
 
     def testListDeliveryNotesDefaultCausalsResponse(self):
         """Test ListDeliveryNotesDefaultCausalsResponse"""
-        model = ListDeliveryNotesDefaultCausalsResponse(
-            data=[
-                "causal1",
-                "causal2"
-            ]
-        )
-        expected_json = "{\"data\": [\"causal1\", \"causal2\"]}"
+        model = ListDeliveryNotesDefaultCausalsResponse(data=["causal1", "causal2"])
+        expected_json = '{"data": ["causal1", "causal2"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

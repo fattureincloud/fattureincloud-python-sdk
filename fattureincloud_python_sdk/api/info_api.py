@@ -20,23 +20,51 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from fattureincloud_python_sdk.model.list_archive_categories_response import ListArchiveCategoriesResponse
+from fattureincloud_python_sdk.model.list_archive_categories_response import (
+    ListArchiveCategoriesResponse,
+)
 from fattureincloud_python_sdk.model.list_cities_response import ListCitiesResponse
-from fattureincloud_python_sdk.model.list_cost_centers_response import ListCostCentersResponse
-from fattureincloud_python_sdk.model.list_countries_response import ListCountriesResponse
-from fattureincloud_python_sdk.model.list_currencies_response import ListCurrenciesResponse
-from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_response import ListDeliveryNotesDefaultCausalsResponse
-from fattureincloud_python_sdk.model.list_detailed_countries_response import ListDetailedCountriesResponse
-from fattureincloud_python_sdk.model.list_languages_response import ListLanguagesResponse
-from fattureincloud_python_sdk.model.list_payment_accounts_response import ListPaymentAccountsResponse
-from fattureincloud_python_sdk.model.list_payment_methods_response import ListPaymentMethodsResponse
-from fattureincloud_python_sdk.model.list_product_categories_response import ListProductCategoriesResponse
-from fattureincloud_python_sdk.model.list_received_document_categories_response import ListReceivedDocumentCategoriesResponse
-from fattureincloud_python_sdk.model.list_revenue_centers_response import ListRevenueCentersResponse
-from fattureincloud_python_sdk.model.list_templates_response import ListTemplatesResponse
-from fattureincloud_python_sdk.model.list_units_of_measure_response import ListUnitsOfMeasureResponse
+from fattureincloud_python_sdk.model.list_cost_centers_response import (
+    ListCostCentersResponse,
+)
+from fattureincloud_python_sdk.model.list_countries_response import (
+    ListCountriesResponse,
+)
+from fattureincloud_python_sdk.model.list_currencies_response import (
+    ListCurrenciesResponse,
+)
+from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_response import (
+    ListDeliveryNotesDefaultCausalsResponse,
+)
+from fattureincloud_python_sdk.model.list_detailed_countries_response import (
+    ListDetailedCountriesResponse,
+)
+from fattureincloud_python_sdk.model.list_languages_response import (
+    ListLanguagesResponse,
+)
+from fattureincloud_python_sdk.model.list_payment_accounts_response import (
+    ListPaymentAccountsResponse,
+)
+from fattureincloud_python_sdk.model.list_payment_methods_response import (
+    ListPaymentMethodsResponse,
+)
+from fattureincloud_python_sdk.model.list_product_categories_response import (
+    ListProductCategoriesResponse,
+)
+from fattureincloud_python_sdk.model.list_received_document_categories_response import (
+    ListReceivedDocumentCategoriesResponse,
+)
+from fattureincloud_python_sdk.model.list_revenue_centers_response import (
+    ListRevenueCentersResponse,
+)
+from fattureincloud_python_sdk.model.list_templates_response import (
+    ListTemplatesResponse,
+)
+from fattureincloud_python_sdk.model.list_units_of_measure_response import (
+    ListUnitsOfMeasureResponse,
+)
 from fattureincloud_python_sdk.model.list_vat_types_response import ListVatTypesResponse
 
 
@@ -53,864 +81,652 @@ class InfoApi(object):
         self.api_client = api_client
         self.list_archive_categories_endpoint = _Endpoint(
             settings={
-                'response_type': (ListArchiveCategoriesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/archive_categories',
-                'operation_id': 'list_archive_categories',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListArchiveCategoriesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/archive_categories",
+                "operation_id": "list_archive_categories",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
+                "all": [
+                    "company_id",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_cities_endpoint = _Endpoint(
             settings={
-                'response_type': (ListCitiesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/cities',
-                'operation_id': 'list_cities',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListCitiesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/cities",
+                "operation_id": "list_cities",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'postal_code',
-                    'city',
+                "all": [
+                    "postal_code",
+                    "city",
                 ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "postal_code": (str,),
+                    "city": (str,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "postal_code": "postal_code",
+                    "city": "city",
                 },
-                'openapi_types': {
-                    'postal_code':
-                        (str,),
-                    'city':
-                        (str,),
+                "location_map": {
+                    "postal_code": "query",
+                    "city": "query",
                 },
-                'attribute_map': {
-                    'postal_code': 'postal_code',
-                    'city': 'city',
-                },
-                'location_map': {
-                    'postal_code': 'query',
-                    'city': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_cost_centers_endpoint = _Endpoint(
             settings={
-                'response_type': (ListCostCentersResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/cost_centers',
-                'operation_id': 'list_cost_centers',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListCostCentersResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/cost_centers",
+                "operation_id": "list_cost_centers",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
+                "all": [
+                    "company_id",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_countries_endpoint = _Endpoint(
             settings={
-                'response_type': (ListCountriesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/countries',
-                'operation_id': 'list_countries',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListCountriesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/countries",
+                "operation_id": "list_countries",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_currencies_endpoint = _Endpoint(
             settings={
-                'response_type': (ListCurrenciesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/currencies',
-                'operation_id': 'list_currencies',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListCurrenciesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/currencies",
+                "operation_id": "list_currencies",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_delivery_notes_default_causals_endpoint = _Endpoint(
             settings={
-                'response_type': (ListDeliveryNotesDefaultCausalsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/dn_causals',
-                'operation_id': 'list_delivery_notes_default_causals',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListDeliveryNotesDefaultCausalsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/dn_causals",
+                "operation_id": "list_delivery_notes_default_causals",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_detailed_countries_endpoint = _Endpoint(
             settings={
-                'response_type': (ListDetailedCountriesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/detailed_countries',
-                'operation_id': 'list_detailed_countries',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListDetailedCountriesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/detailed_countries",
+                "operation_id": "list_detailed_countries",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_languages_endpoint = _Endpoint(
             settings={
-                'response_type': (ListLanguagesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/languages',
-                'operation_id': 'list_languages',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListLanguagesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/languages",
+                "operation_id": "list_languages",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_payment_accounts_endpoint = _Endpoint(
             settings={
-                'response_type': (ListPaymentAccountsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/payment_accounts',
-                'operation_id': 'list_payment_accounts',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListPaymentAccountsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/payment_accounts",
+                "operation_id": "list_payment_accounts",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'fields',
-                    'fieldset',
-                    'sort',
+                "all": [
+                    "company_id",
+                    "fields",
+                    "fieldset",
+                    "sort",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
+                    "sort": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
-                    'sort':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
+                    "sort": "sort",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
-                    'sort': 'sort',
+                "location_map": {
+                    "company_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
+                    "sort": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                    'sort': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_payment_methods_endpoint = _Endpoint(
             settings={
-                'response_type': (ListPaymentMethodsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/payment_methods',
-                'operation_id': 'list_payment_methods',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListPaymentMethodsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/payment_methods",
+                "operation_id": "list_payment_methods",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'fields',
-                    'fieldset',
-                    'sort',
+                "all": [
+                    "company_id",
+                    "fields",
+                    "fieldset",
+                    "sort",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
+                    "sort": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
-                    'sort':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
+                    "sort": "sort",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
-                    'sort': 'sort',
+                "location_map": {
+                    "company_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
+                    "sort": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                    'sort': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_product_categories_endpoint = _Endpoint(
             settings={
-                'response_type': (ListProductCategoriesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/product_categories',
-                'operation_id': 'list_product_categories',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListProductCategoriesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/product_categories",
+                "operation_id": "list_product_categories",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'context',
+                "all": [
+                    "company_id",
+                    "context",
                 ],
-                'required': [
-                    'company_id',
-                    'context',
+                "required": [
+                    "company_id",
+                    "context",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "context",
                 ],
-                'enum': [
-                    'context',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                    ('context',): {
-
+                "validations": {},
+                "allowed_values": {
+                    ("context",): {
                         "PRODUCTS": "products",
                         "ISSUED_DOCUMENTS": "issued_documents",
-                        "RECEIVED_DOCUMENTS": "received_documents"
+                        "RECEIVED_DOCUMENTS": "received_documents",
                     },
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'context':
-                        (str,),
+                "openapi_types": {
+                    "company_id": (int,),
+                    "context": (str,),
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'context': 'context',
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "context": "context",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'context': 'query',
+                "location_map": {
+                    "company_id": "path",
+                    "context": "query",
                 },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_received_document_categories_endpoint = _Endpoint(
             settings={
-                'response_type': (ListReceivedDocumentCategoriesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/received_document_categories',
-                'operation_id': 'list_received_document_categories',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListReceivedDocumentCategoriesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/received_document_categories",
+                "operation_id": "list_received_document_categories",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
+                "all": [
+                    "company_id",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_revenue_centers_endpoint = _Endpoint(
             settings={
-                'response_type': (ListRevenueCentersResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/revenue_centers',
-                'operation_id': 'list_revenue_centers',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListRevenueCentersResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/revenue_centers",
+                "operation_id": "list_revenue_centers",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
+                "all": [
+                    "company_id",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_templates_endpoint = _Endpoint(
             settings={
-                'response_type': (ListTemplatesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/templates',
-                'operation_id': 'list_templates',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListTemplatesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/templates",
+                "operation_id": "list_templates",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'type',
-                    'by_type',
+                "all": [
+                    "type",
+                    "by_type",
                 ],
-                'required': [],
-                'nullable': [
+                "required": [],
+                "nullable": [],
+                "enum": [
+                    "type",
                 ],
-                'enum': [
-                    'type',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                    ('type',): {
-
+                "validations": {},
+                "allowed_values": {
+                    ("type",): {
                         "ALL": "all",
                         "STANDARD": "standard",
                         "DELIVERY_NOTE": "delivery_note",
-                        "ACCOMPANYING_INVOICE": "accompanying_invoice"
+                        "ACCOMPANYING_INVOICE": "accompanying_invoice",
                     },
                 },
-                'openapi_types': {
-                    'type':
-                        (str,),
-                    'by_type':
-                        (bool,),
+                "openapi_types": {
+                    "type": (str,),
+                    "by_type": (bool,),
                 },
-                'attribute_map': {
-                    'type': 'type',
-                    'by_type': 'by_type',
+                "attribute_map": {
+                    "type": "type",
+                    "by_type": "by_type",
                 },
-                'location_map': {
-                    'type': 'query',
-                    'by_type': 'query',
+                "location_map": {
+                    "type": "query",
+                    "by_type": "query",
                 },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_units_of_measure_endpoint = _Endpoint(
             settings={
-                'response_type': (ListUnitsOfMeasureResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/info/measures',
-                'operation_id': 'list_units_of_measure',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListUnitsOfMeasureResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/info/measures",
+                "operation_id": "list_units_of_measure",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "all": [],
+                "required": [],
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {},
+                "attribute_map": {},
+                "location_map": {},
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_vat_types_endpoint = _Endpoint(
             settings={
-                'response_type': (ListVatTypesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/info/vat_types',
-                'operation_id': 'list_vat_types',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListVatTypesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/info/vat_types",
+                "operation_id": "list_vat_types",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'fieldset',
+                "all": [
+                    "company_id",
+                    "fieldset",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "fieldset": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'fieldset':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "fieldset": "fieldset",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'fieldset': 'fieldset',
+                "location_map": {
+                    "company_id": "path",
+                    "fieldset": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'fieldset': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def list_archive_categories(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_archive_categories(self, company_id, **kwargs):
         """List Archive Categories  # noqa: E501
 
         Lists the archive categories.  # noqa: E501
@@ -956,38 +772,19 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_archive_categories_endpoint.call_with_http_info(**kwargs)
 
-    def list_cities(
-        self,
-        **kwargs
-    ):
+    def list_cities(self, **kwargs):
         """List Cities  # noqa: E501
 
         Lists the Italian cities.  # noqa: E501
@@ -1033,37 +830,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_cities_endpoint.call_with_http_info(**kwargs)
 
-    def list_cost_centers(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_cost_centers(self, company_id, **kwargs):
         """List Cost Centers  # noqa: E501
 
         Lists the cost centers.  # noqa: E501
@@ -1109,38 +887,19 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_cost_centers_endpoint.call_with_http_info(**kwargs)
 
-    def list_countries(
-        self,
-        **kwargs
-    ):
+    def list_countries(self, **kwargs):
         """List Countries  # noqa: E501
 
         Lists the supported countries.  # noqa: E501
@@ -1184,36 +943,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_countries_endpoint.call_with_http_info(**kwargs)
 
-    def list_currencies(
-        self,
-        **kwargs
-    ):
+    def list_currencies(self, **kwargs):
         """List Currencies  # noqa: E501
 
         Lists the supported currencies.  # noqa: E501
@@ -1257,36 +998,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_currencies_endpoint.call_with_http_info(**kwargs)
 
-    def list_delivery_notes_default_causals(
-        self,
-        **kwargs
-    ):
+    def list_delivery_notes_default_causals(self, **kwargs):
         """List Delivery Notes Default Causals  # noqa: E501
 
         Lists the delivery note default causals.  # noqa: E501
@@ -1330,36 +1053,20 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        return self.list_delivery_notes_default_causals_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_delivery_notes_default_causals_endpoint.call_with_http_info(**kwargs)
 
-    def list_detailed_countries(
-        self,
-        **kwargs
-    ):
+    def list_detailed_countries(self, **kwargs):
         """List Detailed Countries  # noqa: E501
 
         Lists the supported countries.  # noqa: E501
@@ -1403,36 +1110,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_detailed_countries_endpoint.call_with_http_info(**kwargs)
 
-    def list_languages(
-        self,
-        **kwargs
-    ):
+    def list_languages(self, **kwargs):
         """List Languages  # noqa: E501
 
         Lists the supported languages.  # noqa: E501
@@ -1476,37 +1165,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_languages_endpoint.call_with_http_info(**kwargs)
 
-    def list_payment_accounts(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_payment_accounts(self, company_id, **kwargs):
         """List Payment Accounts  # noqa: E501
 
         Lists the available payment accounts.  # noqa: E501
@@ -1555,39 +1225,19 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_payment_accounts_endpoint.call_with_http_info(**kwargs)
 
-    def list_payment_methods(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_payment_methods(self, company_id, **kwargs):
         """List Payment Methods  # noqa: E501
 
         Lists the available payment methods.  # noqa: E501
@@ -1636,40 +1286,19 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_payment_methods_endpoint.call_with_http_info(**kwargs)
 
-    def list_product_categories(
-        self,
-        company_id,
-        context,
-        **kwargs
-    ):
+    def list_product_categories(self, company_id, context, **kwargs):
         """List Product Categories  # noqa: E501
 
         Lists the product categories.  # noqa: E501
@@ -1716,41 +1345,20 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['context'] = \
-            context
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["context"] = context
         return self.list_product_categories_endpoint.call_with_http_info(**kwargs)
 
-    def list_received_document_categories(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_received_document_categories(self, company_id, **kwargs):
         """List Received Document Categories  # noqa: E501
 
         Lists the received document categories.  # noqa: E501
@@ -1796,39 +1404,21 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        return self.list_received_document_categories_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        return self.list_received_document_categories_endpoint.call_with_http_info(**kwargs)
 
-    def list_revenue_centers(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_revenue_centers(self, company_id, **kwargs):
         """List Revenue Centers  # noqa: E501
 
         Lists the revenue centers.  # noqa: E501
@@ -1874,38 +1464,19 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_revenue_centers_endpoint.call_with_http_info(**kwargs)
 
-    def list_templates(
-        self,
-        **kwargs
-    ):
+    def list_templates(self, **kwargs):
         """List Templates  # noqa: E501
 
         Lists the available templates.  # noqa: E501
@@ -1951,36 +1522,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_templates_endpoint.call_with_http_info(**kwargs)
 
-    def list_units_of_measure(
-        self,
-        **kwargs
-    ):
+    def list_units_of_measure(self, **kwargs):
         """List Units of Measure  # noqa: E501
 
         Lists the units of measure.  # noqa: E501
@@ -2024,37 +1577,18 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
         return self.list_units_of_measure_endpoint.call_with_http_info(**kwargs)
 
-    def list_vat_types(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_vat_types(self, company_id, **kwargs):
         """List Vat Types  # noqa: E501
 
         Lists the available vat types.  # noqa: E501
@@ -2101,31 +1635,14 @@ class InfoApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_vat_types_endpoint.call_with_http_info(**kwargs)
-

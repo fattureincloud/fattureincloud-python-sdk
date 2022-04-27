@@ -20,14 +20,26 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from fattureincloud_python_sdk.model.create_cashbook_entry_request import CreateCashbookEntryRequest
-from fattureincloud_python_sdk.model.create_cashbook_entry_response import CreateCashbookEntryResponse
-from fattureincloud_python_sdk.model.get_cashbook_entry_response import GetCashbookEntryResponse
-from fattureincloud_python_sdk.model.list_cashbook_entries_response import ListCashbookEntriesResponse
-from fattureincloud_python_sdk.model.modify_cashbook_entry_request import ModifyCashbookEntryRequest
-from fattureincloud_python_sdk.model.modify_cashbook_entry_response import ModifyCashbookEntryResponse
+from fattureincloud_python_sdk.model.create_cashbook_entry_request import (
+    CreateCashbookEntryRequest,
+)
+from fattureincloud_python_sdk.model.create_cashbook_entry_response import (
+    CreateCashbookEntryResponse,
+)
+from fattureincloud_python_sdk.model.get_cashbook_entry_response import (
+    GetCashbookEntryResponse,
+)
+from fattureincloud_python_sdk.model.list_cashbook_entries_response import (
+    ListCashbookEntriesResponse,
+)
+from fattureincloud_python_sdk.model.modify_cashbook_entry_request import (
+    ModifyCashbookEntryRequest,
+)
+from fattureincloud_python_sdk.model.modify_cashbook_entry_response import (
+    ModifyCashbookEntryResponse,
+)
 
 
 class CashbookApi(object):
@@ -43,343 +55,265 @@ class CashbookApi(object):
         self.api_client = api_client
         self.create_cashbook_entry_endpoint = _Endpoint(
             settings={
-                'response_type': (CreateCashbookEntryResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/cashbook',
-                'operation_id': 'create_cashbook_entry',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (CreateCashbookEntryResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/cashbook",
+                "operation_id": "create_cashbook_entry",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'create_cashbook_entry_request',
+                "all": [
+                    "company_id",
+                    "create_cashbook_entry_request",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "create_cashbook_entry_request": (CreateCashbookEntryRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'create_cashbook_entry_request':
-                        (CreateCashbookEntryRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "create_cashbook_entry_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'create_cashbook_entry_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.delete_cashbook_entry_endpoint = _Endpoint(
             settings={
-                'response_type': None,
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/cashbook/{document_id}',
-                'operation_id': 'delete_cashbook_entry',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": None,
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/cashbook/{document_id}",
+                "operation_id": "delete_cashbook_entry",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
+                "all": [
+                    "company_id",
+                    "document_id",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [],
-                'content_type': [],
+                "accept": [],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_cashbook_entry_endpoint = _Endpoint(
             settings={
-                'response_type': (GetCashbookEntryResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/cashbook/{document_id}',
-                'operation_id': 'get_cashbook_entry',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetCashbookEntryResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/cashbook/{document_id}",
+                "operation_id": "get_cashbook_entry",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'fields',
-                    'fieldset',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "fields",
+                    "fieldset",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_cashbook_entries_endpoint = _Endpoint(
             settings={
-                'response_type': (ListCashbookEntriesResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/cashbook',
-                'operation_id': 'list_cashbook_entries',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListCashbookEntriesResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/cashbook",
+                "operation_id": "list_cashbook_entries",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'date_from',
-                    'date_to',
-                    'year',
-                    'type',
-                    'payment_account_id',
+                "all": [
+                    "company_id",
+                    "date_from",
+                    "date_to",
+                    "year",
+                    "type",
+                    "payment_account_id",
                 ],
-                'required': [
-                    'company_id',
-                    'date_from',
-                    'date_to',
+                "required": [
+                    "company_id",
+                    "date_from",
+                    "date_to",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "type",
                 ],
-                'enum': [
-                    'type',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("type",): {"ALL": "all", "IN": "in", "OUT": "out"},
                 },
-                'allowed_values': {
-                    ('type',): {
-
-                        "ALL": "all",
-                        "IN": "in",
-                        "OUT": "out"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "date_from": (str,),
+                    "date_to": (str,),
+                    "year": (int,),
+                    "type": (str,),
+                    "payment_account_id": (int,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'date_from':
-                        (str,),
-                    'date_to':
-                        (str,),
-                    'year':
-                        (int,),
-                    'type':
-                        (str,),
-                    'payment_account_id':
-                        (int,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "date_from": "date_from",
+                    "date_to": "date_to",
+                    "year": "year",
+                    "type": "type",
+                    "payment_account_id": "payment_account_id",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'date_from': 'date_from',
-                    'date_to': 'date_to',
-                    'year': 'year',
-                    'type': 'type',
-                    'payment_account_id': 'payment_account_id',
+                "location_map": {
+                    "company_id": "path",
+                    "date_from": "query",
+                    "date_to": "query",
+                    "year": "query",
+                    "type": "query",
+                    "payment_account_id": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'date_from': 'query',
-                    'date_to': 'query',
-                    'year': 'query',
-                    'type': 'query',
-                    'payment_account_id': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.modify_cashbook_entry_endpoint = _Endpoint(
             settings={
-                'response_type': (ModifyCashbookEntryResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/cashbook/{document_id}',
-                'operation_id': 'modify_cashbook_entry',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (ModifyCashbookEntryResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/cashbook/{document_id}",
+                "operation_id": "modify_cashbook_entry",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'modify_cashbook_entry_request',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "modify_cashbook_entry_request",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "modify_cashbook_entry_request": (ModifyCashbookEntryRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'modify_cashbook_entry_request':
-                        (ModifyCashbookEntryRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "modify_cashbook_entry_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'modify_cashbook_entry_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def create_cashbook_entry(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def create_cashbook_entry(self, company_id, **kwargs):
         """Create Cashbook Entry  # noqa: E501
 
         Creates a new cashbook entry.  # noqa: E501
@@ -426,40 +360,19 @@ class CashbookApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.create_cashbook_entry_endpoint.call_with_http_info(**kwargs)
 
-    def delete_cashbook_entry(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def delete_cashbook_entry(self, company_id, document_id, **kwargs):
         """Delete Cashbook Entry  # noqa: E501
 
         Deletes the specified cashbook entry.  # noqa: E501
@@ -506,42 +419,20 @@ class CashbookApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.delete_cashbook_entry_endpoint.call_with_http_info(**kwargs)
 
-    def get_cashbook_entry(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def get_cashbook_entry(self, company_id, document_id, **kwargs):
         """Get Cashbook Entry  # noqa: E501
 
         Gets the specified cashbook entry.  # noqa: E501
@@ -590,43 +481,20 @@ class CashbookApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.get_cashbook_entry_endpoint.call_with_http_info(**kwargs)
 
-    def list_cashbook_entries(
-        self,
-        company_id,
-        date_from,
-        date_to,
-        **kwargs
-    ):
+    def list_cashbook_entries(self, company_id, date_from, date_to, **kwargs):
         """List Cashbook Entries  # noqa: E501
 
         Lists the cashbook entries.  # noqa: E501
@@ -677,44 +545,21 @@ class CashbookApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['date_from'] = \
-            date_from
-        kwargs['date_to'] = \
-            date_to
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["date_from"] = date_from
+        kwargs["date_to"] = date_to
         return self.list_cashbook_entries_endpoint.call_with_http_info(**kwargs)
 
-    def modify_cashbook_entry(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def modify_cashbook_entry(self, company_id, document_id, **kwargs):
         """Modify Cashbook Entry  # noqa: E501
 
         Modifies the specified cashbook entry.  # noqa: E501
@@ -762,33 +607,15 @@ class CashbookApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.modify_cashbook_entry_endpoint.call_with_http_info(**kwargs)
-

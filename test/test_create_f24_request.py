@@ -20,7 +20,8 @@ from fattureincloud_python_sdk.model.f24 import F24
 from fattureincloud_python_sdk.model.f24_status import F24Status
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-globals()['F24'] = F24
+
+globals()["F24"] = F24
 from fattureincloud_python_sdk.model.create_f24_request import CreateF24Request
 
 
@@ -38,7 +39,7 @@ class TestCreateF24Request(unittest.TestCase):
         model = CreateF24Request(
             data=F24(
                 id=1,
-                due_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                due_date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                 status=F24Status("paid"),
                 payment_account=PaymentAccount(
                     id=1,
@@ -59,5 +60,5 @@ class TestCreateF24Request(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

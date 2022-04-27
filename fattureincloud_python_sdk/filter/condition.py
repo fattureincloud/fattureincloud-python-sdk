@@ -18,12 +18,16 @@ class Condition(Expression):
         self.__op = op
         self.__value = value
 
-    def __eq__(self, other): 
+    def __eq__(self, other):
         if not isinstance(other, Condition):
             # don't attempt to compare against unrelated types
             return NotImplemented
 
-        return self.__field == other.get_field() and self.__op == other.get_op() and self.__value == other.get_value()
+        return (
+            self.__field == other.get_field()
+            and self.__op == other.get_op()
+            and self.__value == other.get_value()
+        )
 
     def get_field(self) -> str:
         return self.__field

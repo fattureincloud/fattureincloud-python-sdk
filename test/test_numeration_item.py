@@ -29,15 +29,12 @@ class TestNumerationItem(unittest.TestCase):
 
     def testNumerationItem(self):
         """Test NumerationItem"""
-        model = NumerationItem(
-            num=9,
-            num2=6
-        )
+        model = NumerationItem(num=9, num2=6)
 
-        expected_json = "{\"num\": 9, \"num2\": 6}"
+        expected_json = '{"num": 9, "num2": 6}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -15,6 +15,8 @@ import datetime
 from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
 from functions import json_serial
 from functions import create_from_json
+
+
 class TestArchiveDocument(unittest.TestCase):
     """ArchiveDocument unit test stubs"""
 
@@ -28,26 +30,26 @@ class TestArchiveDocument(unittest.TestCase):
         """Test ArchiveDocument"""
         model = ArchiveDocument(
             id=12345,
-            date=datetime.datetime.strptime('2021-08-20', '%Y-%m-%d').date(),
-            description='spesa 2',
-            category='Altri documenti',
-            attachment_token='spesa2.pdf'
+            date=datetime.datetime.strptime("2021-08-20", "%Y-%m-%d").date(),
+            description="spesa 2",
+            category="Altri documenti",
+            attachment_token="spesa2.pdf",
         )
         expected_json = '{"id": 12345, "date": "2021-08-20", "description": "spesa 2", "category": "Altri documenti", "attachment_token": "spesa2.pdf"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-        readonly_json = '{\"date\": \"2021-08-20\", \"description\": \"spesa 2\", \"category\": \"Altri documenti\", \"id\": 12345, \"attachment_token\": \"fff\", \"attachment_url\": \"spesa2.pdf\"}'
+        readonly_json = '{"date": "2021-08-20", "description": "spesa 2", "category": "Altri documenti", "id": 12345, "attachment_token": "fff", "attachment_url": "spesa2.pdf"}'
         model = ArchiveDocument._from_openapi_data(
             id=12345,
-            date=datetime.datetime.strptime('2021-08-20', '%Y-%m-%d').date(),
-            description='spesa 2',
-            category='Altri documenti',
-            attachment_token='fff',
-            attachment_url='spesa2.pdf'
+            date=datetime.datetime.strptime("2021-08-20", "%Y-%m-%d").date(),
+            description="spesa 2",
+            category="Altri documenti",
+            attachment_token="fff",
+            attachment_url="spesa2.pdf",
         )
         assert model == create_from_json(readonly_json, "ArchiveDocument")
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

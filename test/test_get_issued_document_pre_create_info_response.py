@@ -16,13 +16,24 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_pre_create_info import IssuedDocumentPreCreateInfo
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import IssuedDocumentPreCreateInfoDefaultValues
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import IssuedDocumentPreCreateInfoExtraDataDefaultValues
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import IssuedDocumentPreCreateInfoItemsDefaultValues
+from fattureincloud_python_sdk.model.issued_document_pre_create_info import (
+    IssuedDocumentPreCreateInfo,
+)
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import (
+    IssuedDocumentPreCreateInfoDefaultValues,
+)
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import (
+    IssuedDocumentPreCreateInfoExtraDataDefaultValues,
+)
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import (
+    IssuedDocumentPreCreateInfoItemsDefaultValues,
+)
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['IssuedDocumentPreCreateInfo'] = IssuedDocumentPreCreateInfo
-from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import GetIssuedDocumentPreCreateInfoResponse
+
+globals()["IssuedDocumentPreCreateInfo"] = IssuedDocumentPreCreateInfo
+from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import (
+    GetIssuedDocumentPreCreateInfoResponse,
+)
 
 
 class TestGetIssuedDocumentPreCreateInfoResponse(unittest.TestCase):
@@ -38,14 +49,12 @@ class TestGetIssuedDocumentPreCreateInfoResponse(unittest.TestCase):
         """Test GetIssuedDocumentPreCreateInfoResponse"""
         model = GetIssuedDocumentPreCreateInfoResponse(
             data=IssuedDocumentPreCreateInfo(
-                default_values=IssuedDocumentPreCreateInfoDefaultValues(
-                    rivalsa=10.0
-                ),
+                default_values=IssuedDocumentPreCreateInfoDefaultValues(rivalsa=10.0),
                 extra_data_default_values=IssuedDocumentPreCreateInfoExtraDataDefaultValues(
                     ts_communication=True,
                     ts_tipo_spesa="string",
                     ts_flag_tipo_spesa=0,
-                    ts_pagamento_tracciato=True
+                    ts_pagamento_tracciato=True,
                 ),
                 items_default_values=IssuedDocumentPreCreateInfoItemsDefaultValues(
                     vat=VatType(
@@ -59,9 +68,7 @@ class TestGetIssuedDocumentPreCreateInfoResponse(unittest.TestCase):
                         is_disabled=True,
                     ),
                 ),
-                countries_list=[
-                    "italy"
-                ]
+                countries_list=["italy"],
             )
         )
         expected_json = '{"data": {"default_values": {"rivalsa": 10.0}, "extra_data_default_values": {"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}, "items_default_values": {"vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}, "countries_list": ["italy"]}}'
@@ -69,5 +76,5 @@ class TestGetIssuedDocumentPreCreateInfoResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
