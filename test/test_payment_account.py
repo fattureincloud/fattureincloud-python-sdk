@@ -17,7 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-globals()['PaymentAccountType'] = PaymentAccountType
+
+globals()["PaymentAccountType"] = PaymentAccountType
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 
 
@@ -39,11 +40,12 @@ class TestPaymentAccount(unittest.TestCase):
             iban="iban_example",
             sia="sia_example",
             cuc="cuc_example",
-            virtual=True
+            virtual=True,
         )
         expected_json = '{"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -21,8 +21,11 @@ from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
 from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-globals()['PaymentMethod'] = PaymentMethod
-from fattureincloud_python_sdk.model.list_payment_methods_response import ListPaymentMethodsResponse
+
+globals()["PaymentMethod"] = PaymentMethod
+from fattureincloud_python_sdk.model.list_payment_methods_response import (
+    ListPaymentMethodsResponse,
+)
 
 
 class TestListPaymentMethodsResponse(unittest.TestCase):
@@ -61,7 +64,7 @@ class TestListPaymentMethodsResponse(unittest.TestCase):
                     bank_iban="bank_iban_example",
                     bank_name="bank_name_example",
                     bank_beneficiary="bank_beneficiary_example",
-                    ei_payment_method="ei_payment_method_example"
+                    ei_payment_method="ei_payment_method_example",
                 ),
                 PaymentMethod(
                     id=2,
@@ -86,13 +89,14 @@ class TestListPaymentMethodsResponse(unittest.TestCase):
                     bank_iban="bank_iban_example",
                     bank_name="bank_name_example",
                     bank_beneficiary="bank_beneficiary_example",
-                    ei_payment_method="ei_payment_method_example"
-                )
+                    ei_payment_method="ei_payment_method_example",
+                ),
             ]
         )
         expected_json = '{"data": [{"id": 1, "name": "name_example", "type": "standard", "is_default": true, "default_payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "details": [{"title": "title_example", "description": "description_example"}], "bank_iban": "bank_iban_example", "bank_name": "bank_name_example", "bank_beneficiary": "bank_beneficiary_example", "ei_payment_method": "ei_payment_method_example"}, {"id": 2, "name": "name_example2", "type": "standard", "is_default": true, "default_payment_account": {"id": 1, "name": "Conto Banca Unicredici", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "details": [{"title": "title_example", "description": "description_example"}], "bank_iban": "bank_iban_example", "bank_name": "bank_name_example", "bank_beneficiary": "bank_beneficiary_example", "ei_payment_method": "ei_payment_method_example"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -36,10 +36,12 @@ class TestCurrency(unittest.TestCase):
             exchange_rate="1",
             html_symbol="EUR",
         )
-        expected_json = "{\"id\": \"EUR\", \"symbol\": \"e\", \"exchange_rate\": \"1\", \"html_symbol\": \"EUR\"}"
+        expected_json = (
+            '{"id": "EUR", "symbol": "e", "exchange_rate": "1", "html_symbol": "EUR"}'
+        )
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

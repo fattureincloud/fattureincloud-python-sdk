@@ -30,13 +30,11 @@ class TestAttachmentData(unittest.TestCase):
 
     def testAttachmentData(self):
         """Test AttachmentData"""
-        model = AttachmentData(
-            attachment_token="attachment_token_example"
-        )
-        expected_json = "{\"attachment_token\": \"attachment_token_example\"}"
+        model = AttachmentData(attachment_token="attachment_token_example")
+        expected_json = '{"attachment_token": "attachment_token_example"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

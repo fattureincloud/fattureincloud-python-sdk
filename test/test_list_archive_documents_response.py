@@ -17,12 +17,17 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
-from fattureincloud_python_sdk.model.list_archive_documents_response_page import ListArchiveDocumentsResponsePage
+from fattureincloud_python_sdk.model.list_archive_documents_response_page import (
+    ListArchiveDocumentsResponsePage,
+)
 from fattureincloud_python_sdk.model.pagination import Pagination
-globals()['ArchiveDocument'] = ArchiveDocument
-globals()['ListArchiveDocumentsResponsePage'] = ListArchiveDocumentsResponsePage
-globals()['Pagination'] = Pagination
-from fattureincloud_python_sdk.model.list_archive_documents_response import ListArchiveDocumentsResponse
+
+globals()["ArchiveDocument"] = ArchiveDocument
+globals()["ListArchiveDocumentsResponsePage"] = ListArchiveDocumentsResponsePage
+globals()["Pagination"] = Pagination
+from fattureincloud_python_sdk.model.list_archive_documents_response import (
+    ListArchiveDocumentsResponse,
+)
 
 
 class TestListArchiveDocumentsResponse(unittest.TestCase):
@@ -40,18 +45,18 @@ class TestListArchiveDocumentsResponse(unittest.TestCase):
             data=[
                 ArchiveDocument(
                     id=1,
-                    date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                     description="description_example",
                     category="category_example",
-                    attachment_token="attachment_token_example"
+                    attachment_token="attachment_token_example",
                 ),
                 ArchiveDocument(
                     id=10,
-                    date=datetime.datetime.strptime("2022-01-02", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-02", "%Y-%m-%d").date(),
                     description="description_example",
                     category="category_example",
-                    attachment_token="attachment_token_example"
-                )
+                    attachment_token="attachment_token_example",
+                ),
             ],
             current_page=10,
             first_page_url="http://url.com",
@@ -62,12 +67,12 @@ class TestListArchiveDocumentsResponse(unittest.TestCase):
             per_page=10,
             prev_page_url="http://url.com",
             to=10,
-            total=10
+            total=10,
         )
         expected_json = '{"data": [{"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}, {"id": 10, "date": "2022-01-02", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

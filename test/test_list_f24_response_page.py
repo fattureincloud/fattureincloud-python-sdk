@@ -20,7 +20,8 @@ from fattureincloud_python_sdk.model.f24 import F24
 from fattureincloud_python_sdk.model.f24_status import F24Status
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-globals()['F24'] = F24
+
+globals()["F24"] = F24
 from fattureincloud_python_sdk.model.list_f24_response_page import ListF24ResponsePage
 
 
@@ -39,7 +40,9 @@ class TestListF24ResponsePage(unittest.TestCase):
             data=[
                 F24(
                     id=1,
-                    due_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                    due_date=datetime.datetime.strptime(
+                        "2022-01-01", "%Y-%m-%d"
+                    ).date(),
                     status=F24Status("paid"),
                     payment_account=PaymentAccount(
                         id=1,
@@ -48,15 +51,17 @@ class TestListF24ResponsePage(unittest.TestCase):
                         iban="iban_example",
                         sia="sia_example",
                         cuc="cuc_example",
-                        virtual=True
+                        virtual=True,
                     ),
                     amount=300.0,
                     attachment_token="attachment_token_example",
-                    description="description_example"
+                    description="description_example",
                 ),
                 F24(
                     id=2,
-                    due_date=datetime.datetime.strptime("2022-01-02", '%Y-%m-%d').date(),
+                    due_date=datetime.datetime.strptime(
+                        "2022-01-02", "%Y-%m-%d"
+                    ).date(),
                     status=F24Status("paid"),
                     payment_account=PaymentAccount(
                         id=2,
@@ -65,17 +70,18 @@ class TestListF24ResponsePage(unittest.TestCase):
                         iban="iban_example",
                         sia="sia_example",
                         cuc="cuc_example",
-                        virtual=True
+                        virtual=True,
                     ),
                     amount=31.0,
                     attachment_token="attachment_token_example",
-                    description="description_example"
-                )
+                    description="description_example",
+                ),
             ]
         )
         expected_json = '{"data": [{"id": 1, "due_date": "2022-01-01", "status": "paid", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 300.0, "attachment_token": "attachment_token_example", "description": "description_example"}, {"id": 2, "due_date": "2022-01-02", "status": "paid", "payment_account": {"id": 2, "name": "Conto Banca Unicredici", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 31.0, "attachment_token": "attachment_token_example", "description": "description_example"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

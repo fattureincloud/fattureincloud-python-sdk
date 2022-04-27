@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.attachment_data import AttachmentData
-globals()['AttachmentData'] = AttachmentData
-from fattureincloud_python_sdk.model.upload_received_document_attachment_response import UploadReceivedDocumentAttachmentResponse
+
+globals()["AttachmentData"] = AttachmentData
+from fattureincloud_python_sdk.model.upload_received_document_attachment_response import (
+    UploadReceivedDocumentAttachmentResponse,
+)
 
 
 class TestUploadReceivedDocumentAttachmentResponse(unittest.TestCase):
@@ -35,11 +38,10 @@ class TestUploadReceivedDocumentAttachmentResponse(unittest.TestCase):
         model = UploadReceivedDocumentAttachmentResponse(
             data=AttachmentData(attachment_token="bf98dhAJSHGD9dfyds9af8yd8f")
         )
-        expected_json = "{\"data\": {\"attachment_token\": \"bf98dhAJSHGD9dfyds9af8yd8f\"}}"
+        expected_json = '{"data": {"attachment_token": "bf98dhAJSHGD9dfyds9af8yd8f"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
