@@ -7,8 +7,7 @@ from fattureincloud_python_sdk.filter.expression import Expression
 from fattureincloud_python_sdk.filter.operator import Operator
 
 
-class Filter():
-
+class Filter:
     def __init__(self, expression: Expression = None):
         self.__expression = expression
 
@@ -25,15 +24,15 @@ class Filter():
     def set_expression(self, expression: Expression):
         self.__expression = expression
 
-    def where_condition(self, field: str, op: Operator, value) -> 'Filter':
+    def where_condition(self, field: str, op: Operator, value) -> "Filter":
         self.__expression = Condition(field=field, op=op, value=value)
         return self
 
-    def where_expression(self, expression: Expression) -> 'Filter':
+    def where_expression(self, expression: Expression) -> "Filter":
         self.__expression = expression
         return self
 
-    def and_condition(self, field: str, op: Operator, value) -> 'Filter':
+    def and_condition(self, field: str, op: Operator, value) -> "Filter":
         if self.__expression == None:
             raise Exception("Cannot create a conjunction for an empty expression.")
         left = self.__expression
@@ -41,21 +40,25 @@ class Filter():
         self.__expression = Conjunction(left, right)
         return self
 
-    def and_expression(self, expression: Expression) -> 'Filter':
+    def and_expression(self, expression: Expression) -> "Filter":
         if self.__expression == None or expression == None:
             raise Exception("Cannot create a conjunction for an empty expression.")
         left = self.__expression
         self.__expression = Conjunction(left, expression)
         return self
 
-    def and_filter(self, filter: 'Filter') -> 'Filter':
-        if self.__expression == None or filter == None or filter.get_expression() == None:
+    def and_filter(self, filter: "Filter") -> "Filter":
+        if (
+            self.__expression == None
+            or filter == None
+            or filter.get_expression() == None
+        ):
             raise Exception("Cannot create a conjunction for an empty expression.")
         left = self.__expression
         self.__expression = Conjunction(left, filter.get_expression())
         return self
 
-    def or_condition(self, field: str, op: Operator, value) -> 'Filter':
+    def or_condition(self, field: str, op: Operator, value) -> "Filter":
         if self.__expression == None:
             raise Exception("Cannot create a disjunction for an empty expression.")
         left = self.__expression
@@ -63,15 +66,19 @@ class Filter():
         self.__expression = Disjunction(left, right)
         return self
 
-    def or_expression(self, expression: Expression) -> 'Filter':
+    def or_expression(self, expression: Expression) -> "Filter":
         if self.__expression == None or expression == None:
             raise Exception("Cannot create a disjunction for an empty expression.")
         left = self.__expression
         self.__expression = Disjunction(left, expression)
         return self
 
-    def or_filter(self, filter: 'Filter') -> 'Filter':
-        if self.__expression == None or filter == None or filter.get_expression() == None:
+    def or_filter(self, filter: "Filter") -> "Filter":
+        if (
+            self.__expression == None
+            or filter == None
+            or filter.get_expression() == None
+        ):
             raise Exception("Cannot create a disjunction for an empty expression.")
         left = self.__expression
         self.__expression = Disjunction(left, filter.get_expression())

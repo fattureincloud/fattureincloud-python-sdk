@@ -17,8 +17,11 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.issued_document import IssuedDocument
 from fattureincloud_python_sdk.model.issued_document_type import IssuedDocumentType
-globals()['IssuedDocument'] = IssuedDocument
-from fattureincloud_python_sdk.model.modify_issued_document_request import ModifyIssuedDocumentRequest
+
+globals()["IssuedDocument"] = IssuedDocument
+from fattureincloud_python_sdk.model.modify_issued_document_request import (
+    ModifyIssuedDocumentRequest,
+)
 
 
 class TestModifyIssuedDocumentRequest(unittest.TestCase):
@@ -38,7 +41,7 @@ class TestModifyIssuedDocumentRequest(unittest.TestCase):
                 type=IssuedDocumentType("invoice"),
                 number=1,
                 numeration="/A",
-                date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                 year=1,
                 subject="subject_example",
                 visible_subject="visible_subject_example",
@@ -52,13 +55,13 @@ class TestModifyIssuedDocumentRequest(unittest.TestCase):
                 cassa2_taxable=0.0,
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
-                amount_global_cassa_taxable=3.14
+                amount_global_cassa_taxable=3.14,
             )
         )
-        expected_json = "{\"data\": {\"id\": 1, \"type\": \"invoice\", \"number\": 1, \"numeration\": \"/A\", \"date\": \"2022-01-01\", \"year\": 1, \"subject\": \"subject_example\", \"visible_subject\": \"visible_subject_example\", \"rc_center\": \"rc_center_example\", \"notes\": \"notes_example\", \"rivalsa\": 0.0, \"cassa\": 0.0, \"cassa_taxable\": 0.0, \"amount_cassa_taxable\": 3.14, \"cassa2\": 0.0, \"cassa2_taxable\": 0.0, \"amount_cassa2_taxable\": 3.14, \"global_cassa_taxable\": 0.0, \"amount_global_cassa_taxable\": 3.14}}"
+        expected_json = '{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

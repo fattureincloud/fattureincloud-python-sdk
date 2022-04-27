@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.company_info_plan_info_functions import CompanyInfoPlanInfoFunctions
+from fattureincloud_python_sdk.model.company_info_plan_info_functions import (
+    CompanyInfoPlanInfoFunctions,
+)
 
 
 class TestCompanyInfoPlanInfoFunctions(unittest.TestCase):
@@ -31,13 +33,14 @@ class TestCompanyInfoPlanInfoFunctions(unittest.TestCase):
     def testCompanyInfoPlanInfoFunctions(self):
         """Test CompanyInfoPlanInfoFunctions"""
         model = CompanyInfoPlanInfoFunctions(
-            archive=True,
-            cerved=True,
-            document_attachments=True
+            archive=True, cerved=True, document_attachments=True
         )
-        expected_json = "{\"archive\": true, \"cerved\": true, \"document_attachments\": true}"
+        expected_json = (
+            '{"archive": true, "cerved": true, "document_attachments": true}'
+        )
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

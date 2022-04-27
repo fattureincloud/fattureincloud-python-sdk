@@ -19,8 +19,11 @@ from functions import create_from_json
 from fattureincloud_python_sdk.model.receipt_pre_create_info import ReceiptPreCreateInfo
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['ReceiptPreCreateInfo'] = ReceiptPreCreateInfo
-from fattureincloud_python_sdk.model.get_receipt_pre_create_info_response import GetReceiptPreCreateInfoResponse
+
+globals()["ReceiptPreCreateInfo"] = ReceiptPreCreateInfo
+from fattureincloud_python_sdk.model.get_receipt_pre_create_info_response import (
+    GetReceiptPreCreateInfoResponse,
+)
 
 
 class TestGetReceiptPreCreateInfoResponse(unittest.TestCase):
@@ -36,30 +39,12 @@ class TestGetReceiptPreCreateInfoResponse(unittest.TestCase):
         """Test GetReceiptPreCreateInfoResponse"""
         model = GetReceiptPreCreateInfoResponse(
             data=ReceiptPreCreateInfo(
-                numerations_list=[
-                    "a/",
-                    "b/"
-                ],
-                rc_centers_list=[
-                    "bg",
-                    "mi"
-                ],
-                payment_accounts_list=[
-                    PaymentAccount(
-                        id=1,
-                        name="bank"
-                    )
-                ],
-                categories_list=[
-                    "cat5",
-                    "cat6"
-                ],
-                vat_types_list=[
-                    VatType(
-                        value=22.0
-                    )
-                ]
-            )          
+                numerations_list=["a/", "b/"],
+                rc_centers_list=["bg", "mi"],
+                payment_accounts_list=[PaymentAccount(id=1, name="bank")],
+                categories_list=["cat5", "cat6"],
+                vat_types_list=[VatType(value=22.0)],
+            )
         )
 
         expected_json = '{"data": {"numerations_list": ["a/", "b/"], "rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}}'
@@ -67,5 +52,5 @@ class TestGetReceiptPreCreateInfoResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

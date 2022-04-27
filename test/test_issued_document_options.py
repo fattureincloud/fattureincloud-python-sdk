@@ -15,7 +15,9 @@ import unittest
 import fattureincloud_python_sdk
 import json
 from functions import json_serial
-from fattureincloud_python_sdk.model.issued_document_options import IssuedDocumentOptions
+from fattureincloud_python_sdk.model.issued_document_options import (
+    IssuedDocumentOptions,
+)
 
 
 class TestIssuedDocumentOptions(unittest.TestCase):
@@ -29,13 +31,11 @@ class TestIssuedDocumentOptions(unittest.TestCase):
 
     def testIssuedDocumentOptions(self):
         """Test IssuedDocumentOptions"""
-        model = IssuedDocumentOptions(
-            fix_payments=True
-        )
-        expected_json = "{\"fix_payments\": true}"
+        model = IssuedDocumentOptions(fix_payments=True)
+        expected_json = '{"fix_payments": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
