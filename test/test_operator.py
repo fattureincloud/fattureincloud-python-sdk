@@ -38,5 +38,5 @@ class TestOperator(unittest.TestCase):
         assert "ends with" == Operator.ENDS_WITH.value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

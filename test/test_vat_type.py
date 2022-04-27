@@ -38,11 +38,12 @@ class TestVatType(unittest.TestCase):
             e_invoice=True,
             ei_type="2",
             ei_description="ei_description_example",
-            is_disabled=True
+            is_disabled=True,
         )
         expected_json = '{"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     unittest.main()

@@ -17,17 +17,23 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.client import Client
-globals()['Client'] = Client
-from fattureincloud_python_sdk.model.list_clients_response_page import ListClientsResponsePage
+
+globals()["Client"] = Client
+from fattureincloud_python_sdk.model.list_clients_response_page import (
+    ListClientsResponsePage,
+)
 from fattureincloud_python_sdk.model.pagination import Pagination
 from fattureincloud_python_sdk.model.client_type import ClientType
-from fattureincloud_python_sdk.model.default_payment_terms_type import DefaultPaymentTermsType
+from fattureincloud_python_sdk.model.default_payment_terms_type import (
+    DefaultPaymentTermsType,
+)
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.model.payment_method import PaymentMethod
 from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
 from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
 from fattureincloud_python_sdk.model.vat_type import VatType
+
 
 class TestListClientsResponsePage(unittest.TestCase):
     """ListClientsResponsePage unit test stubs"""
@@ -116,5 +122,5 @@ class TestListClientsResponsePage(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

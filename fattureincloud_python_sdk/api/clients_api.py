@@ -20,7 +20,7 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
 from fattureincloud_python_sdk.model.create_client_request import CreateClientRequest
 from fattureincloud_python_sdk.model.create_client_response import CreateClientResponse
@@ -43,345 +43,267 @@ class ClientsApi(object):
         self.api_client = api_client
         self.create_client_endpoint = _Endpoint(
             settings={
-                'response_type': (CreateClientResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/clients',
-                'operation_id': 'create_client',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (CreateClientResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/clients",
+                "operation_id": "create_client",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'create_client_request',
+                "all": [
+                    "company_id",
+                    "create_client_request",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "create_client_request": (CreateClientRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'create_client_request':
-                        (CreateClientRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "create_client_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'create_client_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.delete_client_endpoint = _Endpoint(
             settings={
-                'response_type': None,
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/clients/{client_id}',
-                'operation_id': 'delete_client',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": None,
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/clients/{client_id}",
+                "operation_id": "delete_client",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'client_id',
+                "all": [
+                    "company_id",
+                    "client_id",
                 ],
-                'required': [
-                    'company_id',
-                    'client_id',
+                "required": [
+                    "company_id",
+                    "client_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "client_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "client_id": "client_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'client_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "client_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'client_id': 'client_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'client_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [],
-                'content_type': [],
+                "accept": [],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_client_endpoint = _Endpoint(
             settings={
-                'response_type': (GetClientResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/clients/{client_id}',
-                'operation_id': 'get_client',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetClientResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/clients/{client_id}",
+                "operation_id": "get_client",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'client_id',
-                    'fields',
-                    'fieldset',
+                "all": [
+                    "company_id",
+                    "client_id",
+                    "fields",
+                    "fieldset",
                 ],
-                'required': [
-                    'company_id',
-                    'client_id',
+                "required": [
+                    "company_id",
+                    "client_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "client_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'client_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "client_id": "client_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'client_id': 'client_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
+                "location_map": {
+                    "company_id": "path",
+                    "client_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'client_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_clients_endpoint = _Endpoint(
             settings={
-                'response_type': (ListClientsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/clients',
-                'operation_id': 'list_clients',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListClientsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/clients",
+                "operation_id": "list_clients",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'fields',
-                    'fieldset',
-                    'sort',
-                    'page',
-                    'per_page',
-                    'q',
+                "all": [
+                    "company_id",
+                    "fields",
+                    "fieldset",
+                    "sort",
+                    "page",
+                    "per_page",
+                    "q",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
+                    "sort": (str,),
+                    "page": (int,),
+                    "per_page": (int,),
+                    "q": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
-                    'sort':
-                        (str,),
-                    'page':
-                        (int,),
-                    'per_page':
-                        (int,),
-                    'q':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
+                    "sort": "sort",
+                    "page": "page",
+                    "per_page": "per_page",
+                    "q": "q",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
-                    'sort': 'sort',
-                    'page': 'page',
-                    'per_page': 'per_page',
-                    'q': 'q',
+                "location_map": {
+                    "company_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
+                    "sort": "query",
+                    "page": "query",
+                    "per_page": "query",
+                    "q": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                    'sort': 'query',
-                    'page': 'query',
-                    'per_page': 'query',
-                    'q': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.modify_client_endpoint = _Endpoint(
             settings={
-                'response_type': (ModifyClientResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/clients/{client_id}',
-                'operation_id': 'modify_client',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (ModifyClientResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/clients/{client_id}",
+                "operation_id": "modify_client",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'client_id',
-                    'modify_client_request',
+                "all": [
+                    "company_id",
+                    "client_id",
+                    "modify_client_request",
                 ],
-                'required': [
-                    'company_id',
-                    'client_id',
+                "required": [
+                    "company_id",
+                    "client_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "client_id": (int,),
+                    "modify_client_request": (ModifyClientRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "client_id": "client_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'client_id':
-                        (int,),
-                    'modify_client_request':
-                        (ModifyClientRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "client_id": "path",
+                    "modify_client_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'client_id': 'client_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'client_id': 'path',
-                    'modify_client_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def create_client(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def create_client(self, company_id, **kwargs):
         """Create Client  # noqa: E501
 
         Creates a new client.  # noqa: E501
@@ -428,40 +350,19 @@ class ClientsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.create_client_endpoint.call_with_http_info(**kwargs)
 
-    def delete_client(
-        self,
-        company_id,
-        client_id,
-        **kwargs
-    ):
+    def delete_client(self, company_id, client_id, **kwargs):
         """Delete Client  # noqa: E501
 
         Deletes the specified client.  # noqa: E501
@@ -508,42 +409,20 @@ class ClientsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['client_id'] = \
-            client_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["client_id"] = client_id
         return self.delete_client_endpoint.call_with_http_info(**kwargs)
 
-    def get_client(
-        self,
-        company_id,
-        client_id,
-        **kwargs
-    ):
+    def get_client(self, company_id, client_id, **kwargs):
         """Get Client  # noqa: E501
 
         Gets the specified client.  # noqa: E501
@@ -592,41 +471,20 @@ class ClientsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['client_id'] = \
-            client_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["client_id"] = client_id
         return self.get_client_endpoint.call_with_http_info(**kwargs)
 
-    def list_clients(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_clients(self, company_id, **kwargs):
         """List Clients  # noqa: E501
 
         Lists the clients.  # noqa: E501
@@ -678,40 +536,19 @@ class ClientsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_clients_endpoint.call_with_http_info(**kwargs)
 
-    def modify_client(
-        self,
-        company_id,
-        client_id,
-        **kwargs
-    ):
+    def modify_client(self, company_id, client_id, **kwargs):
         """Modify Client  # noqa: E501
 
         Modifies the specified client.  # noqa: E501
@@ -759,33 +596,15 @@ class ClientsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['client_id'] = \
-            client_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["client_id"] = client_id
         return self.modify_client_endpoint.call_with_http_info(**kwargs)
-

@@ -25,14 +25,15 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
-    OpenApiModel
+    OpenApiModel,
 )
 from fattureincloud_python_sdk.exceptions import ApiAttributeError
 
 
 def lazy_import():
     from fattureincloud_python_sdk.model.vat_type import VatType
-    globals()['VatType'] = VatType
+
+    globals()["VatType"] = VatType
 
 
 class IssuedDocumentItemsListItem(ModelNormal):
@@ -59,11 +60,9 @@ class IssuedDocumentItemsListItem(ModelNormal):
           as additional properties values.
     """
 
-    allowed_values = {
-    }
+    allowed_values = {}
 
-    validations = {
-    }
+    validations = {}
 
     @cached_property
     def additional_properties_type():
@@ -72,7 +71,17 @@ class IssuedDocumentItemsListItem(ModelNormal):
         of type self, this must run after the class is loaded
         """
         lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (
+            bool,
+            date,
+            datetime,
+            dict,
+            float,
+            int,
+            list,
+            str,
+            none_type,
+        )  # noqa: E501
 
     _nullable = True
 
@@ -88,54 +97,103 @@ class IssuedDocumentItemsListItem(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'product_id': (int, none_type,),  # noqa: E501
-            'code': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'category': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'qty': (float, none_type,),  # noqa: E501
-            'measure': (str, none_type,),  # noqa: E501
-            'net_price': (float, none_type,),  # noqa: E501
-            'gross_price': (float, none_type,),  # noqa: E501
-            'vat': (VatType,),  # noqa: E501
-            'not_taxable': (bool, none_type,),  # noqa: E501
-            'apply_withholding_taxes': (bool, none_type,),  # noqa: E501
-            'discount': (float, none_type,),  # noqa: E501
-            'discount_highlight': (bool, none_type,),  # noqa: E501
-            'in_ddt': (bool, none_type,),  # noqa: E501
-            'stock': (bool, none_type,),  # noqa: E501
-            'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            "id": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "product_id": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "code": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "name": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "category": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "description": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "qty": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "measure": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "net_price": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "gross_price": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "vat": (VatType,),  # noqa: E501
+            "not_taxable": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "apply_withholding_taxes": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "discount": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "discount_highlight": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "in_ddt": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "stock": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "ei_raw": (
+                {str: (bool, date, datetime, dict, float, int, list, str, none_type)},
+                none_type,
+            ),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         return None
 
-
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'product_id': 'product_id',  # noqa: E501
-        'code': 'code',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'category': 'category',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'qty': 'qty',  # noqa: E501
-        'measure': 'measure',  # noqa: E501
-        'net_price': 'net_price',  # noqa: E501
-        'gross_price': 'gross_price',  # noqa: E501
-        'vat': 'vat',  # noqa: E501
-        'not_taxable': 'not_taxable',  # noqa: E501
-        'apply_withholding_taxes': 'apply_withholding_taxes',  # noqa: E501
-        'discount': 'discount',  # noqa: E501
-        'discount_highlight': 'discount_highlight',  # noqa: E501
-        'in_ddt': 'in_ddt',  # noqa: E501
-        'stock': 'stock',  # noqa: E501
-        'ei_raw': 'ei_raw',  # noqa: E501
+        "id": "id",  # noqa: E501
+        "product_id": "product_id",  # noqa: E501
+        "code": "code",  # noqa: E501
+        "name": "name",  # noqa: E501
+        "category": "category",  # noqa: E501
+        "description": "description",  # noqa: E501
+        "qty": "qty",  # noqa: E501
+        "measure": "measure",  # noqa: E501
+        "net_price": "net_price",  # noqa: E501
+        "gross_price": "gross_price",  # noqa: E501
+        "vat": "vat",  # noqa: E501
+        "not_taxable": "not_taxable",  # noqa: E501
+        "apply_withholding_taxes": "apply_withholding_taxes",  # noqa: E501
+        "discount": "discount",  # noqa: E501
+        "discount_highlight": "discount_highlight",  # noqa: E501
+        "in_ddt": "in_ddt",  # noqa: E501
+        "stock": "stock",  # noqa: E501
+        "ei_raw": "ei_raw",  # noqa: E501
     }
 
-    read_only_vars = {
-    }
+    read_only_vars = {}
 
     _composed_schemas = {}
 
@@ -195,17 +253,18 @@ class IssuedDocumentItemsListItem(ModelNormal):
             ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -221,23 +280,27 @@ class IssuedDocumentItemsListItem(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         for var_name, var_value in kwargs.items():
-            if var_name not in self.attribute_map and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self.additional_properties_type is None:
+            if (
+                var_name not in self.attribute_map
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self.additional_properties_type is None
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
         return self
 
-    required_properties = set([
-        '_data_store',
-        '_check_type',
-        '_spec_property_naming',
-        '_path_to_item',
-        '_configuration',
-        '_visited_composed_classes',
-    ])
+    required_properties = set(
+        [
+            "_data_store",
+            "_check_type",
+            "_spec_property_naming",
+            "_path_to_item",
+            "_configuration",
+            "_visited_composed_classes",
+        ]
+    )
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
@@ -294,15 +357,16 @@ class IssuedDocumentItemsListItem(ModelNormal):
             ei_raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Advanced raw attributes for e-invoices.. [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -318,13 +382,17 @@ class IssuedDocumentItemsListItem(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         for var_name, var_value in kwargs.items():
-            if var_name not in self.attribute_map and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self.additional_properties_type is None:
+            if (
+                var_name not in self.attribute_map
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self.additional_properties_type is None
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
             if var_name in self.read_only_vars:
-                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
-                                     f"class with read only attributes.")
+                raise ApiAttributeError(
+                    f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                    f"class with read only attributes."
+                )

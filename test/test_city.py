@@ -30,14 +30,11 @@ class TestCity(unittest.TestCase):
 
     def testCity(self):
         """Test City"""
-        model = City(
-            postal_code="12345",
-            city="BG",
-            province="bergamo"
-        )
-        expected_json = "{\"postal_code\": \"12345\", \"city\": \"BG\", \"province\": \"bergamo\"}"
+        model = City(postal_code="12345", city="BG", province="bergamo")
+        expected_json = '{"postal_code": "12345", "city": "BG", "province": "bergamo"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

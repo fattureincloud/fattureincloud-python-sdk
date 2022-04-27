@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.monthly_total import MonthlyTotal
-globals()['MonthlyTotal'] = MonthlyTotal
-from fattureincloud_python_sdk.model.get_receipts_monthly_totals_response import GetReceiptsMonthlyTotalsResponse
+
+globals()["MonthlyTotal"] = MonthlyTotal
+from fattureincloud_python_sdk.model.get_receipts_monthly_totals_response import (
+    GetReceiptsMonthlyTotalsResponse,
+)
 
 
 class TestGetReceiptsMonthlyTotalsResponse(unittest.TestCase):
@@ -34,22 +37,14 @@ class TestGetReceiptsMonthlyTotalsResponse(unittest.TestCase):
         """Test GetReceiptsMonthlyTotalsResponse"""
         model = GetReceiptsMonthlyTotalsResponse(
             data=[
-                MonthlyTotal(
-                    net=1000.0,
-                    gross=1220.0,
-                    count=10.0
-                ),
-                MonthlyTotal(
-                    net=1500.0,
-                    gross=1730.0,
-                    count=15.0
-                )
+                MonthlyTotal(net=1000.0, gross=1220.0, count=10.0),
+                MonthlyTotal(net=1500.0, gross=1730.0, count=15.0),
             ]
         )
-        expected_json = "{\"data\": [{\"net\": 1000.0, \"gross\": 1220.0, \"count\": 10.0}, {\"net\": 1500.0, \"gross\": 1730.0, \"count\": 15.0}]}"
+        expected_json = '{"data": [{"net": 1000.0, "gross": 1220.0, "count": 10.0}, {"net": 1500.0, "gross": 1730.0, "count": 15.0}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
