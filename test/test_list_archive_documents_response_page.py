@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
-globals()['ArchiveDocument'] = ArchiveDocument
-from fattureincloud_python_sdk.model.list_archive_documents_response_page import ListArchiveDocumentsResponsePage
+
+globals()["ArchiveDocument"] = ArchiveDocument
+from fattureincloud_python_sdk.model.list_archive_documents_response_page import (
+    ListArchiveDocumentsResponsePage,
+)
 
 
 class TestListArchiveDocumentsResponsePage(unittest.TestCase):
@@ -36,23 +39,24 @@ class TestListArchiveDocumentsResponsePage(unittest.TestCase):
             data=[
                 ArchiveDocument(
                     id=1,
-                    date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                     description="description_example",
                     category="category_example",
-                    attachment_token="attachment_token_example"
+                    attachment_token="attachment_token_example",
                 ),
                 ArchiveDocument(
                     id=10,
-                    date=datetime.datetime.strptime("2022-01-02", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-02", "%Y-%m-%d").date(),
                     description="description_example",
                     category="category_example",
-                    attachment_token="attachment_token_example"
-                )
+                    attachment_token="attachment_token_example",
+                ),
             ]
         )
         expected_json = '{"data": [{"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}, {"id": 10, "date": "2022-01-02", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

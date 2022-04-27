@@ -17,7 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.vat_list import VatList
-globals()['VatList'] = VatList
+
+globals()["VatList"] = VatList
 from fattureincloud_python_sdk.model.issued_document_totals import IssuedDocumentTotals
 
 
@@ -41,12 +42,12 @@ class TestIssuedDocumentTotals(unittest.TestCase):
             amount_vat=22.0,
             amount_gross=12.2,
             amount_due=12.2,
-            payments_sum=12.2
+            payments_sum=12.2,
         )
         expected_json = '{"amount_net": 10.0, "amount_rivalsa": 0.0, "amount_net_with_rivalsa": 10.0, "amount_cassa": 3.14, "taxable_amount": 0.0, "amount_vat": 22.0, "amount_gross": 12.2, "amount_due": 12.2, "payments_sum": 12.2}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

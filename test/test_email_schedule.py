@@ -17,7 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.email_schedule_include import EmailScheduleInclude
-globals()['EmailScheduleInclude'] = EmailScheduleInclude
+
+globals()["EmailScheduleInclude"] = EmailScheduleInclude
 from fattureincloud_python_sdk.model.email_schedule import EmailSchedule
 
 
@@ -42,16 +43,15 @@ class TestEmailSchedule(unittest.TestCase):
                 document=True,
                 delivery_note=False,
                 attachment=True,
-                accompanying_invoice=False
+                accompanying_invoice=False,
             ),
             attach_pdf=False,
-            send_copy=True
+            send_copy=True,
         )
         expected_json = '{"sender_id": 1, "sender_email": "info@mail.com", "recipient_email": "recipient@mail.com", "subject": "important", "body": "you won a chest of apples", "include": {"document": true, "delivery_note": false, "attachment": true, "accompanying_invoice": false}, "attach_pdf": false, "send_copy": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -19,9 +19,12 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.permissions import Permissions
 from fattureincloud_python_sdk.model.user_company_role import UserCompanyRole
-globals()['Permissions'] = Permissions
-globals()['UserCompanyRole'] = UserCompanyRole
-from fattureincloud_python_sdk.model.company_info_access_info import CompanyInfoAccessInfo
+
+globals()["Permissions"] = Permissions
+globals()["UserCompanyRole"] = UserCompanyRole
+from fattureincloud_python_sdk.model.company_info_access_info import (
+    CompanyInfoAccessInfo,
+)
 
 
 class TestCompanyInfoAccessInfo(unittest.TestCase):
@@ -37,14 +40,15 @@ class TestCompanyInfoAccessInfo(unittest.TestCase):
         """Test CompanyInfoAccessInfo"""
         model = CompanyInfoAccessInfo(
             role=UserCompanyRole("master"),
-            permissions=Permissions(
-
-            ),
-            through_accountant=True
+            permissions=Permissions(),
+            through_accountant=True,
         )
-        expected_json = "{\"role\": \"master\", \"permissions\": {}, \"through_accountant\": true}"
+        expected_json = (
+            '{"role": "master", "permissions": {}, "through_accountant": true}'
+        )
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

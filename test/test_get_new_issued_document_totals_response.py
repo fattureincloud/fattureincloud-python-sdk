@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.issued_document_totals import IssuedDocumentTotals
-globals()['IssuedDocumentTotals'] = IssuedDocumentTotals
-from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import GetNewIssuedDocumentTotalsResponse
+
+globals()["IssuedDocumentTotals"] = IssuedDocumentTotals
+from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import (
+    GetNewIssuedDocumentTotalsResponse,
+)
 
 
 class TestGetNewIssuedDocumentTotalsResponse(unittest.TestCase):
@@ -42,7 +45,7 @@ class TestGetNewIssuedDocumentTotalsResponse(unittest.TestCase):
                 amount_vat=22.0,
                 amount_gross=12.2,
                 amount_due=12.2,
-                payments_sum=12.2
+                payments_sum=12.2,
             )
         )
         expected_json = '{"data": {"amount_net": 10.0, "amount_rivalsa": 0.0, "amount_net_with_rivalsa": 10.0, "amount_cassa": 3.14, "taxable_amount": 0.0, "amount_vat": 22.0, "amount_gross": 12.2, "amount_due": 12.2, "payments_sum": 12.2}}'
@@ -50,5 +53,5 @@ class TestGetNewIssuedDocumentTotalsResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

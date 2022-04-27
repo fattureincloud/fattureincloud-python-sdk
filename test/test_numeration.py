@@ -16,7 +16,8 @@ import unittest
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.numeration_item import NumerationItem
 from functions import json_serial
-globals()['NumerationItem'] = NumerationItem
+
+globals()["NumerationItem"] = NumerationItem
 from fattureincloud_python_sdk.model.numeration import Numeration
 
 
@@ -32,19 +33,14 @@ class TestNumeration(unittest.TestCase):
     def testNumeration(self):
         """Test Numeration"""
         model = Numeration(
-            year=NumerationItem(
-                num=9,
-                num2=6
-            ),
-            year2=NumerationItem(
-                num=5,
-                num2=3
-            )
+            year=NumerationItem(num=9, num2=6), year2=NumerationItem(num=5, num2=3)
         )
-        expected_json = "{\"year\": {\"num\": 9, \"num2\": 6}, \"year2\": {\"num\": 5, \"num2\": 3}}"
+        expected_json = (
+            '{"year": {"num": 9, "num2": 6}, "year2": {"num": 5, "num2": 3}}'
+        )
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

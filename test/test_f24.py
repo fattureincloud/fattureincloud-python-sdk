@@ -19,8 +19,9 @@ from functions import create_from_json
 from fattureincloud_python_sdk.model.f24_status import F24Status
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-globals()['F24Status'] = F24Status
-globals()['PaymentAccount'] = PaymentAccount
+
+globals()["F24Status"] = F24Status
+globals()["PaymentAccount"] = PaymentAccount
 from fattureincloud_python_sdk.model.f24 import F24
 
 
@@ -37,7 +38,7 @@ class TestF24(unittest.TestCase):
         """Test F24"""
         model = F24(
             id=1,
-            due_date=datetime.datetime.strptime("2022-02-02", '%Y-%m-%d').date(),
+            due_date=datetime.datetime.strptime("2022-02-02", "%Y-%m-%d").date(),
             status=F24Status("paid"),
             payment_account=PaymentAccount(
                 id=1,
@@ -49,25 +50,24 @@ class TestF24(unittest.TestCase):
                 virtual=True,
             ),
             amount=300.0,
-            attachment_token="attachment_token_example"
+            attachment_token="attachment_token_example",
         )
         expected_json = '{"id": 1, "due_date": "2022-02-02", "status": "paid", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 300.0, "attachment_token": "attachment_token_example"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-        readonly_json = "{\"due_date\": \"2022-02-02\", \"amount\": 300.0, \"description\": \"description_example\", \"id\": 1, \"status\": \"paid\", \"attachment_token\": \"attachment_token_example\", \"attachment_url\": \"spesa2.pdf\"}"
+        readonly_json = '{"due_date": "2022-02-02", "amount": 300.0, "description": "description_example", "id": 1, "status": "paid", "attachment_token": "attachment_token_example", "attachment_url": "spesa2.pdf"}'
         model = F24._from_openapi_data(
             id=1,
-            due_date=datetime.datetime.strptime("2022-02-02", '%Y-%m-%d').date(),
+            due_date=datetime.datetime.strptime("2022-02-02", "%Y-%m-%d").date(),
             status=F24Status("paid"),
             amount=300.0,
             attachment_token="attachment_token_example",
             description="description_example",
-            attachment_url='spesa2.pdf'
+            attachment_url="spesa2.pdf",
         )
         model = create_from_json(readonly_json, "F24")
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

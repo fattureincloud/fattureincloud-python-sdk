@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.send_e_invoice_request_data import SendEInvoiceRequestData
+from fattureincloud_python_sdk.model.send_e_invoice_request_data import (
+    SendEInvoiceRequestData,
+)
 
 
 class TestSendEInvoiceRequestData(unittest.TestCase):
@@ -31,12 +33,12 @@ class TestSendEInvoiceRequestData(unittest.TestCase):
     def testSendEInvoiceRequestData(self):
         """Test SendEInvoiceRequestData"""
         model = SendEInvoiceRequestData(
-            cassa_type="I",
-            withholding_tax_causal="new causal"
+            cassa_type="I", withholding_tax_causal="new causal"
         )
-        expected_json = "{\"cassa_type\": \"I\", \"withholding_tax_causal\": \"new causal\"}"
+        expected_json = '{"cassa_type": "I", "withholding_tax_causal": "new causal"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

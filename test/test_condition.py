@@ -45,5 +45,5 @@ class TestCondition(unittest.TestCase):
         assert condition != condition4
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

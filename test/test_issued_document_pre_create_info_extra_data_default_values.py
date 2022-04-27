@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import IssuedDocumentPreCreateInfoExtraDataDefaultValues
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import (
+    IssuedDocumentPreCreateInfoExtraDataDefaultValues,
+)
 
 
 class TestIssuedDocumentPreCreateInfoExtraDataDefaultValues(unittest.TestCase):
@@ -34,12 +36,12 @@ class TestIssuedDocumentPreCreateInfoExtraDataDefaultValues(unittest.TestCase):
             ts_communication=True,
             ts_tipo_spesa="string",
             ts_flag_tipo_spesa=0,
-            ts_pagamento_tracciato=True
+            ts_pagamento_tracciato=True,
         )
-        expected_json = "{\"ts_communication\": true, \"ts_tipo_spesa\": \"string\", \"ts_flag_tipo_spesa\": 0, \"ts_pagamento_tracciato\": true}"
+        expected_json = '{"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

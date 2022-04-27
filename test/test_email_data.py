@@ -16,10 +16,13 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.email_data_default_sender_email import EmailDataDefaultSenderEmail
+from fattureincloud_python_sdk.model.email_data_default_sender_email import (
+    EmailDataDefaultSenderEmail,
+)
 from fattureincloud_python_sdk.model.sender_email import SenderEmail
-globals()['EmailDataDefaultSenderEmail'] = EmailDataDefaultSenderEmail
-globals()['SenderEmail'] = SenderEmail
+
+globals()["EmailDataDefaultSenderEmail"] = EmailDataDefaultSenderEmail
+globals()["SenderEmail"] = SenderEmail
 from fattureincloud_python_sdk.model.email_data import EmailData
 
 
@@ -45,20 +48,14 @@ class TestEmailData(unittest.TestCase):
             accompanying_invoice_exists=False,
             default_attach_pdf=False,
             default_sender_email=EmailDataDefaultSenderEmail(
-                id=1,
-                email="ex.email@provider.co"
+                id=1, email="ex.email@provider.co"
             ),
-            sender_emails_list=[
-                SenderEmail(
-                    id=1,
-                    email="ex.email@provider.co"
-                )
-            ]
+            sender_emails_list=[SenderEmail(id=1, email="ex.email@provider.co")],
         )
         expected_json = '{"recipient_email": "info@mail.com", "cc_email": "default@mail.com", "subject": "important", "body": "you won 13 billion indian rupies", "document_exists": false, "delivery_note_exists": false, "attachment_exists": false, "accompanying_invoice_exists": false, "default_attach_pdf": false, "default_sender_email": {"id": 1, "email": "ex.email@provider.co"}, "sender_emails_list": [{"id": 1, "email": "ex.email@provider.co"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -17,7 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['VatType'] = VatType
+
+globals()["VatType"] = VatType
 from fattureincloud_python_sdk.model.list_vat_types_response import ListVatTypesResponse
 
 
@@ -53,12 +54,13 @@ class TestListVatTypesResponse(unittest.TestCase):
                     ei_type="2",
                     ei_description="ei_description_example",
                     is_disabled=True,
-                )
+                ),
             ]
         )
         expected_json = '{"data": [{"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}, {"id": 2, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

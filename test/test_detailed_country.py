@@ -30,16 +30,12 @@ class TestDetailedCountry(unittest.TestCase):
     def testDetailedCountry(self):
         """Test DetailedCountry"""
         model = DetailedCountry(
-            name="Italia",
-            settings_name="Italia",
-            iso="IT",
-            fiscal_iso="IT",
-            uic="086"
+            name="Italia", settings_name="Italia", iso="IT", fiscal_iso="IT", uic="086"
         )
-        expected_json = "{\"name\": \"Italia\", \"settings_name\": \"Italia\", \"iso\": \"IT\", \"fiscal_iso\": \"IT\", \"uic\": \"086\"}"
+        expected_json = '{"name": "Italia", "settings_name": "Italia", "iso": "IT", "fiscal_iso": "IT", "uic": "086"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
