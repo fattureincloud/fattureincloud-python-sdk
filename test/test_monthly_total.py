@@ -30,15 +30,11 @@ class TestMonthlyTotal(unittest.TestCase):
 
     def testMonthlyTotal(self):
         """Test MonthlyTotal"""
-        model = MonthlyTotal(
-            net=1000.0,
-            gross=1220.0,
-            count=10.0
-        )
-        expected_json = "{\"net\": 1000.0, \"gross\": 1220.0, \"count\": 10.0}"
+        model = MonthlyTotal(net=1000.0, gross=1220.0, count=10.0)
+        expected_json = '{"net": 1000.0, "gross": 1220.0, "count": 10.0}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

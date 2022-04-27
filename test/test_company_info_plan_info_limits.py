@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.company_info_plan_info_limits import CompanyInfoPlanInfoLimits
+from fattureincloud_python_sdk.model.company_info_plan_info_limits import (
+    CompanyInfoPlanInfoLimits,
+)
 
 
 class TestCompanyInfoPlanInfoLimits(unittest.TestCase):
@@ -31,15 +33,15 @@ class TestCompanyInfoPlanInfoLimits(unittest.TestCase):
     def testCompanyInfoPlanInfoLimits(self):
         """Test CompanyInfoPlanInfoLimits"""
         model = CompanyInfoPlanInfoLimits(
-            clients=4000,
-            suppliers=4000,
-            products=4000,
-            documents=4000
+            clients=4000, suppliers=4000, products=4000, documents=4000
         )
 
-        expected_json = "{\"clients\": 4000, \"suppliers\": 4000, \"products\": 4000, \"documents\": 4000}"
+        expected_json = (
+            '{"clients": 4000, "suppliers": 4000, "products": 4000, "documents": 4000}'
+        )
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -16,9 +16,13 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.get_user_info_response_info import GetUserInfoResponseInfo
+from fattureincloud_python_sdk.model.get_user_info_response_info import (
+    GetUserInfoResponseInfo,
+)
 from fattureincloud_python_sdk.model.user import User
-from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import GetUserInfoResponseEmailConfirmationState
+from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import (
+    GetUserInfoResponseEmailConfirmationState,
+)
 
 
 class TestGetUserInfoResponseInfo(unittest.TestCase):
@@ -32,13 +36,11 @@ class TestGetUserInfoResponseInfo(unittest.TestCase):
 
     def testGetUserInfoResponseInfo(self):
         """Test GetUserInfoResponseInfo"""
-        model = GetUserInfoResponseInfo(
-            need_password_change=False
-        )
-        expected_json = "{\"need_password_change\": false}"
+        model = GetUserInfoResponseInfo(need_password_change=False)
+        expected_json = '{"need_password_change": false}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

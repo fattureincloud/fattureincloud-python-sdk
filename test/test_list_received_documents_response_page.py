@@ -17,12 +17,19 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.received_document import ReceivedDocument
-from fattureincloud_python_sdk.model.received_document_entity import ReceivedDocumentEntity
+from fattureincloud_python_sdk.model.received_document_entity import (
+    ReceivedDocumentEntity,
+)
 from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
-from fattureincloud_python_sdk.model.received_document_items_list_item import ReceivedDocumentItemsListItem
+from fattureincloud_python_sdk.model.received_document_items_list_item import (
+    ReceivedDocumentItemsListItem,
+)
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['ReceivedDocument'] = ReceivedDocument
-from fattureincloud_python_sdk.model.list_received_documents_response_page import ListReceivedDocumentsResponsePage
+
+globals()["ReceivedDocument"] = ReceivedDocument
+from fattureincloud_python_sdk.model.list_received_documents_response_page import (
+    ListReceivedDocumentsResponsePage,
+)
 
 
 class TestListReceivedDocumentsResponsePage(unittest.TestCase):
@@ -45,7 +52,7 @@ class TestListReceivedDocumentsResponsePage(unittest.TestCase):
                         id=1,
                         name="name_example",
                     ),
-                    date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                     category="category_example",
                     description="description_example",
                     amount_net=3.14,
@@ -80,9 +87,9 @@ class TestListReceivedDocumentsResponsePage(unittest.TestCase):
                                 ei_description="ei_description_example",
                                 is_disabled=True,
                             ),
-                            stock=3.14
+                            stock=3.14,
                         )
-                    ]
+                    ],
                 )
             ]
         )
@@ -90,5 +97,6 @@ class TestListReceivedDocumentsResponsePage(unittest.TestCase):
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

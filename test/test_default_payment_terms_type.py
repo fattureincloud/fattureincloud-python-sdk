@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.default_payment_terms_type import DefaultPaymentTermsType
+from fattureincloud_python_sdk.model.default_payment_terms_type import (
+    DefaultPaymentTermsType,
+)
 
 
 class TestDefaultPaymentTermsType(unittest.TestCase):
@@ -36,5 +38,5 @@ class TestDefaultPaymentTermsType(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
