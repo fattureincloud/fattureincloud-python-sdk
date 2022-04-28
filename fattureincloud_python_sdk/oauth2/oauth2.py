@@ -5,7 +5,7 @@ import json
 
 from fattureincloud_python_sdk.oauth2.scopes import Scope
 
-class OAuth2AuthorizationCode:
+class OAuth2AuthorizationCodeManager:
 
     def __init__(self, client_id: str, client_secret: str, redirect_uri: str, base_uri: str='https://api-v2.fattureincloud.it'):
         self._http = urllib3.PoolManager()
@@ -16,7 +16,7 @@ class OAuth2AuthorizationCode:
 
     def get_authorization_url(self, scopes: Iterable[Scope], state: str=None):
         authorization_uri = '{}/oauth/authorize'.format(self.base_uri)
-        scope = OAuth2AuthorizationCode._get_scope_str(scopes)
+        scope = OAuth2AuthorizationCodeManager._get_scope_str(scopes)
         
         params = {
             'response_type': 'code',
@@ -51,18 +51,18 @@ class OAuth2AuthorizationCode:
         body = json.dumps(data).encode('utf-8')
 
         resp = self._http.request('POST', token_uri, body=body, headers={"Content-Type": "application/json"})
-        print(resp)
         res = json.loads(resp.data.decode("utf-8"))
+        if resp.status != 200: 
+            raise OAuth2AuthorizationCodeError(resp.status, res['error'], res['error_description'])
         return OAuth2AuthorizationCodeTokenResponse(res['token_type'], res['access_token'], res['refresh_token'], res['expires_in'])
 
     def refresh_token(self, refresh_token: str):
         token_uri = '{}/oauth/token'.format(self.base_uri)
         
         data = {
-            'grant_type': 'authorization_code',
+            'grant_type': 'refresh_token',
             'client_id': self.client_id,
             'client_secret': self.client_secret,
-            'redirect_uri': self.redirect_uri,
             'refresh_token': refresh_token
         }
 
@@ -70,6 +70,8 @@ class OAuth2AuthorizationCode:
 
         resp = self._http.request("POST", token_uri, body=body, headers={"Content-Type": "application/json"})
         res = json.loads(resp.data.decode("utf-8"))
+        if resp.status != 200 : 
+            raise OAuth2AuthorizationCodeError(resp.status, res['error'], res['error_description'])
         return OAuth2AuthorizationCodeTokenResponse(res['token_type'], res['access_token'], res['refresh_token'], res['expires_in'])
 
     @staticmethod
@@ -90,3 +92,10 @@ class OAuth2AuthorizationCodeTokenResponse:
         self.access_token = access_token
         self.refresh_token = refresh_token
         self.expires_in = expires_in
+
+class OAuth2AuthorizationCodeError(Exception):
+    def __init__(self, status: int, error: str, error_description: str):
+        self.status = status
+        self.error = error
+        self.error_description = error_description
+        super().__init__("An error occurred while retrieving token: " + error)
