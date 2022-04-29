@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.received_document_entity import ReceivedDocumentEntity
+from fattureincloud_python_sdk.model.received_document_entity import (
+    ReceivedDocumentEntity,
+)
 
 
 class TestReceivedDocumentEntity(unittest.TestCase):
@@ -30,14 +32,11 @@ class TestReceivedDocumentEntity(unittest.TestCase):
 
     def testReceivedDocumentEntity(self):
         """Test ReceivedDocumentEntity"""
-        model = ReceivedDocumentEntity(
-            id=1,
-            name="name_example"
-        )
-        expected_json = "{\"id\": 1, \"name\": \"name_example\"}"
+        model = ReceivedDocumentEntity(id=1, name="name_example")
+        expected_json = '{"id": 1, "name": "name_example"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

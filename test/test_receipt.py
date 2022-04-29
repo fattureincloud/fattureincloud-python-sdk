@@ -21,9 +21,10 @@ from fattureincloud_python_sdk.model.receipt_items_list_item import ReceiptItems
 from fattureincloud_python_sdk.model.receipt_type import ReceiptType
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['PaymentAccount'] = PaymentAccount
-globals()['ReceiptItemsListItem'] = ReceiptItemsListItem
-globals()['ReceiptType'] = ReceiptType
+
+globals()["PaymentAccount"] = PaymentAccount
+globals()["ReceiptItemsListItem"] = ReceiptItemsListItem
+globals()["ReceiptType"] = ReceiptType
 from fattureincloud_python_sdk.model.receipt import Receipt
 
 
@@ -40,7 +41,7 @@ class TestReceipt(unittest.TestCase):
         """Test Receipt"""
         model = Receipt(
             id=1,
-            date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+            date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
             number=3.14,
             numeration="numeration_example",
             amount_net=3.14,
@@ -85,5 +86,5 @@ class TestReceipt(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

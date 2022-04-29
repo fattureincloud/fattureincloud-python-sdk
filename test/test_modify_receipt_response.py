@@ -21,8 +21,11 @@ from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountT
 from fattureincloud_python_sdk.model.receipt_items_list_item import ReceiptItemsListItem
 from fattureincloud_python_sdk.model.receipt_type import ReceiptType
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['Receipt'] = Receipt
-from fattureincloud_python_sdk.model.modify_receipt_response import ModifyReceiptResponse
+
+globals()["Receipt"] = Receipt
+from fattureincloud_python_sdk.model.modify_receipt_response import (
+    ModifyReceiptResponse,
+)
 
 
 class TestModifyReceiptResponse(unittest.TestCase):
@@ -39,7 +42,7 @@ class TestModifyReceiptResponse(unittest.TestCase):
         model = ModifyReceiptResponse(
             data=Receipt(
                 id=1,
-                date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                 number=3.14,
                 numeration="numeration_example",
                 amount_net=3.14,
@@ -85,5 +88,5 @@ class TestModifyReceiptResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

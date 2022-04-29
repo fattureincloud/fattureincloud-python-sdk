@@ -14,8 +14,8 @@ class TestScope(unittest.TestCase):
 
     def testScope(self):
         scope = Scope.ISSUED_DOCUMENTS_CREDIT_NOTE_ALL
-        assert scope.value == 'issued_documents.credit_note:a'
+        assert scope.value == "issued_documents.credit_note:a"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

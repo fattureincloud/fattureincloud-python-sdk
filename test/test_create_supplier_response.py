@@ -18,8 +18,11 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.supplier import Supplier
 from fattureincloud_python_sdk.model.supplier_type import SupplierType
-globals()['Supplier'] = Supplier
-from fattureincloud_python_sdk.model.create_supplier_response import CreateSupplierResponse
+
+globals()["Supplier"] = Supplier
+from fattureincloud_python_sdk.model.create_supplier_response import (
+    CreateSupplierResponse,
+)
 
 
 class TestCreateSupplierResponse(unittest.TestCase):
@@ -64,5 +67,5 @@ class TestCreateSupplierResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -36,5 +36,5 @@ class TestIssuedDocumentStatus(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
