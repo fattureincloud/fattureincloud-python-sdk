@@ -15,7 +15,9 @@ import unittest
 
 from fattureincloud_python_sdk.model.client import Client
 from fattureincloud_python_sdk.model.client_type import ClientType
-from fattureincloud_python_sdk.model.default_payment_terms_type import DefaultPaymentTermsType
+from fattureincloud_python_sdk.model.default_payment_terms_type import (
+    DefaultPaymentTermsType,
+)
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.model.payment_method import PaymentMethod
@@ -23,7 +25,8 @@ from fattureincloud_python_sdk.model.payment_method_details import PaymentMethod
 from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
 from fattureincloud_python_sdk.model.vat_type import VatType
 from fattureincloud_python_sdk.model.client import Client
-globals()['Client'] = Client
+
+globals()["Client"] = Client
 from functions import json_serial
 from fattureincloud_python_sdk.model.create_client_response import CreateClientResponse
 
@@ -112,5 +115,6 @@ class TestCreateClientResponse(unittest.TestCase):
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

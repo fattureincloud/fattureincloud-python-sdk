@@ -29,14 +29,11 @@ class TestSenderEmail(unittest.TestCase):
 
     def testSenderEmail(self):
         """Test SenderEmail"""
-        model = SenderEmail(
-            id=1,
-            email="ex.email@provider.co"
-        )
-        expected_json = "{\"id\": 1, \"email\": \"ex.email@provider.co\"}"
+        model = SenderEmail(id=1, email="ex.email@provider.co")
+        expected_json = '{"id": 1, "email": "ex.email@provider.co"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

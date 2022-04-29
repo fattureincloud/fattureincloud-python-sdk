@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import GetUserInfoResponseEmailConfirmationState
+from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import (
+    GetUserInfoResponseEmailConfirmationState,
+)
 
 
 class TestGetUserInfoResponseEmailConfirmationState(unittest.TestCase):
@@ -30,13 +32,11 @@ class TestGetUserInfoResponseEmailConfirmationState(unittest.TestCase):
 
     def testGetUserInfoResponseEmailConfirmationState(self):
         """Test GetUserInfoResponseEmailConfirmationState"""
-        model = GetUserInfoResponseEmailConfirmationState(
-            need_confirmation=False
-        )
-        expected_json = "{\"need_confirmation\": false}"
+        model = GetUserInfoResponseEmailConfirmationState(need_confirmation=False)
+        expected_json = '{"need_confirmation": false}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

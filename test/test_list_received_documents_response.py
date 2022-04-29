@@ -16,17 +16,26 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_received_documents_response_page import ListReceivedDocumentsResponsePage
+from fattureincloud_python_sdk.model.list_received_documents_response_page import (
+    ListReceivedDocumentsResponsePage,
+)
 from fattureincloud_python_sdk.model.pagination import Pagination
 from fattureincloud_python_sdk.model.received_document import ReceivedDocument
-from fattureincloud_python_sdk.model.received_document_entity import ReceivedDocumentEntity
-from fattureincloud_python_sdk.model.received_document_items_list_item import ReceivedDocumentItemsListItem
+from fattureincloud_python_sdk.model.received_document_entity import (
+    ReceivedDocumentEntity,
+)
+from fattureincloud_python_sdk.model.received_document_items_list_item import (
+    ReceivedDocumentItemsListItem,
+)
 from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['ListReceivedDocumentsResponsePage'] = ListReceivedDocumentsResponsePage
-globals()['Pagination'] = Pagination
-globals()['ReceivedDocument'] = ReceivedDocument
-from fattureincloud_python_sdk.model.list_received_documents_response import ListReceivedDocumentsResponse
+
+globals()["ListReceivedDocumentsResponsePage"] = ListReceivedDocumentsResponsePage
+globals()["Pagination"] = Pagination
+globals()["ReceivedDocument"] = ReceivedDocument
+from fattureincloud_python_sdk.model.list_received_documents_response import (
+    ListReceivedDocumentsResponse,
+)
 
 
 class TestListReceivedDocumentsResponse(unittest.TestCase):
@@ -49,7 +58,7 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
                         id=1,
                         name="name_example",
                     ),
-                    date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                     category="category_example",
                     description="description_example",
                     amount_net=3.14,
@@ -84,7 +93,7 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
                                 ei_description="ei_description_example",
                                 is_disabled=True,
                             ),
-                            stock=3.14
+                            stock=3.14,
                         )
                     ],
                     current_page=10,
@@ -96,7 +105,7 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
                     per_page=10,
                     prev_page_url="http://url.com",
                     to=10,
-                    total=10
+                    total=10,
                 )
             ]
         )
@@ -105,5 +114,5 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

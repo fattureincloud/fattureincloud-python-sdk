@@ -20,13 +20,19 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
+from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import (
+    GetEInvoiceRejectionReasonResponse,
+)
 from fattureincloud_python_sdk.model.send_e_invoice_request import SendEInvoiceRequest
 from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import VerifyEInvoiceXmlErrorResponse
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import VerifyEInvoiceXmlResponse
+from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import (
+    VerifyEInvoiceXmlErrorResponse,
+)
+from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import (
+    VerifyEInvoiceXmlResponse,
+)
 
 
 class IssuedEInvoicesApi(object):
@@ -42,250 +48,193 @@ class IssuedEInvoicesApi(object):
         self.api_client = api_client
         self.get_e_invoice_rejection_reason_endpoint = _Endpoint(
             settings={
-                'response_type': (GetEInvoiceRejectionReasonResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/e_invoice/error_reason',
-                'operation_id': 'get_e_invoice_rejection_reason',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetEInvoiceRejectionReasonResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/e_invoice/error_reason",
+                "operation_id": "get_e_invoice_rejection_reason",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
+                "all": [
+                    "company_id",
+                    "document_id",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_e_invoice_xml_endpoint = _Endpoint(
             settings={
-                'response_type': (str,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/e_invoice/xml',
-                'operation_id': 'get_e_invoice_xml',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (str,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/e_invoice/xml",
+                "operation_id": "get_e_invoice_xml",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'include_attachment',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "include_attachment",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "include_attachment": (bool,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
+                    "include_attachment": "include_attachment",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'include_attachment':
-                        (bool,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "include_attachment": "query",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                    'include_attachment': 'include_attachment',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'include_attachment': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'text/xml'
-                ],
-                'content_type': [],
+                "accept": ["text/xml"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.send_e_invoice_endpoint = _Endpoint(
             settings={
-                'response_type': (SendEInvoiceResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/e_invoice/send',
-                'operation_id': 'send_e_invoice',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (SendEInvoiceResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/e_invoice/send",
+                "operation_id": "send_e_invoice",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'send_e_invoice_request',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "send_e_invoice_request",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "send_e_invoice_request": (SendEInvoiceRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'send_e_invoice_request':
-                        (SendEInvoiceRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "send_e_invoice_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'send_e_invoice_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.verify_e_invoice_xml_endpoint = _Endpoint(
             settings={
-                'response_type': (VerifyEInvoiceXmlResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/e_invoice/xml_verify',
-                'operation_id': 'verify_e_invoice_xml',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (VerifyEInvoiceXmlResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/e_invoice/xml_verify",
+                "operation_id": "verify_e_invoice_xml",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
+                "all": [
+                    "company_id",
+                    "document_id",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def get_e_invoice_rejection_reason(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def get_e_invoice_rejection_reason(self, company_id, document_id, **kwargs):
         """Get e-invoice rejection reason  # noqa: E501
 
         Get e-invoice rejection reason  # noqa: E501
@@ -332,42 +281,22 @@ class IssuedEInvoicesApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
+        return self.get_e_invoice_rejection_reason_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
-        return self.get_e_invoice_rejection_reason_endpoint.call_with_http_info(**kwargs)
 
-    def get_e_invoice_xml(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def get_e_invoice_xml(self, company_id, document_id, **kwargs):
         """Get e-invoice XML  # noqa: E501
 
         Downloads the e-invoice in XML format.  # noqa: E501
@@ -415,42 +344,20 @@ class IssuedEInvoicesApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.get_e_invoice_xml_endpoint.call_with_http_info(**kwargs)
 
-    def send_e_invoice(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def send_e_invoice(self, company_id, document_id, **kwargs):
         """Send the e-invoice  # noqa: E501
 
         Sends the e-invoice to SDI.  # noqa: E501
@@ -498,42 +405,20 @@ class IssuedEInvoicesApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.send_e_invoice_endpoint.call_with_http_info(**kwargs)
 
-    def verify_e_invoice_xml(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def verify_e_invoice_xml(self, company_id, document_id, **kwargs):
         """Verify e-invoice XML  # noqa: E501
 
         Verifies the e-invoice XML format. Checks if all of the mandatory fields are filled and compliant to the right format.  # noqa: E501
@@ -580,33 +465,15 @@ class IssuedEInvoicesApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.verify_e_invoice_xml_endpoint.call_with_http_info(**kwargs)
-

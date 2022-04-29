@@ -30,13 +30,11 @@ class TestFunctionStatus(unittest.TestCase):
 
     def testFunctionStatus(self):
         """Test FunctionStatus"""
-        model = FunctionStatus(
-            active=True
-        )
-        expected_json = "{\"active\": true}"
+        model = FunctionStatus(active=True)
+        expected_json = '{"active": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

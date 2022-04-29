@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.received_document_info_items_default_values import ReceivedDocumentInfoItemsDefaultValues
+from fattureincloud_python_sdk.model.received_document_info_items_default_values import (
+    ReceivedDocumentInfoItemsDefaultValues,
+)
 
 
 class TestReceivedDocumentInfoItemsDefaultValues(unittest.TestCase):
@@ -30,12 +32,11 @@ class TestReceivedDocumentInfoItemsDefaultValues(unittest.TestCase):
 
     def testReceivedDocumentInfoItemsDefaultValues(self):
         """Test ReceivedDocumentInfoItemsDefaultValues"""
-        model = ReceivedDocumentInfoItemsDefaultValues(
-            detailed=True
-        )
-        expected_json = "{\"detailed\": true}"
+        model = ReceivedDocumentInfoItemsDefaultValues(detailed=True)
+        expected_json = '{"detailed": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
-globals()['ArchiveDocument'] = ArchiveDocument
-from fattureincloud_python_sdk.model.create_archive_document_request import CreateArchiveDocumentRequest
+
+globals()["ArchiveDocument"] = ArchiveDocument
+from fattureincloud_python_sdk.model.create_archive_document_request import (
+    CreateArchiveDocumentRequest,
+)
 
 
 class TestCreateArchiveDocumentRequest(unittest.TestCase):
@@ -33,12 +36,12 @@ class TestCreateArchiveDocumentRequest(unittest.TestCase):
     def testCreateArchiveDocumentRequest(self):
         """Test CreateArchiveDocumentRequest"""
         model = CreateArchiveDocumentRequest(
-        data=ArchiveDocument(
-            id=1,
-            date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
-            description="description_example",
-            category="category_example",
-            attachment_token="attachment_token_example",
+            data=ArchiveDocument(
+                id=1,
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                description="description_example",
+                category="category_example",
+                attachment_token="attachment_token_example",
             )
         )
         expected_json = '{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}'
@@ -46,5 +49,5 @@ class TestCreateArchiveDocumentRequest(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

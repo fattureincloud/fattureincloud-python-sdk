@@ -16,7 +16,9 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.send_e_invoice_response_data import SendEInvoiceResponseData
+from fattureincloud_python_sdk.model.send_e_invoice_response_data import (
+    SendEInvoiceResponseData,
+)
 
 
 class TestSendEInvoiceResponseData(unittest.TestCase):
@@ -30,14 +32,11 @@ class TestSendEInvoiceResponseData(unittest.TestCase):
 
     def testSendEInvoiceResponseData(self):
         """Test SendEInvoiceResponseData"""
-        model = SendEInvoiceResponseData(
-            name="msg",
-            date="2022-01-01"
-        )
-        expected_json = "{\"name\": \"msg\", \"date\": \"2022-01-01\"}"
+        model = SendEInvoiceResponseData(name="msg", date="2022-01-01")
+        expected_json = '{"name": "msg", "date": "2022-01-01"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
