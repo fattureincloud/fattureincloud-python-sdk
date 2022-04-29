@@ -13,8 +13,8 @@ class TestScope(unittest.TestCase):
         pass
 
     def testScope(self):
-        scope = Scope.ISSUED_DOCUMENTS_CREDIT_NOTE_ALL
-        assert scope.value == 'issued_documents.credit_note:a'
+        scope = Scope.ISSUED_DOCUMENTS_CREDIT_NOTES_ALL
+        assert scope.value == 'issued_documents.credit_notes:a'
 
 
 if __name__ == '__main__':
