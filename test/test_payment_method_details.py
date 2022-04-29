@@ -34,10 +34,12 @@ class TestPaymentMethodDetails(unittest.TestCase):
             title="title_example",
             description="description_example",
         )
-        expected_json = "{\"title\": \"title_example\", \"description\": \"description_example\"}"
+        expected_json = (
+            '{"title": "title_example", "description": "description_example"}'
+        )
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

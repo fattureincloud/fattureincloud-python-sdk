@@ -20,14 +20,24 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from fattureincloud_python_sdk.model.create_supplier_request import CreateSupplierRequest
-from fattureincloud_python_sdk.model.create_supplier_response import CreateSupplierResponse
+from fattureincloud_python_sdk.model.create_supplier_request import (
+    CreateSupplierRequest,
+)
+from fattureincloud_python_sdk.model.create_supplier_response import (
+    CreateSupplierResponse,
+)
 from fattureincloud_python_sdk.model.get_supplier_response import GetSupplierResponse
-from fattureincloud_python_sdk.model.list_suppliers_response import ListSuppliersResponse
-from fattureincloud_python_sdk.model.modify_supplier_request import ModifySupplierRequest
-from fattureincloud_python_sdk.model.modify_supplier_response import ModifySupplierResponse
+from fattureincloud_python_sdk.model.list_suppliers_response import (
+    ListSuppliersResponse,
+)
+from fattureincloud_python_sdk.model.modify_supplier_request import (
+    ModifySupplierRequest,
+)
+from fattureincloud_python_sdk.model.modify_supplier_response import (
+    ModifySupplierResponse,
+)
 
 
 class SuppliersApi(object):
@@ -43,345 +53,267 @@ class SuppliersApi(object):
         self.api_client = api_client
         self.create_supplier_endpoint = _Endpoint(
             settings={
-                'response_type': (CreateSupplierResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/suppliers',
-                'operation_id': 'create_supplier',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (CreateSupplierResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/suppliers",
+                "operation_id": "create_supplier",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'create_supplier_request',
+                "all": [
+                    "company_id",
+                    "create_supplier_request",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "create_supplier_request": (CreateSupplierRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'create_supplier_request':
-                        (CreateSupplierRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "create_supplier_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'create_supplier_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.delete_supplier_endpoint = _Endpoint(
             settings={
-                'response_type': None,
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/suppliers/{supplier_id}',
-                'operation_id': 'delete_supplier',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": None,
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/suppliers/{supplier_id}",
+                "operation_id": "delete_supplier",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'supplier_id',
+                "all": [
+                    "company_id",
+                    "supplier_id",
                 ],
-                'required': [
-                    'company_id',
-                    'supplier_id',
+                "required": [
+                    "company_id",
+                    "supplier_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "supplier_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "supplier_id": "supplier_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'supplier_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "supplier_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'supplier_id': 'supplier_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'supplier_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [],
-                'content_type': [],
+                "accept": [],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_supplier_endpoint = _Endpoint(
             settings={
-                'response_type': (GetSupplierResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/suppliers/{supplier_id}',
-                'operation_id': 'get_supplier',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetSupplierResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/suppliers/{supplier_id}",
+                "operation_id": "get_supplier",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'supplier_id',
-                    'fields',
-                    'fieldset',
+                "all": [
+                    "company_id",
+                    "supplier_id",
+                    "fields",
+                    "fieldset",
                 ],
-                'required': [
-                    'company_id',
-                    'supplier_id',
+                "required": [
+                    "company_id",
+                    "supplier_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "supplier_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'supplier_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "supplier_id": "supplier_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'supplier_id': 'supplier_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
+                "location_map": {
+                    "company_id": "path",
+                    "supplier_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'supplier_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_suppliers_endpoint = _Endpoint(
             settings={
-                'response_type': (ListSuppliersResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/suppliers',
-                'operation_id': 'list_suppliers',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListSuppliersResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/suppliers",
+                "operation_id": "list_suppliers",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'fields',
-                    'fieldset',
-                    'sort',
-                    'page',
-                    'per_page',
-                    'q',
+                "all": [
+                    "company_id",
+                    "fields",
+                    "fieldset",
+                    "sort",
+                    "page",
+                    "per_page",
+                    "q",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
+                    "sort": (str,),
+                    "page": (int,),
+                    "per_page": (int,),
+                    "q": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
-                    'sort':
-                        (str,),
-                    'page':
-                        (int,),
-                    'per_page':
-                        (int,),
-                    'q':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
+                    "sort": "sort",
+                    "page": "page",
+                    "per_page": "per_page",
+                    "q": "q",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
-                    'sort': 'sort',
-                    'page': 'page',
-                    'per_page': 'per_page',
-                    'q': 'q',
+                "location_map": {
+                    "company_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
+                    "sort": "query",
+                    "page": "query",
+                    "per_page": "query",
+                    "q": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                    'sort': 'query',
-                    'page': 'query',
-                    'per_page': 'query',
-                    'q': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.modify_supplier_endpoint = _Endpoint(
             settings={
-                'response_type': (ModifySupplierResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/entities/suppliers/{supplier_id}',
-                'operation_id': 'modify_supplier',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (ModifySupplierResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/entities/suppliers/{supplier_id}",
+                "operation_id": "modify_supplier",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'supplier_id',
-                    'modify_supplier_request',
+                "all": [
+                    "company_id",
+                    "supplier_id",
+                    "modify_supplier_request",
                 ],
-                'required': [
-                    'company_id',
-                    'supplier_id',
+                "required": [
+                    "company_id",
+                    "supplier_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "supplier_id": (int,),
+                    "modify_supplier_request": (ModifySupplierRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "supplier_id": "supplier_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'supplier_id':
-                        (int,),
-                    'modify_supplier_request':
-                        (ModifySupplierRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "supplier_id": "path",
+                    "modify_supplier_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'supplier_id': 'supplier_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'supplier_id': 'path',
-                    'modify_supplier_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def create_supplier(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def create_supplier(self, company_id, **kwargs):
         """Create Supplier  # noqa: E501
 
         Creates a new supplier.  # noqa: E501
@@ -428,40 +360,19 @@ class SuppliersApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.create_supplier_endpoint.call_with_http_info(**kwargs)
 
-    def delete_supplier(
-        self,
-        company_id,
-        supplier_id,
-        **kwargs
-    ):
+    def delete_supplier(self, company_id, supplier_id, **kwargs):
         """Delete Supplier  # noqa: E501
 
         Deletes the specified supplier.  # noqa: E501
@@ -508,42 +419,20 @@ class SuppliersApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['supplier_id'] = \
-            supplier_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["supplier_id"] = supplier_id
         return self.delete_supplier_endpoint.call_with_http_info(**kwargs)
 
-    def get_supplier(
-        self,
-        company_id,
-        supplier_id,
-        **kwargs
-    ):
+    def get_supplier(self, company_id, supplier_id, **kwargs):
         """Get Supplier  # noqa: E501
 
         Gets the specified supplier.  # noqa: E501
@@ -592,41 +481,20 @@ class SuppliersApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['supplier_id'] = \
-            supplier_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["supplier_id"] = supplier_id
         return self.get_supplier_endpoint.call_with_http_info(**kwargs)
 
-    def list_suppliers(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def list_suppliers(self, company_id, **kwargs):
         """List Suppliers  # noqa: E501
 
         Lists the suppliers.  # noqa: E501
@@ -678,40 +546,19 @@ class SuppliersApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.list_suppliers_endpoint.call_with_http_info(**kwargs)
 
-    def modify_supplier(
-        self,
-        company_id,
-        supplier_id,
-        **kwargs
-    ):
+    def modify_supplier(self, company_id, supplier_id, **kwargs):
         """Modify Supplier  # noqa: E501
 
         Modifies the specified supplier.  # noqa: E501
@@ -759,33 +606,15 @@ class SuppliersApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['supplier_id'] = \
-            supplier_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["supplier_id"] = supplier_id
         return self.modify_supplier_endpoint.call_with_http_info(**kwargs)
-

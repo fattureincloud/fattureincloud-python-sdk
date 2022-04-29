@@ -15,8 +15,11 @@ import unittest
 from functions import json_serial
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
-globals()['DetailedCountry'] = DetailedCountry
-from fattureincloud_python_sdk.model.list_detailed_countries_response import ListDetailedCountriesResponse
+
+globals()["DetailedCountry"] = DetailedCountry
+from fattureincloud_python_sdk.model.list_detailed_countries_response import (
+    ListDetailedCountriesResponse,
+)
 
 
 class TestListDetailedCountriesResponse(unittest.TestCase):
@@ -37,15 +40,15 @@ class TestListDetailedCountriesResponse(unittest.TestCase):
                     settings_name="Italia",
                     iso="IT",
                     fiscal_iso="IT",
-                    uic="086"
+                    uic="086",
                 ),
                 DetailedCountry(
                     name="Albania",
                     settings_name="Albania",
                     iso="AL",
                     fiscal_iso="AL",
-                    uic="087"
-                )
+                    uic="087",
+                ),
             ]
         )
         expected_json = '{"data": [{"name": "Italia", "settings_name": "Italia", "iso": "IT", "fiscal_iso": "IT", "uic": "086"}, {"name": "Albania", "settings_name": "Albania", "iso": "AL", "fiscal_iso": "AL", "uic": "087"}]}'
@@ -53,5 +56,5 @@ class TestListDetailedCountriesResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

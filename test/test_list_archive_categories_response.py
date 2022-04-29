@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_archive_categories_response import ListArchiveCategoriesResponse
+from fattureincloud_python_sdk.model.list_archive_categories_response import (
+    ListArchiveCategoriesResponse,
+)
 
 
 class TestListArchiveCategoriesResponse(unittest.TestCase):
@@ -30,16 +32,11 @@ class TestListArchiveCategoriesResponse(unittest.TestCase):
 
     def testListArchiveCategoriesResponse(self):
         """Test ListArchiveCategoriesResponse"""
-        model = ListArchiveCategoriesResponse(
-            data=[
-                "cat5",
-                "cat6"
-            ]
-        )
-        expected_json = "{\"data\": [\"cat5\", \"cat6\"]}"
+        model = ListArchiveCategoriesResponse(data=["cat5", "cat6"])
+        expected_json = '{"data": ["cat5", "cat6"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

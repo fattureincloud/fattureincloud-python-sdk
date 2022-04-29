@@ -16,7 +16,9 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_extra_data import IssuedDocumentExtraData
+from fattureincloud_python_sdk.model.issued_document_extra_data import (
+    IssuedDocumentExtraData,
+)
 
 
 class TestIssuedDocumentExtraData(unittest.TestCase):
@@ -40,15 +42,15 @@ class TestIssuedDocumentExtraData(unittest.TestCase):
             ts_opposizione=True,
             ts_status=1,
             ts_file_id="ts_file_id_example",
-            ts_sent_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+            ts_sent_date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
             ts_full_amount=True,
             imported_by="imported_by_example",
             ts_single_sending=True,
         )
-        expected_json = "{\"show_sofort_button\": true, \"multifatture_sent\": 1, \"ts_communication\": true, \"ts_flag_tipo_spesa\": 3.14, \"ts_pagamento_tracciato\": true, \"ts_tipo_spesa\": \"ts_tipo_spesa_example\", \"ts_opposizione\": true, \"ts_status\": 1, \"ts_file_id\": \"ts_file_id_example\", \"ts_sent_date\": \"2022-01-01\", \"ts_full_amount\": true, \"imported_by\": \"imported_by_example\", \"ts_single_sending\": true}"
+        expected_json = '{"show_sofort_button": true, "multifatture_sent": 1, "ts_communication": true, "ts_flag_tipo_spesa": 3.14, "ts_pagamento_tracciato": true, "ts_tipo_spesa": "ts_tipo_spesa_example", "ts_opposizione": true, "ts_status": 1, "ts_file_id": "ts_file_id_example", "ts_sent_date": "2022-01-01", "ts_full_amount": true, "imported_by": "imported_by_example", "ts_single_sending": true}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

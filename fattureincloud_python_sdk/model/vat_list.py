@@ -25,14 +25,15 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
-    OpenApiModel
+    OpenApiModel,
 )
 from fattureincloud_python_sdk.exceptions import ApiAttributeError
 
 
 def lazy_import():
     from fattureincloud_python_sdk.model.vat_item import VatItem
-    globals()['VatItem'] = VatItem
+
+    globals()["VatItem"] = VatItem
 
 
 class VatList(ModelNormal):
@@ -59,11 +60,9 @@ class VatList(ModelNormal):
           as additional properties values.
     """
 
-    allowed_values = {
-    }
+    allowed_values = {}
 
-    validations = {
-    }
+    validations = {}
 
     @cached_property
     def additional_properties_type():
@@ -87,19 +86,15 @@ class VatList(ModelNormal):
                 and the value is attribute type.
         """
         lazy_import()
-        return {
-        }
+        return {}
 
     @cached_property
     def discriminator():
         return None
 
+    attribute_map = {}
 
-    attribute_map = {
-    }
-
-    read_only_vars = {
-    }
+    read_only_vars = {}
 
     _composed_schemas = {}
 
@@ -141,17 +136,18 @@ class VatList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -167,23 +163,27 @@ class VatList(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         for var_name, var_value in kwargs.items():
-            if var_name not in self.attribute_map and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self.additional_properties_type is None:
+            if (
+                var_name not in self.attribute_map
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self.additional_properties_type is None
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
         return self
 
-    required_properties = set([
-        '_data_store',
-        '_check_type',
-        '_spec_property_naming',
-        '_path_to_item',
-        '_configuration',
-        '_visited_composed_classes',
-    ])
+    required_properties = set(
+        [
+            "_data_store",
+            "_check_type",
+            "_spec_property_naming",
+            "_path_to_item",
+            "_configuration",
+            "_visited_composed_classes",
+        ]
+    )
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
@@ -222,15 +222,16 @@ class VatList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -246,13 +247,17 @@ class VatList(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         for var_name, var_value in kwargs.items():
-            if var_name not in self.attribute_map and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self.additional_properties_type is None:
+            if (
+                var_name not in self.attribute_map
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self.additional_properties_type is None
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
             if var_name in self.read_only_vars:
-                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
-                                     f"class with read only attributes.")
+                raise ApiAttributeError(
+                    f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                    f"class with read only attributes."
+                )

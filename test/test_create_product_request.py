@@ -18,7 +18,8 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.product import Product
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['Product'] = Product
+
+globals()["Product"] = Product
 from fattureincloud_python_sdk.model.create_product_request import CreateProductRequest
 
 
@@ -33,7 +34,7 @@ class TestCreateProductRequest(unittest.TestCase):
 
     def testCreateProductRequest(self):
         """Test CreateProductRequest"""
-        model = CreateProductRequest(  
+        model = CreateProductRequest(
             data=Product(
                 id=1,
                 name="name_example",
@@ -69,5 +70,5 @@ class TestCreateProductRequest(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

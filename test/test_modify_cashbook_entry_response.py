@@ -16,12 +16,17 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.cashbook_entry import CashbookEntry
-from fattureincloud_python_sdk.model.cashbook_entry_document import CashbookEntryDocument
+from fattureincloud_python_sdk.model.cashbook_entry_document import (
+    CashbookEntryDocument,
+)
 from fattureincloud_python_sdk.model.cashbook_entry_kind import CashbookEntryKind
 from fattureincloud_python_sdk.model.cashbook_entry_type import CashbookEntryType
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-globals()['CashbookEntry'] = CashbookEntry
-from fattureincloud_python_sdk.model.modify_cashbook_entry_response import ModifyCashbookEntryResponse
+
+globals()["CashbookEntry"] = CashbookEntry
+from fattureincloud_python_sdk.model.modify_cashbook_entry_response import (
+    ModifyCashbookEntryResponse,
+)
 
 
 class TestModifyCashbookEntryResponse(unittest.TestCase):
@@ -38,21 +43,14 @@ class TestModifyCashbookEntryResponse(unittest.TestCase):
         model = ModifyCashbookEntryResponse(
             data=CashbookEntry(
                 id="1",
-                date=datetime.datetime.strptime("2022-02-02", '%Y-%m-%d').date(),
+                date=datetime.datetime.strptime("2022-02-02", "%Y-%m-%d").date(),
                 description="description",
                 kind=CashbookEntryKind("cashbook"),
                 type=CashbookEntryType("in"),
                 entity_name="name",
-                    document=CashbookEntryDocument(
-                    id=1,
-                    path="/path",
-                    type="doc"
-                ),
+                document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(
-                    id=1,
-                    name="banca"
-                ),
+                payment_account_in=PaymentAccount(id=1, name="banca"),
             )
         )
         expected_json = '{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}}'
@@ -60,5 +58,5 @@ class TestModifyCashbookEntryResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -18,9 +18,12 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.document_template import DocumentTemplate
 from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-globals()['DocumentTemplate'] = DocumentTemplate
-globals()['PaymentMethod'] = PaymentMethod
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import IssuedDocumentPreCreateInfoDefaultValues
+
+globals()["DocumentTemplate"] = DocumentTemplate
+globals()["PaymentMethod"] = PaymentMethod
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import (
+    IssuedDocumentPreCreateInfoDefaultValues,
+)
 
 
 class TestIssuedDocumentPreCreateInfoDefaultValues(unittest.TestCase):
@@ -39,12 +42,12 @@ class TestIssuedDocumentPreCreateInfoDefaultValues(unittest.TestCase):
             notes="default notes",
             cassa=10.0,
             whithholding_tax=15,
-            use_goss_pricess=False
+            use_goss_pricess=False,
         )
-        expected_json = "{\"rivalsa\": 10.0, \"notes\": \"default notes\", \"cassa\": 10.0, \"whithholding_tax\": 15, \"use_goss_pricess\": false}"
+        expected_json = '{"rivalsa": 10.0, "notes": "default notes", "cassa": 10.0, "whithholding_tax": 15, "use_goss_pricess": false}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

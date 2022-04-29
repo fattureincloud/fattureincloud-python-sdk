@@ -233,7 +233,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -245,7 +245,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -787,7 +787,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -799,7 +799,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -1285,7 +1285,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -1297,7 +1297,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     ei_raw={},
                 ),
             ],
@@ -1721,7 +1721,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             payments_list=[
                 IssuedDocumentPaymentsListItem(
                     id=1,
-                    due_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    due_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     amount=1.45,
                     status=IssuedDocumentStatus("not_paid"),
                     payment_account=PaymentAccount(
@@ -1733,7 +1733,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                         cuc="cuc_example",
                         virtual=True,
                     ),
-                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
+                    paid_date=dateutil_parser('Tue Apr 03 00:00:00 GMT 2018').date(),
                     ei_raw={},
                 ),
             ],
