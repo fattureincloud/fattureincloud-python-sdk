@@ -42,20 +42,20 @@ class TestOAuth2(unittest.TestCase):
     def testGetScopeStr(self):
         scopes = [
             Scope.SETTINGS_ALL,
-            Scope.ISSUED_DOCUMENTS_INVOICE_READ
+            Scope.ISSUED_DOCUMENTS_INVOICES_READ
         ]
         scopes_str = OAuth2AuthorizationCodeManager._get_scope_str(scopes)
 
-        assert scopes_str == "settings:a issued_documents.invoice:r"
+        assert scopes_str == "settings:a issued_documents.invoices:r"
 
     def testGetAuthorizationUrl(self):
         scopes = [
             Scope.SETTINGS_ALL,
-            Scope.ISSUED_DOCUMENTS_INVOICE_READ
+            Scope.ISSUED_DOCUMENTS_INVOICES_READ
         ]
         url = self.oa2.get_authorization_url(scopes, "EXAMPLE_STATE")
 
-        assert url == "https://api-v2.fattureincloud.it/oauth/authorize?response_type=code&client_id=CLIENT_ID&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&scope=settings%3Aa+issued_documents.invoice%3Ar&state=EXAMPLE_STATE"
+        assert url == "https://api-v2.fattureincloud.it/oauth/authorize?response_type=code&client_id=CLIENT_ID&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fredirect&scope=settings%3Aa+issued_documents.invoices%3Ar&state=EXAMPLE_STATE"
 
     def testGetParamsFromUrl(self):
         url = "http://localhost:3000/redirect?state=EXAMPLE_STATE&code=c%2FEXAMPLE_CODE"
