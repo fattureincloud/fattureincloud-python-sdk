@@ -17,7 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.city import City
-globals()['City'] = City
+
+globals()["City"] = City
 from fattureincloud_python_sdk.model.list_cities_response import ListCitiesResponse
 
 
@@ -34,16 +35,8 @@ class TestListCitiesResponse(unittest.TestCase):
         """Test ListCitiesResponse"""
         model = ListCitiesResponse(
             data=[
-                City(
-                    city="bergamo",
-                    province="BG",
-                    postal_code="24121"
-                ),
-                City(
-                    city="milano",
-                    province="MI",
-                    postal_code="25111"
-                )
+                City(city="bergamo", province="BG", postal_code="24121"),
+                City(city="milano", province="MI", postal_code="25111"),
             ],
             current_page=10,
             first_page_url="http://url.com",
@@ -54,12 +47,12 @@ class TestListCitiesResponse(unittest.TestCase):
             per_page=10,
             prev_page_url="http://url.com",
             to=10,
-            total=10
+            total=10,
         )
         expected_json = '{"data": [{"city": "bergamo", "province": "BG", "postal_code": "24121"}, {"city": "milano", "province": "MI", "postal_code": "25111"}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

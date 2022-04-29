@@ -30,13 +30,11 @@ class TestLanguage(unittest.TestCase):
 
     def testLanguage(self):
         """Test Language"""
-        model = Language(
-            code="IT",
-            name="Italiano"
-        )
-        expected_json = "{\"code\": \"IT\", \"name\": \"Italiano\"}"
+        model = Language(code="IT", name="Italiano")
+        expected_json = '{"code": "IT", "name": "Italiano"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

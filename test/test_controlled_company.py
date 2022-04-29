@@ -18,7 +18,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.company_type import CompanyType
-globals()['CompanyType'] = CompanyType
+
+globals()["CompanyType"] = CompanyType
 from fattureincloud_python_sdk.model.controlled_company import ControlledCompany
 
 
@@ -39,13 +40,12 @@ class TestControlledCompany(unittest.TestCase):
             type=CompanyType("company"),
             access_token="zpaiefapfjaojf56546456456",
             connection_id=2.0,
-            tax_code="0123456789"
+            tax_code="0123456789",
         )
-        expected_json = "{\"id\": 1, \"name\": \"mario srl\", \"type\": \"company\", \"access_token\": \"zpaiefapfjaojf56546456456\", \"connection_id\": 2.0, \"tax_code\": \"0123456789\"}"
+        expected_json = '{"id": 1, "name": "mario srl", "type": "company", "access_token": "zpaiefapfjaojf56546456456", "connection_id": 2.0, "tax_code": "0123456789"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

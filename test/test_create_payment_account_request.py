@@ -18,8 +18,11 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-globals()['PaymentAccount'] = PaymentAccount
-from fattureincloud_python_sdk.model.create_payment_account_request import CreatePaymentAccountRequest
+
+globals()["PaymentAccount"] = PaymentAccount
+from fattureincloud_python_sdk.model.create_payment_account_request import (
+    CreatePaymentAccountRequest,
+)
 
 
 class TestCreatePaymentAccountRequest(unittest.TestCase):
@@ -49,5 +52,5 @@ class TestCreatePaymentAccountRequest(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

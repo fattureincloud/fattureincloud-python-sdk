@@ -17,9 +17,14 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.permission_level import PermissionLevel
-from fattureincloud_python_sdk.model.permissions_fic_issued_documents_detailed import PermissionsFicIssuedDocumentsDetailed
-globals()['PermissionLevel'] = PermissionLevel
-globals()['PermissionsFicIssuedDocumentsDetailed'] = PermissionsFicIssuedDocumentsDetailed
+from fattureincloud_python_sdk.model.permissions_fic_issued_documents_detailed import (
+    PermissionsFicIssuedDocumentsDetailed,
+)
+
+globals()["PermissionLevel"] = PermissionLevel
+globals()[
+    "PermissionsFicIssuedDocumentsDetailed"
+] = PermissionsFicIssuedDocumentsDetailed
 from fattureincloud_python_sdk.model.permissions import Permissions
 
 
@@ -69,13 +74,13 @@ class TestPermissions(unittest.TestCase):
                 orders=PermissionLevel("write"),
                 workReports=PermissionLevel("write"),
                 supplierOrders=PermissionLevel("write"),
-                selfInvoices=PermissionLevel("write")
-            )
+                selfInvoices=PermissionLevel("write"),
+            ),
         )
-        expected_json = "{\"fic_situation\": \"write\", \"fic_clients\": \"write\", \"fic_suppliers\": \"write\", \"fic_products\": \"write\", \"fic_issued_documents\": \"write\", \"fic_received_documents\": \"write\", \"fic_receipts\": \"write\", \"fic_calendar\": \"write\", \"fic_archive\": \"write\", \"fic_taxes\": \"write\", \"fic_stock\": \"write\", \"fic_cashbook\": \"write\", \"fic_settings\": \"write\", \"fic_emails\": \"write\", \"fic_export\": \"write\", \"fic_import_bankstatements\": \"write\", \"fic_import_clients_suppliers\": \"write\", \"fic_import_issued_documents\": \"write\", \"fic_import_products\": \"write\", \"fic_recurring\": \"write\", \"fic_riba\": \"write\", \"dic_employees\": \"write\", \"dic_settings\": \"write\", \"dic_timesheet\": \"write\", \"fic_issued_documents_detailed\": {\"quotes\": \"write\", \"proformas\": \"write\", \"invoices\": \"write\", \"receipts\": \"write\", \"deliveryNotes\": \"write\", \"creditNotes\": \"write\", \"orders\": \"write\", \"workReports\": \"write\", \"supplierOrders\": \"write\", \"selfInvoices\": \"write\"}}"
+        expected_json = '{"fic_situation": "write", "fic_clients": "write", "fic_suppliers": "write", "fic_products": "write", "fic_issued_documents": "write", "fic_received_documents": "write", "fic_receipts": "write", "fic_calendar": "write", "fic_archive": "write", "fic_taxes": "write", "fic_stock": "write", "fic_cashbook": "write", "fic_settings": "write", "fic_emails": "write", "fic_export": "write", "fic_import_bankstatements": "write", "fic_import_clients_suppliers": "write", "fic_import_issued_documents": "write", "fic_import_products": "write", "fic_recurring": "write", "fic_riba": "write", "dic_employees": "write", "dic_settings": "write", "dic_timesheet": "write", "fic_issued_documents_detailed": {"quotes": "write", "proformas": "write", "invoices": "write", "receipts": "write", "deliveryNotes": "write", "creditNotes": "write", "orders": "write", "workReports": "write", "supplierOrders": "write", "selfInvoices": "write"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
