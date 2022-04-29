@@ -18,8 +18,9 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.original_document_type import OriginalDocumentType
 from fattureincloud_python_sdk.model.vat_kind import VatKind
-globals()['OriginalDocumentType'] = OriginalDocumentType
-globals()['VatKind'] = VatKind
+
+globals()["OriginalDocumentType"] = OriginalDocumentType
+globals()["VatKind"] = VatKind
 from fattureincloud_python_sdk.model.issued_document_ei_data import IssuedDocumentEiData
 
 
@@ -34,11 +35,11 @@ class TestIssuedDocumentEiData(unittest.TestCase):
 
     def testIssuedDocumentEiData(self):
         """Test IssuedDocumentEiData"""
-        model = IssuedDocumentEiData(                
+        model = IssuedDocumentEiData(
             vat_kind=VatKind("I"),
             original_document_type=OriginalDocumentType("ordine"),
             od_number="od_number_example",
-            od_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+            od_date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
             cig="cig_example",
             cup="cup_example",
             payment_method="payment_method_example",
@@ -46,13 +47,12 @@ class TestIssuedDocumentEiData(unittest.TestCase):
             bank_iban="bank_iban_example",
             bank_beneficiary="bank_beneficiary_example",
             invoice_number="invoice_number_example",
-            invoice_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date()
+            invoice_date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
         )
-        expected_json = "{\"vat_kind\": \"I\", \"original_document_type\": \"ordine\", \"od_number\": \"od_number_example\", \"od_date\": \"2022-01-01\", \"cig\": \"cig_example\", \"cup\": \"cup_example\", \"payment_method\": \"payment_method_example\", \"bank_name\": \"bank_name_example\", \"bank_iban\": \"bank_iban_example\", \"bank_beneficiary\": \"bank_beneficiary_example\", \"invoice_number\": \"invoice_number_example\", \"invoice_date\": \"2022-01-01\"}"
+        expected_json = '{"vat_kind": "I", "original_document_type": "ordine", "od_number": "od_number_example", "od_date": "2022-01-01", "cig": "cig_example", "cup": "cup_example", "payment_method": "payment_method_example", "bank_name": "bank_name_example", "bank_iban": "bank_iban_example", "bank_beneficiary": "bank_beneficiary_example", "invoice_number": "invoice_number_example", "invoice_date": "2022-01-01"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['VatType'] = VatType
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import IssuedDocumentPreCreateInfoItemsDefaultValues
+
+globals()["VatType"] = VatType
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import (
+    IssuedDocumentPreCreateInfoItemsDefaultValues,
+)
 
 
 class TestIssuedDocumentPreCreateInfoItemsDefaultValues(unittest.TestCase):
@@ -49,5 +52,5 @@ class TestIssuedDocumentPreCreateInfoItemsDefaultValues(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

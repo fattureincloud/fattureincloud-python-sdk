@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.currency import Currency
-globals()['Currency'] = Currency
-from fattureincloud_python_sdk.model.list_currencies_response import ListCurrenciesResponse
+
+globals()["Currency"] = Currency
+from fattureincloud_python_sdk.model.list_currencies_response import (
+    ListCurrenciesResponse,
+)
 
 
 class TestListCurrenciesResponse(unittest.TestCase):
@@ -34,21 +37,14 @@ class TestListCurrenciesResponse(unittest.TestCase):
         """Test ListCurrenciesResponse"""
         model = ListCurrenciesResponse(
             data=[
-                Currency(
-                    id="EUR",
-                    symbol="e",
-                    exchange_rate="1.000"
-                ),
-                Currency(
-                    id="USD",
-                    symbol="s",
-                    exchange_rate="1.200"
-                )
+                Currency(id="EUR", symbol="e", exchange_rate="1.000"),
+                Currency(id="USD", symbol="s", exchange_rate="1.200"),
             ]
         )
-        expected_json = "{\"data\": [{\"id\": \"EUR\", \"symbol\": \"e\", \"exchange_rate\": \"1.000\"}, {\"id\": \"USD\", \"symbol\": \"s\", \"exchange_rate\": \"1.200\"}]}"
+        expected_json = '{"data": [{"id": "EUR", "symbol": "e", "exchange_rate": "1.000"}, {"id": "USD", "symbol": "s", "exchange_rate": "1.200"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

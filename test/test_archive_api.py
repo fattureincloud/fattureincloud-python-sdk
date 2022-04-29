@@ -13,17 +13,29 @@ import unittest
 import unittest.mock
 import datetime
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.create_archive_document_request import CreateArchiveDocumentRequest
+from fattureincloud_python_sdk.model.create_archive_document_request import (
+    CreateArchiveDocumentRequest,
+)
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.archive_api import ArchiveApi
 from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
-from fattureincloud_python_sdk.model.create_archive_document_response import CreateArchiveDocumentResponse
-from fattureincloud_python_sdk.model.get_archive_document_response import GetArchiveDocumentResponse
-from fattureincloud_python_sdk.model.list_archive_documents_response import ListArchiveDocumentsResponse
-from fattureincloud_python_sdk.model.modify_archive_document_response import ModifyArchiveDocumentResponse
+from fattureincloud_python_sdk.model.create_archive_document_response import (
+    CreateArchiveDocumentResponse,
+)
+from fattureincloud_python_sdk.model.get_archive_document_response import (
+    GetArchiveDocumentResponse,
+)
+from fattureincloud_python_sdk.model.list_archive_documents_response import (
+    ListArchiveDocumentsResponse,
+)
+from fattureincloud_python_sdk.model.modify_archive_document_response import (
+    ModifyArchiveDocumentResponse,
+)
 from fattureincloud_python_sdk.model.attachment_data import AttachmentData
-from fattureincloud_python_sdk.model.upload_archive_attachment_response import UploadArchiveAttachmentResponse
+from fattureincloud_python_sdk.model.upload_archive_attachment_response import (
+    UploadArchiveAttachmentResponse,
+)
 
 
 class TestArchiveApi(unittest.TestCase):
@@ -31,109 +43,160 @@ class TestArchiveApi(unittest.TestCase):
 
     def setUp(self):
         self.api = ArchiveApi()
-    
+
     def tearDown(self):
         pass
 
     def test_create_archive_document(self):
         resp = {
-            'status': 200,
-            'data': b'{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}',
-            'reason': "OK"
+            "status": 200,
+            "data": b'{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}',
+            "reason": "OK",
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = CreateArchiveDocumentResponse(data = ArchiveDocument( id=2, date=datetime.datetime.strptime('2022-01-01', '%Y-%m-%d').date(), description="description_example", category="category_example", attachment_token="attachment_token_example") )
+        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = CreateArchiveDocumentResponse(
+            data=ArchiveDocument(
+                id=2,
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                description="description_example",
+                category="category_example",
+                attachment_token="attachment_token_example",
+            )
+        )
         actual = self.api.create_archive_document(2)
         actual.data.id = 2
         assert actual == expected
 
     def test_delete_archive_document(self):
-        resp = {
-            'status': 200,
-            'data': b'{}',
-            'reason': "OK"
-        }
+        resp = {"status": 200, "data": b"{}", "reason": "OK"}
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(return_value = mock_resp)
+        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
         actual = self.api.delete_archive_document(2, 12345)
         assert actual == None
 
     def test_get_archive_document(self):
         resp = {
-            'status': 200,
-            'data': b'{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}',
-            'reason': "OK"
+            "status": 200,
+            "data": b'{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}',
+            "reason": "OK",
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = GetArchiveDocumentResponse(data = ArchiveDocument( id=2, date=datetime.datetime.strptime('2022-01-01', '%Y-%m-%d').date(), description="description_example", category="category_example", attachment_token="attachment_token_example") )
+        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = GetArchiveDocumentResponse(
+            data=ArchiveDocument(
+                id=2,
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                description="description_example",
+                category="category_example",
+                attachment_token="attachment_token_example",
+            )
+        )
         actual = self.api.get_archive_document(2, 12345)
         actual.data.id = 2
         assert actual == expected
 
     def test_list_archive_documents(self):
         resp = {
-            'status': 200,
-            'data': b'{"data": [{"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}, {"id": 2, "date": "2022-01-02", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}]}',
-            'reason': "OK"
+            "status": 200,
+            "data": b'{"data": [{"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}, {"id": 2, "date": "2022-01-02", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}]}',
+            "reason": "OK",
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = ListArchiveDocumentsResponse(data = [ArchiveDocument( id=2, date=datetime.datetime.strptime('2022-01-01', '%Y-%m-%d').date(), description="description_example", category="category_example", attachment_token="attachment_token_example"), ArchiveDocument( id=2, date=datetime.datetime.strptime('2022-01-02', '%Y-%m-%d').date(), description="description_example", category="category_example", attachment_token="attachment_token_example") ] )
+        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = ListArchiveDocumentsResponse(
+            data=[
+                ArchiveDocument(
+                    id=2,
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                    description="description_example",
+                    category="category_example",
+                    attachment_token="attachment_token_example",
+                ),
+                ArchiveDocument(
+                    id=2,
+                    date=datetime.datetime.strptime("2022-01-02", "%Y-%m-%d").date(),
+                    description="description_example",
+                    category="category_example",
+                    attachment_token="attachment_token_example",
+                ),
+            ]
+        )
         actual = self.api.list_archive_documents(2)
         actual.data[0].id = 2
         assert actual == expected
 
     def test_modify_archive_document(self):
         resp = {
-            'status': 200,
-            'data': b'{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}',
-            'reason': "OK"
+            "status": 200,
+            "data": b'{"data": {"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}}',
+            "reason": "OK",
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = ModifyArchiveDocumentResponse(data = ArchiveDocument( id=2, date=datetime.datetime.strptime('2022-01-01', '%Y-%m-%d').date(), description="description_example", category="category_example", attachment_token="attachment_token_example") )
+        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = ModifyArchiveDocumentResponse(
+            data=ArchiveDocument(
+                id=2,
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                description="description_example",
+                category="category_example",
+                attachment_token="attachment_token_example",
+            )
+        )
         actual = self.api.modify_archive_document(2, 12345)
         actual.data.id = 2
         assert actual == expected
 
     def test_upload_archive_document_attachment(self):
         resp = {
-            'status': 200,
-            'data': b'{"data": {"attachment_token": "aisdfvbgablsi9876r8o3qw36"}}',
-            'reason': "OK"
+            "status": 200,
+            "data": b'{"data": {"attachment_token": "aisdfvbgablsi9876r8o3qw36"}}',
+            "reason": "OK",
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = UploadArchiveAttachmentResponse(data = AttachmentData(attachment_token = "aisdfvbgablsi9876r8o3qw36"))
+        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = UploadArchiveAttachmentResponse(
+            data=AttachmentData(attachment_token="aisdfvbgablsi9876r8o3qw36")
+        )
         actual = self.api.upload_archive_document_attachment(2)
         assert actual == expected
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

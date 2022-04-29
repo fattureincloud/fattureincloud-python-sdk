@@ -22,8 +22,11 @@ from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountT
 from fattureincloud_python_sdk.model.receipt_items_list_item import ReceiptItemsListItem
 from fattureincloud_python_sdk.model.receipt_type import ReceiptType
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['Receipt'] = Receipt
-from fattureincloud_python_sdk.model.list_receipts_response_page import ListReceiptsResponsePage
+
+globals()["Receipt"] = Receipt
+from fattureincloud_python_sdk.model.list_receipts_response_page import (
+    ListReceiptsResponsePage,
+)
 
 
 class TestListReceiptsResponsePage(unittest.TestCase):
@@ -41,7 +44,7 @@ class TestListReceiptsResponsePage(unittest.TestCase):
             data=[
                 Receipt(
                     id=1,
-                    date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
                     number=3.14,
                     numeration="numeration_example",
                     amount_net=3.14,
@@ -83,7 +86,7 @@ class TestListReceiptsResponsePage(unittest.TestCase):
                 ),
                 Receipt(
                     id=2,
-                    date=datetime.datetime.strptime("2022-01-02", '%Y-%m-%d').date(),
+                    date=datetime.datetime.strptime("2022-01-02", "%Y-%m-%d").date(),
                     number=3.14,
                     numeration="numeration_example",
                     amount_net=3.14,
@@ -122,7 +125,7 @@ class TestListReceiptsResponsePage(unittest.TestCase):
                             ),
                         ),
                     ],
-                )
+                ),
             ]
         )
         expected_json = '{"data": [{"id": 1, "date": "2022-01-01", "number": 3.14, "numeration": "numeration_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_gross": 3.14, "use_gross_prices": false, "type": "till_receipt", "description": "description_example", "rc_center": "rc_center_example", "created_at": "created_at_example", "updated_at": "updated_at_example", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "items_list": [{"id": 3, "amount_net": 3.14, "amount_gross": 3.14, "category": "category_example", "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}]}, {"id": 2, "date": "2022-01-02", "number": 3.14, "numeration": "numeration_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_gross": 3.14, "use_gross_prices": false, "type": "till_receipt", "description": "description_example", "rc_center": "rc_center_example", "created_at": "created_at_example", "updated_at": "updated_at_example", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "items_list": [{"id": 3, "amount_net": 3.14, "amount_gross": 3.14, "category": "category_example", "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}]}]}'
@@ -130,5 +133,5 @@ class TestListReceiptsResponsePage(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

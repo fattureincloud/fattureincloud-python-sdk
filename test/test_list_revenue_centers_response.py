@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_revenue_centers_response import ListRevenueCentersResponse
+from fattureincloud_python_sdk.model.list_revenue_centers_response import (
+    ListRevenueCentersResponse,
+)
 
 
 class TestListRevenueCentersResponse(unittest.TestCase):
@@ -30,16 +32,11 @@ class TestListRevenueCentersResponse(unittest.TestCase):
 
     def testListRevenueCentersResponse(self):
         """Test ListRevenueCentersResponse"""
-        model = ListRevenueCentersResponse(
-            data=[
-                "bg",
-                "mi"
-            ]
-        )
-        expected_json = "{\"data\": [\"bg\", \"mi\"]}"
+        model = ListRevenueCentersResponse(data=["bg", "mi"])
+        expected_json = '{"data": ["bg", "mi"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

@@ -16,12 +16,19 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import GetUserInfoResponseEmailConfirmationState
-from fattureincloud_python_sdk.model.get_user_info_response_info import GetUserInfoResponseInfo
+from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import (
+    GetUserInfoResponseEmailConfirmationState,
+)
+from fattureincloud_python_sdk.model.get_user_info_response_info import (
+    GetUserInfoResponseInfo,
+)
 from fattureincloud_python_sdk.model.user import User
-globals()['GetUserInfoResponseEmailConfirmationState'] = GetUserInfoResponseEmailConfirmationState
-globals()['GetUserInfoResponseInfo'] = GetUserInfoResponseInfo
-globals()['User'] = User
+
+globals()[
+    "GetUserInfoResponseEmailConfirmationState"
+] = GetUserInfoResponseEmailConfirmationState
+globals()["GetUserInfoResponseInfo"] = GetUserInfoResponseInfo
+globals()["User"] = User
 from fattureincloud_python_sdk.model.get_user_info_response import GetUserInfoResponse
 
 
@@ -44,19 +51,17 @@ class TestGetUserInfoResponse(unittest.TestCase):
                 last_name="Verdi",
                 email="mariov@erdi.it",
                 hash="aenfonaeongraoiroqpi",
-                picture=None
+                picture=None,
             ),
-            info=GetUserInfoResponseInfo(
-                need_password_change=False
-            ),
+            info=GetUserInfoResponseInfo(need_password_change=False),
             email_confirmation_state=GetUserInfoResponseEmailConfirmationState(
                 need_confirmation=False
-            )
+            ),
         )
-        expected_json = "{\"data\": {\"id\": 1, \"name\": \"Mario\", \"first_name\": \"mario\", \"last_name\": \"Verdi\", \"email\": \"mariov@erdi.it\", \"hash\": \"aenfonaeongraoiroqpi\", \"picture\": null}, \"info\": {\"need_password_change\": false}, \"email_confirmation_state\": {\"need_confirmation\": false}}"
+        expected_json = '{"data": {"id": 1, "name": "Mario", "first_name": "mario", "last_name": "Verdi", "email": "mariov@erdi.it", "hash": "aenfonaeongraoiroqpi", "picture": null}, "info": {"need_password_change": false}, "email_confirmation_state": {"need_confirmation": false}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

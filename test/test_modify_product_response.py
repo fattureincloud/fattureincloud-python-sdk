@@ -18,8 +18,11 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.product import Product
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['Product'] = Product
-from fattureincloud_python_sdk.model.modify_product_response import ModifyProductResponse
+
+globals()["Product"] = Product
+from fattureincloud_python_sdk.model.modify_product_response import (
+    ModifyProductResponse,
+)
 
 
 class TestModifyProductResponse(unittest.TestCase):
@@ -69,5 +72,5 @@ class TestModifyProductResponse(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

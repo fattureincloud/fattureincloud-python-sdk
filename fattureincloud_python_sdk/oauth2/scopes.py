@@ -1,73 +1,109 @@
 from enum import Enum
 
+
 class Scope(Enum):
 
-    ENTITY_CLIENTS_READ = 'entity.clients:r' # Read permission to the Clients registry
+    # Read permission to the Clients registry
+    ENTITY_CLIENTS_READ = "entity.clients:r"
 
-    ENTITY_CLIENTS_ALL = 'entity.clients:a' # Write permission to the Clients registry
+    # Write permission to the Clients registry
+    ENTITY_CLIENTS_ALL = "entity.clients:a"
 
-    ENTITY_SUPPLIERS_READ = 'entity.suppliers:r' # Read permission to the Suppliers registry
+    # Read permission to the Suppliers registry
+    ENTITY_SUPPLIERS_READ = "entity.suppliers:r"
 
-    ENTITY_SUPPLIERS_ALL = 'entity.suppliers:a' # Write permission to the Suppliers registry
+    # Write permission to the Suppliers registry
+    ENTITY_SUPPLIERS_ALL = "entity.suppliers:a"
 
-    PRODUCTS_READ = 'products:r' # Read permission to the Products
+    # Read permission to the Products
+    PRODUCTS_READ = "products:r"
 
-    PRODUCTS_ALL = 'products:a' # Write permission to the Products
+    # Write permission to the Products
+    PRODUCTS_ALL = "products:a"
 
-    ISSUED_DOCUMENTS_INVOICE_READ = 'issued_documents.invoice:r' # Read permission to the issued Invoices
+    # Read permission to the issued Invoices
+    ISSUED_DOCUMENTS_INVOICES_READ = "issued_documents.invoices:r"
 
-    ISSUED_DOCUMENTS_CREDIT_NOTE_READ = 'issued_documents.credit_note:r' # Read permission to the issued Credit Notes
+    # Read permission to the issued Credit Notes
+    ISSUED_DOCUMENTS_CREDIT_NOTES_READ = "issued_documents.credit_notes:r"
 
-    ISSUED_DOCUMENTS_RECEIPT_READ = 'issued_documents.receipt:r' # Read permission to the issued Receipts
+    # Read permission to the issued Receipts
+    ISSUED_DOCUMENTS_RECEIPTS_READ = "issued_documents.receipts:r"
 
-    ISSUED_DOCUMENTS_ORDER_READ = 'issued_documents.order:r' # Read permission to the issued Orders
+    # Read permission to the issued Orders
+    ISSUED_DOCUMENTS_ORDERS_READ = "issued_documents.orders:r"
 
-    ISSUED_DOCUMENTS_QUOTE_READ = 'issued_documents.quote:r' # Read permission to the issued Quotes
+    # Read permission to the issued Quotes
+    ISSUED_DOCUMENTS_QUOTES_READ = "issued_documents.quotes:r"
 
-    ISSUED_DOCUMENTS_PROFORMA_READ = 'issued_documents.proforma:r' # Read permission to the issued Proformas
+    # Read permission to the issued Proformas
+    ISSUED_DOCUMENTS_PROFORMAS_READ = "issued_documents.proformas:r"
 
-    ISSUED_DOCUMENTS_DELIVERY_NOTE_READ = 'issued_documents.delivery_note:r' # Read permission to the issued Delivery Notes
+    # Read permission to the issued Delivery Notes
+    ISSUED_DOCUMENTS_DELIVERY_NOTES_READ = "issued_documents.delivery_notes:r"
 
-    ISSUED_DOCUMENTS_INVOICE_ALL = 'issued_documents.invoice:a' # Write permission to the issued Invoices
+    # Write permission to the issued Invoices
+    ISSUED_DOCUMENTS_INVOICES_ALL = "issued_documents.invoices:a"
 
-    ISSUED_DOCUMENTS_CREDIT_NOTE_ALL = 'issued_documents.credit_note:a' # Write permission to the issued Credit Notes
+    # Write permission to the issued Credit Notes
+    ISSUED_DOCUMENTS_CREDIT_NOTES_ALL = "issued_documents.credit_notes:a"
 
-    ISSUED_DOCUMENTS_RECEIPT_ALL = 'issued_documents.receipt:a' # Write permission to the issued issued Receipts
+    # Write permission to the issued issued Receipts
+    ISSUED_DOCUMENTS_RECEIPTS_ALL = "issued_documents.receipts:a"
 
-    ISSUED_DOCUMENTS_ORDER_ALL = 'issued_documents.order:a' # Write permission to the issued Orders
+    # Write permission to the issued Orders
+    ISSUED_DOCUMENTS_ORDERS_ALL = "issued_documents.orders:a"
 
-    ISSUED_DOCUMENTS_QUOTE_ALL = 'issued_documents.quote:a' # Write permission to the issued Quotes
+    # Write permission to the issued Quotes
+    ISSUED_DOCUMENTS_QUOTES_ALL = "issued_documents.quotes:a"
 
-    ISSUED_DOCUMENTS_PROFORMA_ALL = 'issued_documents.proforma:a' # Write permission to the issued Proformas
+    # Write permission to the issued Proformas
+    ISSUED_DOCUMENTS_PROFORMAS_ALL = "issued_documents.proformas:a"
 
-    ISSUED_DOCUMENTS_DELIVERY_NOTE_ALL = 'issued_documents.delivery_note:a' # Write permission to the issued Delivery Notes
+    # Write permission to the issued Delivery Notes
+    ISSUED_DOCUMENTS_DELIVERY_NOTES_ALL = "issued_documents.delivery_notes:a"
 
-    RECEIVED_DOCUMENTS_READ = 'received_documents:r' # Read permission to the issued Received Documents
+    # Read permission to the issued Received Documents
+    RECEIVED_DOCUMENTS_READ = "received_documents:r"
 
-    RECEIVED_DOCUMENTS_ALL = 'received_documents:a' # Write permission to the issued Received Documents
+    # Write permission to the issued Received Documents
+    RECEIVED_DOCUMENTS_ALL = "received_documents:a"
 
-    STOCK_READ = 'stock:r' # Read permission to the Stock movements
+    # Read permission to the Stock movements
+    STOCK_READ = "stock:r"
 
-    STOCK_ALL = 'stock:a' # Write permission to the Stock movements
+    # Write permission to the Stock movements
+    STOCK_ALL = "stock:a"
 
-    RECEIPTS_READ = 'receipts:r' # Read permission to the Receipts
+    # Read permission to the Receipts
+    RECEIPTS_READ = "receipts:r"
 
-    RECEIPTS_ALL = 'receipts:a' # Write permission to the Receipts
+    # Write permission to the Receipts
+    RECEIPTS_ALL = "receipts:a"
 
-    TAXES_READ = 'taxes:r' # Read permission to the Taxes
+    # Read permission to the Taxes
+    TAXES_READ = "taxes:r"
 
-    TAXES_ALL = 'taxes:a' # Write permission to the Taxes
+    # Write permission to the Taxes
+    TAXES_ALL = "taxes:a"
 
-    ARCHIVE_READ = 'archive:r' # Read permission to the Archive Documents
+    # Read permission to the Archive Documents
+    ARCHIVE_READ = "archive:r"
 
-    ARCHIVE_ALL = 'archive:a' # Read permission to the Archive Documents
+    # Read permission to the Archive Documents
+    ARCHIVE_ALL = "archive:a"
 
-    CASHBOOK_READ = 'cashbook:r' # Read permission to the Cashbook
+    # Read permission to the Cashbook
+    CASHBOOK_READ = "cashbook:r"
 
-    CASHBOOK_ALL = 'cashbook:a' # Write permission to the Cashbook
+    # Write permission to the Cashbook
+    CASHBOOK_ALL = "cashbook:a"
 
-    SETTINGS_READ = 'settings:r' # Read permission to the Settings
+    # Read permission to the Settings
+    SETTINGS_READ = "settings:r"
 
-    SETTINGS_ALL = 'settings:a' # Write permission to the Settings
+    # Write permission to the Settings
+    SETTINGS_ALL = "settings:a"
 
-    SITUATION_READ = 'situation:r' # Read permission to the company Situation
+    # Read permission to the company Situation
+    SITUATION_READ = "situation:r"

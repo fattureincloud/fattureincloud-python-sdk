@@ -34,12 +34,12 @@ class TestEmailScheduleInclude(unittest.TestCase):
             document=True,
             delivery_note=False,
             attachment=True,
-            accompanying_invoice=False
+            accompanying_invoice=False,
         )
-        expected_json = "{\"document\": true, \"delivery_note\": false, \"attachment\": true, \"accompanying_invoice\": false}"
+        expected_json = '{"document": true, "delivery_note": false, "attachment": true, "accompanying_invoice": false}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

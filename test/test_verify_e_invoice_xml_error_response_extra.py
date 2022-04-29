@@ -16,7 +16,9 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_extra import VerifyEInvoiceXmlErrorResponseExtra
+from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_extra import (
+    VerifyEInvoiceXmlErrorResponseExtra,
+)
 
 
 class TestVerifyEInvoiceXmlErrorResponseExtra(unittest.TestCase):
@@ -30,16 +32,11 @@ class TestVerifyEInvoiceXmlErrorResponseExtra(unittest.TestCase):
 
     def testVerifyEInvoiceXmlErrorResponseExtra(self):
         """Test VerifyEInvoiceXmlErrorResponseExtra"""
-        model = VerifyEInvoiceXmlErrorResponseExtra(
-            error=[
-                "err1",
-                "err2"
-            ]
-        )
-        expected_json = "{\"error\": [\"err1\", \"err2\"]}"
+        model = VerifyEInvoiceXmlErrorResponseExtra(error=["err1", "err2"])
+        expected_json = '{"error": ["err1", "err2"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
