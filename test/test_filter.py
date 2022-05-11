@@ -68,7 +68,8 @@ class TestFilter(unittest.TestCase):
             filter.and_condition("name", Operator.EQ, "Sheldon Lee")
 
         filter.where_condition("surname", Operator.EQ, "Cooper").and_condition(
-            "name", Operator.EQ, "Sheldon Lee")
+            "name", Operator.EQ, "Sheldon Lee"
+        )
 
         assert conjunction == filter.get_expression()
 
@@ -128,7 +129,8 @@ class TestFilter(unittest.TestCase):
             filter.or_condition("name", Operator.EQ, "Sheldon Lee")
 
         filter.where_condition("surname", Operator.EQ, "Cooper").or_condition(
-            "name", Operator.EQ, "Sheldon Lee")
+            "name", Operator.EQ, "Sheldon Lee"
+        )
 
         assert disjunction == filter.get_expression()
 
@@ -199,13 +201,17 @@ class TestFilter(unittest.TestCase):
 
     def testEquals(self):
         """Test Equals"""
-        filter1 = Filter().where_condition(field="name", op=Operator.EQ, value="Sheldon Lee")
-        filter2 = Filter().where_condition(field="name", op=Operator.EQ, value="Sheldon Lee")
+        filter1 = Filter().where_condition(
+            field="name", op=Operator.EQ, value="Sheldon Lee"
+        )
+        filter2 = Filter().where_condition(
+            field="name", op=Operator.EQ, value="Sheldon Lee"
+        )
         assert filter1 == filter2
 
         filter3 = Filter().where_condition(field="name", op=Operator.EQ, value="Penny")
         assert filter1 != filter3
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

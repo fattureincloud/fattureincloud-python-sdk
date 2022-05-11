@@ -16,14 +16,24 @@ import functions
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.companies_api import CompaniesApi
 from fattureincloud_python_sdk.model.company_info import CompanyInfo
-from fattureincloud_python_sdk.model.company_info_access_info import CompanyInfoAccessInfo
+from fattureincloud_python_sdk.model.company_info_access_info import (
+    CompanyInfoAccessInfo,
+)
 from fattureincloud_python_sdk.model.company_info_plan_info import CompanyInfoPlanInfo
-from fattureincloud_python_sdk.model.company_info_plan_info_functions import CompanyInfoPlanInfoFunctions
-from fattureincloud_python_sdk.model.company_info_plan_info_functions_status import CompanyInfoPlanInfoFunctionsStatus
-from fattureincloud_python_sdk.model.company_info_plan_info_limits import CompanyInfoPlanInfoLimits
+from fattureincloud_python_sdk.model.company_info_plan_info_functions import (
+    CompanyInfoPlanInfoFunctions,
+)
+from fattureincloud_python_sdk.model.company_info_plan_info_functions_status import (
+    CompanyInfoPlanInfoFunctionsStatus,
+)
+from fattureincloud_python_sdk.model.company_info_plan_info_limits import (
+    CompanyInfoPlanInfoLimits,
+)
 from fattureincloud_python_sdk.model.company_type import CompanyType
 from fattureincloud_python_sdk.model.function_status import FunctionStatus
-from fattureincloud_python_sdk.model.get_company_info_response import GetCompanyInfoResponse
+from fattureincloud_python_sdk.model.get_company_info_response import (
+    GetCompanyInfoResponse,
+)
 from fattureincloud_python_sdk.model.permissions import Permissions
 from fattureincloud_python_sdk.model.user_company_role import UserCompanyRole
 
@@ -39,21 +49,49 @@ class TestCompaniesApi(unittest.TestCase):
 
     def test_get_company_info(self):
         resp = {
-            'status': 200,
-            'data': b'{"data": {"id": 1, "name": "mario", "email": "mariomail@gm.co", "type": "company", "accountant_id": 10, "is_accountant": true, "access_info": {"role": "master", "permissions": {}, "through_accountant": true}, "plan_info": {"limits": {"clients": 4000, "suppliers": 4000, "products": 4000, "documents": 4000}, "functions": {"archive": true, "cerved": true, "document_attachments": true}, "functions_status": {"ts_digital": {"active": true}, "ts_pay": {"active": true}}}}}',
-            'reason': "OK"
+            "status": 200,
+            "data": b'{"data": {"id": 1, "name": "mario", "email": "mariomail@gm.co", "type": "company", "accountant_id": 10, "is_accountant": true, "access_info": {"role": "master", "permissions": {}, "through_accountant": true}, "plan_info": {"limits": {"clients": 4000, "suppliers": 4000, "products": 4000, "documents": 4000}, "functions": {"archive": true, "cerved": true, "document_attachments": true}, "functions_status": {"ts_digital": {"active": true}, "ts_pay": {"active": true}}}}}',
+            "reason": "OK",
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
-        mock_resp.getheader = unittest.mock.MagicMock(return_value = None)
-        mock_resp.getheaders = unittest.mock.MagicMock(return_value = None)
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(return_value = mock_resp)
-        expected = GetCompanyInfoResponse(data = CompanyInfo( id=2, name="mario", email="mariomail@gm.co", type=CompanyType("company"), accountant_id=10, is_accountant=True, access_info=CompanyInfoAccessInfo( role=UserCompanyRole("master"), permissions=Permissions(), through_accountant=True ), plan_info=CompanyInfoPlanInfo( limits=CompanyInfoPlanInfoLimits( clients=4000, suppliers=4000, products=4000, documents=4000 ), functions=CompanyInfoPlanInfoFunctions( archive=True, cerved=True, document_attachments=True ), functions_status=CompanyInfoPlanInfoFunctionsStatus( ts_digital=FunctionStatus( active=True ), ts_pay=FunctionStatus( active=True ) ) ) ) )
+        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = GetCompanyInfoResponse(
+            data=CompanyInfo(
+                id=2,
+                name="mario",
+                email="mariomail@gm.co",
+                type=CompanyType("company"),
+                accountant_id=10,
+                is_accountant=True,
+                access_info=CompanyInfoAccessInfo(
+                    role=UserCompanyRole("master"),
+                    permissions=Permissions(),
+                    through_accountant=True,
+                ),
+                plan_info=CompanyInfoPlanInfo(
+                    limits=CompanyInfoPlanInfoLimits(
+                        clients=4000, suppliers=4000, products=4000, documents=4000
+                    ),
+                    functions=CompanyInfoPlanInfoFunctions(
+                        archive=True, cerved=True, document_attachments=True
+                    ),
+                    functions_status=CompanyInfoPlanInfoFunctionsStatus(
+                        ts_digital=FunctionStatus(active=True),
+                        ts_pay=FunctionStatus(active=True),
+                    ),
+                ),
+            )
+        )
         actual = self.api.get_company_info(2)
         actual.data.id = 2
         assert actual == expected
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

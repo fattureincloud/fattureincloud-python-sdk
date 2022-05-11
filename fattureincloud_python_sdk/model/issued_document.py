@@ -25,7 +25,7 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
-    OpenApiModel
+    OpenApiModel,
 )
 from fattureincloud_python_sdk.exceptions import ApiAttributeError
 
@@ -34,25 +34,34 @@ def lazy_import():
     from fattureincloud_python_sdk.model.currency import Currency
     from fattureincloud_python_sdk.model.document_template import DocumentTemplate
     from fattureincloud_python_sdk.model.entity import Entity
-    from fattureincloud_python_sdk.model.issued_document_ei_data import IssuedDocumentEiData
-    from fattureincloud_python_sdk.model.issued_document_extra_data import IssuedDocumentExtraData
-    from fattureincloud_python_sdk.model.issued_document_items_list_item import IssuedDocumentItemsListItem
-    from fattureincloud_python_sdk.model.issued_document_payments_list_item import IssuedDocumentPaymentsListItem
+    from fattureincloud_python_sdk.model.issued_document_ei_data import (
+        IssuedDocumentEiData,
+    )
+    from fattureincloud_python_sdk.model.issued_document_extra_data import (
+        IssuedDocumentExtraData,
+    )
+    from fattureincloud_python_sdk.model.issued_document_items_list_item import (
+        IssuedDocumentItemsListItem,
+    )
+    from fattureincloud_python_sdk.model.issued_document_payments_list_item import (
+        IssuedDocumentPaymentsListItem,
+    )
     from fattureincloud_python_sdk.model.issued_document_type import IssuedDocumentType
     from fattureincloud_python_sdk.model.language import Language
     from fattureincloud_python_sdk.model.payment_method import PaymentMethod
     from fattureincloud_python_sdk.model.show_totals_mode import ShowTotalsMode
-    globals()['Currency'] = Currency
-    globals()['DocumentTemplate'] = DocumentTemplate
-    globals()['Entity'] = Entity
-    globals()['IssuedDocumentEiData'] = IssuedDocumentEiData
-    globals()['IssuedDocumentExtraData'] = IssuedDocumentExtraData
-    globals()['IssuedDocumentItemsListItem'] = IssuedDocumentItemsListItem
-    globals()['IssuedDocumentPaymentsListItem'] = IssuedDocumentPaymentsListItem
-    globals()['IssuedDocumentType'] = IssuedDocumentType
-    globals()['Language'] = Language
-    globals()['PaymentMethod'] = PaymentMethod
-    globals()['ShowTotalsMode'] = ShowTotalsMode
+
+    globals()["Currency"] = Currency
+    globals()["DocumentTemplate"] = DocumentTemplate
+    globals()["Entity"] = Entity
+    globals()["IssuedDocumentEiData"] = IssuedDocumentEiData
+    globals()["IssuedDocumentExtraData"] = IssuedDocumentExtraData
+    globals()["IssuedDocumentItemsListItem"] = IssuedDocumentItemsListItem
+    globals()["IssuedDocumentPaymentsListItem"] = IssuedDocumentPaymentsListItem
+    globals()["IssuedDocumentType"] = IssuedDocumentType
+    globals()["Language"] = Language
+    globals()["PaymentMethod"] = PaymentMethod
+    globals()["ShowTotalsMode"] = ShowTotalsMode
 
 
 class IssuedDocument(ModelNormal):
@@ -80,25 +89,24 @@ class IssuedDocument(ModelNormal):
     """
 
     allowed_values = {
-        ('ei_status',): {
-            'None': None,
-            'ATTEMPT': "attempt",
-            'MISSING': "missing",
-            'NOT_SENT': "not_sent",
-            'SENT': "sent",
-            'PENDING': "pending",
-            'PROCESSING': "processing",
-            'ERROR': "error",
-            'DISCARDED': "discarded",
-            'NOT_DELIVERED': "not_delivered",
-            'ACCEPTED': "accepted",
-            'REJECTED': "rejected",
-            'NO_RESPONSE': "no_response",
+        ("ei_status",): {
+            "None": None,
+            "ATTEMPT": "attempt",
+            "MISSING": "missing",
+            "NOT_SENT": "not_sent",
+            "SENT": "sent",
+            "PENDING": "pending",
+            "PROCESSING": "processing",
+            "ERROR": "error",
+            "DISCARDED": "discarded",
+            "NOT_DELIVERED": "not_delivered",
+            "ACCEPTED": "accepted",
+            "REJECTED": "rejected",
+            "NO_RESPONSE": "no_response",
         },
     }
 
-    validations = {
-    }
+    validations = {}
 
     @cached_property
     def additional_properties_type():
@@ -107,7 +115,17 @@ class IssuedDocument(ModelNormal):
         of type self, this must run after the class is loaded
         """
         lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (
+            bool,
+            date,
+            datetime,
+            dict,
+            float,
+            int,
+            list,
+            str,
+            none_type,
+        )  # noqa: E501
 
     _nullable = True
 
@@ -123,188 +141,397 @@ class IssuedDocument(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'entity': (Entity,),  # noqa: E501
-            'type': (IssuedDocumentType,),  # noqa: E501
-            'number': (int, none_type,),  # noqa: E501
-            'numeration': (str, none_type,),  # noqa: E501
-            'date': (date, none_type,),  # noqa: E501
-            'year': (int, none_type,),  # noqa: E501
-            'currency': (Currency,),  # noqa: E501
-            'language': (Language,),  # noqa: E501
-            'subject': (str, none_type,),  # noqa: E501
-            'visible_subject': (str, none_type,),  # noqa: E501
-            'rc_center': (str, none_type,),  # noqa: E501
-            'notes': (str, none_type,),  # noqa: E501
-            'rivalsa': (float, none_type,),  # noqa: E501
-            'cassa': (float, none_type,),  # noqa: E501
-            'amount_cassa': (float, none_type,),  # noqa: E501
-            'cassa_taxable': (float, none_type,),  # noqa: E501
-            'amount_cassa_taxable': (float, none_type,),  # noqa: E501
-            'cassa2': (float, none_type,),  # noqa: E501
-            'amount_cassa2': (float, none_type,),  # noqa: E501
-            'cassa2_taxable': (float, none_type,),  # noqa: E501
-            'amount_cassa2_taxable': (float, none_type,),  # noqa: E501
-            'global_cassa_taxable': (float, none_type,),  # noqa: E501
-            'amount_global_cassa_taxable': (float, none_type,),  # noqa: E501
-            'withholding_tax': (float, none_type,),  # noqa: E501
-            'withholding_tax_taxable': (float, none_type,),  # noqa: E501
-            'other_withholding_tax': (float, none_type,),  # noqa: E501
-            'stamp_duty': (float, none_type,),  # noqa: E501
-            'payment_method': (PaymentMethod,),  # noqa: E501
-            'use_split_payment': (bool, none_type,),  # noqa: E501
-            'use_gross_prices': (bool, none_type,),  # noqa: E501
-            'e_invoice': (bool, none_type,),  # noqa: E501
-            'ei_data': (IssuedDocumentEiData,),  # noqa: E501
-            'ei_cassa_type': (str, none_type,),  # noqa: E501
-            'ei_cassa2_type': (str, none_type,),  # noqa: E501
-            'ei_withholding_tax_causal': (str, none_type,),  # noqa: E501
-            'ei_other_withholding_tax_type': (str, none_type,),  # noqa: E501
-            'ei_other_withholding_tax_causal': (str, none_type,),  # noqa: E501
-            'items_list': ([IssuedDocumentItemsListItem], none_type,),  # noqa: E501
-            'payments_list': ([IssuedDocumentPaymentsListItem], none_type,),  # noqa: E501
-            'template': (DocumentTemplate,),  # noqa: E501
-            'delivery_note_template': (DocumentTemplate,),  # noqa: E501
-            'acc_inv_template': (DocumentTemplate,),  # noqa: E501
-            'h_margins': (int, none_type,),  # noqa: E501
-            'v_margins': (int, none_type,),  # noqa: E501
-            'show_payments': (bool, none_type,),  # noqa: E501
-            'show_payment_method': (bool, none_type,),  # noqa: E501
-            'show_totals': (ShowTotalsMode,),  # noqa: E501
-            'show_paypal_button': (bool, none_type,),  # noqa: E501
-            'show_notification_button': (bool, none_type,),  # noqa: E501
-            'show_tspay_button': (bool, none_type,),  # noqa: E501
-            'delivery_note': (bool, none_type,),  # noqa: E501
-            'accompanying_invoice': (bool, none_type,),  # noqa: E501
-            'dn_number': (int, none_type,),  # noqa: E501
-            'dn_date': (date, none_type,),  # noqa: E501
-            'dn_ai_packages_number': (str, none_type,),  # noqa: E501
-            'dn_ai_weight': (str, none_type,),  # noqa: E501
-            'dn_ai_causal': (str, none_type,),  # noqa: E501
-            'dn_ai_destination': (str, none_type,),  # noqa: E501
-            'dn_ai_transporter': (str, none_type,),  # noqa: E501
-            'dn_ai_notes': (str, none_type,),  # noqa: E501
-            'is_marked': (bool, none_type,),  # noqa: E501
-            'amount_net': (float, none_type,),  # noqa: E501
-            'amount_vat': (float, none_type,),  # noqa: E501
-            'amount_gross': (float, none_type,),  # noqa: E501
-            'amount_due_discount': (float, none_type,),  # noqa: E501
-            'amount_rivalsa': (float, none_type,),  # noqa: E501
-            'amount_rivalsa_taxable': (float, none_type,),  # noqa: E501
-            'amount_withholding_tax': (float, none_type,),  # noqa: E501
-            'amount_withholding_tax_taxable': (float, none_type,),  # noqa: E501
-            'amount_other_withholding_tax': (float, none_type,),  # noqa: E501
-            'amount_other_withholding_tax_taxable': (float, none_type,),  # noqa: E501
-            'amount_enasarco_taxable': (float, none_type,),  # noqa: E501
-            'extra_data': (IssuedDocumentExtraData,),  # noqa: E501
-            'seen_date': (date, none_type,),  # noqa: E501
-            'next_due_date': (date, none_type,),  # noqa: E501
-            'url': (str, none_type,),  # noqa: E501
-            'attachment_url': (str, none_type,),  # noqa: E501
-            'attachment_token': (str, none_type,),  # noqa: E501
-            'ei_raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'ei_status': (str, none_type,),  # noqa: E501
+            "id": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "entity": (Entity,),  # noqa: E501
+            "type": (IssuedDocumentType,),  # noqa: E501
+            "number": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "numeration": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "date": (
+                date,
+                none_type,
+            ),  # noqa: E501
+            "year": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "currency": (Currency,),  # noqa: E501
+            "language": (Language,),  # noqa: E501
+            "subject": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "visible_subject": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "rc_center": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "notes": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "rivalsa": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "cassa": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_cassa": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "cassa_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_cassa_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "cassa2": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_cassa2": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "cassa2_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_cassa2_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "global_cassa_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_global_cassa_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "withholding_tax": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "withholding_tax_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "other_withholding_tax": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "stamp_duty": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "payment_method": (PaymentMethod,),  # noqa: E501
+            "use_split_payment": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "use_gross_prices": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "e_invoice": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "ei_data": (IssuedDocumentEiData,),  # noqa: E501
+            "ei_cassa_type": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "ei_cassa2_type": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "ei_withholding_tax_causal": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "ei_other_withholding_tax_type": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "ei_other_withholding_tax_causal": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "items_list": (
+                [IssuedDocumentItemsListItem],
+                none_type,
+            ),  # noqa: E501
+            "payments_list": (
+                [IssuedDocumentPaymentsListItem],
+                none_type,
+            ),  # noqa: E501
+            "template": (DocumentTemplate,),  # noqa: E501
+            "delivery_note_template": (DocumentTemplate,),  # noqa: E501
+            "acc_inv_template": (DocumentTemplate,),  # noqa: E501
+            "h_margins": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "v_margins": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "show_payments": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "show_payment_method": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "show_totals": (ShowTotalsMode,),  # noqa: E501
+            "show_paypal_button": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "show_notification_button": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "show_tspay_button": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "delivery_note": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "accompanying_invoice": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "dn_number": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "dn_date": (
+                date,
+                none_type,
+            ),  # noqa: E501
+            "dn_ai_packages_number": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "dn_ai_weight": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "dn_ai_causal": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "dn_ai_destination": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "dn_ai_transporter": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "dn_ai_notes": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "is_marked": (
+                bool,
+                none_type,
+            ),  # noqa: E501
+            "amount_net": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_vat": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_gross": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_due_discount": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_rivalsa": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_rivalsa_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_withholding_tax": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_withholding_tax_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_other_withholding_tax": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_other_withholding_tax_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "amount_enasarco_taxable": (
+                float,
+                none_type,
+            ),  # noqa: E501
+            "extra_data": (IssuedDocumentExtraData,),  # noqa: E501
+            "seen_date": (
+                date,
+                none_type,
+            ),  # noqa: E501
+            "next_due_date": (
+                date,
+                none_type,
+            ),  # noqa: E501
+            "url": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "attachment_url": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "attachment_token": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "ei_raw": (
+                {str: (bool, date, datetime, dict, float, int, list, str, none_type)},
+                none_type,
+            ),  # noqa: E501
+            "ei_status": (
+                str,
+                none_type,
+            ),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         return None
 
-
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'entity': 'entity',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'number': 'number',  # noqa: E501
-        'numeration': 'numeration',  # noqa: E501
-        'date': 'date',  # noqa: E501
-        'year': 'year',  # noqa: E501
-        'currency': 'currency',  # noqa: E501
-        'language': 'language',  # noqa: E501
-        'subject': 'subject',  # noqa: E501
-        'visible_subject': 'visible_subject',  # noqa: E501
-        'rc_center': 'rc_center',  # noqa: E501
-        'notes': 'notes',  # noqa: E501
-        'rivalsa': 'rivalsa',  # noqa: E501
-        'cassa': 'cassa',  # noqa: E501
-        'amount_cassa': 'amount_cassa',  # noqa: E501
-        'cassa_taxable': 'cassa_taxable',  # noqa: E501
-        'amount_cassa_taxable': 'amount_cassa_taxable',  # noqa: E501
-        'cassa2': 'cassa2',  # noqa: E501
-        'amount_cassa2': 'amount_cassa2',  # noqa: E501
-        'cassa2_taxable': 'cassa2_taxable',  # noqa: E501
-        'amount_cassa2_taxable': 'amount_cassa2_taxable',  # noqa: E501
-        'global_cassa_taxable': 'global_cassa_taxable',  # noqa: E501
-        'amount_global_cassa_taxable': 'amount_global_cassa_taxable',  # noqa: E501
-        'withholding_tax': 'withholding_tax',  # noqa: E501
-        'withholding_tax_taxable': 'withholding_tax_taxable',  # noqa: E501
-        'other_withholding_tax': 'other_withholding_tax',  # noqa: E501
-        'stamp_duty': 'stamp_duty',  # noqa: E501
-        'payment_method': 'payment_method',  # noqa: E501
-        'use_split_payment': 'use_split_payment',  # noqa: E501
-        'use_gross_prices': 'use_gross_prices',  # noqa: E501
-        'e_invoice': 'e_invoice',  # noqa: E501
-        'ei_data': 'ei_data',  # noqa: E501
-        'ei_cassa_type': 'ei_cassa_type',  # noqa: E501
-        'ei_cassa2_type': 'ei_cassa2_type',  # noqa: E501
-        'ei_withholding_tax_causal': 'ei_withholding_tax_causal',  # noqa: E501
-        'ei_other_withholding_tax_type': 'ei_other_withholding_tax_type',  # noqa: E501
-        'ei_other_withholding_tax_causal': 'ei_other_withholding_tax_causal',  # noqa: E501
-        'items_list': 'items_list',  # noqa: E501
-        'payments_list': 'payments_list',  # noqa: E501
-        'template': 'template',  # noqa: E501
-        'delivery_note_template': 'delivery_note_template',  # noqa: E501
-        'acc_inv_template': 'acc_inv_template',  # noqa: E501
-        'h_margins': 'h_margins',  # noqa: E501
-        'v_margins': 'v_margins',  # noqa: E501
-        'show_payments': 'show_payments',  # noqa: E501
-        'show_payment_method': 'show_payment_method',  # noqa: E501
-        'show_totals': 'show_totals',  # noqa: E501
-        'show_paypal_button': 'show_paypal_button',  # noqa: E501
-        'show_notification_button': 'show_notification_button',  # noqa: E501
-        'show_tspay_button': 'show_tspay_button',  # noqa: E501
-        'delivery_note': 'delivery_note',  # noqa: E501
-        'accompanying_invoice': 'accompanying_invoice',  # noqa: E501
-        'dn_number': 'dn_number',  # noqa: E501
-        'dn_date': 'dn_date',  # noqa: E501
-        'dn_ai_packages_number': 'dn_ai_packages_number',  # noqa: E501
-        'dn_ai_weight': 'dn_ai_weight',  # noqa: E501
-        'dn_ai_causal': 'dn_ai_causal',  # noqa: E501
-        'dn_ai_destination': 'dn_ai_destination',  # noqa: E501
-        'dn_ai_transporter': 'dn_ai_transporter',  # noqa: E501
-        'dn_ai_notes': 'dn_ai_notes',  # noqa: E501
-        'is_marked': 'is_marked',  # noqa: E501
-        'amount_net': 'amount_net',  # noqa: E501
-        'amount_vat': 'amount_vat',  # noqa: E501
-        'amount_gross': 'amount_gross',  # noqa: E501
-        'amount_due_discount': 'amount_due_discount',  # noqa: E501
-        'amount_rivalsa': 'amount_rivalsa',  # noqa: E501
-        'amount_rivalsa_taxable': 'amount_rivalsa_taxable',  # noqa: E501
-        'amount_withholding_tax': 'amount_withholding_tax',  # noqa: E501
-        'amount_withholding_tax_taxable': 'amount_withholding_tax_taxable',  # noqa: E501
-        'amount_other_withholding_tax': 'amount_other_withholding_tax',  # noqa: E501
-        'amount_other_withholding_tax_taxable': 'amount_other_withholding_tax_taxable',  # noqa: E501
-        'amount_enasarco_taxable': 'amount_enasarco_taxable',  # noqa: E501
-        'extra_data': 'extra_data',  # noqa: E501
-        'seen_date': 'seen_date',  # noqa: E501
-        'next_due_date': 'next_due_date',  # noqa: E501
-        'url': 'url',  # noqa: E501
-        'attachment_url': 'attachment_url',  # noqa: E501
-        'attachment_token': 'attachment_token',  # noqa: E501
-        'ei_raw': 'ei_raw',  # noqa: E501
-        'ei_status': 'ei_status',  # noqa: E501
+        "id": "id",  # noqa: E501
+        "entity": "entity",  # noqa: E501
+        "type": "type",  # noqa: E501
+        "number": "number",  # noqa: E501
+        "numeration": "numeration",  # noqa: E501
+        "date": "date",  # noqa: E501
+        "year": "year",  # noqa: E501
+        "currency": "currency",  # noqa: E501
+        "language": "language",  # noqa: E501
+        "subject": "subject",  # noqa: E501
+        "visible_subject": "visible_subject",  # noqa: E501
+        "rc_center": "rc_center",  # noqa: E501
+        "notes": "notes",  # noqa: E501
+        "rivalsa": "rivalsa",  # noqa: E501
+        "cassa": "cassa",  # noqa: E501
+        "amount_cassa": "amount_cassa",  # noqa: E501
+        "cassa_taxable": "cassa_taxable",  # noqa: E501
+        "amount_cassa_taxable": "amount_cassa_taxable",  # noqa: E501
+        "cassa2": "cassa2",  # noqa: E501
+        "amount_cassa2": "amount_cassa2",  # noqa: E501
+        "cassa2_taxable": "cassa2_taxable",  # noqa: E501
+        "amount_cassa2_taxable": "amount_cassa2_taxable",  # noqa: E501
+        "global_cassa_taxable": "global_cassa_taxable",  # noqa: E501
+        "amount_global_cassa_taxable": "amount_global_cassa_taxable",  # noqa: E501
+        "withholding_tax": "withholding_tax",  # noqa: E501
+        "withholding_tax_taxable": "withholding_tax_taxable",  # noqa: E501
+        "other_withholding_tax": "other_withholding_tax",  # noqa: E501
+        "stamp_duty": "stamp_duty",  # noqa: E501
+        "payment_method": "payment_method",  # noqa: E501
+        "use_split_payment": "use_split_payment",  # noqa: E501
+        "use_gross_prices": "use_gross_prices",  # noqa: E501
+        "e_invoice": "e_invoice",  # noqa: E501
+        "ei_data": "ei_data",  # noqa: E501
+        "ei_cassa_type": "ei_cassa_type",  # noqa: E501
+        "ei_cassa2_type": "ei_cassa2_type",  # noqa: E501
+        "ei_withholding_tax_causal": "ei_withholding_tax_causal",  # noqa: E501
+        "ei_other_withholding_tax_type": "ei_other_withholding_tax_type",  # noqa: E501
+        "ei_other_withholding_tax_causal": "ei_other_withholding_tax_causal",  # noqa: E501
+        "items_list": "items_list",  # noqa: E501
+        "payments_list": "payments_list",  # noqa: E501
+        "template": "template",  # noqa: E501
+        "delivery_note_template": "delivery_note_template",  # noqa: E501
+        "acc_inv_template": "acc_inv_template",  # noqa: E501
+        "h_margins": "h_margins",  # noqa: E501
+        "v_margins": "v_margins",  # noqa: E501
+        "show_payments": "show_payments",  # noqa: E501
+        "show_payment_method": "show_payment_method",  # noqa: E501
+        "show_totals": "show_totals",  # noqa: E501
+        "show_paypal_button": "show_paypal_button",  # noqa: E501
+        "show_notification_button": "show_notification_button",  # noqa: E501
+        "show_tspay_button": "show_tspay_button",  # noqa: E501
+        "delivery_note": "delivery_note",  # noqa: E501
+        "accompanying_invoice": "accompanying_invoice",  # noqa: E501
+        "dn_number": "dn_number",  # noqa: E501
+        "dn_date": "dn_date",  # noqa: E501
+        "dn_ai_packages_number": "dn_ai_packages_number",  # noqa: E501
+        "dn_ai_weight": "dn_ai_weight",  # noqa: E501
+        "dn_ai_causal": "dn_ai_causal",  # noqa: E501
+        "dn_ai_destination": "dn_ai_destination",  # noqa: E501
+        "dn_ai_transporter": "dn_ai_transporter",  # noqa: E501
+        "dn_ai_notes": "dn_ai_notes",  # noqa: E501
+        "is_marked": "is_marked",  # noqa: E501
+        "amount_net": "amount_net",  # noqa: E501
+        "amount_vat": "amount_vat",  # noqa: E501
+        "amount_gross": "amount_gross",  # noqa: E501
+        "amount_due_discount": "amount_due_discount",  # noqa: E501
+        "amount_rivalsa": "amount_rivalsa",  # noqa: E501
+        "amount_rivalsa_taxable": "amount_rivalsa_taxable",  # noqa: E501
+        "amount_withholding_tax": "amount_withholding_tax",  # noqa: E501
+        "amount_withholding_tax_taxable": "amount_withholding_tax_taxable",  # noqa: E501
+        "amount_other_withholding_tax": "amount_other_withholding_tax",  # noqa: E501
+        "amount_other_withholding_tax_taxable": "amount_other_withholding_tax_taxable",  # noqa: E501
+        "amount_enasarco_taxable": "amount_enasarco_taxable",  # noqa: E501
+        "extra_data": "extra_data",  # noqa: E501
+        "seen_date": "seen_date",  # noqa: E501
+        "next_due_date": "next_due_date",  # noqa: E501
+        "url": "url",  # noqa: E501
+        "attachment_url": "attachment_url",  # noqa: E501
+        "attachment_token": "attachment_token",  # noqa: E501
+        "ei_raw": "ei_raw",  # noqa: E501
+        "ei_status": "ei_status",  # noqa: E501
     }
 
     read_only_vars = {
-        'amount_cassa',  # noqa: E501
-        'amount_cassa2',  # noqa: E501
-        'amount_net',  # noqa: E501
-        'amount_vat',  # noqa: E501
-        'amount_gross',  # noqa: E501
-        'amount_rivalsa',  # noqa: E501
-        'amount_withholding_tax',  # noqa: E501
-        'amount_other_withholding_tax',  # noqa: E501
-        'attachment_url',  # noqa: E501
+        "amount_cassa",  # noqa: E501
+        "amount_cassa2",  # noqa: E501
+        "amount_net",  # noqa: E501
+        "amount_vat",  # noqa: E501
+        "amount_gross",  # noqa: E501
+        "amount_rivalsa",  # noqa: E501
+        "amount_withholding_tax",  # noqa: E501
+        "amount_other_withholding_tax",  # noqa: E501
+        "attachment_url",  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -428,17 +655,18 @@ class IssuedDocument(ModelNormal):
             ei_status (str, none_type): [Read only] Status of the e-invoice.   * `attempt` - We are trying to send the invoice, please wait up to 2 hours   * `missing` - The invoice is missing   * `not_sent` - The invoice has yet to be sent   * `sent` - The invoice was sent   * `pending` - The checks for the digital signature and sending are in progress   * `processing` - The SDI is delivering the invoice to the customer   * `error` - An error occurred while handling the invoice, please try to resend it or contact support   * `discarded` - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * `not_delivered` - The SDI was unable to deliver the invoice   * `accepted` - The customer accepted the invoice   * `rejected` - The customer rejected the invoice, so it must be corrected   * `no_response` - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice . [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -454,23 +682,27 @@ class IssuedDocument(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         for var_name, var_value in kwargs.items():
-            if var_name not in self.attribute_map and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self.additional_properties_type is None:
+            if (
+                var_name not in self.attribute_map
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self.additional_properties_type is None
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
         return self
 
-    required_properties = set([
-        '_data_store',
-        '_check_type',
-        '_spec_property_naming',
-        '_path_to_item',
-        '_configuration',
-        '_visited_composed_classes',
-    ])
+    required_properties = set(
+        [
+            "_data_store",
+            "_check_type",
+            "_spec_property_naming",
+            "_path_to_item",
+            "_configuration",
+            "_visited_composed_classes",
+        ]
+    )
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
@@ -590,15 +822,16 @@ class IssuedDocument(ModelNormal):
             ei_status (str, none_type): [Read only] Status of the e-invoice.   * `attempt` - We are trying to send the invoice, please wait up to 2 hours   * `missing` - The invoice is missing   * `not_sent` - The invoice has yet to be sent   * `sent` - The invoice was sent   * `pending` - The checks for the digital signature and sending are in progress   * `processing` - The SDI is delivering the invoice to the customer   * `error` - An error occurred while handling the invoice, please try to resend it or contact support   * `discarded` - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * `not_delivered` - The SDI was unable to deliver the invoice   * `accepted` - The customer accepted the invoice   * `rejected` - The customer rejected the invoice, so it must be corrected   * `no_response` - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice . [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -614,13 +847,17 @@ class IssuedDocument(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         for var_name, var_value in kwargs.items():
-            if var_name not in self.attribute_map and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self.additional_properties_type is None:
+            if (
+                var_name not in self.attribute_map
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self.additional_properties_type is None
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
             if var_name in self.read_only_vars:
-                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
-                                     f"class with read only attributes.")
+                raise ApiAttributeError(
+                    f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                    f"class with read only attributes."
+                )

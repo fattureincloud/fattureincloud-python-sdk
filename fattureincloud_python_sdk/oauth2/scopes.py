@@ -63,10 +63,10 @@ class Scope(Enum):
     # Write permission to the issued Delivery Notes
     ISSUED_DOCUMENTS_DELIVERY_NOTES_ALL = "issued_documents.delivery_notes:a"
 
-    # Read permission to the issued Received Documents
+    # Read permission to the Received Documents
     RECEIVED_DOCUMENTS_READ = "received_documents:r"
 
-    # Write permission to the issued Received Documents
+    # Write permission to the Received Documents
     RECEIVED_DOCUMENTS_ALL = "received_documents:a"
 
     # Read permission to the Stock movements

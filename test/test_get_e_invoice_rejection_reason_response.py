@@ -17,9 +17,14 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.e_invoice_rejection_reason import EInvoiceRejectionReason
-globals()['EInvoiceRejectionReason'] = EInvoiceRejectionReason
-from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
+from fattureincloud_python_sdk.model.e_invoice_rejection_reason import (
+    EInvoiceRejectionReason,
+)
+
+globals()["EInvoiceRejectionReason"] = EInvoiceRejectionReason
+from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import (
+    GetEInvoiceRejectionReasonResponse,
+)
 
 
 class TestGetEInvoiceRejectionReasonResponse(unittest.TestCase):
@@ -34,17 +39,17 @@ class TestGetEInvoiceRejectionReasonResponse(unittest.TestCase):
     def testGetEInvoiceRejectionReasonResponse(self):
         """Test GetEInvoiceRejectionReasonResponse"""
         model = GetEInvoiceRejectionReasonResponse(
-            data = EInvoiceRejectionReason(
+            data=EInvoiceRejectionReason(
                 reason="invalid date",
                 code="c01",
                 ei_status="rejected",
-                date=datetime.datetime.strptime('2022-01-01', '%Y-%m-%d').date()
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
             )
         )
-        expected_json = "{\"data\": {\"reason\": \"invalid date\", \"code\": \"c01\", \"ei_status\": \"rejected\", \"date\": \"2022-01-01\"}}"
+        expected_json = '{"data": {"reason": "invalid date", "code": "c01", "ei_status": "rejected", "date": "2022-01-01"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

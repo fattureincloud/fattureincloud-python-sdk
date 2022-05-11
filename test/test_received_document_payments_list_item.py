@@ -16,10 +16,17 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import ReceivedDocumentPaymentsListItemPaymentTerms
-globals()['PaymentAccount'] = PaymentAccount
-globals()['ReceivedDocumentPaymentsListItemPaymentTerms'] = ReceivedDocumentPaymentsListItemPaymentTerms
-from fattureincloud_python_sdk.model.received_document_payments_list_item import ReceivedDocumentPaymentsListItem
+from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import (
+    ReceivedDocumentPaymentsListItemPaymentTerms,
+)
+
+globals()["PaymentAccount"] = PaymentAccount
+globals()[
+    "ReceivedDocumentPaymentsListItemPaymentTerms"
+] = ReceivedDocumentPaymentsListItemPaymentTerms
+from fattureincloud_python_sdk.model.received_document_payments_list_item import (
+    ReceivedDocumentPaymentsListItem,
+)
 
 
 class TestReceivedDocumentPaymentsListItem(unittest.TestCase):
@@ -36,17 +43,15 @@ class TestReceivedDocumentPaymentsListItem(unittest.TestCase):
         model = ReceivedDocumentPaymentsListItem(
             id=1,
             amount=10.0,
-            due_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
-            paid_date_date=datetime.datetime.strptime("2022-01-01", '%Y-%m-%d').date(),
+            due_date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+            paid_date_date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
             status="ok",
-            payment_account=PaymentAccount(
-                id=1,
-                name="bank"
-            )
+            payment_account=PaymentAccount(id=1, name="bank"),
         )
         expected_json = '{"id": 1, "amount": 10.0, "due_date": "2022-01-01", "paid_date_date": "2022-01-01", "status": "ok", "payment_account": {"id": 1, "name": "bank"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
