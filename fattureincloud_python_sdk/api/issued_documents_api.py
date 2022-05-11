@@ -20,22 +20,46 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     datetime,
     file_type,
     none_type,
-    validate_and_convert_types
+    validate_and_convert_types,
 )
-from fattureincloud_python_sdk.model.create_issued_document_request import CreateIssuedDocumentRequest
-from fattureincloud_python_sdk.model.create_issued_document_response import CreateIssuedDocumentResponse
+from fattureincloud_python_sdk.model.create_issued_document_request import (
+    CreateIssuedDocumentRequest,
+)
+from fattureincloud_python_sdk.model.create_issued_document_response import (
+    CreateIssuedDocumentResponse,
+)
 from fattureincloud_python_sdk.model.get_email_data_response import GetEmailDataResponse
-from fattureincloud_python_sdk.model.get_existing_issued_document_totals_request import GetExistingIssuedDocumentTotalsRequest
-from fattureincloud_python_sdk.model.get_existing_issued_document_totals_response import GetExistingIssuedDocumentTotalsResponse
-from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import GetIssuedDocumentPreCreateInfoResponse
-from fattureincloud_python_sdk.model.get_issued_document_response import GetIssuedDocumentResponse
-from fattureincloud_python_sdk.model.get_new_issued_document_totals_request import GetNewIssuedDocumentTotalsRequest
-from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import GetNewIssuedDocumentTotalsResponse
-from fattureincloud_python_sdk.model.list_issued_documents_response import ListIssuedDocumentsResponse
-from fattureincloud_python_sdk.model.modify_issued_document_request import ModifyIssuedDocumentRequest
-from fattureincloud_python_sdk.model.modify_issued_document_response import ModifyIssuedDocumentResponse
+from fattureincloud_python_sdk.model.get_existing_issued_document_totals_request import (
+    GetExistingIssuedDocumentTotalsRequest,
+)
+from fattureincloud_python_sdk.model.get_existing_issued_document_totals_response import (
+    GetExistingIssuedDocumentTotalsResponse,
+)
+from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import (
+    GetIssuedDocumentPreCreateInfoResponse,
+)
+from fattureincloud_python_sdk.model.get_issued_document_response import (
+    GetIssuedDocumentResponse,
+)
+from fattureincloud_python_sdk.model.get_new_issued_document_totals_request import (
+    GetNewIssuedDocumentTotalsRequest,
+)
+from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import (
+    GetNewIssuedDocumentTotalsResponse,
+)
+from fattureincloud_python_sdk.model.list_issued_documents_response import (
+    ListIssuedDocumentsResponse,
+)
+from fattureincloud_python_sdk.model.modify_issued_document_request import (
+    ModifyIssuedDocumentRequest,
+)
+from fattureincloud_python_sdk.model.modify_issued_document_response import (
+    ModifyIssuedDocumentResponse,
+)
 from fattureincloud_python_sdk.model.schedule_email_request import ScheduleEmailRequest
-from fattureincloud_python_sdk.model.upload_issued_document_attachment_response import UploadIssuedDocumentAttachmentResponse
+from fattureincloud_python_sdk.model.upload_issued_document_attachment_response import (
+    UploadIssuedDocumentAttachmentResponse,
+)
 
 
 class IssuedDocumentsApi(object):
@@ -51,788 +75,626 @@ class IssuedDocumentsApi(object):
         self.api_client = api_client
         self.create_issued_document_endpoint = _Endpoint(
             settings={
-                'response_type': (CreateIssuedDocumentResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents',
-                'operation_id': 'create_issued_document',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (CreateIssuedDocumentResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents",
+                "operation_id": "create_issued_document",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'create_issued_document_request',
+                "all": [
+                    "company_id",
+                    "create_issued_document_request",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "create_issued_document_request": (CreateIssuedDocumentRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'create_issued_document_request':
-                        (CreateIssuedDocumentRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "create_issued_document_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'create_issued_document_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.delete_issued_document_endpoint = _Endpoint(
             settings={
-                'response_type': None,
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}',
-                'operation_id': 'delete_issued_document',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": None,
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}",
+                "operation_id": "delete_issued_document",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
+                "all": [
+                    "company_id",
+                    "document_id",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [],
-                'content_type': [],
+                "accept": [],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.delete_issued_document_attachment_endpoint = _Endpoint(
             settings={
-                'response_type': None,
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/attachment',
-                'operation_id': 'delete_issued_document_attachment',
-                'http_method': 'DELETE',
-                'servers': None,
+                "response_type": None,
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/attachment",
+                "operation_id": "delete_issued_document_attachment",
+                "http_method": "DELETE",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
+                "all": [
+                    "company_id",
+                    "document_id",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [],
-                'content_type': [],
+                "accept": [],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_email_data_endpoint = _Endpoint(
             settings={
-                'response_type': (GetEmailDataResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/email',
-                'operation_id': 'get_email_data',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetEmailDataResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/email",
+                "operation_id": "get_email_data",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
+                "all": [
+                    "company_id",
+                    "document_id",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_existing_issued_document_totals_endpoint = _Endpoint(
             settings={
-                'response_type': (GetExistingIssuedDocumentTotalsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/totals',
-                'operation_id': 'get_existing_issued_document_totals',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GetExistingIssuedDocumentTotalsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/totals",
+                "operation_id": "get_existing_issued_document_totals",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'get_existing_issued_document_totals_request',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "get_existing_issued_document_totals_request",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "get_existing_issued_document_totals_request": (
+                        GetExistingIssuedDocumentTotalsRequest,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'get_existing_issued_document_totals_request':
-                        (GetExistingIssuedDocumentTotalsRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "get_existing_issued_document_totals_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'get_existing_issued_document_totals_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_issued_document_endpoint = _Endpoint(
             settings={
-                'response_type': (GetIssuedDocumentResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}',
-                'operation_id': 'get_issued_document',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetIssuedDocumentResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}",
+                "operation_id": "get_issued_document",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'fields',
-                    'fieldset',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "fields",
+                    "fieldset",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "fieldset",
                 ],
-                'enum': [
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'allowed_values': {
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "fields": (str,),
+                    "fieldset": (str,),
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "fields": "query",
+                    "fieldset": "query",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_issued_document_pre_create_info_endpoint = _Endpoint(
             settings={
-                'response_type': (GetIssuedDocumentPreCreateInfoResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/info',
-                'operation_id': 'get_issued_document_pre_create_info',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (GetIssuedDocumentPreCreateInfoResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/info",
+                "operation_id": "get_issued_document_pre_create_info",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'type',
+                "all": [
+                    "company_id",
+                    "type",
                 ],
-                'required': [
-                    'company_id',
-                    'type',
+                "required": [
+                    "company_id",
+                    "type",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "type",
                 ],
-                'enum': [
-                    'type',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                    ('type',): {
-
+                "validations": {},
+                "allowed_values": {
+                    ("type",): {
                         "INVOICE": "invoice",
                         "CREDIT_NOTE": "credit_note",
                         "RECEIPT": "receipt",
                         "ORDER": "order",
                         "QUOTE": "quote",
                         "PROFORMA": "proforma",
-                        "DELIVERY_NOTE": "delivery_note"
+                        "DELIVERY_NOTE": "delivery_note",
                     },
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'type':
-                        (str,),
+                "openapi_types": {
+                    "company_id": (int,),
+                    "type": (str,),
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'type': 'type',
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "type": "type",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'type': 'query',
+                "location_map": {
+                    "company_id": "path",
+                    "type": "query",
                 },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.get_new_issued_document_totals_endpoint = _Endpoint(
             settings={
-                'response_type': (GetNewIssuedDocumentTotalsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/totals',
-                'operation_id': 'get_new_issued_document_totals',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (GetNewIssuedDocumentTotalsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/totals",
+                "operation_id": "get_new_issued_document_totals",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'get_new_issued_document_totals_request',
+                "all": [
+                    "company_id",
+                    "get_new_issued_document_totals_request",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "get_new_issued_document_totals_request": (
+                        GetNewIssuedDocumentTotalsRequest,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'get_new_issued_document_totals_request':
-                        (GetNewIssuedDocumentTotalsRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "get_new_issued_document_totals_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'get_new_issued_document_totals_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.list_issued_documents_endpoint = _Endpoint(
             settings={
-                'response_type': (ListIssuedDocumentsResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents',
-                'operation_id': 'list_issued_documents',
-                'http_method': 'GET',
-                'servers': None,
+                "response_type": (ListIssuedDocumentsResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents",
+                "operation_id": "list_issued_documents",
+                "http_method": "GET",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'type',
-                    'fields',
-                    'fieldset',
-                    'sort',
-                    'page',
-                    'per_page',
-                    'q',
+                "all": [
+                    "company_id",
+                    "type",
+                    "fields",
+                    "fieldset",
+                    "sort",
+                    "page",
+                    "per_page",
+                    "q",
                 ],
-                'required': [
-                    'company_id',
-                    'type',
+                "required": [
+                    "company_id",
+                    "type",
                 ],
-                'nullable': [
+                "nullable": [],
+                "enum": [
+                    "type",
+                    "fieldset",
                 ],
-                'enum': [
-                    'type',
-                    'fieldset',
-                ],
-                'validation': [
-                ]
+                "validation": [],
             },
             root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                    ('type',): {
-
+                "validations": {},
+                "allowed_values": {
+                    ("type",): {
                         "INVOICE": "invoice",
                         "CREDIT_NOTE": "credit_note",
                         "RECEIPT": "receipt",
                         "ORDER": "order",
                         "QUOTE": "quote",
                         "PROFORMA": "proforma",
-                        "DELIVERY_NOTE": "delivery_note"
+                        "DELIVERY_NOTE": "delivery_note",
                     },
-                    ('fieldset',): {
-
-                        "BASIC": "basic",
-                        "DETAILED": "detailed"
-                    },
+                    ("fieldset",): {"BASIC": "basic", "DETAILED": "detailed"},
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'type':
-                        (str,),
-                    'fields':
-                        (str,),
-                    'fieldset':
-                        (str,),
-                    'sort':
-                        (str,),
-                    'page':
-                        (int,),
-                    'per_page':
-                        (int,),
-                    'q':
-                        (str,),
+                "openapi_types": {
+                    "company_id": (int,),
+                    "type": (str,),
+                    "fields": (str,),
+                    "fieldset": (str,),
+                    "sort": (str,),
+                    "page": (int,),
+                    "per_page": (int,),
+                    "q": (str,),
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'type': 'type',
-                    'fields': 'fields',
-                    'fieldset': 'fieldset',
-                    'sort': 'sort',
-                    'page': 'page',
-                    'per_page': 'per_page',
-                    'q': 'q',
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "type": "type",
+                    "fields": "fields",
+                    "fieldset": "fieldset",
+                    "sort": "sort",
+                    "page": "page",
+                    "per_page": "per_page",
+                    "q": "q",
                 },
-                'location_map': {
-                    'company_id': 'path',
-                    'type': 'query',
-                    'fields': 'query',
-                    'fieldset': 'query',
-                    'sort': 'query',
-                    'page': 'query',
-                    'per_page': 'query',
-                    'q': 'query',
+                "location_map": {
+                    "company_id": "path",
+                    "type": "query",
+                    "fields": "query",
+                    "fieldset": "query",
+                    "sort": "query",
+                    "page": "query",
+                    "per_page": "query",
+                    "q": "query",
                 },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
+                "accept": ["application/json"],
+                "content_type": [],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.modify_issued_document_endpoint = _Endpoint(
             settings={
-                'response_type': (ModifyIssuedDocumentResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}',
-                'operation_id': 'modify_issued_document',
-                'http_method': 'PUT',
-                'servers': None,
+                "response_type": (ModifyIssuedDocumentResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}",
+                "operation_id": "modify_issued_document",
+                "http_method": "PUT",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'modify_issued_document_request',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "modify_issued_document_request",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "modify_issued_document_request": (ModifyIssuedDocumentRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'modify_issued_document_request':
-                        (ModifyIssuedDocumentRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "modify_issued_document_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'modify_issued_document_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["application/json"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
         self.schedule_email_endpoint = _Endpoint(
             settings={
-                'response_type': None,
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/{document_id}/email',
-                'operation_id': 'schedule_email',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": None,
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/{document_id}/email",
+                "operation_id": "schedule_email",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'document_id',
-                    'schedule_email_request',
+                "all": [
+                    "company_id",
+                    "document_id",
+                    "schedule_email_request",
                 ],
-                'required': [
-                    'company_id',
-                    'document_id',
+                "required": [
+                    "company_id",
+                    "document_id",
                 ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "nullable": [],
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "document_id": (int,),
+                    "schedule_email_request": (ScheduleEmailRequest,),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "document_id": "document_id",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'document_id':
-                        (int,),
-                    'schedule_email_request':
-                        (ScheduleEmailRequest,),
+                "location_map": {
+                    "company_id": "path",
+                    "document_id": "path",
+                    "schedule_email_request": "body",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'document_id': 'document_id',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'document_id': 'path',
-                    'schedule_email_request': 'body',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
-            headers_map={
-                'accept': [],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
+            headers_map={"accept": [], "content_type": ["application/json"]},
+            api_client=api_client,
         )
         self.upload_issued_document_attachment_endpoint = _Endpoint(
             settings={
-                'response_type': (UploadIssuedDocumentAttachmentResponse,),
-                'auth': [
-                    'OAuth2AuthenticationCodeFlow'
-                ],
-                'endpoint_path': '/c/{company_id}/issued_documents/attachment',
-                'operation_id': 'upload_issued_document_attachment',
-                'http_method': 'POST',
-                'servers': None,
+                "response_type": (UploadIssuedDocumentAttachmentResponse,),
+                "auth": ["OAuth2AuthenticationCodeFlow"],
+                "endpoint_path": "/c/{company_id}/issued_documents/attachment",
+                "operation_id": "upload_issued_document_attachment",
+                "http_method": "POST",
+                "servers": None,
             },
             params_map={
-                'all': [
-                    'company_id',
-                    'filename',
-                    'attachment',
+                "all": [
+                    "company_id",
+                    "filename",
+                    "attachment",
                 ],
-                'required': [
-                    'company_id',
+                "required": [
+                    "company_id",
                 ],
-                'nullable': [
-                    'filename',
-                    'attachment',
+                "nullable": [
+                    "filename",
+                    "attachment",
                 ],
-                'enum': [
-                ],
-                'validation': [
-                ]
+                "enum": [],
+                "validation": [],
             },
             root_map={
-                'validations': {
+                "validations": {},
+                "allowed_values": {},
+                "openapi_types": {
+                    "company_id": (int,),
+                    "filename": (
+                        str,
+                        none_type,
+                    ),
+                    "attachment": (
+                        file_type,
+                        none_type,
+                    ),
                 },
-                'allowed_values': {
+                "attribute_map": {
+                    "company_id": "company_id",
+                    "filename": "filename",
+                    "attachment": "attachment",
                 },
-                'openapi_types': {
-                    'company_id':
-                        (int,),
-                    'filename':
-                        (str, none_type,),
-                    'attachment':
-                        (file_type, none_type,),
+                "location_map": {
+                    "company_id": "path",
+                    "filename": "form",
+                    "attachment": "form",
                 },
-                'attribute_map': {
-                    'company_id': 'company_id',
-                    'filename': 'filename',
-                    'attachment': 'attachment',
-                },
-                'location_map': {
-                    'company_id': 'path',
-                    'filename': 'form',
-                    'attachment': 'form',
-                },
-                'collection_format_map': {
-                }
+                "collection_format_map": {},
             },
             headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'multipart/form-data'
-                ]
+                "accept": ["application/json"],
+                "content_type": ["multipart/form-data"],
             },
-            api_client=api_client
+            api_client=api_client,
         )
 
-    def create_issued_document(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def create_issued_document(self, company_id, **kwargs):
         """Create Issued Document  # noqa: E501
 
         Creates a new document.  # noqa: E501
@@ -879,40 +741,19 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
         return self.create_issued_document_endpoint.call_with_http_info(**kwargs)
 
-    def delete_issued_document(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def delete_issued_document(self, company_id, document_id, **kwargs):
         """Delete Issued Document  # noqa: E501
 
         Deletes the specified document.  # noqa: E501
@@ -959,42 +800,20 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.delete_issued_document_endpoint.call_with_http_info(**kwargs)
 
-    def delete_issued_document_attachment(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def delete_issued_document_attachment(self, company_id, document_id, **kwargs):
         """Delete Issued Document Attachment  # noqa: E501
 
         Removes the attachment of the specified document.  # noqa: E501
@@ -1041,42 +860,22 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
+        return self.delete_issued_document_attachment_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
-        return self.delete_issued_document_attachment_endpoint.call_with_http_info(**kwargs)
 
-    def get_email_data(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def get_email_data(self, company_id, document_id, **kwargs):
         """Get Email Data  # noqa: E501
 
         Gets the pre-compiled email details.  # noqa: E501
@@ -1123,42 +922,20 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.get_email_data_endpoint.call_with_http_info(**kwargs)
 
-    def get_existing_issued_document_totals(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def get_existing_issued_document_totals(self, company_id, document_id, **kwargs):
         """Get Existing Issued Document Totals  # noqa: E501
 
         Returns the totals for a specified document.  # noqa: E501
@@ -1206,42 +983,22 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
+        return self.get_existing_issued_document_totals_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
-        return self.get_existing_issued_document_totals_endpoint.call_with_http_info(**kwargs)
 
-    def get_issued_document(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def get_issued_document(self, company_id, document_id, **kwargs):
         """Get Issued Document  # noqa: E501
 
         Gets the specified document.   # noqa: E501
@@ -1290,42 +1047,20 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.get_issued_document_endpoint.call_with_http_info(**kwargs)
 
-    def get_issued_document_pre_create_info(
-        self,
-        company_id,
-        type,
-        **kwargs
-    ):
+    def get_issued_document_pre_create_info(self, company_id, type, **kwargs):
         """Get Issued Document Pre-create info  # noqa: E501
 
         Retrieves the information useful while creating a new document.  # noqa: E501
@@ -1372,41 +1107,22 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["type"] = type
+        return self.get_issued_document_pre_create_info_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['type'] = \
-            type
-        return self.get_issued_document_pre_create_info_endpoint.call_with_http_info(**kwargs)
 
-    def get_new_issued_document_totals(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def get_new_issued_document_totals(self, company_id, **kwargs):
         """Get New Issued Document Totals  # noqa: E501
 
         Returns the totals for a new document.  # noqa: E501
@@ -1453,40 +1169,21 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        return self.get_new_issued_document_totals_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        return self.get_new_issued_document_totals_endpoint.call_with_http_info(**kwargs)
 
-    def list_issued_documents(
-        self,
-        company_id,
-        type,
-        **kwargs
-    ):
+    def list_issued_documents(self, company_id, type, **kwargs):
         """List Issued Documents  # noqa: E501
 
         Lists the issued documents.  # noqa: E501
@@ -1539,42 +1236,20 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['type'] = \
-            type
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["type"] = type
         return self.list_issued_documents_endpoint.call_with_http_info(**kwargs)
 
-    def modify_issued_document(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def modify_issued_document(self, company_id, document_id, **kwargs):
         """Modify Issued Document  # noqa: E501
 
         Modifies the specified document.  # noqa: E501
@@ -1622,42 +1297,20 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.modify_issued_document_endpoint.call_with_http_info(**kwargs)
 
-    def schedule_email(
-        self,
-        company_id,
-        document_id,
-        **kwargs
-    ):
+    def schedule_email(self, company_id, document_id, **kwargs):
         """Schedule Email  # noqa: E501
 
         Schedules the sending of a document by email.  # noqa: E501
@@ -1705,41 +1358,20 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        kwargs['document_id'] = \
-            document_id
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        kwargs["document_id"] = document_id
         return self.schedule_email_endpoint.call_with_http_info(**kwargs)
 
-    def upload_issued_document_attachment(
-        self,
-        company_id,
-        **kwargs
-    ):
+    def upload_issued_document_attachment(self, company_id, **kwargs):
         """Upload Issued Document Attachment  # noqa: E501
 
         Uploads an attachment destined to an issued document. The actual association between the document and the attachment must be implemented separately, using the returned token.  # noqa: E501
@@ -1787,31 +1419,16 @@ class IssuedDocumentsApi(object):
                 If the method is called asynchronously, returns the request
                 thread.
         """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
+        kwargs["async_req"] = kwargs.get("async_req", False)
+        kwargs["_return_http_data_only"] = kwargs.get("_return_http_data_only", True)
+        kwargs["_preload_content"] = kwargs.get("_preload_content", True)
+        kwargs["_request_timeout"] = kwargs.get("_request_timeout", None)
+        kwargs["_check_input_type"] = kwargs.get("_check_input_type", True)
+        kwargs["_check_return_type"] = kwargs.get("_check_return_type", True)
+        kwargs["_spec_property_naming"] = kwargs.get("_spec_property_naming", False)
+        kwargs["_content_type"] = kwargs.get("_content_type")
+        kwargs["_host_index"] = kwargs.get("_host_index")
+        kwargs["company_id"] = company_id
+        return self.upload_issued_document_attachment_endpoint.call_with_http_info(
+            **kwargs
         )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['company_id'] = \
-            company_id
-        return self.upload_issued_document_attachment_endpoint.call_with_http_info(**kwargs)
-

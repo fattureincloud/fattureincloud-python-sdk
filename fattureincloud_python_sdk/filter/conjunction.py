@@ -2,7 +2,6 @@ from fattureincloud_python_sdk.filter.expression import Expression
 
 
 class Conjunction(Expression):
-
     def __init__(self, left: Expression, right: Expression):
         self.__left = left
         self.__right = right
@@ -27,4 +26,6 @@ class Conjunction(Expression):
         self.__right = right
 
     def build_query(self) -> str:
-        return "({} and {})".format(self.__left.build_query(), self.__right.build_query())
+        return "({} and {})".format(
+            self.__left.build_query(), self.__right.build_query()
+        )

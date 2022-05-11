@@ -17,8 +17,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.function_status import FunctionStatus
-globals()['FunctionStatus'] = FunctionStatus
-from fattureincloud_python_sdk.model.company_info_plan_info_functions_status import CompanyInfoPlanInfoFunctionsStatus
+
+globals()["FunctionStatus"] = FunctionStatus
+from fattureincloud_python_sdk.model.company_info_plan_info_functions_status import (
+    CompanyInfoPlanInfoFunctionsStatus,
+)
 
 
 class TestCompanyInfoPlanInfoFunctionsStatus(unittest.TestCase):
@@ -33,17 +36,12 @@ class TestCompanyInfoPlanInfoFunctionsStatus(unittest.TestCase):
     def testCompanyInfoPlanInfoFunctionsStatus(self):
         """Test CompanyInfoPlanInfoFunctionsStatus"""
         model = CompanyInfoPlanInfoFunctionsStatus(
-            ts_digitaL=FunctionStatus(
-                active=True
-            ),
-            ts_pay=FunctionStatus(
-                actiive=True
-            )
+            ts_digitaL=FunctionStatus(active=True), ts_pay=FunctionStatus(actiive=True)
         )
-        expected_json = "{\"ts_digitaL\": {\"active\": true}, \"ts_pay\": {\"actiive\": true}}"
+        expected_json = '{"ts_digitaL": {"active": true}, "ts_pay": {"actiive": true}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

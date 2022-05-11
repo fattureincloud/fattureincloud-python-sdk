@@ -12,7 +12,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "fattureincloud-python-sdk"
-VERSION = "2.0.4"
+VERSION = "2.0.5"
 # To install the library, run the following
 #
 # python setup.py install
@@ -21,14 +21,16 @@ VERSION = "2.0.4"
 # http://pypi.python.org/pypi/setuptools
 
 REQUIRES = [
-  "urllib3 >= 1.25.3",
-  "python-dateutil",
+    "urllib3 >= 1.25.3",
+    "python-dateutil",
 ]
 
+
 def readme():
-    with open('README.md') as f:
+    with open("README.md") as f:
         return f.read()
-        
+
+
 file = readme()
 
 setup(
@@ -38,12 +40,19 @@ setup(
     author="Fatture in Cloud",
     author_email="info@fattureincloud.it",
     url="https://github.com/fattureincloud/fattureincloud-python-sdk",
-    keywords=["fattureincloud", "fatture in cloud", "fatture", "fic", "fattureincloud sdk", "fatture in cloud sdk"],
+    keywords=[
+        "fattureincloud",
+        "fatture in cloud",
+        "fatture",
+        "fic",
+        "fattureincloud sdk",
+        "fatture in cloud sdk",
+    ],
     python_requires=">=3.6",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     license="MIT",
     long_description=file,  # noqa: E501
-    long_description_content_type='text/markdown'
+    long_description_content_type="text/markdown",
 )

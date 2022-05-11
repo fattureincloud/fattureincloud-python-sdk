@@ -18,21 +18,36 @@ from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.currency import Currency
 from fattureincloud_python_sdk.model.document_template import DocumentTemplate
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import IssuedDocumentPreCreateInfoDefaultValues
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import IssuedDocumentPreCreateInfoExtraDataDefaultValues
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import IssuedDocumentPreCreateInfoItemsDefaultValues
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import (
+    IssuedDocumentPreCreateInfoDefaultValues,
+)
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import (
+    IssuedDocumentPreCreateInfoExtraDataDefaultValues,
+)
+from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import (
+    IssuedDocumentPreCreateInfoItemsDefaultValues,
+)
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_method import PaymentMethod
 from fattureincloud_python_sdk.model.vat_type import VatType
-globals()['Currency'] = Currency
-globals()['DocumentTemplate'] = DocumentTemplate
-globals()['IssuedDocumentPreCreateInfoDefaultValues'] = IssuedDocumentPreCreateInfoDefaultValues
-globals()['IssuedDocumentPreCreateInfoExtraDataDefaultValues'] = IssuedDocumentPreCreateInfoExtraDataDefaultValues
-globals()['IssuedDocumentPreCreateInfoItemsDefaultValues'] = IssuedDocumentPreCreateInfoItemsDefaultValues
-globals()['PaymentAccount'] = PaymentAccount
-globals()['PaymentMethod'] = PaymentMethod
-globals()['VatType'] = VatType
-from fattureincloud_python_sdk.model.issued_document_pre_create_info import IssuedDocumentPreCreateInfo
+
+globals()["Currency"] = Currency
+globals()["DocumentTemplate"] = DocumentTemplate
+globals()[
+    "IssuedDocumentPreCreateInfoDefaultValues"
+] = IssuedDocumentPreCreateInfoDefaultValues
+globals()[
+    "IssuedDocumentPreCreateInfoExtraDataDefaultValues"
+] = IssuedDocumentPreCreateInfoExtraDataDefaultValues
+globals()[
+    "IssuedDocumentPreCreateInfoItemsDefaultValues"
+] = IssuedDocumentPreCreateInfoItemsDefaultValues
+globals()["PaymentAccount"] = PaymentAccount
+globals()["PaymentMethod"] = PaymentMethod
+globals()["VatType"] = VatType
+from fattureincloud_python_sdk.model.issued_document_pre_create_info import (
+    IssuedDocumentPreCreateInfo,
+)
 
 
 class TestIssuedDocumentPreCreateInfo(unittest.TestCase):
@@ -47,14 +62,12 @@ class TestIssuedDocumentPreCreateInfo(unittest.TestCase):
     def testIssuedDocumentPreCreateInfo(self):
         """Test IssuedDocumentPreCreateInfo"""
         model = IssuedDocumentPreCreateInfo(
-            default_values=IssuedDocumentPreCreateInfoDefaultValues(
-                rivalsa=10.0
-            ),
+            default_values=IssuedDocumentPreCreateInfoDefaultValues(rivalsa=10.0),
             extra_data_default_values=IssuedDocumentPreCreateInfoExtraDataDefaultValues(
                 ts_communication=True,
                 ts_tipo_spesa="string",
                 ts_flag_tipo_spesa=0,
-                ts_pagamento_tracciato=True
+                ts_pagamento_tracciato=True,
             ),
             items_default_values=IssuedDocumentPreCreateInfoItemsDefaultValues(
                 vat=VatType(
@@ -68,9 +81,7 @@ class TestIssuedDocumentPreCreateInfo(unittest.TestCase):
                     is_disabled=True,
                 ),
             ),
-            countries_list=[
-                "italy"
-            ]
+            countries_list=["italy"],
         )
 
         expected_json = '{"default_values": {"rivalsa": 10.0}, "extra_data_default_values": {"ts_communication": true, "ts_tipo_spesa": "string", "ts_flag_tipo_spesa": 0, "ts_pagamento_tracciato": true}, "items_default_values": {"vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}, "countries_list": ["italy"]}'
@@ -78,5 +89,5 @@ class TestIssuedDocumentPreCreateInfo(unittest.TestCase):
         assert actual_json == expected_json
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

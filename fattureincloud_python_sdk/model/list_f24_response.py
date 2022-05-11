@@ -25,22 +25,29 @@ from fattureincloud_python_sdk.model_utils import (  # noqa: F401
     file_type,
     none_type,
     validate_get_composed_info,
-    OpenApiModel
+    OpenApiModel,
 )
 from fattureincloud_python_sdk.exceptions import ApiAttributeError
 
 
 def lazy_import():
     from fattureincloud_python_sdk.model.f24 import F24
-    from fattureincloud_python_sdk.model.list_f24_response_aggregated_data import ListF24ResponseAggregatedData
-    from fattureincloud_python_sdk.model.list_f24_response_aggregation import ListF24ResponseAggregation
-    from fattureincloud_python_sdk.model.list_f24_response_page import ListF24ResponsePage
+    from fattureincloud_python_sdk.model.list_f24_response_aggregated_data import (
+        ListF24ResponseAggregatedData,
+    )
+    from fattureincloud_python_sdk.model.list_f24_response_aggregation import (
+        ListF24ResponseAggregation,
+    )
+    from fattureincloud_python_sdk.model.list_f24_response_page import (
+        ListF24ResponsePage,
+    )
     from fattureincloud_python_sdk.model.pagination import Pagination
-    globals()['F24'] = F24
-    globals()['ListF24ResponseAggregatedData'] = ListF24ResponseAggregatedData
-    globals()['ListF24ResponseAggregation'] = ListF24ResponseAggregation
-    globals()['ListF24ResponsePage'] = ListF24ResponsePage
-    globals()['Pagination'] = Pagination
+
+    globals()["F24"] = F24
+    globals()["ListF24ResponseAggregatedData"] = ListF24ResponseAggregatedData
+    globals()["ListF24ResponseAggregation"] = ListF24ResponseAggregation
+    globals()["ListF24ResponsePage"] = ListF24ResponsePage
+    globals()["Pagination"] = Pagination
 
 
 class ListF24Response(ModelComposed):
@@ -67,11 +74,9 @@ class ListF24Response(ModelComposed):
           as additional properties values.
     """
 
-    allowed_values = {
-    }
+    allowed_values = {}
 
-    validations = {
-    }
+    validations = {}
 
     @cached_property
     def additional_properties_type():
@@ -80,7 +85,17 @@ class ListF24Response(ModelComposed):
         of type self, this must run after the class is loaded
         """
         lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+        return (
+            bool,
+            date,
+            datetime,
+            dict,
+            float,
+            int,
+            list,
+            str,
+            none_type,
+        )  # noqa: E501
 
     _nullable = True
 
@@ -96,44 +111,78 @@ class ListF24Response(ModelComposed):
         """
         lazy_import()
         return {
-            'current_page': (int, none_type,),  # noqa: E501
-            'first_page_url': (str, none_type,),  # noqa: E501
-            '_from': (int, none_type,),  # noqa: E501
-            'last_page': (int, none_type,),  # noqa: E501
-            'last_page_url': (str, none_type,),  # noqa: E501
-            'next_page_url': (str, none_type,),  # noqa: E501
-            'path': (str, none_type,),  # noqa: E501
-            'per_page': (int, none_type,),  # noqa: E501
-            'prev_page_url': (str, none_type,),  # noqa: E501
-            'to': (int, none_type,),  # noqa: E501
-            'total': (int, none_type,),  # noqa: E501
-            'data': ([F24], none_type,),  # noqa: E501
-            'aggregated_data': (ListF24ResponseAggregatedData,),  # noqa: E501
+            "current_page": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "first_page_url": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "_from": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "last_page": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "last_page_url": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "next_page_url": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "path": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "per_page": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "prev_page_url": (
+                str,
+                none_type,
+            ),  # noqa: E501
+            "to": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "total": (
+                int,
+                none_type,
+            ),  # noqa: E501
+            "data": (
+                [F24],
+                none_type,
+            ),  # noqa: E501
+            "aggregated_data": (ListF24ResponseAggregatedData,),  # noqa: E501
         }
 
     @cached_property
     def discriminator():
         return None
 
-
     attribute_map = {
-        'current_page': 'current_page',  # noqa: E501
-        'first_page_url': 'first_page_url',  # noqa: E501
-        '_from': 'from',  # noqa: E501
-        'last_page': 'last_page',  # noqa: E501
-        'last_page_url': 'last_page_url',  # noqa: E501
-        'next_page_url': 'next_page_url',  # noqa: E501
-        'path': 'path',  # noqa: E501
-        'per_page': 'per_page',  # noqa: E501
-        'prev_page_url': 'prev_page_url',  # noqa: E501
-        'to': 'to',  # noqa: E501
-        'total': 'total',  # noqa: E501
-        'data': 'data',  # noqa: E501
-        'aggregated_data': 'aggregated_data',  # noqa: E501
+        "current_page": "current_page",  # noqa: E501
+        "first_page_url": "first_page_url",  # noqa: E501
+        "_from": "from",  # noqa: E501
+        "last_page": "last_page",  # noqa: E501
+        "last_page_url": "last_page_url",  # noqa: E501
+        "next_page_url": "next_page_url",  # noqa: E501
+        "path": "path",  # noqa: E501
+        "per_page": "per_page",  # noqa: E501
+        "prev_page_url": "prev_page_url",  # noqa: E501
+        "to": "to",  # noqa: E501
+        "total": "total",  # noqa: E501
+        "data": "data",  # noqa: E501
+        "aggregated_data": "aggregated_data",  # noqa: E501
     }
 
-    read_only_vars = {
-    }
+    read_only_vars = {}
 
     @classmethod
     @convert_js_args_to_python_args
@@ -186,17 +235,18 @@ class ListF24Response(ModelComposed):
             aggregated_data (ListF24ResponseAggregatedData): [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         self = super(OpenApiModel, cls).__new__(cls)
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -212,41 +262,44 @@ class ListF24Response(ModelComposed):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         constant_args = {
-            '_check_type': _check_type,
-            '_path_to_item': _path_to_item,
-            '_spec_property_naming': _spec_property_naming,
-            '_configuration': _configuration,
-            '_visited_composed_classes': self._visited_composed_classes,
+            "_check_type": _check_type,
+            "_path_to_item": _path_to_item,
+            "_spec_property_naming": _spec_property_naming,
+            "_configuration": _configuration,
+            "_visited_composed_classes": self._visited_composed_classes,
         }
-        composed_info = validate_get_composed_info(
-            constant_args, kwargs, self)
+        composed_info = validate_get_composed_info(constant_args, kwargs, self)
         self._composed_instances = composed_info[0]
         self._var_name_to_model_instances = composed_info[1]
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 
         for var_name, var_value in kwargs.items():
-            if var_name in discarded_args and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self._additional_properties_model_instances:
+            if (
+                var_name in discarded_args
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self._additional_properties_model_instances
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
 
         return self
 
-    required_properties = set([
-        '_data_store',
-        '_check_type',
-        '_spec_property_naming',
-        '_path_to_item',
-        '_configuration',
-        '_visited_composed_classes',
-        '_composed_instances',
-        '_var_name_to_model_instances',
-        '_additional_properties_model_instances',
-    ])
+    required_properties = set(
+        [
+            "_data_store",
+            "_check_type",
+            "_spec_property_naming",
+            "_path_to_item",
+            "_configuration",
+            "_visited_composed_classes",
+            "_composed_instances",
+            "_var_name_to_model_instances",
+            "_additional_properties_model_instances",
+        ]
+    )
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
@@ -298,15 +351,16 @@ class ListF24Response(ModelComposed):
             aggregated_data (ListF24ResponseAggregatedData): [optional]  # noqa: E501
         """
 
-        _check_type = kwargs.pop('_check_type', True)
-        _spec_property_naming = kwargs.pop('_spec_property_naming', False)
-        _path_to_item = kwargs.pop('_path_to_item', ())
-        _configuration = kwargs.pop('_configuration', None)
-        _visited_composed_classes = kwargs.pop('_visited_composed_classes', ())
+        _check_type = kwargs.pop("_check_type", True)
+        _spec_property_naming = kwargs.pop("_spec_property_naming", False)
+        _path_to_item = kwargs.pop("_path_to_item", ())
+        _configuration = kwargs.pop("_configuration", None)
+        _visited_composed_classes = kwargs.pop("_visited_composed_classes", ())
 
         if args:
             raise ApiTypeError(
-                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments." % (
+                "Invalid positional arguments=%s passed to %s. Remove those invalid positional arguments."
+                % (
                     args,
                     self.__class__.__name__,
                 ),
@@ -322,30 +376,33 @@ class ListF24Response(ModelComposed):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         constant_args = {
-            '_check_type': _check_type,
-            '_path_to_item': _path_to_item,
-            '_spec_property_naming': _spec_property_naming,
-            '_configuration': _configuration,
-            '_visited_composed_classes': self._visited_composed_classes,
+            "_check_type": _check_type,
+            "_path_to_item": _path_to_item,
+            "_spec_property_naming": _spec_property_naming,
+            "_configuration": _configuration,
+            "_visited_composed_classes": self._visited_composed_classes,
         }
-        composed_info = validate_get_composed_info(
-            constant_args, kwargs, self)
+        composed_info = validate_get_composed_info(constant_args, kwargs, self)
         self._composed_instances = composed_info[0]
         self._var_name_to_model_instances = composed_info[1]
         self._additional_properties_model_instances = composed_info[2]
         discarded_args = composed_info[3]
 
         for var_name, var_value in kwargs.items():
-            if var_name in discarded_args and \
-                        self._configuration is not None and \
-                        self._configuration.discard_unknown_keys and \
-                        self._additional_properties_model_instances:
+            if (
+                var_name in discarded_args
+                and self._configuration is not None
+                and self._configuration.discard_unknown_keys
+                and self._additional_properties_model_instances
+            ):
                 # discard variable.
                 continue
             setattr(self, var_name, var_value)
             if var_name in self.read_only_vars:
-                raise ApiAttributeError(f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
-                                     f"class with read only attributes.")
+                raise ApiAttributeError(
+                    f"`{var_name}` is a read-only attribute. Use `from_openapi_data` to instantiate "
+                    f"class with read only attributes."
+                )
 
     @cached_property
     def _composed_schemas():
@@ -358,13 +415,11 @@ class ListF24Response(ModelComposed):
         # loading
         lazy_import()
         return {
-          'anyOf': [
-          ],
-          'allOf': [
-              ListF24ResponseAggregation,
-              ListF24ResponsePage,
-              Pagination,
-          ],
-          'oneOf': [
-          ],
+            "anyOf": [],
+            "allOf": [
+                ListF24ResponseAggregation,
+                ListF24ResponsePage,
+                Pagination,
+            ],
+            "oneOf": [],
         }

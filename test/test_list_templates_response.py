@@ -18,8 +18,11 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.model.document_template import DocumentTemplate
-globals()['DocumentTemplate'] = DocumentTemplate
-from fattureincloud_python_sdk.model.list_templates_response import ListTemplatesResponse
+
+globals()["DocumentTemplate"] = DocumentTemplate
+from fattureincloud_python_sdk.model.list_templates_response import (
+    ListTemplatesResponse,
+)
 
 
 class TestListTemplatesResponse(unittest.TestCase):
@@ -35,21 +38,14 @@ class TestListTemplatesResponse(unittest.TestCase):
         """Test ListTemplatesResponse"""
         model = ListTemplatesResponse(
             data=[
-                DocumentTemplate(
-                    id=1,
-                    name="temp1",
-                    type="t1"
-                ),
-                DocumentTemplate(
-                    id=2,
-                    name="temp2",
-                    type="t2"
-                )
+                DocumentTemplate(id=1, name="temp1", type="t1"),
+                DocumentTemplate(id=2, name="temp2", type="t2"),
             ]
         )
-        expected_json = "{\"data\": [{\"id\": 1, \"name\": \"temp1\", \"type\": \"t1\"}, {\"id\": 2, \"name\": \"temp2\", \"type\": \"t2\"}]}"
+        expected_json = '{"data": [{"id": 1, "name": "temp1", "type": "t1"}, {"id": 2, "name": "temp2", "type": "t2"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
