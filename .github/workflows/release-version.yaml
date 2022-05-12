@@ -76,6 +76,13 @@ jobs:
         run: |
           git push origin
 
+      - id: save-commit-sha
+        name: Save latest commit sha
+        run: |
+          git --no-pager log -n 5
+          COMMIT_SHA=$(git rev-parse HEAD)
+          echo "commit_sha=$COMMIT_SHA" >> $GITHUB_ENV
+
       - id: create-tag
         name: Create tag
         if: ${{ !env.ACT && github.event.inputs.env == 'prod' }}
@@ -86,7 +93,8 @@ jobs:
             github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/v${{ env.sdk_version }}"
+              ref: "refs/tags/v${{ env.sdk_version }}",
+              sha: "${{ env.commit_sha }}"
             })
 
       - id: build-package
