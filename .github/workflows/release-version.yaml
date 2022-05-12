@@ -79,7 +79,6 @@ jobs:
       - id: save-commit-sha
         name: Save latest commit sha
         run: |
-          git --no-pager log -n 5
           COMMIT_SHA=$(git rev-parse HEAD)
           echo "commit_sha=$COMMIT_SHA" >> $GITHUB_ENV
 
