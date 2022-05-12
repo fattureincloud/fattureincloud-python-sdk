@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **shipping_address** | **str, none_type** | [Only for client] Shipping address. | [optional] 
 **e_invoice** | **bool, none_type** | [Only for client] Use e-invoices. | [optional] 
 **ei_code** | **str, none_type** | [Only for client] E-invoices code. | [optional] 
-**has_intent_declaration** | **bool** | [Only for client] Has intent declaration. | [optional] 
+**has_intent_declaration** | **bool, none_type** | [Only for client] Has intent declaration. | [optional] 
 **intent_declaration_protocol_number** | **date, none_type** | [Only for client] Intent declaration protocol number. | [optional] 
 **intent_declaration_protocol_date** | **str, none_type** | [Only for client] Intent declaration protocol date. | [optional] 
 **created_at** | **str, none_type** |  | [optional] 
