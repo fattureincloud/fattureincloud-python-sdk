@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.0.6 (2022-05-13)
+
+
+### Bug Fixes
+
+* released has_intent_declaration param ([#41](https://github.com/fattureincloud/fattureincloud-python-sdk/issues/41)) ([286c342](https://github.com/fattureincloud/fattureincloud-python-sdk/commit/286c342abcfff84d48c5bf80c2cc7bed383ddc45))
+
 ### 2.0.5 (2022-05-12)
 
 ### 2.0.4 (2022-04-21)
