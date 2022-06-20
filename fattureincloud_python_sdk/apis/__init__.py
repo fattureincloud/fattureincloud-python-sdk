@@ -5,7 +5,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.archive_api import ArchiveApi
+#   from fattureincloud_python_sdk.api.archive_api import ArchiveApi
 #
 # or import this package, but before doing it, use:
 #

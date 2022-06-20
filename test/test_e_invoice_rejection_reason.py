@@ -35,9 +35,9 @@ class TestEInvoiceRejectionReason(unittest.TestCase):
             reason="invalid date",
             code="c01",
             ei_status="rejected",
-            date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+            date=datetime.datetime.strptime("2022-01-01 23:22:21", "%Y-%m-%d %H:%M:%S"),
         )
-        expected_json = '{"reason": "invalid date", "code": "c01", "ei_status": "rejected", "date": "2022-01-01"}'
+        expected_json = '{"reason": "invalid date", "code": "c01", "ei_status": "rejected", "date": "2022-01-01T23:22:21"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
