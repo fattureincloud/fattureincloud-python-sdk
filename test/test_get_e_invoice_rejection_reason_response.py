@@ -43,7 +43,9 @@ class TestGetEInvoiceRejectionReasonResponse(unittest.TestCase):
                 reason="invalid date",
                 code="c01",
                 ei_status="rejected",
-                date=datetime.datetime.strptime("2022-01-01 23:22:21", "%Y-%m-%d %H:%M:%S"),
+                date=datetime.datetime.strptime(
+                    "2022-01-01 23:22:21", "%Y-%m-%d %H:%M:%S"
+                ),
             )
         )
         expected_json = '{"data": {"reason": "invalid date", "code": "c01", "ei_status": "rejected", "date": "2022-01-01T23:22:21"}}'

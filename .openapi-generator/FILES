@@ -97,6 +97,7 @@ docs/IssuedDocumentExtraData.md
 docs/IssuedDocumentItemsListItem.md
 docs/IssuedDocumentOptions.md
 docs/IssuedDocumentPaymentsListItem.md
+docs/IssuedDocumentPaymentsListItemPaymentTerms.md
 docs/IssuedDocumentPreCreateInfo.md
 docs/IssuedDocumentPreCreateInfoDefaultValues.md
 docs/IssuedDocumentPreCreateInfoExtraDataDefaultValues.md
@@ -340,6 +341,7 @@ fattureincloud_python_sdk/model/issued_document_extra_data.py
 fattureincloud_python_sdk/model/issued_document_items_list_item.py
 fattureincloud_python_sdk/model/issued_document_options.py
 fattureincloud_python_sdk/model/issued_document_payments_list_item.py
+fattureincloud_python_sdk/model/issued_document_payments_list_item_payment_terms.py
 fattureincloud_python_sdk/model/issued_document_pre_create_info.py
 fattureincloud_python_sdk/model/issued_document_pre_create_info_default_values.py
 fattureincloud_python_sdk/model/issued_document_pre_create_info_extra_data_default_values.py
@@ -469,3 +471,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_issued_document_payments_list_item_payment_terms.py

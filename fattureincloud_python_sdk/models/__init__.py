@@ -203,6 +203,9 @@ from fattureincloud_python_sdk.model.issued_document_options import (
 from fattureincloud_python_sdk.model.issued_document_payments_list_item import (
     IssuedDocumentPaymentsListItem,
 )
+from fattureincloud_python_sdk.model.issued_document_payments_list_item_payment_terms import (
+    IssuedDocumentPaymentsListItemPaymentTerms,
+)
 from fattureincloud_python_sdk.model.issued_document_pre_create_info import (
     IssuedDocumentPreCreateInfo,
 )

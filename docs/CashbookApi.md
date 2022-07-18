@@ -153,7 +153,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cashbook_api.CashbookApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = "document_id_example" # str | The ID of the document.
 
     # example passing only required values which don't have defaults set
     try:
@@ -169,7 +169,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **document_id** | **str**| The ID of the document. |
 
 ### Return type
 
@@ -223,7 +223,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cashbook_api.CashbookApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = "document_id_example" # str | The ID of the document.
     fields = "fields_example" # str | List of comma-separated fields. (optional)
     fieldset = "basic" # str | Name of the fieldset. (optional)
 
@@ -251,7 +251,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **document_id** | **str**| The ID of the document. |
  **fields** | **str**| List of comma-separated fields. | [optional]
  **fieldset** | **str**| Name of the fieldset. | [optional]
 
@@ -396,7 +396,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cashbook_api.CashbookApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = "document_id_example" # str | The ID of the document.
     modify_cashbook_entry_request = ModifyCashbookEntryRequest(
         data=CashbookEntry(
             id="id_example",
@@ -457,7 +457,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **document_id** | **str**| The ID of the document. |
  **modify_cashbook_entry_request** | [**ModifyCashbookEntryRequest**](ModifyCashbookEntryRequest.md)| Cashbook Entry | [optional]
 
 ### Return type

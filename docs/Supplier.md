@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **phone** | **str, none_type** | Supplier phone. | [optional] 
 **fax** | **str, none_type** | Supplier fax. | [optional] 
 **notes** | **str, none_type** | Supplier extra notes. | [optional] 
+**bank_iban** | **str, none_type** | Supplier bank IBAN. | [optional] 
 **created_at** | **str, none_type** |  | [optional] 
 **updated_at** | **str, none_type** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
