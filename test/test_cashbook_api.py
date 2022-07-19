@@ -92,7 +92,7 @@ class TestCashbookApi(unittest.TestCase):
         self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
             return_value=mock_resp
         )
-        actual = self.api.delete_cashbook_entry(2, 12345)
+        actual = self.api.delete_cashbook_entry(2, "12345")
         assert actual == None
 
     def test_get_cashbook_entry(self):
@@ -122,7 +122,7 @@ class TestCashbookApi(unittest.TestCase):
                 payment_account_in=PaymentAccount(id=1, name="banca"),
             )
         )
-        actual = self.api.get_cashbook_entry(2, 12345)
+        actual = self.api.get_cashbook_entry(2, "12345")
         actual.data.id = "2"
         assert actual == expected
 
@@ -196,7 +196,7 @@ class TestCashbookApi(unittest.TestCase):
                 payment_account_in=PaymentAccount(id=1, name="banca"),
             )
         )
-        actual = self.api.modify_cashbook_entry(2, 12345)
+        actual = self.api.modify_cashbook_entry(2, "12345")
         actual.data.id = "2"
         assert actual == expected
 
