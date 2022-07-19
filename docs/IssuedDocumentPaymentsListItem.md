@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
 **paid_date** | **date, none_type** | Payment date. [Only if status is paid] | [optional] 
 **ei_raw** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Advanced raw attributes for e-invoices. | [optional] 
+**payment_terms** | [**IssuedDocumentPaymentsListItemPaymentTerms**](IssuedDocumentPaymentsListItemPaymentTerms.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

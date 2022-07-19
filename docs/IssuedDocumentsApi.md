@@ -247,6 +247,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     ),
                     paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
+                    payment_terms=IssuedDocumentPaymentsListItemPaymentTerms(
+                        days=1,
+                        type="standard",
+                    ),
                 ),
             ],
             template=DocumentTemplate(
@@ -801,6 +805,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     ),
                     paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
+                    payment_terms=IssuedDocumentPaymentsListItemPaymentTerms(
+                        days=1,
+                        type="standard",
+                    ),
                 ),
             ],
             template=DocumentTemplate(
@@ -1299,6 +1307,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     ),
                     paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
+                    payment_terms=IssuedDocumentPaymentsListItemPaymentTerms(
+                        days=1,
+                        type="standard",
+                    ),
                 ),
             ],
             template=DocumentTemplate(
@@ -1735,6 +1747,10 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     ),
                     paid_date=dateutil_parser('Tue Apr 03 00:00:00 UTC 2018').date(),
                     ei_raw={},
+                    payment_terms=IssuedDocumentPaymentsListItemPaymentTerms(
+                        days=1,
+                        type="standard",
+                    ),
                 ),
             ],
             template=DocumentTemplate(
