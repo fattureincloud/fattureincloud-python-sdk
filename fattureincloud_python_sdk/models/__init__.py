@@ -96,9 +96,6 @@ from fattureincloud_python_sdk.model.create_vat_type_response import (
     CreateVatTypeResponse,
 )
 from fattureincloud_python_sdk.model.currency import Currency
-from fattureincloud_python_sdk.model.default_payment_terms_type import (
-    DefaultPaymentTermsType,
-)
 from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
 from fattureincloud_python_sdk.model.document_template import DocumentTemplate
 from fattureincloud_python_sdk.model.e_invoice_rejection_reason import (
@@ -387,6 +384,7 @@ from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountT
 from fattureincloud_python_sdk.model.payment_method import PaymentMethod
 from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
 from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.model.payment_terms_type import PaymentTermsType
 from fattureincloud_python_sdk.model.permission_level import PermissionLevel
 from fattureincloud_python_sdk.model.permissions import Permissions
 from fattureincloud_python_sdk.model.permissions_fic_issued_documents_detailed import (
