@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **payment_methods_list** | [**[PaymentMethod], none_type**](PaymentMethod.md) | Payment methods list. | [optional] 
 **payment_accounts_list** | [**[PaymentAccount], none_type**](PaymentAccount.md) | Payment accounts list. | [optional] 
 **vat_types_list** | [**[VatType], none_type**](VatType.md) | Vat types list. | [optional] 
+**languages_list** | [**[Language], none_type**](Language.md) | Languages list. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

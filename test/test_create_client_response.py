@@ -15,14 +15,13 @@ import unittest
 
 from fattureincloud_python_sdk.model.client import Client
 from fattureincloud_python_sdk.model.client_type import ClientType
-from fattureincloud_python_sdk.model.default_payment_terms_type import (
-    DefaultPaymentTermsType,
-)
+
 from fattureincloud_python_sdk.model.payment_account import PaymentAccount
 from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.model.payment_method import PaymentMethod
 from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
 from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.model.payment_terms_type import PaymentTermsType
 from fattureincloud_python_sdk.model.vat_type import VatType
 from fattureincloud_python_sdk.model.client import Client
 
@@ -75,7 +74,7 @@ class TestCreateClientResponse(unittest.TestCase):
                     is_disabled=True,
                 ),
                 default_payment_terms=30,
-                default_payment_terms_type=DefaultPaymentTermsType("standard"),
+                default_payment_terms_type=PaymentTermsType("standard"),
                 default_payment_method=PaymentMethod(
                     id=1,
                     name="name_example",

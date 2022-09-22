@@ -16,13 +16,13 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.default_payment_terms_type import (
-    DefaultPaymentTermsType,
+from fattureincloud_python_sdk.model.payment_terms_type import (
+    PaymentTermsType,
 )
 
 
-class TestDefaultPaymentTermsType(unittest.TestCase):
-    """DefaultPaymentTermsType unit test stubs"""
+class TestPaymentTermsType(unittest.TestCase):
+    """PaymentTermsType unit test stubs"""
 
     def setUp(self):
         pass
@@ -30,9 +30,9 @@ class TestDefaultPaymentTermsType(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDefaultPaymentTermsType(self):
-        """Test DefaultPaymentTermsType"""
-        model = DefaultPaymentTermsType("standard")
+    def testPaymentTermsType(self):
+        """Test PaymentTermsType"""
+        model = PaymentTermsType("standard")
         expected_json = "standard"
         actual_json = model.value
         assert actual_json == expected_json
