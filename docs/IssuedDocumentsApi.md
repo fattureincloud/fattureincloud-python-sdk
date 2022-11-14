@@ -12,9 +12,11 @@ Method | HTTP request | Description
 [**get_issued_document**](IssuedDocumentsApi.md#get_issued_document) | **GET** /c/{company_id}/issued_documents/{document_id} | Get Issued Document
 [**get_issued_document_pre_create_info**](IssuedDocumentsApi.md#get_issued_document_pre_create_info) | **GET** /c/{company_id}/issued_documents/info | Get Issued Document Pre-create info
 [**get_new_issued_document_totals**](IssuedDocumentsApi.md#get_new_issued_document_totals) | **POST** /c/{company_id}/issued_documents/totals | Get New Issued Document Totals
+[**join_issued_documents**](IssuedDocumentsApi.md#join_issued_documents) | **GET** /c/{company_id}/issued_documents/join | Join issued documents
 [**list_issued_documents**](IssuedDocumentsApi.md#list_issued_documents) | **GET** /c/{company_id}/issued_documents | List Issued Documents
 [**modify_issued_document**](IssuedDocumentsApi.md#modify_issued_document) | **PUT** /c/{company_id}/issued_documents/{document_id} | Modify Issued Document
 [**schedule_email**](IssuedDocumentsApi.md#schedule_email) | **POST** /c/{company_id}/issued_documents/{document_id}/email | Schedule Email
+[**transform_issued_document**](IssuedDocumentsApi.md#transform_issued_document) | **GET** /c/{company_id}/issued_documents/transform | Transform issued document
 [**upload_issued_document_attachment**](IssuedDocumentsApi.md#upload_issued_document_attachment) | **POST** /c/{company_id}/issued_documents/attachment | Upload Issued Document Attachment
 
 
@@ -76,6 +78,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 address_province="BG",
                 address_extra="address_extra_example",
                 country="Italia",
+                country_iso="Italia",
                 email="mario.rossi@example.it",
                 certified_email="mario.rossi@pec.example.it",
                 phone="phone_example",
@@ -323,9 +326,17 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
+            created_at="created_at_example",
+            updated_at="updated_at_example",
         ),
         options=IssuedDocumentOptions(
             fix_payments=True,
+            create_from=[
+                "create_from_example",
+            ],
+            transform=True,
+            keep_copy=True,
+            join_type="join_type_example",
         ),
     ) # CreateIssuedDocumentRequest | The Issued Document (optional)
 
@@ -674,6 +685,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 address_province="BG",
                 address_extra="address_extra_example",
                 country="Italia",
+                country_iso="Italia",
                 email="mario.rossi@example.it",
                 certified_email="mario.rossi@pec.example.it",
                 phone="phone_example",
@@ -921,6 +933,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
+            created_at="created_at_example",
+            updated_at="updated_at_example",
         ),
     ) # GetExistingIssuedDocumentTotalsRequest |  (optional)
 
@@ -1206,6 +1220,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 address_province="BG",
                 address_extra="address_extra_example",
                 country="Italia",
+                country_iso="Italia",
                 email="mario.rossi@example.it",
                 certified_email="mario.rossi@pec.example.it",
                 phone="phone_example",
@@ -1453,6 +1468,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
+            created_at="created_at_example",
+            updated_at="updated_at_example",
         ),
     ) # GetNewIssuedDocumentTotalsRequest |  (optional)
 
@@ -1502,6 +1519,98 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Totals. |  -  |
 **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **join_issued_documents**
+> JoinIssuedDocumentsResponse join_issued_documents(company_id, ids)
+
+Join issued documents
+
+Joins issued documents.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import time
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.api import issued_documents_api
+from fattureincloud_python_sdk.model.join_issued_documents_response import JoinIssuedDocumentsResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
+configuration = fattureincloud_python_sdk.Configuration(
+    access_token = "YOUR_ACCESS_TOKEN"
+)
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = issued_documents_api.IssuedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    ids = "1,2,3,4" # str | Ids of the documents.
+    group = 0 # int | Group items. (optional)
+    e_invoice = 0 # int | New document e_invoice. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Join issued documents
+        api_response = api_instance.join_issued_documents(company_id, ids)
+        pprint(api_response)
+    except fattureincloud_python_sdk.ApiException as e:
+        print("Exception when calling IssuedDocumentsApi->join_issued_documents: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Join issued documents
+        api_response = api_instance.join_issued_documents(company_id, ids, group=group, e_invoice=e_invoice)
+        pprint(api_response)
+    except fattureincloud_python_sdk.ApiException as e:
+        print("Exception when calling IssuedDocumentsApi->join_issued_documents: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. |
+ **ids** | **str**| Ids of the documents. |
+ **group** | **int**| Group items. | [optional]
+ **e_invoice** | **int**| New document e_invoice. | [optional]
+
+### Return type
+
+[**JoinIssuedDocumentsResponse**](JoinIssuedDocumentsResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Example response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1666,6 +1775,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                 address_province="BG",
                 address_extra="address_extra_example",
                 country="Italia",
+                country_iso="Italia",
                 email="mario.rossi@example.it",
                 certified_email="mario.rossi@pec.example.it",
                 phone="phone_example",
@@ -1913,9 +2023,17 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
+            created_at="created_at_example",
+            updated_at="updated_at_example",
         ),
         options=IssuedDocumentOptions(
             fix_payments=True,
+            create_from=[
+                "create_from_example",
+            ],
+            transform=True,
+            keep_copy=True,
+            join_type="join_type_example",
         ),
     ) # ModifyIssuedDocumentRequest | The modified document (optional)
 
@@ -2076,6 +2194,100 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **transform_issued_document**
+> TransformIssuedDocumentResponse transform_issued_document(company_id, original_document_id, new_type)
+
+Transform issued document
+
+Transforms the document.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import time
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.api import issued_documents_api
+from fattureincloud_python_sdk.model.transform_issued_document_response import TransformIssuedDocumentResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
+configuration = fattureincloud_python_sdk.Configuration(
+    access_token = "YOUR_ACCESS_TOKEN"
+)
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = issued_documents_api.IssuedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    original_document_id = "original_document_id_example" # str | Original document id.
+    new_type = "new_type_example" # str | New document type.
+    e_invoice = 0 # int | New document e_invoice. (optional)
+    transform_keep_copy = 0 # int | Keep the old document. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Transform issued document
+        api_response = api_instance.transform_issued_document(company_id, original_document_id, new_type)
+        pprint(api_response)
+    except fattureincloud_python_sdk.ApiException as e:
+        print("Exception when calling IssuedDocumentsApi->transform_issued_document: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Transform issued document
+        api_response = api_instance.transform_issued_document(company_id, original_document_id, new_type, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
+        pprint(api_response)
+    except fattureincloud_python_sdk.ApiException as e:
+        print("Exception when calling IssuedDocumentsApi->transform_issued_document: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. |
+ **original_document_id** | **str**| Original document id. |
+ **new_type** | **str**| New document type. |
+ **e_invoice** | **int**| New document e_invoice. | [optional]
+ **transform_keep_copy** | **int**| Keep the old document. | [optional]
+
+### Return type
+
+[**TransformIssuedDocumentResponse**](TransformIssuedDocumentResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Example response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **upload_issued_document_attachment**
 > UploadIssuedDocumentAttachmentResponse upload_issued_document_attachment(company_id)
 
@@ -2115,7 +2327,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     api_instance = issued_documents_api.IssuedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
     filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type, none_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -2142,7 +2354,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
  **filename** | **str, none_type**| Name of the file. | [optional]
- **attachment** | **file_type, none_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
 
 ### Return type
 

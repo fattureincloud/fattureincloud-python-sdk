@@ -17,6 +17,7 @@ from fattureincloud_python_sdk.api.archive_api import ArchiveApi
 from fattureincloud_python_sdk.api.cashbook_api import CashbookApi
 from fattureincloud_python_sdk.api.clients_api import ClientsApi
 from fattureincloud_python_sdk.api.companies_api import CompaniesApi
+from fattureincloud_python_sdk.api.emails_api import EmailsApi
 from fattureincloud_python_sdk.api.info_api import InfoApi
 from fattureincloud_python_sdk.api.issued_documents_api import IssuedDocumentsApi
 from fattureincloud_python_sdk.api.issued_e_invoices_api import IssuedEInvoicesApi

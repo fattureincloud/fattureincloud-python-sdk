@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **address_province** | **str, none_type** | Province. | [optional] 
 **address_extra** | **str, none_type** | Address extra info. | [optional] 
 **country** | **str, none_type** | Country | [optional] 
+**country_iso** | **str, none_type** | Country Iso | [optional] 
 **email** | **str, none_type** | Email. | [optional] 
 **certified_email** | **str, none_type** | Certified email. | [optional] 
 **phone** | **str, none_type** | Phone. | [optional] 
