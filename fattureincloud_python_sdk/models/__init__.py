@@ -101,12 +101,16 @@ from fattureincloud_python_sdk.model.document_template import DocumentTemplate
 from fattureincloud_python_sdk.model.e_invoice_rejection_reason import (
     EInvoiceRejectionReason,
 )
+from fattureincloud_python_sdk.model.email import Email
+from fattureincloud_python_sdk.model.email_attachment import EmailAttachment
 from fattureincloud_python_sdk.model.email_data import EmailData
 from fattureincloud_python_sdk.model.email_data_default_sender_email import (
     EmailDataDefaultSenderEmail,
 )
+from fattureincloud_python_sdk.model.email_recipient_status import EmailRecipientStatus
 from fattureincloud_python_sdk.model.email_schedule import EmailSchedule
 from fattureincloud_python_sdk.model.email_schedule_include import EmailScheduleInclude
+from fattureincloud_python_sdk.model.email_status import EmailStatus
 from fattureincloud_python_sdk.model.entity import Entity
 from fattureincloud_python_sdk.model.entity_type import EntityType
 from fattureincloud_python_sdk.model.f24 import F24
@@ -218,6 +222,9 @@ from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_defau
 from fattureincloud_python_sdk.model.issued_document_status import IssuedDocumentStatus
 from fattureincloud_python_sdk.model.issued_document_totals import IssuedDocumentTotals
 from fattureincloud_python_sdk.model.issued_document_type import IssuedDocumentType
+from fattureincloud_python_sdk.model.join_issued_documents_response import (
+    JoinIssuedDocumentsResponse,
+)
 from fattureincloud_python_sdk.model.language import Language
 from fattureincloud_python_sdk.model.list_archive_categories_response import (
     ListArchiveCategoriesResponse,
@@ -250,6 +257,10 @@ from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_respons
 )
 from fattureincloud_python_sdk.model.list_detailed_countries_response import (
     ListDetailedCountriesResponse,
+)
+from fattureincloud_python_sdk.model.list_emails_response import ListEmailsResponse
+from fattureincloud_python_sdk.model.list_emails_response_page import (
+    ListEmailsResponsePage,
 )
 from fattureincloud_python_sdk.model.list_f24_response import ListF24Response
 from fattureincloud_python_sdk.model.list_f24_response_aggregated_data import (
@@ -432,6 +443,9 @@ from fattureincloud_python_sdk.model.sender_email import SenderEmail
 from fattureincloud_python_sdk.model.show_totals_mode import ShowTotalsMode
 from fattureincloud_python_sdk.model.supplier import Supplier
 from fattureincloud_python_sdk.model.supplier_type import SupplierType
+from fattureincloud_python_sdk.model.transform_issued_document_response import (
+    TransformIssuedDocumentResponse,
+)
 from fattureincloud_python_sdk.model.upload_archive_attachment_response import (
     UploadArchiveAttachmentResponse,
 )
@@ -455,6 +469,9 @@ from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import 
 )
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_error import (
     VerifyEInvoiceXmlErrorResponseError,
+)
+from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_error_validation_result import (
+    VerifyEInvoiceXmlErrorResponseErrorValidationResult,
 )
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_extra import (
     VerifyEInvoiceXmlErrorResponseExtra,

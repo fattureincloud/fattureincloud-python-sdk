@@ -32,7 +32,9 @@ class TestIssuedDocumentPaymentsListItemPaymentTerms(unittest.TestCase):
 
     def testIssuedDocumentPaymentsListItemPaymentTerms(self):
         """Test IssuedDocumentPaymentsListItemPaymentTerms"""
-        model = IssuedDocumentPaymentsListItemPaymentTerms(days=2, type=PaymentTermsType("standard"))
+        model = IssuedDocumentPaymentsListItemPaymentTerms(
+            days=2, type=PaymentTermsType("standard")
+        )
         expected_json = '{"days": 2, "type": "standard"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json

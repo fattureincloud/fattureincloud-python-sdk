@@ -623,7 +623,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     api_instance = taxes_api.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
     filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type, none_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
  **filename** | **str, none_type**| Name of the file. | [optional]
- **attachment** | **file_type, none_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
 
 ### Return type
 
