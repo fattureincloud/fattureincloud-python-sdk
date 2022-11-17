@@ -27,9 +27,10 @@ class TestEmailStatus(unittest.TestCase):
 
     def testEmailStatus(self):
         """Test EmailStatus"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EmailStatus()  # noqa: E501
-        pass
+        model = EmailStatus("sent")
+        expected_json = "sent"
+        actual_json = model.value
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

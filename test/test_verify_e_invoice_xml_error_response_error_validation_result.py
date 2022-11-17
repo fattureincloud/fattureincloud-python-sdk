@@ -9,6 +9,7 @@
 """
 
 
+import json
 import sys
 import unittest
 
@@ -16,6 +17,7 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_error_validation_result import (
     VerifyEInvoiceXmlErrorResponseErrorValidationResult,
 )
+from functions import json_serial
 
 
 class TestVerifyEInvoiceXmlErrorResponseErrorValidationResult(unittest.TestCase):
@@ -29,9 +31,15 @@ class TestVerifyEInvoiceXmlErrorResponseErrorValidationResult(unittest.TestCase)
 
     def testVerifyEInvoiceXmlErrorResponseErrorValidationResult(self):
         """Test VerifyEInvoiceXmlErrorResponseErrorValidationResult"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = VerifyEInvoiceXmlErrorResponseErrorValidationResult()  # noqa: E501
-        pass
+        model = VerifyEInvoiceXmlErrorResponseErrorValidationResult(
+            xml_errors=["err", "or"]
+        )
+        expected_json = (
+            '{"xml_errors": ["err", "or"]}'
+        )
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
+        
 
 
 if __name__ == "__main__":

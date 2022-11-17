@@ -60,7 +60,7 @@ class EmailsApi(object):
                 "validations": {},
                 "allowed_values": {},
                 "openapi_types": {
-                    "company_id": (str,),
+                    "company_id": (int,),
                 },
                 "attribute_map": {
                     "company_id": "company_id",
@@ -88,7 +88,7 @@ class EmailsApi(object):
         >>> result = thread.get()
 
         Args:
-            company_id (str):
+            company_id (int):
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

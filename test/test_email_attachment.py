@@ -9,11 +9,13 @@
 """
 
 
+import json
 import sys
 import unittest
 
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.email_attachment import EmailAttachment
+from functions import json_serial
 
 
 class TestEmailAttachment(unittest.TestCase):
@@ -27,9 +29,15 @@ class TestEmailAttachment(unittest.TestCase):
 
     def testEmailAttachment(self):
         """Test EmailAttachment"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EmailAttachment()  # noqa: E501
-        pass
+        model = EmailAttachment(
+            filename="nomone",
+            url="www.af.com"
+        )
+        expected_json = (
+            '{"filename": "nomone", "url": "www.af.com"}'
+        )
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

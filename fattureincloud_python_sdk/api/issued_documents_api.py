@@ -746,7 +746,7 @@ class IssuedDocumentsApi(object):
                 },
                 "openapi_types": {
                     "company_id": (int,),
-                    "original_document_id": (str,),
+                    "original_document_id": (int,),
                     "new_type": (str,),
                     "e_invoice": (int,),
                     "transform_keep_copy": (int,),
@@ -1640,7 +1640,7 @@ class IssuedDocumentsApi(object):
 
         Args:
             company_id (int): The ID of the company.
-            original_document_id (str): Original document id.
+            original_document_id (int): Original document id.
             new_type (str): New document type.
 
         Keyword Args:

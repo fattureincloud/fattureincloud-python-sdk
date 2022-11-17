@@ -2232,7 +2232,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = issued_documents_api.IssuedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    original_document_id = "original_document_id_example" # str | Original document id.
+    original_document_id = 54321 # int | Original document id.
     new_type = "new_type_example" # str | New document type.
     e_invoice = 0 # int | New document e_invoice. (optional)
     transform_keep_copy = 0 # int | Keep the old document. (optional)
@@ -2261,7 +2261,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. |
- **original_document_id** | **str**| Original document id. |
+ **original_document_id** | **int**| Original document id. |
  **new_type** | **str**| New document type. |
  **e_invoice** | **int**| New document e_invoice. | [optional]
  **transform_keep_copy** | **int**| Keep the old document. | [optional]

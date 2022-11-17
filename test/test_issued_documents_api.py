@@ -13,6 +13,10 @@ import unittest
 import unittest.mock
 import datetime
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.model.entity import Entity
+from fattureincloud_python_sdk.model.issued_document_options import IssuedDocumentOptions
+from fattureincloud_python_sdk.model.join_issued_documents_response import JoinIssuedDocumentsResponse
+from fattureincloud_python_sdk.model.transform_issued_document_response import TransformIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.issued_documents_api import IssuedDocumentsApi
@@ -457,6 +461,121 @@ class TestIssuedDocumentsApi(unittest.TestCase):
             data=AttachmentData(attachment_token="aisdfvbgablsi9876r8o3qw36")
         )
         actual = self.api.upload_issued_document_attachment(2)
+        assert actual == expected
+
+    def test_transform_issued_document(self):
+        resp = {
+            "status": 200,
+            "data": b'{"data": {"id": 1, "type": "invoice", "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1"}, "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}, "options": {"create_from": ["12345"], "keep_copy": true}}',
+            "reason": "OK",
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = TransformIssuedDocumentResponse(
+            data=IssuedDocument(
+                id=1,
+                type=IssuedDocumentType("invoice"),
+                entity=Entity(
+                    id=54321,
+                    name="Mary Red S.r.L.",
+                    vat_number="IT05432181211",
+                    tax_code="IT05432181211",
+                    address_street="Corso impero, 66",
+                    address_postal_code="20900",
+                    address_city="Milano",
+                    address_province="MI",
+                    address_extra="",
+                    country="Italia",
+                    certified_email="mary@pec.red.com",
+                    ei_code="ABCXCR1"
+                ),
+                number=1,
+                numeration="/A",
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                year=1,
+                subject="subject_example",
+                visible_subject="visible_subject_example",
+                rc_center="rc_center_example",
+                notes="notes_example",
+                rivalsa=0.0,
+                cassa=0.0,
+                cassa_taxable=0.0,
+                amount_cassa_taxable=3.14,
+                cassa2=0.0,
+                cassa2_taxable=0.0,
+                amount_cassa2_taxable=3.14,
+                global_cassa_taxable=0.0,
+                amount_global_cassa_taxable=3.14,
+            ),
+            options=IssuedDocumentOptions(
+                create_from=["12345"],
+                keep_copy=True
+            )
+        )
+        actual = self.api.transform_issued_document(2, 12345, "proforma")
+        assert actual == expected
+
+    def test_join_issued_documents(self):
+        resp = {
+            "status": 200,
+            "data": b'{"data": {"id": 1, "type": "invoice", "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1"}, "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}, "options": {"create_from": ["12345", "54321"]}}',
+            "reason": "OK",
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = JoinIssuedDocumentsResponse(
+            data=IssuedDocument(
+                id=1,
+                type=IssuedDocumentType("invoice"),
+                entity=Entity(
+                    id=54321,
+                    name="Mary Red S.r.L.",
+                    vat_number="IT05432181211",
+                    tax_code="IT05432181211",
+                    address_street="Corso impero, 66",
+                    address_postal_code="20900",
+                    address_city="Milano",
+                    address_province="MI",
+                    address_extra="",
+                    country="Italia",
+                    certified_email="mary@pec.red.com",
+                    ei_code="ABCXCR1"
+                ),
+                number=1,
+                numeration="/A",
+                date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                year=1,
+                subject="subject_example",
+                visible_subject="visible_subject_example",
+                rc_center="rc_center_example",
+                notes="notes_example",
+                rivalsa=0.0,
+                cassa=0.0,
+                cassa_taxable=0.0,
+                amount_cassa_taxable=3.14,
+                cassa2=0.0,
+                cassa2_taxable=0.0,
+                amount_cassa2_taxable=3.14,
+                global_cassa_taxable=0.0,
+                amount_global_cassa_taxable=3.14,
+            ),
+            options=IssuedDocumentOptions(
+                create_from=["12345", "54321"]
+            )
+        )
+        actual = self.api.join_issued_documents(2, "12345")
         assert actual == expected
 
 
