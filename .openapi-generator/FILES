@@ -50,10 +50,15 @@ docs/Currency.md
 docs/DetailedCountry.md
 docs/DocumentTemplate.md
 docs/EInvoiceRejectionReason.md
+docs/Email.md
+docs/EmailAttachment.md
 docs/EmailData.md
 docs/EmailDataDefaultSenderEmail.md
+docs/EmailRecipientStatus.md
 docs/EmailSchedule.md
 docs/EmailScheduleInclude.md
+docs/EmailStatus.md
+docs/EmailsApi.md
 docs/Entity.md
 docs/EntityType.md
 docs/F24.md
@@ -106,6 +111,7 @@ docs/IssuedDocumentTotals.md
 docs/IssuedDocumentType.md
 docs/IssuedDocumentsApi.md
 docs/IssuedEInvoicesApi.md
+docs/JoinIssuedDocumentsResponse.md
 docs/Language.md
 docs/ListArchiveCategoriesResponse.md
 docs/ListArchiveDocumentsResponse.md
@@ -119,6 +125,8 @@ docs/ListCountriesResponse.md
 docs/ListCurrenciesResponse.md
 docs/ListDeliveryNotesDefaultCausalsResponse.md
 docs/ListDetailedCountriesResponse.md
+docs/ListEmailsResponse.md
+docs/ListEmailsResponsePage.md
 docs/ListF24Response.md
 docs/ListF24ResponseAggregatedData.md
 docs/ListF24ResponseAggregation.md
@@ -212,6 +220,7 @@ docs/Supplier.md
 docs/SupplierType.md
 docs/SuppliersApi.md
 docs/TaxesApi.md
+docs/TransformIssuedDocumentResponse.md
 docs/UploadArchiveAttachmentResponse.md
 docs/UploadF24AttachmentResponse.md
 docs/UploadIssuedDocumentAttachmentResponse.md
@@ -225,6 +234,7 @@ docs/VatList.md
 docs/VatType.md
 docs/VerifyEInvoiceXmlErrorResponse.md
 docs/VerifyEInvoiceXmlErrorResponseError.md
+docs/VerifyEInvoiceXmlErrorResponseErrorValidationResult.md
 docs/VerifyEInvoiceXmlErrorResponseExtra.md
 docs/VerifyEInvoiceXmlResponse.md
 docs/VerifyEInvoiceXmlResponseData.md
@@ -234,6 +244,7 @@ fattureincloud_python_sdk/api/archive_api.py
 fattureincloud_python_sdk/api/cashbook_api.py
 fattureincloud_python_sdk/api/clients_api.py
 fattureincloud_python_sdk/api/companies_api.py
+fattureincloud_python_sdk/api/emails_api.py
 fattureincloud_python_sdk/api/info_api.py
 fattureincloud_python_sdk/api/issued_documents_api.py
 fattureincloud_python_sdk/api/issued_e_invoices_api.py
@@ -295,10 +306,14 @@ fattureincloud_python_sdk/model/currency.py
 fattureincloud_python_sdk/model/detailed_country.py
 fattureincloud_python_sdk/model/document_template.py
 fattureincloud_python_sdk/model/e_invoice_rejection_reason.py
+fattureincloud_python_sdk/model/email.py
+fattureincloud_python_sdk/model/email_attachment.py
 fattureincloud_python_sdk/model/email_data.py
 fattureincloud_python_sdk/model/email_data_default_sender_email.py
+fattureincloud_python_sdk/model/email_recipient_status.py
 fattureincloud_python_sdk/model/email_schedule.py
 fattureincloud_python_sdk/model/email_schedule_include.py
+fattureincloud_python_sdk/model/email_status.py
 fattureincloud_python_sdk/model/entity.py
 fattureincloud_python_sdk/model/entity_type.py
 fattureincloud_python_sdk/model/f24.py
@@ -348,6 +363,7 @@ fattureincloud_python_sdk/model/issued_document_pre_create_info_items_default_va
 fattureincloud_python_sdk/model/issued_document_status.py
 fattureincloud_python_sdk/model/issued_document_totals.py
 fattureincloud_python_sdk/model/issued_document_type.py
+fattureincloud_python_sdk/model/join_issued_documents_response.py
 fattureincloud_python_sdk/model/language.py
 fattureincloud_python_sdk/model/list_archive_categories_response.py
 fattureincloud_python_sdk/model/list_archive_documents_response.py
@@ -361,6 +377,8 @@ fattureincloud_python_sdk/model/list_countries_response.py
 fattureincloud_python_sdk/model/list_currencies_response.py
 fattureincloud_python_sdk/model/list_delivery_notes_default_causals_response.py
 fattureincloud_python_sdk/model/list_detailed_countries_response.py
+fattureincloud_python_sdk/model/list_emails_response.py
+fattureincloud_python_sdk/model/list_emails_response_page.py
 fattureincloud_python_sdk/model/list_f24_response.py
 fattureincloud_python_sdk/model/list_f24_response_aggregated_data.py
 fattureincloud_python_sdk/model/list_f24_response_aggregation.py
@@ -448,6 +466,7 @@ fattureincloud_python_sdk/model/sender_email.py
 fattureincloud_python_sdk/model/show_totals_mode.py
 fattureincloud_python_sdk/model/supplier.py
 fattureincloud_python_sdk/model/supplier_type.py
+fattureincloud_python_sdk/model/transform_issued_document_response.py
 fattureincloud_python_sdk/model/upload_archive_attachment_response.py
 fattureincloud_python_sdk/model/upload_f24_attachment_response.py
 fattureincloud_python_sdk/model/upload_issued_document_attachment_response.py
@@ -460,6 +479,7 @@ fattureincloud_python_sdk/model/vat_list.py
 fattureincloud_python_sdk/model/vat_type.py
 fattureincloud_python_sdk/model/verify_e_invoice_xml_error_response.py
 fattureincloud_python_sdk/model/verify_e_invoice_xml_error_response_error.py
+fattureincloud_python_sdk/model/verify_e_invoice_xml_error_response_error_validation_result.py
 fattureincloud_python_sdk/model/verify_e_invoice_xml_error_response_extra.py
 fattureincloud_python_sdk/model/verify_e_invoice_xml_response.py
 fattureincloud_python_sdk/model/verify_e_invoice_xml_response_data.py
@@ -471,4 +491,13 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_payment_terms_type.py
+test/test_email.py
+test/test_email_attachment.py
+test/test_email_recipient_status.py
+test/test_email_status.py
+test/test_emails_api.py
+test/test_join_issued_documents_response.py
+test/test_list_emails_response.py
+test/test_list_emails_response_page.py
+test/test_transform_issued_document_response.py
+test/test_verify_e_invoice_xml_error_response_error_validation_result.py
