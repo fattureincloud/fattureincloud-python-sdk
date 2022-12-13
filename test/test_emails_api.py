@@ -49,7 +49,9 @@ class TestEmailsApi(unittest.TestCase):
                 Email(
                     id=2,
                     status=EmailStatus("sent"),
-                    sent_date=datetime.datetime.strptime("2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"),
+                    sent_date=datetime.datetime.strptime(
+                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
+                    ),
                     errors_count=0,
                     error_log="",
                     from_email="test@mail.it",
@@ -60,14 +62,18 @@ class TestEmailsApi(unittest.TestCase):
                     content="Test send email",
                     copy_to="",
                     recipient_status=EmailRecipientStatus("unknown"),
-                    recipient_date=datetime.datetime.strptime("2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"),
+                    recipient_date=datetime.datetime.strptime(
+                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
+                    ),
                     kind="Fatture",
-                    attachments=[ ]
+                    attachments=[],
                 ),
                 Email(
                     id=2,
                     status=EmailStatus("sent"),
-                    sent_date=datetime.datetime.strptime("2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"),
+                    sent_date=datetime.datetime.strptime(
+                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
+                    ),
                     errors_count=0,
                     error_log="",
                     from_email="test@mail.it",
@@ -78,10 +84,12 @@ class TestEmailsApi(unittest.TestCase):
                     content="Test send email",
                     copy_to="",
                     recipient_status=EmailRecipientStatus("unknown"),
-                    recipient_date=datetime.datetime.strptime("2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"),
+                    recipient_date=datetime.datetime.strptime(
+                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
+                    ),
                     kind="Fatture",
-                    attachments=[ ]
-                )
+                    attachments=[],
+                ),
             ],
             current_page=10,
             first_page_url="http://url.com",

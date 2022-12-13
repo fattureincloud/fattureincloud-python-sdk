@@ -44,7 +44,7 @@ configuration = fattureincloud_python_sdk.Configuration(
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = emails_api.EmailsApi(api_client)
-    company_id = 12345
+    company_id = 12345 # int | The ID of the company.
 
     # example passing only required values which don't have defaults set
     try:
@@ -60,7 +60,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**|  |
+ **company_id** | **int**| The ID of the company. |
 
 ### Return type
 

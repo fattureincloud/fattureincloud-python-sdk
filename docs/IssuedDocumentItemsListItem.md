@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **apply_withholding_taxes** | **bool, none_type** | Apply withholding taxes, rivalsa and cassa. | [optional] 
 **discount** | **float, none_type** | Discount percentual value. | [optional] 
 **discount_highlight** | **bool, none_type** |  | [optional] 
-**in_ddt** | **bool, none_type** |  | [optional] 
+**in_dn** | **bool, none_type** |  | [optional] 
 **stock** | **bool, none_type** |  | [optional] 
 **ei_raw** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Advanced raw attributes for e-invoices. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
