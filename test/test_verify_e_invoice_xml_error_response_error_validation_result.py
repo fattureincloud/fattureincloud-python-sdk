@@ -34,12 +34,9 @@ class TestVerifyEInvoiceXmlErrorResponseErrorValidationResult(unittest.TestCase)
         model = VerifyEInvoiceXmlErrorResponseErrorValidationResult(
             xml_errors=["err", "or"]
         )
-        expected_json = (
-            '{"xml_errors": ["err", "or"]}'
-        )
+        expected_json = '{"xml_errors": ["err", "or"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
-        
 
 
 if __name__ == "__main__":

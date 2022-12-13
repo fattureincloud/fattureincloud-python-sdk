@@ -14,9 +14,15 @@ import unittest.mock
 import datetime
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.model.entity import Entity
-from fattureincloud_python_sdk.model.issued_document_options import IssuedDocumentOptions
-from fattureincloud_python_sdk.model.join_issued_documents_response import JoinIssuedDocumentsResponse
-from fattureincloud_python_sdk.model.transform_issued_document_response import TransformIssuedDocumentResponse
+from fattureincloud_python_sdk.model.issued_document_options import (
+    IssuedDocumentOptions,
+)
+from fattureincloud_python_sdk.model.join_issued_documents_response import (
+    JoinIssuedDocumentsResponse,
+)
+from fattureincloud_python_sdk.model.transform_issued_document_response import (
+    TransformIssuedDocumentResponse,
+)
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.issued_documents_api import IssuedDocumentsApi
@@ -493,7 +499,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                     address_extra="",
                     country="Italia",
                     certified_email="mary@pec.red.com",
-                    ei_code="ABCXCR1"
+                    ei_code="ABCXCR1",
                 ),
                 number=1,
                 numeration="/A",
@@ -513,10 +519,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
             ),
-            options=IssuedDocumentOptions(
-                create_from=["12345"],
-                keep_copy=True
-            )
+            options=IssuedDocumentOptions(create_from=["12345"], keep_copy=True),
         )
         actual = self.api.transform_issued_document(2, 12345, "proforma")
         assert actual == expected
@@ -551,7 +554,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                     address_extra="",
                     country="Italia",
                     certified_email="mary@pec.red.com",
-                    ei_code="ABCXCR1"
+                    ei_code="ABCXCR1",
                 ),
                 number=1,
                 numeration="/A",
@@ -571,9 +574,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
             ),
-            options=IssuedDocumentOptions(
-                create_from=["12345", "54321"]
-            )
+            options=IssuedDocumentOptions(create_from=["12345", "54321"]),
         )
         actual = self.api.join_issued_documents(2, "12345")
         assert actual == expected
