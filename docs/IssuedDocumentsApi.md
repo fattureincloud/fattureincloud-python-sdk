@@ -238,7 +238,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     apply_withholding_taxes=True,
                     discount=3.14,
                     discount_highlight=True,
-                    in_ddt=True,
+                    in_dn=True,
                     stock=True,
                     ei_raw={},
                 ),
@@ -323,6 +323,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             seen_date=dateutil_parser('1970-01-01').date(),
             next_due_date=dateutil_parser('1970-01-01').date(),
             url="url_example",
+            dn_url="dn_url_example",
+            ai_url="ai_url_example",
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
@@ -845,7 +847,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     apply_withholding_taxes=True,
                     discount=3.14,
                     discount_highlight=True,
-                    in_ddt=True,
+                    in_dn=True,
                     stock=True,
                     ei_raw={},
                 ),
@@ -930,6 +932,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             seen_date=dateutil_parser('1970-01-01').date(),
             next_due_date=dateutil_parser('1970-01-01').date(),
             url="url_example",
+            dn_url="dn_url_example",
+            ai_url="ai_url_example",
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
@@ -1380,7 +1384,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     apply_withholding_taxes=True,
                     discount=3.14,
                     discount_highlight=True,
-                    in_ddt=True,
+                    in_dn=True,
                     stock=True,
                     ei_raw={},
                 ),
@@ -1465,6 +1469,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             seen_date=dateutil_parser('1970-01-01').date(),
             next_due_date=dateutil_parser('1970-01-01').date(),
             url="url_example",
+            dn_url="dn_url_example",
+            ai_url="ai_url_example",
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
@@ -1935,7 +1941,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
                     apply_withholding_taxes=True,
                     discount=3.14,
                     discount_highlight=True,
-                    in_ddt=True,
+                    in_dn=True,
                     stock=True,
                     ei_raw={},
                 ),
@@ -2020,6 +2026,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
             seen_date=dateutil_parser('1970-01-01').date(),
             next_due_date=dateutil_parser('1970-01-01').date(),
             url="url_example",
+            dn_url="dn_url_example",
+            ai_url="ai_url_example",
             attachment_token="attachment_token_example",
             ei_raw={},
             ei_status="attempt",
@@ -2232,7 +2240,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = issued_documents_api.IssuedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    original_document_id = 54321 # int | Original document id.
+    original_document_id = 1 # int | Original document id.
     new_type = "new_type_example" # str | New document type.
     e_invoice = 0 # int | New document e_invoice. (optional)
     transform_keep_copy = 0 # int | Keep the old document. (optional)

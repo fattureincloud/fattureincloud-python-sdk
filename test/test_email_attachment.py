@@ -29,13 +29,8 @@ class TestEmailAttachment(unittest.TestCase):
 
     def testEmailAttachment(self):
         """Test EmailAttachment"""
-        model = EmailAttachment(
-            filename="nomone",
-            url="www.af.com"
-        )
-        expected_json = (
-            '{"filename": "nomone", "url": "www.af.com"}'
-        )
+        model = EmailAttachment(filename="nomone", url="www.af.com")
+        expected_json = '{"filename": "nomone", "url": "www.af.com"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

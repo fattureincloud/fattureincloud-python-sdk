@@ -491,13 +491,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_email.py
-test/test_email_attachment.py
-test/test_email_recipient_status.py
-test/test_email_status.py
-test/test_emails_api.py
-test/test_join_issued_documents_response.py
-test/test_list_emails_response.py
-test/test_list_emails_response_page.py
-test/test_transform_issued_document_response.py
-test/test_verify_e_invoice_xml_error_response_error_validation_result.py
