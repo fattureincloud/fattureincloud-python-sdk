@@ -25,3 +25,6 @@ git_push.sh
 .gitignore
 .gitlab-ci.yml 
 tox.ini
+
+# Github folder
+.github/
