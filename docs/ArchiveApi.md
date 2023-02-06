@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **create_archive_document**
-> CreateArchiveDocumentResponse create_archive_document(company_id)
+> CreateArchiveDocumentResponse create_archive_document(company_id, create_archive_document_request=create_archive_document_request)
 
 Create Archive Document
 
@@ -22,13 +22,12 @@ Creates a new archive document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import archive_api
-from fattureincloud_python_sdk.model.create_archive_document_response import CreateArchiveDocumentResponse
-from fattureincloud_python_sdk.model.create_archive_document_request import CreateArchiveDocumentRequest
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -41,51 +40,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = archive_api.ArchiveApi(api_client)
+    api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_archive_document_request = CreateArchiveDocumentRequest(
-        data=ArchiveDocument(
-            id=1,
-            date=dateutil_parser('1970-01-01').date(),
-            description="description_example",
-            category="category_example",
-            attachment_token="attachment_token_example",
-        ),
-    ) # CreateArchiveDocumentRequest | The Archive Document. (optional)
+    create_archive_document_request = {"data":{"date":"2021-08-20","category":"Altri documenti","description":"spesa 1","attachment_token":"ibfjdbf94ey9w94g3w894qbasrga"}} # CreateArchiveDocumentRequest | The Archive Document. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Archive Document
-        api_response = api_instance.create_archive_document(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ArchiveApi->create_archive_document: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Archive Document
         api_response = api_instance.create_archive_document(company_id, create_archive_document_request=create_archive_document_request)
+        print("The response of ArchiveApi->create_archive_document:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ArchiveApi->create_archive_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_archive_document_request** | [**CreateArchiveDocumentRequest**](CreateArchiveDocumentRequest.md)| The Archive Document. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_archive_document_request** | [**CreateArchiveDocumentRequest**](CreateArchiveDocumentRequest.md)| The Archive Document. | [optional] 
 
 ### Return type
 
@@ -100,9 +78,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The Archive Document. |  -  |
@@ -121,11 +97,12 @@ Deletes the specified archive document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import archive_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -138,33 +115,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = archive_api.ArchiveApi(api_client)
+    api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Archive Document
         api_instance.delete_archive_document(company_id, document_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ArchiveApi->delete_archive_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -179,9 +151,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed. |  -  |
@@ -191,7 +161,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_archive_document**
-> GetArchiveDocumentResponse get_archive_document(company_id, document_id)
+> GetArchiveDocumentResponse get_archive_document(company_id, document_id, fields=fields, fieldset=fieldset)
 
 Get Archive Document
 
@@ -200,12 +170,12 @@ Gets the specified archive document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import archive_api
-from fattureincloud_python_sdk.model.get_archive_document_response import GetArchiveDocumentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -218,47 +188,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = archive_api.ArchiveApi(api_client)
+    api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    document_id = 56 # int | The ID of the document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Archive Document
-        api_response = api_instance.get_archive_document(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ArchiveApi->get_archive_document: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Archive Document
         api_response = api_instance.get_archive_document(company_id, document_id, fields=fields, fieldset=fieldset)
+        print("The response of ArchiveApi->get_archive_document:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ArchiveApi->get_archive_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -273,9 +230,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Archive Document Details |  -  |
@@ -285,7 +240,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_archive_documents**
-> ListArchiveDocumentsResponse list_archive_documents(company_id)
+> ListArchiveDocumentsResponse list_archive_documents(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List Archive Documents
 
@@ -294,12 +249,12 @@ Lists the archive documents.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import archive_api
-from fattureincloud_python_sdk.model.list_archive_documents_response import ListArchiveDocumentsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -312,53 +267,40 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = archive_api.ArchiveApi(api_client)
+    api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    q = "q_example" # str | Query for filtering the results. (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Archive Documents
-        api_response = api_instance.list_archive_documents(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ArchiveApi->list_archive_documents: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Archive Documents
         api_response = api_instance.list_archive_documents(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of ArchiveApi->list_archive_documents:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ArchiveApi->list_archive_documents: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -373,9 +315,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Results list. |  -  |
@@ -385,7 +325,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_archive_document**
-> ModifyArchiveDocumentResponse modify_archive_document(company_id, document_id)
+> ModifyArchiveDocumentResponse modify_archive_document(company_id, document_id, modify_archive_document_request=modify_archive_document_request)
 
 Modify Archive Document
 
@@ -394,13 +334,12 @@ Modifies the specified archive document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import archive_api
-from fattureincloud_python_sdk.model.modify_archive_document_response import ModifyArchiveDocumentResponse
-from fattureincloud_python_sdk.model.modify_archive_document_request import ModifyArchiveDocumentRequest
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -413,53 +352,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = archive_api.ArchiveApi(api_client)
+    api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    modify_archive_document_request = ModifyArchiveDocumentRequest(
-        data=ArchiveDocument(
-            id=1,
-            date=dateutil_parser('1970-01-01').date(),
-            description="description_example",
-            category="category_example",
-            attachment_token="attachment_token_example",
-        ),
-    ) # ModifyArchiveDocumentRequest | Modified Archive Document (optional)
+    document_id = 56 # int | The ID of the document.
+    modify_archive_document_request = {"data":{"date":"2021-08-20","category":"Altri documenti","description":"spesa 2"}} # ModifyArchiveDocumentRequest | Modified Archive Document (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify Archive Document
-        api_response = api_instance.modify_archive_document(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ArchiveApi->modify_archive_document: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify Archive Document
         api_response = api_instance.modify_archive_document(company_id, document_id, modify_archive_document_request=modify_archive_document_request)
+        print("The response of ArchiveApi->modify_archive_document:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ArchiveApi->modify_archive_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **modify_archive_document_request** | [**ModifyArchiveDocumentRequest**](ModifyArchiveDocumentRequest.md)| Modified Archive Document | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **modify_archive_document_request** | [**ModifyArchiveDocumentRequest**](ModifyArchiveDocumentRequest.md)| Modified Archive Document | [optional] 
 
 ### Return type
 
@@ -474,9 +392,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The modified Archived Document |  -  |
@@ -486,7 +402,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_archive_document_attachment**
-> UploadArchiveAttachmentResponse upload_archive_document_attachment(company_id)
+> UploadArchiveAttachmentResponse upload_archive_document_attachment(company_id, filename=filename, attachment=attachment)
 
 Upload Archive Document Attachment
 
@@ -495,12 +411,12 @@ Uploads an attachment destined to an archive document. The actual association be
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import archive_api
-from fattureincloud_python_sdk.model.upload_archive_attachment_response import UploadArchiveAttachmentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -513,45 +429,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = archive_api.ArchiveApi(api_client)
+    api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = 'filename_example' # str | Name of the file. (optional)
+    attachment = 'attachment_example' # str | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Upload Archive Document Attachment
-        api_response = api_instance.upload_archive_document_attachment(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ArchiveApi->upload_archive_document_attachment: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Upload Archive Document Attachment
         api_response = api_instance.upload_archive_document_attachment(company_id, filename=filename, attachment=attachment)
+        print("The response of ArchiveApi->upload_archive_document_attachment:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ArchiveApi->upload_archive_document_attachment: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **filename** | **str, none_type**| Name of the file. | [optional]
- **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **filename** | **str**| Name of the file. | [optional] 
+ **attachment** | **str**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
 
 ### Return type
 
@@ -566,9 +469,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |

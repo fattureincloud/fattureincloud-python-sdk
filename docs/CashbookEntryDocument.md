@@ -4,11 +4,27 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int, none_type** | Document unique identifier. | [optional] 
-**type** | **str, none_type** | Document type. | [optional] 
-**path** | **str, none_type** | Document path. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**id** | **int** | Document unique identifier. | [optional] 
+**type** | **str** | Document type. | [optional] 
+**path** | **str** | Document path. | [optional] 
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.cashbook_entry_document import CashbookEntryDocument
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CashbookEntryDocument from a JSON string
+cashbook_entry_document_instance = CashbookEntryDocument.from_json(json)
+# print the JSON string representation of the object
+print CashbookEntryDocument.to_json()
+
+# convert the object into a dict
+cashbook_entry_document_dict = cashbook_entry_document_instance.to_dict()
+# create an instance of CashbookEntryDocument from a dict
+cashbook_entry_document_form_dict = cashbook_entry_document.from_dict(cashbook_entry_document_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_product**
-> CreateProductResponse create_product(company_id)
+> CreateProductResponse create_product(company_id, create_product_request=create_product_request)
 
 Create Product
 
@@ -21,13 +21,12 @@ Creates a new product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import products_api
-from fattureincloud_python_sdk.model.create_product_request import CreateProductRequest
-from fattureincloud_python_sdk.model.create_product_response import CreateProductResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -40,73 +39,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = products_api.ProductsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ProductsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_product_request = CreateProductRequest(
-        data=Product(
-            id=1,
-            name="name_example",
-            code="code_example",
-            net_price=3.14,
-            gross_price=3.14,
-            use_gross_price=True,
-            default_vat=VatType(
-                id=1,
-                value=22,
-                description="Non imponibile art. 123",
-                notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                e_invoice=True,
-                ei_type="2",
-                ei_description="ei_description_example",
-                is_disabled=True,
-            ),
-            net_cost=3.14,
-            measure="measure_example",
-            description="description_example",
-            category="category_example",
-            notes="notes_example",
-            in_stock=True,
-            stock_initial=3.14,
-            average_cost=3.14,
-            average_price=3.14,
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # CreateProductRequest |  (optional)
+    create_product_request = {"data":{"name":"Tavolo di marmo","code":"TAVOLO003","net_price":240,"net_cost":0,"measure":"","description":"Tavolo in marmo pregiato","category":"arredamento","in_stock":true,"default_vat":{"id":3,"value":22,"description":"Non imponibile art. 123","notes":"IVA non imponibile ai sensi dell'articolo 123, comma 2","is_disabled":false}}} # CreateProductRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Product
-        api_response = api_instance.create_product(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ProductsApi->create_product: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Product
         api_response = api_instance.create_product(company_id, create_product_request=create_product_request)
+        print("The response of ProductsApi->create_product:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ProductsApi->create_product: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_product_request** | [**CreateProductRequest**](CreateProductRequest.md)|  | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_product_request** | [**CreateProductRequest**](CreateProductRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -121,9 +77,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -140,11 +94,12 @@ Deletes the specified product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import products_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -157,33 +112,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = products_api.ProductsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ProductsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    product_id = 1 # int | The ID of the product.
+    product_id = 56 # int | The ID of the product.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Product
         api_instance.delete_product(company_id, product_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ProductsApi->delete_product: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **product_id** | **int**| The ID of the product. |
+ **company_id** | **int**| The ID of the company. | 
+ **product_id** | **int**| The ID of the product. | 
 
 ### Return type
 
@@ -198,9 +148,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Product removed. |  -  |
@@ -210,7 +158,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_product**
-> GetProductResponse get_product(company_id, product_id)
+> GetProductResponse get_product(company_id, product_id, fields=fields, fieldset=fieldset)
 
 Get Product
 
@@ -219,12 +167,12 @@ Gets the specified product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import products_api
-from fattureincloud_python_sdk.model.get_product_response import GetProductResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -237,47 +185,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = products_api.ProductsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ProductsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    product_id = 1 # int | The ID of the product.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    product_id = 56 # int | The ID of the product.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Product
-        api_response = api_instance.get_product(company_id, product_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ProductsApi->get_product: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Product
         api_response = api_instance.get_product(company_id, product_id, fields=fields, fieldset=fieldset)
+        print("The response of ProductsApi->get_product:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ProductsApi->get_product: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **product_id** | **int**| The ID of the product. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **product_id** | **int**| The ID of the product. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -292,9 +227,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -304,7 +237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_products**
-> ListProductsResponse list_products(company_id)
+> ListProductsResponse list_products(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List Products
 
@@ -313,12 +246,12 @@ Lists the products.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import products_api
-from fattureincloud_python_sdk.model.list_products_response import ListProductsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -331,53 +264,40 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = products_api.ProductsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ProductsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    q = "q_example" # str | Query for filtering the results. (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Products
-        api_response = api_instance.list_products(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ProductsApi->list_products: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Products
         api_response = api_instance.list_products(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of ProductsApi->list_products:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ProductsApi->list_products: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -392,9 +312,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Products List. |  -  |
@@ -403,7 +321,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_product**
-> ModifyProductResponse modify_product(company_id, product_id)
+> ModifyProductResponse modify_product(company_id, product_id, modify_product_request=modify_product_request)
 
 Modify Product
 
@@ -412,13 +330,12 @@ Modifies the specified product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import products_api
-from fattureincloud_python_sdk.model.modify_product_response import ModifyProductResponse
-from fattureincloud_python_sdk.model.modify_product_request import ModifyProductRequest
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -431,75 +348,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = products_api.ProductsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ProductsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    product_id = 1 # int | The ID of the product.
-    modify_product_request = ModifyProductRequest(
-        data=Product(
-            id=1,
-            name="name_example",
-            code="code_example",
-            net_price=3.14,
-            gross_price=3.14,
-            use_gross_price=True,
-            default_vat=VatType(
-                id=1,
-                value=22,
-                description="Non imponibile art. 123",
-                notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                e_invoice=True,
-                ei_type="2",
-                ei_description="ei_description_example",
-                is_disabled=True,
-            ),
-            net_cost=3.14,
-            measure="measure_example",
-            description="description_example",
-            category="category_example",
-            notes="notes_example",
-            in_stock=True,
-            stock_initial=3.14,
-            average_cost=3.14,
-            average_price=3.14,
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # ModifyProductRequest | Modified product details. (optional)
+    product_id = 56 # int | The ID of the product.
+    modify_product_request = {"data":{"name":"Tavolo di marmo","code":"TAVOLO003","net_price":240,"net_cost":0,"measure":"","description":"Tavolo in marmo pregiato","category":"arredamento","in_stock":true,"default_vat":{"id":3,"value":22,"description":"Non imponibile art. 123","notes":"IVA non imponibile ai sensi dell'articolo 123, comma 2","is_disabled":false}}} # ModifyProductRequest | Modified product details. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify Product
-        api_response = api_instance.modify_product(company_id, product_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ProductsApi->modify_product: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify Product
         api_response = api_instance.modify_product(company_id, product_id, modify_product_request=modify_product_request)
+        print("The response of ProductsApi->modify_product:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ProductsApi->modify_product: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **product_id** | **int**| The ID of the product. |
- **modify_product_request** | [**ModifyProductRequest**](ModifyProductRequest.md)| Modified product details. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **product_id** | **int**| The ID of the product. | 
+ **modify_product_request** | [**ModifyProductRequest**](ModifyProductRequest.md)| Modified product details. | [optional] 
 
 ### Return type
 
@@ -514,9 +388,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |

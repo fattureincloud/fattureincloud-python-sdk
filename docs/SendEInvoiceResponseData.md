@@ -4,10 +4,26 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str, none_type** | Response message. | [optional] 
-**date** | **str, none_type** | E-invoice sent date. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**name** | **str** | Response message. | [optional] 
+**var_date** | **str** | E-invoice sent date. | [optional] 
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.send_e_invoice_response_data import SendEInvoiceResponseData
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of SendEInvoiceResponseData from a JSON string
+send_e_invoice_response_data_instance = SendEInvoiceResponseData.from_json(json)
+# print the JSON string representation of the object
+print SendEInvoiceResponseData.to_json()
+
+# convert the object into a dict
+send_e_invoice_response_data_dict = send_e_invoice_response_data_instance.to_dict()
+# create an instance of SendEInvoiceResponseData from a dict
+send_e_invoice_response_data_form_dict = send_e_invoice_response_data.from_dict(send_e_invoice_response_data_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

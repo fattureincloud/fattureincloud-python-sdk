@@ -4,13 +4,29 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | **str, none_type** | Rejection reason. | [optional] 
-**ei_status** | **str, none_type** | E-invoice status. | [optional] 
-**solution** | **str, none_type** | Error solution. | [optional] 
-**code** | **str, none_type** | Error code. | [optional] 
-**date** | **datetime, none_type** | Rejection date. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**reason** | **str** | Rejection reason. | [optional] 
+**ei_status** | **str** | E-invoice status. | [optional] 
+**solution** | **str** | Error solution. | [optional] 
+**code** | **str** | Error code. | [optional] 
+**var_date** | **datetime** | Rejection date. | [optional] 
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.e_invoice_rejection_reason import EInvoiceRejectionReason
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of EInvoiceRejectionReason from a JSON string
+e_invoice_rejection_reason_instance = EInvoiceRejectionReason.from_json(json)
+# print the JSON string representation of the object
+print EInvoiceRejectionReason.to_json()
+
+# convert the object into a dict
+e_invoice_rejection_reason_dict = e_invoice_rejection_reason_instance.to_dict()
+# create an instance of EInvoiceRejectionReason from a dict
+e_invoice_rejection_reason_form_dict = e_invoice_rejection_reason.from_dict(e_invoice_rejection_reason_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_client**
-> CreateClientResponse create_client(company_id)
+> CreateClientResponse create_client(company_id, create_client_request=create_client_request)
 
 Create Client
 
@@ -21,13 +21,12 @@ Creates a new client.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import clients_api
-from fattureincloud_python_sdk.model.create_client_request import CreateClientRequest
-from fattureincloud_python_sdk.model.create_client_response import CreateClientResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -40,116 +39,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = clients_api.ClientsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_client_request = CreateClientRequest(
-        data=Client(
-            id=1,
-            code="123",
-            name="Rossi S.r.l.",
-            type=ClientType("company"),
-            first_name="first_name_example",
-            last_name="last_name_example",
-            contact_person="contact_person_example",
-            vat_number="IT01234567890",
-            tax_code="RSSMRA44A12E890Q",
-            address_street="Via dei tigli, 12",
-            address_postal_code="24010",
-            address_city="Bergamo",
-            address_province="BG",
-            address_extra="address_extra_example",
-            country="Italia",
-            email="mario.rossi@example.it",
-            certified_email="mario.rossi@pec.example.it",
-            phone="phone_example",
-            fax="fax_example",
-            notes="notes_example",
-            default_vat=VatType(
-                id=1,
-                value=22,
-                description="Non imponibile art. 123",
-                notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                e_invoice=True,
-                ei_type="2",
-                ei_description="ei_description_example",
-                is_disabled=True,
-            ),
-            default_payment_terms=30,
-            default_payment_terms_type=PaymentTermsType("standard"),
-            default_payment_method=PaymentMethod(
-                id=1,
-                name="name_example",
-                type=PaymentMethodType("standard"),
-                is_default=True,
-                default_payment_account=PaymentAccount(
-                    id=1,
-                    name="Conto Banca Intesa",
-                    type=PaymentAccountType("standard"),
-                    iban="iban_example",
-                    sia="sia_example",
-                    cuc="cuc_example",
-                    virtual=True,
-                ),
-                details=[
-                    PaymentMethodDetails(
-                        title="title_example",
-                        description="description_example",
-                    ),
-                ],
-                bank_iban="bank_iban_example",
-                bank_name="bank_name_example",
-                bank_beneficiary="bank_beneficiary_example",
-                ei_payment_method="ei_payment_method_example",
-            ),
-            bank_name="bank_name_example",
-            bank_iban="bank_iban_example",
-            bank_swift_code="bank_swift_code_example",
-            shipping_address="shipping_address_example",
-            e_invoice=True,
-            ei_code="ei_code_example",
-            discount_highlight=True,
-            default_discount=3.14,
-            has_intent_declaration=True,
-            intent_declaration_protocol_number="intent_declaration_protocol_number_example",
-            intent_declaration_protocol_date=dateutil_parser('1970-01-01').date(),
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # CreateClientRequest | The client to create (optional)
+    create_client_request = {"data":{"code":"AE86","name":"Avv. Maria Rossi","type":"person","first_name":"Maria","last_name":"Rossi","contact_person":"","vat_number":"IT12345640962","tax_code":"BLTGNI5ABCDA794E","address_street":"Via Roma, 1","address_postal_code":"20900","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"maria.rossi@example.com","certified_email":"maria.rossi@pec.example.com","phone":"1234567890","fax":"","notes":"","default_payment_terms":1,"default_payment_terms_type":"standard","bank_name":"Indesa","bank_iban":"IT40P123456781000000123456","bank_swift_code":"AK86PCT","shipping_address":"Corso Magellano 4","e_invoice":true,"ei_code":"111111","default_vat":{"id":54321,"value":45,"description":"","is_disabled":false}}} # CreateClientRequest | The client to create (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Client
-        api_response = api_instance.create_client(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ClientsApi->create_client: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Client
         api_response = api_instance.create_client(company_id, create_client_request=create_client_request)
+        print("The response of ClientsApi->create_client:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ClientsApi->create_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_client_request** | [**CreateClientRequest**](CreateClientRequest.md)| The client to create | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_client_request** | [**CreateClientRequest**](CreateClientRequest.md)| The client to create | [optional] 
 
 ### Return type
 
@@ -164,9 +77,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -183,11 +94,12 @@ Deletes the specified client.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import clients_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -200,33 +112,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = clients_api.ClientsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    client_id = 1 # int | The ID of the client.
+    client_id = 56 # int | The ID of the client.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Client
         api_instance.delete_client(company_id, client_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ClientsApi->delete_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **client_id** | **int**| The ID of the client. |
+ **company_id** | **int**| The ID of the company. | 
+ **client_id** | **int**| The ID of the client. | 
 
 ### Return type
 
@@ -241,9 +148,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Entity Removed |  -  |
@@ -253,7 +158,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_client**
-> GetClientResponse get_client(company_id, client_id)
+> GetClientResponse get_client(company_id, client_id, fields=fields, fieldset=fieldset)
 
 Get Client
 
@@ -262,12 +167,12 @@ Gets the specified client.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import clients_api
-from fattureincloud_python_sdk.model.get_client_response import GetClientResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -280,47 +185,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = clients_api.ClientsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    client_id = 1 # int | The ID of the client.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    client_id = 56 # int | The ID of the client.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Client
-        api_response = api_instance.get_client(company_id, client_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ClientsApi->get_client: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Client
         api_response = api_instance.get_client(company_id, client_id, fields=fields, fieldset=fieldset)
+        print("The response of ClientsApi->get_client:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ClientsApi->get_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **client_id** | **int**| The ID of the client. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **client_id** | **int**| The ID of the client. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -335,9 +227,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Client Details. |  -  |
@@ -347,7 +237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_clients**
-> ListClientsResponse list_clients(company_id)
+> ListClientsResponse list_clients(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List Clients
 
@@ -356,12 +246,12 @@ Lists the clients.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import clients_api
-from fattureincloud_python_sdk.model.list_clients_response import ListClientsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -374,53 +264,40 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = clients_api.ClientsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    q = "q_example" # str | Query for filtering the results. (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Clients
-        api_response = api_instance.list_clients(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ClientsApi->list_clients: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Clients
         api_response = api_instance.list_clients(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of ClientsApi->list_clients:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ClientsApi->list_clients: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -435,9 +312,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -446,7 +321,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_client**
-> ModifyClientResponse modify_client(company_id, client_id)
+> ModifyClientResponse modify_client(company_id, client_id, modify_client_request=modify_client_request)
 
 Modify Client
 
@@ -455,13 +330,12 @@ Modifies the specified client.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import clients_api
-from fattureincloud_python_sdk.model.modify_client_response import ModifyClientResponse
-from fattureincloud_python_sdk.model.modify_client_request import ModifyClientRequest
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -474,118 +348,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = clients_api.ClientsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    client_id = 1 # int | The ID of the client.
-    modify_client_request = ModifyClientRequest(
-        data=Client(
-            id=1,
-            code="123",
-            name="Rossi S.r.l.",
-            type=ClientType("company"),
-            first_name="first_name_example",
-            last_name="last_name_example",
-            contact_person="contact_person_example",
-            vat_number="IT01234567890",
-            tax_code="RSSMRA44A12E890Q",
-            address_street="Via dei tigli, 12",
-            address_postal_code="24010",
-            address_city="Bergamo",
-            address_province="BG",
-            address_extra="address_extra_example",
-            country="Italia",
-            email="mario.rossi@example.it",
-            certified_email="mario.rossi@pec.example.it",
-            phone="phone_example",
-            fax="fax_example",
-            notes="notes_example",
-            default_vat=VatType(
-                id=1,
-                value=22,
-                description="Non imponibile art. 123",
-                notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                e_invoice=True,
-                ei_type="2",
-                ei_description="ei_description_example",
-                is_disabled=True,
-            ),
-            default_payment_terms=30,
-            default_payment_terms_type=PaymentTermsType("standard"),
-            default_payment_method=PaymentMethod(
-                id=1,
-                name="name_example",
-                type=PaymentMethodType("standard"),
-                is_default=True,
-                default_payment_account=PaymentAccount(
-                    id=1,
-                    name="Conto Banca Intesa",
-                    type=PaymentAccountType("standard"),
-                    iban="iban_example",
-                    sia="sia_example",
-                    cuc="cuc_example",
-                    virtual=True,
-                ),
-                details=[
-                    PaymentMethodDetails(
-                        title="title_example",
-                        description="description_example",
-                    ),
-                ],
-                bank_iban="bank_iban_example",
-                bank_name="bank_name_example",
-                bank_beneficiary="bank_beneficiary_example",
-                ei_payment_method="ei_payment_method_example",
-            ),
-            bank_name="bank_name_example",
-            bank_iban="bank_iban_example",
-            bank_swift_code="bank_swift_code_example",
-            shipping_address="shipping_address_example",
-            e_invoice=True,
-            ei_code="ei_code_example",
-            discount_highlight=True,
-            default_discount=3.14,
-            has_intent_declaration=True,
-            intent_declaration_protocol_number="intent_declaration_protocol_number_example",
-            intent_declaration_protocol_date=dateutil_parser('1970-01-01').date(),
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # ModifyClientRequest | The modified Client. First level parameters are managed in delta mode. (optional)
+    client_id = 56 # int | The ID of the client.
+    modify_client_request = {"data":{"code":"AE86","name":"Avv. Maria Rossi","type":"person","first_name":"Maria","last_name":"Rossi","contact_person":"","vat_number":"IT12345640962","tax_code":"BLTGNI5ABCDA794E","address_street":"Via Roma, 1","address_postal_code":"20900","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"maria.rossi@example.com","certified_email":"maria.rossi@pec.example.com","phone":"1234567890","fax":"","notes":"","default_payment_terms":1,"default_payment_terms_type":"standard","bank_name":"Indesa","bank_iban":"IT40P123456781000000123456","bank_swift_code":"AK86PCT","shipping_address":"Corso Magellano 4","e_invoice":true,"ei_code":"111111","default_vat":{"id":54321,"value":45,"description":"","is_disabled":false}}} # ModifyClientRequest | The modified Client. First level parameters are managed in delta mode. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify Client
-        api_response = api_instance.modify_client(company_id, client_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ClientsApi->modify_client: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify Client
         api_response = api_instance.modify_client(company_id, client_id, modify_client_request=modify_client_request)
+        print("The response of ClientsApi->modify_client:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ClientsApi->modify_client: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **client_id** | **int**| The ID of the client. |
- **modify_client_request** | [**ModifyClientRequest**](ModifyClientRequest.md)| The modified Client. First level parameters are managed in delta mode. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **client_id** | **int**| The ID of the client. | 
+ **modify_client_request** | [**ModifyClientRequest**](ModifyClientRequest.md)| The modified Client. First level parameters are managed in delta mode. | [optional] 
 
 ### Return type
 
@@ -600,9 +388,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Client modified. |  -  |
