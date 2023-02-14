@@ -13,66 +13,66 @@ import unittest
 import unittest.mock
 import datetime
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.entity import Entity
-from fattureincloud_python_sdk.model.issued_document_options import (
+from fattureincloud_python_sdk.models.entity import Entity
+from fattureincloud_python_sdk.models.issued_document_options import (
     IssuedDocumentOptions,
 )
-from fattureincloud_python_sdk.model.join_issued_documents_response import (
+from fattureincloud_python_sdk.models.join_issued_documents_response import (
     JoinIssuedDocumentsResponse,
 )
-from fattureincloud_python_sdk.model.transform_issued_document_response import (
+from fattureincloud_python_sdk.models.transform_issued_document_response import (
     TransformIssuedDocumentResponse,
 )
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.issued_documents_api import IssuedDocumentsApi
-from fattureincloud_python_sdk.model.attachment_data import AttachmentData
-from fattureincloud_python_sdk.model.create_issued_document_response import (
+from fattureincloud_python_sdk.models.attachment_data import AttachmentData
+from fattureincloud_python_sdk.models.create_issued_document_response import (
     CreateIssuedDocumentResponse,
 )
-from fattureincloud_python_sdk.model.get_issued_document_response import (
+from fattureincloud_python_sdk.models.get_issued_document_response import (
     GetIssuedDocumentResponse,
 )
-from fattureincloud_python_sdk.model.issued_document import IssuedDocument
-from fattureincloud_python_sdk.model.issued_document_totals import IssuedDocumentTotals
-from fattureincloud_python_sdk.model.issued_document_type import IssuedDocumentType
-from fattureincloud_python_sdk.model.list_issued_documents_response import (
+from fattureincloud_python_sdk.models.issued_document import IssuedDocument
+from fattureincloud_python_sdk.models.issued_document_totals import IssuedDocumentTotals
+from fattureincloud_python_sdk.models.issued_document_type import IssuedDocumentType
+from fattureincloud_python_sdk.models.list_issued_documents_response import (
     ListIssuedDocumentsResponse,
 )
-from fattureincloud_python_sdk.model.modify_issued_document_response import (
+from fattureincloud_python_sdk.models.modify_issued_document_response import (
     ModifyIssuedDocumentResponse,
 )
-from fattureincloud_python_sdk.model.upload_issued_document_attachment_response import (
+from fattureincloud_python_sdk.models.upload_issued_document_attachment_response import (
     UploadIssuedDocumentAttachmentResponse,
 )
-from fattureincloud_python_sdk.model.email_data import EmailData
-from fattureincloud_python_sdk.model.email_data_default_sender_email import (
+from fattureincloud_python_sdk.models.email_data import EmailData
+from fattureincloud_python_sdk.models.email_data_default_sender_email import (
     EmailDataDefaultSenderEmail,
 )
-from fattureincloud_python_sdk.model.sender_email import SenderEmail
-from fattureincloud_python_sdk.model.get_email_data_response import GetEmailDataResponse
-from fattureincloud_python_sdk.model.get_existing_issued_document_totals_response import (
+from fattureincloud_python_sdk.models.sender_email import SenderEmail
+from fattureincloud_python_sdk.models.get_email_data_response import GetEmailDataResponse
+from fattureincloud_python_sdk.models.get_existing_issued_document_totals_response import (
     GetExistingIssuedDocumentTotalsResponse,
 )
-from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import (
+from fattureincloud_python_sdk.models.get_issued_document_pre_create_info_response import (
     GetIssuedDocumentPreCreateInfoResponse,
 )
-from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import (
+from fattureincloud_python_sdk.models.get_new_issued_document_totals_response import (
     GetNewIssuedDocumentTotalsResponse,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info import (
     IssuedDocumentPreCreateInfo,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_default_values import (
     IssuedDocumentPreCreateInfoDefaultValues,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_extra_data_default_values import (
     IssuedDocumentPreCreateInfoExtraDataDefaultValues,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_items_default_values import (
     IssuedDocumentPreCreateInfoItemsDefaultValues,
 )
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 
 class TestIssuedDocumentsApi(unittest.TestCase):
@@ -95,7 +95,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateIssuedDocumentResponse(
@@ -132,7 +132,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_issued_document(2, 12345)
@@ -145,7 +145,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_issued_document_attachment(2, 12345)
@@ -162,7 +162,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetEmailDataResponse(
@@ -197,7 +197,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetExistingIssuedDocumentTotalsResponse(
@@ -228,7 +228,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetIssuedDocumentResponse(
@@ -269,7 +269,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetIssuedDocumentPreCreateInfoResponse(
@@ -310,7 +310,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetNewIssuedDocumentTotalsResponse(
@@ -341,7 +341,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListIssuedDocumentsResponse(
@@ -406,7 +406,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyIssuedDocumentResponse(
@@ -443,7 +443,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.schedule_email(2, 12345)
@@ -460,7 +460,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = UploadIssuedDocumentAttachmentResponse(
@@ -480,7 +480,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = TransformIssuedDocumentResponse(
@@ -535,7 +535,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = JoinIssuedDocumentsResponse(

@@ -15,61 +15,61 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.info_api import InfoApi
-from fattureincloud_python_sdk.model.city import City
-from fattureincloud_python_sdk.model.currency import Currency
-from fattureincloud_python_sdk.model.document_template import DocumentTemplate
-from fattureincloud_python_sdk.model.language import Language
-from fattureincloud_python_sdk.model.list_archive_categories_response import (
+from fattureincloud_python_sdk.models.city import City
+from fattureincloud_python_sdk.models.currency import Currency
+from fattureincloud_python_sdk.models.document_template import DocumentTemplate
+from fattureincloud_python_sdk.models.language import Language
+from fattureincloud_python_sdk.models.list_archive_categories_response import (
     ListArchiveCategoriesResponse,
 )
-from fattureincloud_python_sdk.model.list_cities_response import ListCitiesResponse
-from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
-from fattureincloud_python_sdk.model.list_detailed_countries_response import (
+from fattureincloud_python_sdk.models.list_cities_response import ListCitiesResponse
+from fattureincloud_python_sdk.models.detailed_country import DetailedCountry
+from fattureincloud_python_sdk.models.list_detailed_countries_response import (
     ListDetailedCountriesResponse,
 )
-from fattureincloud_python_sdk.model.list_cost_centers_response import (
+from fattureincloud_python_sdk.models.list_cost_centers_response import (
     ListCostCentersResponse,
 )
-from fattureincloud_python_sdk.model.list_countries_response import (
+from fattureincloud_python_sdk.models.list_countries_response import (
     ListCountriesResponse,
 )
-from fattureincloud_python_sdk.model.list_currencies_response import (
+from fattureincloud_python_sdk.models.list_currencies_response import (
     ListCurrenciesResponse,
 )
-from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_response import (
+from fattureincloud_python_sdk.models.list_delivery_notes_default_causals_response import (
     ListDeliveryNotesDefaultCausalsResponse,
 )
-from fattureincloud_python_sdk.model.list_languages_response import (
+from fattureincloud_python_sdk.models.list_languages_response import (
     ListLanguagesResponse,
 )
-from fattureincloud_python_sdk.model.list_payment_accounts_response import (
+from fattureincloud_python_sdk.models.list_payment_accounts_response import (
     ListPaymentAccountsResponse,
 )
-from fattureincloud_python_sdk.model.list_payment_methods_response import (
+from fattureincloud_python_sdk.models.list_payment_methods_response import (
     ListPaymentMethodsResponse,
 )
-from fattureincloud_python_sdk.model.list_product_categories_response import (
+from fattureincloud_python_sdk.models.list_product_categories_response import (
     ListProductCategoriesResponse,
 )
-from fattureincloud_python_sdk.model.list_received_document_categories_response import (
+from fattureincloud_python_sdk.models.list_received_document_categories_response import (
     ListReceivedDocumentCategoriesResponse,
 )
-from fattureincloud_python_sdk.model.list_revenue_centers_response import (
+from fattureincloud_python_sdk.models.list_revenue_centers_response import (
     ListRevenueCentersResponse,
 )
-from fattureincloud_python_sdk.model.list_templates_response import (
+from fattureincloud_python_sdk.models.list_templates_response import (
     ListTemplatesResponse,
 )
-from fattureincloud_python_sdk.model.list_units_of_measure_response import (
+from fattureincloud_python_sdk.models.list_units_of_measure_response import (
     ListUnitsOfMeasureResponse,
 )
-from fattureincloud_python_sdk.model.list_vat_types_response import ListVatTypesResponse
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
-from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.list_vat_types_response import ListVatTypesResponse
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 
 class TestInfoApi(unittest.TestCase):
@@ -88,7 +88,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListArchiveCategoriesResponse(data=["cat7", "cat6"])
@@ -107,7 +107,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListCitiesResponse(
@@ -124,7 +124,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListCostCentersResponse(data=["to", "mi"])
@@ -139,7 +139,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListCountriesResponse(data=["Spagna", "Albania"])
@@ -158,7 +158,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListDetailedCountriesResponse(
@@ -194,7 +194,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListCurrenciesResponse(
@@ -215,7 +215,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListDeliveryNotesDefaultCausalsResponse(data=["causal3", "causal2"])
@@ -234,7 +234,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListLanguagesResponse(data=[Language(code="ITA", name="Italiano")])
@@ -252,7 +252,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListPaymentAccountsResponse(
@@ -283,7 +283,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListPaymentMethodsResponse(
@@ -326,7 +326,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListProductCategoriesResponse(data=["cat7", "cat6"])
@@ -341,7 +341,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListReceivedDocumentCategoriesResponse(data=["cat7", "cat6"])
@@ -356,7 +356,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListRevenueCentersResponse(data=["to", "mi"])
@@ -375,7 +375,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListTemplatesResponse(
@@ -391,7 +391,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListUnitsOfMeasureResponse(data=["kb", "km"])
@@ -410,7 +410,7 @@ class TestInfoApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListVatTypesResponse(

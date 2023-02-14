@@ -13,7 +13,7 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.entity_type import EntityType
+from fattureincloud_python_sdk.models.entity_type import EntityType
 
 
 class TestEntityType(unittest.TestCase):

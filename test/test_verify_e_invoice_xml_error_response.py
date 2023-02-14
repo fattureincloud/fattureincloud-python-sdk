@@ -16,16 +16,16 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_error import (
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_error_response_error import (
     VerifyEInvoiceXmlErrorResponseError,
 )
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_extra import (
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_error_response_extra import (
     VerifyEInvoiceXmlErrorResponseExtra,
 )
 
 globals()["VerifyEInvoiceXmlErrorResponseError"] = VerifyEInvoiceXmlErrorResponseError
 globals()["VerifyEInvoiceXmlErrorResponseExtra"] = VerifyEInvoiceXmlErrorResponseExtra
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import (
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_error_response import (
     VerifyEInvoiceXmlErrorResponse,
 )
 
@@ -45,9 +45,9 @@ class TestVerifyEInvoiceXmlErrorResponse(unittest.TestCase):
             error=VerifyEInvoiceXmlErrorResponseError(
                 message="something is broken man", validation_result={}
             ),
-            extra=VerifyEInvoiceXmlErrorResponseExtra(error=["err1", "err2"]),
+            extra=VerifyEInvoiceXmlErrorResponseExtra(errors=["err1", "err2"]),
         )
-        expected_json = '{"error": {"message": "something is broken man", "validation_result": {}}, "extra": {"error": ["err1", "err2"]}}'
+        expected_json = '{"error": {"message": "something is broken man", "validation_result": {}}, "extra": {"errors": ["err1", "err2"]}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

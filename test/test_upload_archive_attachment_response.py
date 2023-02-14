@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.attachment_data import AttachmentData
+from fattureincloud_python_sdk.models.attachment_data import AttachmentData
 
 globals()["AttachmentData"] = AttachmentData
-from fattureincloud_python_sdk.model.upload_archive_attachment_response import (
+from fattureincloud_python_sdk.models.upload_archive_attachment_response import (
     UploadArchiveAttachmentResponse,
 )
 

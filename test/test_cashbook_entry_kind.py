@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.cashbook_entry_kind import CashbookEntryKind
+from fattureincloud_python_sdk.models.cashbook_entry_kind import CashbookEntryKind
 
 
 class TestCashbookEntryKind(unittest.TestCase):

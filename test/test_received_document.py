@@ -16,25 +16,25 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.currency import Currency
-from fattureincloud_python_sdk.model.received_document_entity import (
+from fattureincloud_python_sdk.models.currency import Currency
+from fattureincloud_python_sdk.models.received_document_entity import (
     ReceivedDocumentEntity,
 )
-from fattureincloud_python_sdk.model.received_document_items_list_item import (
+from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
 )
-from fattureincloud_python_sdk.model.received_document_payments_list_item import (
+from fattureincloud_python_sdk.models.received_document_payments_list_item import (
     ReceivedDocumentPaymentsListItem,
 )
-from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["Currency"] = Currency
 globals()["ReceivedDocumentEntity"] = ReceivedDocumentEntity
 globals()["ReceivedDocumentItemsListItem"] = ReceivedDocumentItemsListItem
 globals()["ReceivedDocumentPaymentsListItem"] = ReceivedDocumentPaymentsListItem
 globals()["ReceivedDocumentType"] = ReceivedDocumentType
-from fattureincloud_python_sdk.model.received_document import ReceivedDocument
+from fattureincloud_python_sdk.models.received_document import ReceivedDocument
 
 
 class TestReceivedDocument(unittest.TestCase):
@@ -99,7 +99,7 @@ class TestReceivedDocument(unittest.TestCase):
         assert actual_json == expected_json
 
         readonly_json = '{"id": 1, "type": "expense", "date": "2022-01-01", "category": "category_example", "description": "description_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_withholding_tax": 3.14, "amount_other_withholding_tax": 3.14, "amortization": 3.14, "rc_center": "rc_center_example", "invoice_number": "invoice_number_example", "is_marked": true, "is_detailed": true, "e_invoice": true, "tax_deductibility": 0.0, "vat_deductibility": 0.0, "attachment_token": "attachment_token_example", "attachment_url": "spesa2.pdf"}'
-        model = ReceivedDocument._from_openapi_data(
+        model = ReceivedDocument(
             id=1,
             type=ReceivedDocumentType("expense"),
             date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),

@@ -15,16 +15,16 @@ import fattureincloud_python_sdk
 import functions
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.products_api import ProductsApi
-from fattureincloud_python_sdk.model.create_product_response import (
+from fattureincloud_python_sdk.models.create_product_response import (
     CreateProductResponse,
 )
-from fattureincloud_python_sdk.model.get_product_response import GetProductResponse
-from fattureincloud_python_sdk.model.list_products_response import ListProductsResponse
-from fattureincloud_python_sdk.model.modify_product_response import (
+from fattureincloud_python_sdk.models.get_product_response import GetProductResponse
+from fattureincloud_python_sdk.models.list_products_response import ListProductsResponse
+from fattureincloud_python_sdk.models.modify_product_response import (
     ModifyProductResponse,
 )
-from fattureincloud_python_sdk.model.product import Product
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.product import Product
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 
 class TestProductsApi(unittest.TestCase):
@@ -47,7 +47,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateProductResponse(
@@ -92,7 +92,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_product(2, 12345)
@@ -109,7 +109,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetProductResponse(
@@ -158,7 +158,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListProductsResponse(
@@ -239,7 +239,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyProductResponse(

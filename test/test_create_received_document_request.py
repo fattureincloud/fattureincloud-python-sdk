@@ -16,27 +16,27 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.received_document import ReceivedDocument
-from fattureincloud_python_sdk.model.currency import Currency
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.received_document_entity import (
+from fattureincloud_python_sdk.models.received_document import ReceivedDocument
+from fattureincloud_python_sdk.models.currency import Currency
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.received_document_entity import (
     ReceivedDocumentEntity,
 )
-from fattureincloud_python_sdk.model.received_document_items_list_item import (
+from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
 )
-from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import (
+from fattureincloud_python_sdk.models.received_document_payments_list_item_payment_terms import (
     ReceivedDocumentPaymentsListItemPaymentTerms,
 )
-from fattureincloud_python_sdk.model.received_document_payments_list_item import (
+from fattureincloud_python_sdk.models.received_document_payments_list_item import (
     ReceivedDocumentPaymentsListItem,
 )
-from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["ReceivedDocument"] = ReceivedDocument
-from fattureincloud_python_sdk.model.create_received_document_request import (
+from fattureincloud_python_sdk.models.create_received_document_request import (
     CreateReceivedDocumentRequest,
 )
 

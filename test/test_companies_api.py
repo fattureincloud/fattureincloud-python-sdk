@@ -15,27 +15,27 @@ import fattureincloud_python_sdk
 import functions
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.companies_api import CompaniesApi
-from fattureincloud_python_sdk.model.company_info import CompanyInfo
-from fattureincloud_python_sdk.model.company_info_access_info import (
+from fattureincloud_python_sdk.models.company_info import CompanyInfo
+from fattureincloud_python_sdk.models.company_info_access_info import (
     CompanyInfoAccessInfo,
 )
-from fattureincloud_python_sdk.model.company_info_plan_info import CompanyInfoPlanInfo
-from fattureincloud_python_sdk.model.company_info_plan_info_functions import (
+from fattureincloud_python_sdk.models.company_info_plan_info import CompanyInfoPlanInfo
+from fattureincloud_python_sdk.models.company_info_plan_info_functions import (
     CompanyInfoPlanInfoFunctions,
 )
-from fattureincloud_python_sdk.model.company_info_plan_info_functions_status import (
+from fattureincloud_python_sdk.models.company_info_plan_info_functions_status import (
     CompanyInfoPlanInfoFunctionsStatus,
 )
-from fattureincloud_python_sdk.model.company_info_plan_info_limits import (
+from fattureincloud_python_sdk.models.company_info_plan_info_limits import (
     CompanyInfoPlanInfoLimits,
 )
-from fattureincloud_python_sdk.model.company_type import CompanyType
-from fattureincloud_python_sdk.model.function_status import FunctionStatus
-from fattureincloud_python_sdk.model.get_company_info_response import (
+from fattureincloud_python_sdk.models.company_type import CompanyType
+from fattureincloud_python_sdk.models.function_status import FunctionStatus
+from fattureincloud_python_sdk.models.get_company_info_response import (
     GetCompanyInfoResponse,
 )
-from fattureincloud_python_sdk.model.permissions import Permissions
-from fattureincloud_python_sdk.model.user_company_role import UserCompanyRole
+from fattureincloud_python_sdk.models.permissions import Permissions
+from fattureincloud_python_sdk.models.user_company_role import UserCompanyRole
 
 
 class TestCompaniesApi(unittest.TestCase):
@@ -58,7 +58,7 @@ class TestCompaniesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetCompanyInfoResponse(

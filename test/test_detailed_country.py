@@ -15,7 +15,7 @@ import unittest
 
 import fattureincloud_python_sdk
 from functions import json_serial
-from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
+from fattureincloud_python_sdk.models.detailed_country import DetailedCountry
 
 
 class TestDetailedCountry(unittest.TestCase):

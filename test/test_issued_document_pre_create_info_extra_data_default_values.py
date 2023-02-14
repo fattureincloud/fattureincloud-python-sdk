@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_extra_data_default_values import (
     IssuedDocumentPreCreateInfoExtraDataDefaultValues,
 )
 

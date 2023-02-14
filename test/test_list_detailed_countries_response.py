@@ -14,10 +14,10 @@ import sys
 import unittest
 from functions import json_serial
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.detailed_country import DetailedCountry
+from fattureincloud_python_sdk.models.detailed_country import DetailedCountry
 
 globals()["DetailedCountry"] = DetailedCountry
-from fattureincloud_python_sdk.model.list_detailed_countries_response import (
+from fattureincloud_python_sdk.models.list_detailed_countries_response import (
     ListDetailedCountriesResponse,
 )
 

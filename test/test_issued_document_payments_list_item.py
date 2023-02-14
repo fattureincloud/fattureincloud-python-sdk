@@ -13,16 +13,16 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.vat_type import VatType
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_status import IssuedDocumentStatus
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.issued_document_status import IssuedDocumentStatus
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 
 globals()["IssuedDocumentStatus"] = IssuedDocumentStatus
 globals()["PaymentAccount"] = PaymentAccount
-from fattureincloud_python_sdk.model.issued_document_payments_list_item import (
-    IssuedDocumentPaymentsListItem,
+from fattureincloud_python_sdk.models.issued_document_items_list_item import (
+    IssuedDocumentItemsListItem,
 )
 
 
@@ -37,7 +37,7 @@ class TestIssuedDocumentItemsListItem(unittest.TestCase):
 
     def testIssuedDocumentItemsListItem(self):
         """Test IssuedDocumentItemsListItem"""
-        model = IssuedDocumentPaymentsListItem(
+        model = IssuedDocumentItemsListItem(
             product_id=1234,
             code="239874892374982",
             name="Water bottle",

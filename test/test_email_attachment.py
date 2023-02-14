@@ -14,7 +14,7 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.email_attachment import EmailAttachment
+from fattureincloud_python_sdk.models.email_attachment import EmailAttachment
 from functions import json_serial
 
 

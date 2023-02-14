@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.client_type import ClientType
+from fattureincloud_python_sdk.models.client_type import ClientType
 
 
 class TestClientType(unittest.TestCase):

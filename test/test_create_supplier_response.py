@@ -16,11 +16,11 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.supplier import Supplier
-from fattureincloud_python_sdk.model.supplier_type import SupplierType
+from fattureincloud_python_sdk.models.supplier import Supplier
+from fattureincloud_python_sdk.models.supplier_type import SupplierType
 
 globals()["Supplier"] = Supplier
-from fattureincloud_python_sdk.model.create_supplier_response import (
+from fattureincloud_python_sdk.models.create_supplier_response import (
     CreateSupplierResponse,
 )
 

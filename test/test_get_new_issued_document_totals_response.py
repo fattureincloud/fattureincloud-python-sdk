@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_totals import IssuedDocumentTotals
+from fattureincloud_python_sdk.models.issued_document_totals import IssuedDocumentTotals
 
 globals()["IssuedDocumentTotals"] = IssuedDocumentTotals
-from fattureincloud_python_sdk.model.get_new_issued_document_totals_response import (
+from fattureincloud_python_sdk.models.get_new_issued_document_totals_response import (
     GetNewIssuedDocumentTotalsResponse,
 )
 

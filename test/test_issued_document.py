@@ -16,23 +16,23 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.currency import Currency
-from fattureincloud_python_sdk.model.document_template import DocumentTemplate
-from fattureincloud_python_sdk.model.entity import Entity
-from fattureincloud_python_sdk.model.issued_document_ei_data import IssuedDocumentEiData
-from fattureincloud_python_sdk.model.issued_document_extra_data import (
+from fattureincloud_python_sdk.models.currency import Currency
+from fattureincloud_python_sdk.models.document_template import DocumentTemplate
+from fattureincloud_python_sdk.models.entity import Entity
+from fattureincloud_python_sdk.models.issued_document_ei_data import IssuedDocumentEiData
+from fattureincloud_python_sdk.models.issued_document_extra_data import (
     IssuedDocumentExtraData,
 )
-from fattureincloud_python_sdk.model.issued_document_items_list_item import (
+from fattureincloud_python_sdk.models.issued_document_items_list_item import (
     IssuedDocumentItemsListItem,
 )
-from fattureincloud_python_sdk.model.issued_document_payments_list_item import (
+from fattureincloud_python_sdk.models.issued_document_payments_list_item import (
     IssuedDocumentPaymentsListItem,
 )
-from fattureincloud_python_sdk.model.issued_document_type import IssuedDocumentType
-from fattureincloud_python_sdk.model.language import Language
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.show_totals_mode import ShowTotalsMode
+from fattureincloud_python_sdk.models.issued_document_type import IssuedDocumentType
+from fattureincloud_python_sdk.models.language import Language
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 
 globals()["Currency"] = Currency
 globals()["DocumentTemplate"] = DocumentTemplate
@@ -45,7 +45,7 @@ globals()["IssuedDocumentType"] = IssuedDocumentType
 globals()["Language"] = Language
 globals()["PaymentMethod"] = PaymentMethod
 globals()["ShowTotalsMode"] = ShowTotalsMode
-from fattureincloud_python_sdk.model.issued_document import IssuedDocument
+from fattureincloud_python_sdk.models.issued_document import IssuedDocument
 
 
 class TestIssuedDocument(unittest.TestCase):
@@ -85,7 +85,7 @@ class TestIssuedDocument(unittest.TestCase):
         assert actual_json == expected_json
 
         readonly_json = '{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "attachment_token": "attachment_token_example", "attachment_url": "spesa2.pdf"}'
-        model = IssuedDocument._from_openapi_data(
+        model = IssuedDocument(
             id=1,
             type=IssuedDocumentType("invoice"),
             number=1,

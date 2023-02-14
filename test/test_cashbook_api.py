@@ -17,27 +17,27 @@ from fattureincloud_python_sdk.rest import RESTResponse
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.api.cashbook_api import CashbookApi
-from fattureincloud_python_sdk.model import create_cashbook_entry_response
-from fattureincloud_python_sdk.model.cashbook_entry_document import (
+from fattureincloud_python_sdk.models import create_cashbook_entry_response
+from fattureincloud_python_sdk.models.cashbook_entry_document import (
     CashbookEntryDocument,
 )
-from fattureincloud_python_sdk.model.cashbook_entry import CashbookEntry
-from fattureincloud_python_sdk.model.cashbook_entry_kind import CashbookEntryKind
-from fattureincloud_python_sdk.model.cashbook_entry_type import CashbookEntryType
-from fattureincloud_python_sdk.model.create_cashbook_entry_response import (
+from fattureincloud_python_sdk.models.cashbook_entry import CashbookEntry
+from fattureincloud_python_sdk.models.cashbook_entry_kind import CashbookEntryKind
+from fattureincloud_python_sdk.models.cashbook_entry_type import CashbookEntryType
+from fattureincloud_python_sdk.models.create_cashbook_entry_response import (
     CreateCashbookEntryResponse,
 )
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.get_cashbook_entry_response import (
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.get_cashbook_entry_response import (
     GetCashbookEntryResponse,
 )
-from fattureincloud_python_sdk.model import get_cashbook_entry_response
-from fattureincloud_python_sdk.model.cashbook_entry import CashbookEntry
-from fattureincloud_python_sdk.model.list_cashbook_entries_response import (
+from fattureincloud_python_sdk.models import get_cashbook_entry_response
+from fattureincloud_python_sdk.models.cashbook_entry import CashbookEntry
+from fattureincloud_python_sdk.models.list_cashbook_entries_response import (
     ListCashbookEntriesResponse,
 )
-from fattureincloud_python_sdk.model import list_cashbook_entries_response
-from fattureincloud_python_sdk.model.modify_cashbook_entry_response import (
+from fattureincloud_python_sdk.models import list_cashbook_entries_response
+from fattureincloud_python_sdk.models.modify_cashbook_entry_response import (
     ModifyCashbookEntryResponse,
 )  # noqa: E501
 
@@ -62,7 +62,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateCashbookEntryResponse(
@@ -89,7 +89,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_cashbook_entry(2, "12345")
@@ -106,7 +106,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetCashbookEntryResponse(
@@ -137,7 +137,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListCashbookEntriesResponse(
@@ -180,7 +180,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyCashbookEntryResponse(

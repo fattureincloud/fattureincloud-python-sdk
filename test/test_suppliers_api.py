@@ -15,16 +15,16 @@ import fattureincloud_python_sdk
 import functions
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.suppliers_api import SuppliersApi
-from fattureincloud_python_sdk.model.create_supplier_response import (
+from fattureincloud_python_sdk.models.create_supplier_response import (
     CreateSupplierResponse,
 )
-from fattureincloud_python_sdk.model.supplier import Supplier
-from fattureincloud_python_sdk.model.supplier_type import SupplierType
-from fattureincloud_python_sdk.model.get_supplier_response import GetSupplierResponse
-from fattureincloud_python_sdk.model.list_suppliers_response import (
+from fattureincloud_python_sdk.models.supplier import Supplier
+from fattureincloud_python_sdk.models.supplier_type import SupplierType
+from fattureincloud_python_sdk.models.get_supplier_response import GetSupplierResponse
+from fattureincloud_python_sdk.models.list_suppliers_response import (
     ListSuppliersResponse,
 )
-from fattureincloud_python_sdk.model.modify_supplier_response import (
+from fattureincloud_python_sdk.models.modify_supplier_response import (
     ModifySupplierResponse,
 )  # noqa: E501
 
@@ -49,7 +49,7 @@ class TestSuppliersApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateSupplierResponse(
@@ -89,7 +89,7 @@ class TestSuppliersApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_supplier(2, 12345)
@@ -106,7 +106,7 @@ class TestSuppliersApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetSupplierResponse(
@@ -150,7 +150,7 @@ class TestSuppliersApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListSuppliersResponse(
@@ -221,7 +221,7 @@ class TestSuppliersApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifySupplierResponse(

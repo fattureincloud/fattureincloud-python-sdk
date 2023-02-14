@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.show_totals_mode import ShowTotalsMode
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 
 
 class TestShowTotalsMode(unittest.TestCase):

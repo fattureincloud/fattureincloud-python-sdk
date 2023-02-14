@@ -11,24 +11,24 @@
 
 import unittest
 import unittest.mock
-from fattureincloud_python_sdk.model.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
 import functions
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.clients_api import ClientsApi
-from fattureincloud_python_sdk.model.client import Client
-from fattureincloud_python_sdk.model.client_type import ClientType
+from fattureincloud_python_sdk.models.client import Client
+from fattureincloud_python_sdk.models.client_type import ClientType
 
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
-from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-from fattureincloud_python_sdk.model.vat_type import VatType
-from fattureincloud_python_sdk.model.create_client_response import CreateClientResponse
-from fattureincloud_python_sdk.model.get_client_response import GetClientResponse
-from fattureincloud_python_sdk.model.list_clients_response import ListClientsResponse
-from fattureincloud_python_sdk.model.modify_client_response import ModifyClientResponse
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.vat_type import VatType
+from fattureincloud_python_sdk.models.create_client_response import CreateClientResponse
+from fattureincloud_python_sdk.models.get_client_response import GetClientResponse
+from fattureincloud_python_sdk.models.list_clients_response import ListClientsResponse
+from fattureincloud_python_sdk.models.modify_client_response import ModifyClientResponse
 
 
 class TestClientsApi(unittest.TestCase):
@@ -51,7 +51,7 @@ class TestClientsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateClientResponse(
@@ -134,7 +134,7 @@ class TestClientsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_client(2, 12345)
@@ -151,7 +151,7 @@ class TestClientsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetClientResponse(
@@ -238,7 +238,7 @@ class TestClientsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListClientsResponse(
@@ -394,7 +394,7 @@ class TestClientsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyClientResponse(

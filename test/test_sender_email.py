@@ -15,7 +15,7 @@ import unittest
 from functions import json_serial
 from functions import create_from_json
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.sender_email import SenderEmail
+from fattureincloud_python_sdk.models.sender_email import SenderEmail
 
 
 class TestSenderEmail(unittest.TestCase):

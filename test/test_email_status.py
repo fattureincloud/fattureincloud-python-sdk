@@ -13,7 +13,7 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.email_status import EmailStatus
+from fattureincloud_python_sdk.models.email_status import EmailStatus
 
 
 class TestEmailStatus(unittest.TestCase):

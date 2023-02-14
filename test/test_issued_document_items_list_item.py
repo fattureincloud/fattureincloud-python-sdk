@@ -14,12 +14,12 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.vat_type import VatType
 from functions import json_serial
 from functions import create_from_json
 
 globals()["VatType"] = VatType
-from fattureincloud_python_sdk.model.issued_document_items_list_item import (
+from fattureincloud_python_sdk.models.issued_document_items_list_item import (
     IssuedDocumentItemsListItem,
 )
 

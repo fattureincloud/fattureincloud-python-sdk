@@ -15,13 +15,13 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.f24 import F24
-from fattureincloud_python_sdk.model.f24_status import F24Status
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.f24 import F24
+from fattureincloud_python_sdk.models.f24_status import F24Status
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 
 globals()["F24"] = F24
-from fattureincloud_python_sdk.model.modify_f24_response import ModifyF24Response
+from fattureincloud_python_sdk.models.modify_f24_response import ModifyF24Response
 
 
 class TestModifyF24Response(unittest.TestCase):

@@ -16,18 +16,18 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.received_document import ReceivedDocument
-from fattureincloud_python_sdk.model.received_document_entity import (
+from fattureincloud_python_sdk.models.received_document import ReceivedDocument
+from fattureincloud_python_sdk.models.received_document_entity import (
     ReceivedDocumentEntity,
 )
-from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
-from fattureincloud_python_sdk.model.received_document_items_list_item import (
+from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
+from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
 )
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["ReceivedDocument"] = ReceivedDocument
-from fattureincloud_python_sdk.model.list_received_documents_response_page import (
+from fattureincloud_python_sdk.models.list_received_documents_response_page import (
     ListReceivedDocumentsResponsePage,
 )
 

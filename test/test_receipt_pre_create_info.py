@@ -16,12 +16,12 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["PaymentAccount"] = PaymentAccount
 globals()["VatType"] = VatType
-from fattureincloud_python_sdk.model.receipt_pre_create_info import ReceiptPreCreateInfo
+from fattureincloud_python_sdk.models.receipt_pre_create_info import ReceiptPreCreateInfo
 
 
 class TestReceiptPreCreateInfo(unittest.TestCase):

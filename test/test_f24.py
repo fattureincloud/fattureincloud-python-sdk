@@ -16,13 +16,13 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.f24_status import F24Status
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.f24_status import F24Status
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 
 globals()["F24Status"] = F24Status
 globals()["PaymentAccount"] = PaymentAccount
-from fattureincloud_python_sdk.model.f24 import F24
+from fattureincloud_python_sdk.models.f24 import F24
 
 
 class TestF24(unittest.TestCase):
@@ -57,7 +57,7 @@ class TestF24(unittest.TestCase):
         assert actual_json == expected_json
 
         readonly_json = '{"due_date": "2022-02-02", "amount": 300.0, "description": "description_example", "id": 1, "status": "paid", "attachment_token": "attachment_token_example", "attachment_url": "spesa2.pdf"}'
-        model = F24._from_openapi_data(
+        model = F24(
             id=1,
             due_date=datetime.datetime.strptime("2022-02-02", "%Y-%m-%d").date(),
             status=F24Status("paid"),

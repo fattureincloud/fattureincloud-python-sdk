@@ -15,7 +15,7 @@ import unittest
 import fattureincloud_python_sdk
 import json
 from functions import json_serial
-from fattureincloud_python_sdk.model.issued_document_options import (
+from fattureincloud_python_sdk.models.issued_document_options import (
     IssuedDocumentOptions,
 )
 

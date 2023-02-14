@@ -16,21 +16,21 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_receipts_response_page import (
+from fattureincloud_python_sdk.models.list_receipts_response_page import (
     ListReceiptsResponsePage,
 )
-from fattureincloud_python_sdk.model.pagination import Pagination
-from fattureincloud_python_sdk.model.receipt import Receipt
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.receipt_items_list_item import ReceiptItemsListItem
-from fattureincloud_python_sdk.model.receipt_type import ReceiptType
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.pagination import Pagination
+from fattureincloud_python_sdk.models.receipt import Receipt
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.receipt_items_list_item import ReceiptItemsListItem
+from fattureincloud_python_sdk.models.receipt_type import ReceiptType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["ListReceiptsResponsePage"] = ListReceiptsResponsePage
 globals()["Pagination"] = Pagination
 globals()["Receipt"] = Receipt
-from fattureincloud_python_sdk.model.list_receipts_response import ListReceiptsResponse
+from fattureincloud_python_sdk.models.list_receipts_response import ListReceiptsResponse
 
 
 class TestListReceiptsResponse(unittest.TestCase):
@@ -142,7 +142,7 @@ class TestListReceiptsResponse(unittest.TestCase):
             to=10,
             total=10,
         )
-        expected_json = '{"data": [{"id": 1, "date": "2022-01-01", "number": 3.14, "numeration": "numeration_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_gross": 3.14, "use_gross_prices": false, "type": "till_receipt", "description": "description_example", "rc_center": "rc_center_example", "created_at": "created_at_example", "updated_at": "updated_at_example", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "items_list": [{"id": 3, "amount_net": 3.14, "amount_gross": 3.14, "category": "category_example", "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}]}, {"id": 2, "date": "2022-01-02", "number": 3.14, "numeration": "numeration_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_gross": 3.14, "use_gross_prices": false, "type": "till_receipt", "description": "description_example", "rc_center": "rc_center_example", "created_at": "created_at_example", "updated_at": "updated_at_example", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "items_list": [{"id": 3, "amount_net": 3.14, "amount_gross": 3.14, "category": "category_example", "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}]}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}'
+        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "date": "2022-01-01", "number": 3.14, "numeration": "numeration_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_gross": 3.14, "use_gross_prices": false, "type": "till_receipt", "description": "description_example", "rc_center": "rc_center_example", "created_at": "created_at_example", "updated_at": "updated_at_example", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "items_list": [{"id": 3, "amount_net": 3.14, "amount_gross": 3.14, "category": "category_example", "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}]}, {"id": 2, "date": "2022-01-02", "number": 3.14, "numeration": "numeration_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_gross": 3.14, "use_gross_prices": false, "type": "till_receipt", "description": "description_example", "rc_center": "rc_center_example", "created_at": "created_at_example", "updated_at": "updated_at_example", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "items_list": [{"id": 3, "amount_net": 3.14, "amount_gross": 3.14, "category": "category_example", "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}}]}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

@@ -14,7 +14,7 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.vat_item import VatItem
+from fattureincloud_python_sdk.models.vat_item import VatItem
 from functions import json_serial
 
 

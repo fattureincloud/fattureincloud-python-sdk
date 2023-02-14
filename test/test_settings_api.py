@@ -15,35 +15,35 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.settings_api import SettingsApi
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
-from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-from fattureincloud_python_sdk.model.vat_type import VatType
-from fattureincloud_python_sdk.model.create_payment_account_response import (
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.vat_type import VatType
+from fattureincloud_python_sdk.models.create_payment_account_response import (
     CreatePaymentAccountResponse,
 )
-from fattureincloud_python_sdk.model.create_payment_method_response import (
+from fattureincloud_python_sdk.models.create_payment_method_response import (
     CreatePaymentMethodResponse,
 )
-from fattureincloud_python_sdk.model.create_vat_type_response import (
+from fattureincloud_python_sdk.models.create_vat_type_response import (
     CreateVatTypeResponse,
 )
-from fattureincloud_python_sdk.model.get_payment_account_response import (
+from fattureincloud_python_sdk.models.get_payment_account_response import (
     GetPaymentAccountResponse,
 )
-from fattureincloud_python_sdk.model.get_payment_method_response import (
+from fattureincloud_python_sdk.models.get_payment_method_response import (
     GetPaymentMethodResponse,
 )
-from fattureincloud_python_sdk.model.get_vat_type_response import GetVatTypeResponse
-from fattureincloud_python_sdk.model.modify_payment_account_response import (
+from fattureincloud_python_sdk.models.get_vat_type_response import GetVatTypeResponse
+from fattureincloud_python_sdk.models.modify_payment_account_response import (
     ModifyPaymentAccountResponse,
 )
-from fattureincloud_python_sdk.model.modify_payment_method_response import (
+from fattureincloud_python_sdk.models.modify_payment_method_response import (
     ModifyPaymentMethodResponse,
 )
-from fattureincloud_python_sdk.model.modify_vat_type_response import (
+from fattureincloud_python_sdk.models.modify_vat_type_response import (
     ModifyVatTypeResponse,
 )
 
@@ -68,7 +68,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreatePaymentAccountResponse(
@@ -97,7 +97,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreatePaymentMethodResponse(
@@ -142,7 +142,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateVatTypeResponse(
@@ -168,7 +168,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_payment_account(2, 12345)
@@ -181,7 +181,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_payment_method(2, 12345)
@@ -194,7 +194,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_vat_type(2, 12345)
@@ -211,7 +211,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetPaymentAccountResponse(
@@ -240,7 +240,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetPaymentMethodResponse(
@@ -285,7 +285,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetVatTypeResponse(
@@ -315,7 +315,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyPaymentAccountResponse(
@@ -344,7 +344,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyPaymentMethodResponse(
@@ -389,7 +389,7 @@ class TestSettingsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyVatTypeResponse(

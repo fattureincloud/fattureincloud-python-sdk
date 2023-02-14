@@ -12,7 +12,7 @@
 import unittest
 import json
 import datetime
-from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
+from fattureincloud_python_sdk.models.archive_document import ArchiveDocument
 from functions import json_serial
 from functions import create_from_json
 
@@ -40,7 +40,7 @@ class TestArchiveDocument(unittest.TestCase):
         assert actual_json == expected_json
 
         readonly_json = '{"date": "2021-08-20", "description": "spesa 2", "category": "Altri documenti", "id": 12345, "attachment_token": "fff", "attachment_url": "spesa2.pdf"}'
-        model = ArchiveDocument._from_openapi_data(
+        model = ArchiveDocument(
             id=12345,
             date=datetime.datetime.strptime("2021-08-20", "%Y-%m-%d").date(),
             description="spesa 2",

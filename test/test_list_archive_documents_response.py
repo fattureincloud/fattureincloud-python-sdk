@@ -16,16 +16,16 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
-from fattureincloud_python_sdk.model.list_archive_documents_response_page import (
+from fattureincloud_python_sdk.models.archive_document import ArchiveDocument
+from fattureincloud_python_sdk.models.list_archive_documents_response_page import (
     ListArchiveDocumentsResponsePage,
 )
-from fattureincloud_python_sdk.model.pagination import Pagination
+from fattureincloud_python_sdk.models.pagination import Pagination
 
 globals()["ArchiveDocument"] = ArchiveDocument
 globals()["ListArchiveDocumentsResponsePage"] = ListArchiveDocumentsResponsePage
 globals()["Pagination"] = Pagination
-from fattureincloud_python_sdk.model.list_archive_documents_response import (
+from fattureincloud_python_sdk.models.list_archive_documents_response import (
     ListArchiveDocumentsResponse,
 )
 
@@ -69,7 +69,7 @@ class TestListArchiveDocumentsResponse(unittest.TestCase):
             to=10,
             total=10,
         )
-        expected_json = '{"data": [{"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}, {"id": 10, "date": "2022-01-02", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}'
+        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "date": "2022-01-01", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}, {"id": 10, "date": "2022-01-02", "description": "description_example", "category": "category_example", "attachment_token": "attachment_token_example"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

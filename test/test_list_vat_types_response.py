@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["VatType"] = VatType
-from fattureincloud_python_sdk.model.list_vat_types_response import ListVatTypesResponse
+from fattureincloud_python_sdk.models.list_vat_types_response import ListVatTypesResponse
 
 
 class TestListVatTypesResponse(unittest.TestCase):

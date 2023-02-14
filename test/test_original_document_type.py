@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.original_document_type import OriginalDocumentType
+from fattureincloud_python_sdk.models.original_document_type import OriginalDocumentType
 
 
 class TestOriginalDocumentType(unittest.TestCase):
