@@ -4,19 +4,35 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str, none_type** | Cashbook unique identifier. | [optional] 
-**date** | **date, none_type** | Cashbook date. | [optional] 
-**description** | **str, none_type** | Cashbook description. | [optional] 
+**id** | **str** | Cashbook unique identifier. | [optional] 
+**var_date** | **date** | Cashbook date. | [optional] 
+**description** | **str** | Cashbook description. | [optional] 
 **kind** | [**CashbookEntryKind**](CashbookEntryKind.md) |  | [optional] 
 **type** | [**CashbookEntryType**](CashbookEntryType.md) |  | [optional] 
-**entity_name** | **str, none_type** | Entity name. | [optional] 
+**entity_name** | **str** | Entity name. | [optional] 
 **document** | [**CashbookEntryDocument**](CashbookEntryDocument.md) |  | [optional] 
-**amount_in** | **float, none_type** | [Only for cashbook entry in] Total amount in. | [optional] 
+**amount_in** | **float** | [Only for cashbook entry in] Total amount in. | [optional] 
 **payment_account_in** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
-**amount_out** | **float, none_type** | [Only for cashbook entry out] Total amount out. | [optional] 
+**amount_out** | **float** | [Only for cashbook entry out] Total amount out. | [optional] 
 **payment_account_out** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.cashbook_entry import CashbookEntry
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CashbookEntry from a JSON string
+cashbook_entry_instance = CashbookEntry.from_json(json)
+# print the JSON string representation of the object
+print CashbookEntry.to_json()
+
+# convert the object into a dict
+cashbook_entry_dict = cashbook_entry_instance.to_dict()
+# create an instance of CashbookEntry from a dict
+cashbook_entry_form_dict = cashbook_entry.from_dict(cashbook_entry_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

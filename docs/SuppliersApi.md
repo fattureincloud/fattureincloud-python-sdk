@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_supplier**
-> CreateSupplierResponse create_supplier(company_id)
+> CreateSupplierResponse create_supplier(company_id, create_supplier_request=create_supplier_request)
 
 Create Supplier
 
@@ -21,13 +21,12 @@ Creates a new supplier.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import suppliers_api
-from fattureincloud_python_sdk.model.create_supplier_request import CreateSupplierRequest
-from fattureincloud_python_sdk.model.create_supplier_response import CreateSupplierResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -40,69 +39,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = suppliers_api.SuppliersApi(api_client)
+    api_instance = fattureincloud_python_sdk.SuppliersApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_supplier_request = CreateSupplierRequest(
-        data=Supplier(
-            id=1,
-            code="123",
-            name="Rossi S.r.l.",
-            type=SupplierType("company"),
-            first_name="first_name_example",
-            last_name="last_name_example",
-            contact_person="contact_person_example",
-            vat_number="IT01234567890",
-            tax_code="RSSMRA44A12E890Q",
-            address_street="Via dei tigli, 12",
-            address_postal_code="24010",
-            address_city="Bergamo",
-            address_province="BG",
-            address_extra="address_extra_example",
-            country="Italia",
-            email="mario.rossi@example.it",
-            certified_email="mario.rossi@pec.example.it",
-            phone="phone_example",
-            fax="fax_example",
-            notes="notes_example",
-            bank_iban="bank_iban_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # CreateSupplierRequest | The supplier to create (optional)
+    create_supplier_request = {"data":{"id":12345,"code":"AE86","name":"Mario Rossi S.R.L.","type":"company","first_name":"Mario","last_name":"Rossi","contact_person":"","vat_number":"111222333","tax_code":"111122233","address_street":"Corso Magellano, 46","address_postal_code":"20146","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"mario.rossi@example.com","certified_email":"mario.rossi@pec.example.com","phone":"1234567890","fax":"123456789","notes":""}} # CreateSupplierRequest | The supplier to create (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Supplier
-        api_response = api_instance.create_supplier(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling SuppliersApi->create_supplier: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Supplier
         api_response = api_instance.create_supplier(company_id, create_supplier_request=create_supplier_request)
+        print("The response of SuppliersApi->create_supplier:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling SuppliersApi->create_supplier: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_supplier_request** | [**CreateSupplierRequest**](CreateSupplierRequest.md)| The supplier to create | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_supplier_request** | [**CreateSupplierRequest**](CreateSupplierRequest.md)| The supplier to create | [optional] 
 
 ### Return type
 
@@ -117,9 +77,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -136,11 +94,12 @@ Deletes the specified supplier.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import suppliers_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -153,33 +112,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = suppliers_api.SuppliersApi(api_client)
+    api_instance = fattureincloud_python_sdk.SuppliersApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    supplier_id = 1 # int | The ID of the supplier.
+    supplier_id = 56 # int | The ID of the supplier.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Supplier
         api_instance.delete_supplier(company_id, supplier_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling SuppliersApi->delete_supplier: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **supplier_id** | **int**| The ID of the supplier. |
+ **company_id** | **int**| The ID of the company. | 
+ **supplier_id** | **int**| The ID of the supplier. | 
 
 ### Return type
 
@@ -194,9 +148,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Entity Removed |  -  |
@@ -206,7 +158,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_supplier**
-> GetSupplierResponse get_supplier(company_id, supplier_id)
+> GetSupplierResponse get_supplier(company_id, supplier_id, fields=fields, fieldset=fieldset)
 
 Get Supplier
 
@@ -215,12 +167,12 @@ Gets the specified supplier.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import suppliers_api
-from fattureincloud_python_sdk.model.get_supplier_response import GetSupplierResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -233,47 +185,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = suppliers_api.SuppliersApi(api_client)
+    api_instance = fattureincloud_python_sdk.SuppliersApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    supplier_id = 1 # int | The ID of the supplier.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    supplier_id = 56 # int | The ID of the supplier.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Supplier
-        api_response = api_instance.get_supplier(company_id, supplier_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling SuppliersApi->get_supplier: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Supplier
         api_response = api_instance.get_supplier(company_id, supplier_id, fields=fields, fieldset=fieldset)
+        print("The response of SuppliersApi->get_supplier:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling SuppliersApi->get_supplier: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **supplier_id** | **int**| The ID of the supplier. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **supplier_id** | **int**| The ID of the supplier. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -288,9 +227,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -300,7 +237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_suppliers**
-> ListSuppliersResponse list_suppliers(company_id)
+> ListSuppliersResponse list_suppliers(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List Suppliers
 
@@ -309,12 +246,12 @@ Lists the suppliers.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import suppliers_api
-from fattureincloud_python_sdk.model.list_suppliers_response import ListSuppliersResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -327,53 +264,40 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = suppliers_api.SuppliersApi(api_client)
+    api_instance = fattureincloud_python_sdk.SuppliersApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    q = "q_example" # str | Query for filtering the results. (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Suppliers
-        api_response = api_instance.list_suppliers(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling SuppliersApi->list_suppliers: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Suppliers
         api_response = api_instance.list_suppliers(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of SuppliersApi->list_suppliers:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling SuppliersApi->list_suppliers: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -388,9 +312,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -399,7 +321,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_supplier**
-> ModifySupplierResponse modify_supplier(company_id, supplier_id)
+> ModifySupplierResponse modify_supplier(company_id, supplier_id, modify_supplier_request=modify_supplier_request)
 
 Modify Supplier
 
@@ -408,13 +330,12 @@ Modifies the specified supplier.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import suppliers_api
-from fattureincloud_python_sdk.model.modify_supplier_request import ModifySupplierRequest
-from fattureincloud_python_sdk.model.modify_supplier_response import ModifySupplierResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -427,71 +348,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = suppliers_api.SuppliersApi(api_client)
+    api_instance = fattureincloud_python_sdk.SuppliersApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    supplier_id = 1 # int | The ID of the supplier.
-    modify_supplier_request = ModifySupplierRequest(
-        data=Supplier(
-            id=1,
-            code="123",
-            name="Rossi S.r.l.",
-            type=SupplierType("company"),
-            first_name="first_name_example",
-            last_name="last_name_example",
-            contact_person="contact_person_example",
-            vat_number="IT01234567890",
-            tax_code="RSSMRA44A12E890Q",
-            address_street="Via dei tigli, 12",
-            address_postal_code="24010",
-            address_city="Bergamo",
-            address_province="BG",
-            address_extra="address_extra_example",
-            country="Italia",
-            email="mario.rossi@example.it",
-            certified_email="mario.rossi@pec.example.it",
-            phone="phone_example",
-            fax="fax_example",
-            notes="notes_example",
-            bank_iban="bank_iban_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # ModifySupplierRequest | The modified Supplier. First level parameters are managed in delta mode. (optional)
+    supplier_id = 56 # int | The ID of the supplier.
+    modify_supplier_request = {"data":{"id":12345,"code":"AE86","name":"Mario Rossi S.R.L.","type":"company","first_name":"Mario","last_name":"Rossi","contact_person":"","vat_number":"111222333","tax_code":"111122233","address_street":"Corso Magellano, 46","address_postal_code":"20146","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"mario.rossi@example.com","certified_email":"mario.rossi@pec.example.com","phone":"1234567890","fax":"123456789","notes":""}} # ModifySupplierRequest | The modified Supplier. First level parameters are managed in delta mode. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify Supplier
-        api_response = api_instance.modify_supplier(company_id, supplier_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling SuppliersApi->modify_supplier: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify Supplier
         api_response = api_instance.modify_supplier(company_id, supplier_id, modify_supplier_request=modify_supplier_request)
+        print("The response of SuppliersApi->modify_supplier:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling SuppliersApi->modify_supplier: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **supplier_id** | **int**| The ID of the supplier. |
- **modify_supplier_request** | [**ModifySupplierRequest**](ModifySupplierRequest.md)| The modified Supplier. First level parameters are managed in delta mode. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **supplier_id** | **int**| The ID of the supplier. | 
+ **modify_supplier_request** | [**ModifySupplierRequest**](ModifySupplierRequest.md)| The modified Supplier. First level parameters are managed in delta mode. | [optional] 
 
 ### Return type
 
@@ -506,9 +388,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |

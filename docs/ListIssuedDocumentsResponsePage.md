@@ -4,9 +4,25 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**[IssuedDocument], none_type**](IssuedDocument.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**data** | [**List[IssuedDocument]**](IssuedDocument.md) |  | [optional] 
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.list_issued_documents_response_page import ListIssuedDocumentsResponsePage
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ListIssuedDocumentsResponsePage from a JSON string
+list_issued_documents_response_page_instance = ListIssuedDocumentsResponsePage.from_json(json)
+# print the JSON string representation of the object
+print ListIssuedDocumentsResponsePage.to_json()
+
+# convert the object into a dict
+list_issued_documents_response_page_dict = list_issued_documents_response_page_instance.to_dict()
+# create an instance of ListIssuedDocumentsResponsePage from a dict
+list_issued_documents_response_page_form_dict = list_issued_documents_response_page.from_dict(list_issued_documents_response_page_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

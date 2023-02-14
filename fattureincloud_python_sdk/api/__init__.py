@@ -1,3 +1,20 @@
-# do not import all apis into this module because that uses a lot of memory and stack frames
-# if you need the ability to import all apis from one package, import them with
-# from fattureincloud_python_sdk.apis import ArchiveApi
+from __future__ import absolute_import
+
+# flake8: noqa
+
+# import apis into api package
+from fattureincloud_python_sdk.api.archive_api import ArchiveApi
+from fattureincloud_python_sdk.api.cashbook_api import CashbookApi
+from fattureincloud_python_sdk.api.clients_api import ClientsApi
+from fattureincloud_python_sdk.api.companies_api import CompaniesApi
+from fattureincloud_python_sdk.api.emails_api import EmailsApi
+from fattureincloud_python_sdk.api.info_api import InfoApi
+from fattureincloud_python_sdk.api.issued_documents_api import IssuedDocumentsApi
+from fattureincloud_python_sdk.api.issued_e_invoices_api import IssuedEInvoicesApi
+from fattureincloud_python_sdk.api.products_api import ProductsApi
+from fattureincloud_python_sdk.api.receipts_api import ReceiptsApi
+from fattureincloud_python_sdk.api.received_documents_api import ReceivedDocumentsApi
+from fattureincloud_python_sdk.api.settings_api import SettingsApi
+from fattureincloud_python_sdk.api.suppliers_api import SuppliersApi
+from fattureincloud_python_sdk.api.taxes_api import TaxesApi
+from fattureincloud_python_sdk.api.user_api import UserApi

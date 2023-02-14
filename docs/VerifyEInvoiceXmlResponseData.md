@@ -4,9 +4,25 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **bool, none_type** | Determine if the invoice XML is valid. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**success** | **bool** | Determine if the invoice XML is valid. | [optional] 
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_response_data import VerifyEInvoiceXmlResponseData
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of VerifyEInvoiceXmlResponseData from a JSON string
+verify_e_invoice_xml_response_data_instance = VerifyEInvoiceXmlResponseData.from_json(json)
+# print the JSON string representation of the object
+print VerifyEInvoiceXmlResponseData.to_json()
+
+# convert the object into a dict
+verify_e_invoice_xml_response_data_dict = verify_e_invoice_xml_response_data_instance.to_dict()
+# create an instance of VerifyEInvoiceXmlResponseData from a dict
+verify_e_invoice_xml_response_data_form_dict = verify_e_invoice_xml_response_data.from_dict(verify_e_invoice_xml_response_data_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

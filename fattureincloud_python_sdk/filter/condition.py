@@ -3,7 +3,6 @@ from fattureincloud_python_sdk.filter.operator import Operator
 
 
 class Condition(Expression):
-
     __value_dict = {
         bool: lambda b: "true" if b else "false",
         str: lambda s: "'{}'".format(s),

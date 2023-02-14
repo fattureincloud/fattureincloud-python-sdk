@@ -32,12 +32,12 @@ Lists the archive categories.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_archive_categories_response import ListArchiveCategoriesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -50,32 +50,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
 
-    # example passing only required values which don't have defaults set
     try:
         # List Archive Categories
         api_response = api_instance.list_archive_categories(company_id)
+        print("The response of InfoApi->list_archive_categories:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_archive_categories: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
+ **company_id** | **int**| The ID of the company. | 
 
 ### Return type
 
@@ -90,9 +86,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Archive Categories list. |  -  |
@@ -102,7 +96,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_cities**
-> ListCitiesResponse list_cities()
+> ListCitiesResponse list_cities(postal_code=postal_code, city=city)
 
 List Cities
 
@@ -111,12 +105,12 @@ Lists the Italian cities.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_cities_response import ListCitiesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -129,35 +123,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
-    postal_code = "postal_code_example" # str | Postal code for filtering. (optional)
-    city = "city_example" # str | City for filtering (ignored if postal_code is passed). (optional)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
+    postal_code = 'postal_code_example' # str | Postal code for filtering. (optional)
+    city = 'city_example' # str | City for filtering (ignored if postal_code is passed). (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Cities
         api_response = api_instance.list_cities(postal_code=postal_code, city=city)
+        print("The response of InfoApi->list_cities:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_cities: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **postal_code** | **str**| Postal code for filtering. | [optional]
- **city** | **str**| City for filtering (ignored if postal_code is passed). | [optional]
+ **postal_code** | **str**| Postal code for filtering. | [optional] 
+ **city** | **str**| City for filtering (ignored if postal_code is passed). | [optional] 
 
 ### Return type
 
@@ -172,9 +161,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Cities List. |  -  |
@@ -191,12 +178,12 @@ Lists the cost centers.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_cost_centers_response import ListCostCentersResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -209,32 +196,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
 
-    # example passing only required values which don't have defaults set
     try:
         # List Cost Centers
         api_response = api_instance.list_cost_centers(company_id)
+        print("The response of InfoApi->list_cost_centers:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_cost_centers: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
+ **company_id** | **int**| The ID of the company. | 
 
 ### Return type
 
@@ -249,9 +232,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of Cost Centers |  -  |
@@ -270,12 +251,12 @@ Lists the supported countries.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_countries_response import ListCountriesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -288,25 +269,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List Countries
         api_response = api_instance.list_countries()
+        print("The response of InfoApi->list_countries:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_countries: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -324,9 +301,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of countries |  -  |
@@ -344,12 +319,12 @@ Lists the supported currencies.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_currencies_response import ListCurrenciesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -362,25 +337,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List Currencies
         api_response = api_instance.list_currencies()
+        print("The response of InfoApi->list_currencies:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_currencies: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -398,9 +369,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Currencies List. |  -  |
@@ -418,12 +387,12 @@ Lists the delivery note default causals.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_delivery_notes_default_causals_response import ListDeliveryNotesDefaultCausalsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -436,25 +405,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List Delivery Notes Default Causals
         api_response = api_instance.list_delivery_notes_default_causals()
+        print("The response of InfoApi->list_delivery_notes_default_causals:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_delivery_notes_default_causals: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -472,9 +437,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of Delivery Notes Default Causals |  -  |
@@ -492,12 +455,12 @@ Lists the supported countries.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_detailed_countries_response import ListDetailedCountriesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -510,25 +473,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List Detailed Countries
         api_response = api_instance.list_detailed_countries()
+        print("The response of InfoApi->list_detailed_countries:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_detailed_countries: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -546,9 +505,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of detailed countries |  -  |
@@ -566,12 +523,12 @@ Lists the supported languages.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_languages_response import ListLanguagesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -584,25 +541,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List Languages
         api_response = api_instance.list_languages()
+        print("The response of InfoApi->list_languages:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_languages: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -620,9 +573,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | LanguagesList |  -  |
@@ -631,7 +582,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_payment_accounts**
-> ListPaymentAccountsResponse list_payment_accounts(company_id)
+> ListPaymentAccountsResponse list_payment_accounts(company_id, fields=fields, fieldset=fieldset, sort=sort)
 
 List Payment Accounts
 
@@ -640,12 +591,12 @@ Lists the available payment accounts.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_payment_accounts_response import ListPaymentAccountsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -658,47 +609,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Payment Accounts
-        api_response = api_instance.list_payment_accounts(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling InfoApi->list_payment_accounts: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Payment Accounts
         api_response = api_instance.list_payment_accounts(company_id, fields=fields, fieldset=fieldset, sort=sort)
+        print("The response of InfoApi->list_payment_accounts:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_payment_accounts: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
 
 ### Return type
 
@@ -713,9 +651,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Payment accounts list. |  -  |
@@ -725,7 +661,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_payment_methods**
-> ListPaymentMethodsResponse list_payment_methods(company_id)
+> ListPaymentMethodsResponse list_payment_methods(company_id, fields=fields, fieldset=fieldset, sort=sort)
 
 List Payment Methods
 
@@ -734,12 +670,12 @@ Lists the available payment methods.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_payment_methods_response import ListPaymentMethodsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -752,47 +688,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Payment Methods
-        api_response = api_instance.list_payment_methods(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling InfoApi->list_payment_methods: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Payment Methods
         api_response = api_instance.list_payment_methods(company_id, fields=fields, fieldset=fieldset, sort=sort)
+        print("The response of InfoApi->list_payment_methods:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_payment_methods: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
 
 ### Return type
 
@@ -807,9 +730,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Payment methods list. |  -  |
@@ -828,12 +749,12 @@ Lists the product categories.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_product_categories_response import ListProductCategoriesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -846,34 +767,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    context = "products" # str | 
+    context = 'context_example' # str | 
 
-    # example passing only required values which don't have defaults set
     try:
         # List Product Categories
         api_response = api_instance.list_product_categories(company_id, context)
+        print("The response of InfoApi->list_product_categories:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_product_categories: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **context** | **str**|  |
+ **company_id** | **int**| The ID of the company. | 
+ **context** | **str**|  | 
 
 ### Return type
 
@@ -888,9 +805,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Product Categories List |  -  |
@@ -909,12 +824,12 @@ Lists the received document categories.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_received_document_categories_response import ListReceivedDocumentCategoriesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -927,32 +842,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
 
-    # example passing only required values which don't have defaults set
     try:
         # List Received Document Categories
         api_response = api_instance.list_received_document_categories(company_id)
+        print("The response of InfoApi->list_received_document_categories:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_received_document_categories: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
+ **company_id** | **int**| The ID of the company. | 
 
 ### Return type
 
@@ -967,9 +878,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Received Document Categories List |  -  |
@@ -986,12 +895,12 @@ Lists the revenue centers.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_revenue_centers_response import ListRevenueCentersResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -1004,32 +913,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
 
-    # example passing only required values which don't have defaults set
     try:
         # List Revenue Centers
         api_response = api_instance.list_revenue_centers(company_id)
+        print("The response of InfoApi->list_revenue_centers:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_revenue_centers: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
+ **company_id** | **int**| The ID of the company. | 
 
 ### Return type
 
@@ -1044,9 +949,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of Revenue Centers |  -  |
@@ -1056,7 +959,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_templates**
-> ListTemplatesResponse list_templates()
+> ListTemplatesResponse list_templates(type=type, by_type=by_type)
 
 List Templates
 
@@ -1065,12 +968,12 @@ Lists the available templates.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_templates_response import ListTemplatesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -1083,35 +986,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
-    type = "all" # str | Type of the templates. (optional) if omitted the server will use the default value of "all"
-    by_type = False # bool | [Only if type=all] If true, splits the list in objects, grouping templates by type. (optional) if omitted the server will use the default value of False
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
+    type = 'all' # str | Type of the templates. (optional) (default to 'all')
+    by_type = False # bool | [Only if type=all] If true, splits the list in objects, grouping templates by type. (optional) (default to False)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Templates
         api_response = api_instance.list_templates(type=type, by_type=by_type)
+        print("The response of InfoApi->list_templates:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_templates: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | **str**| Type of the templates. | [optional] if omitted the server will use the default value of "all"
- **by_type** | **bool**| [Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type. | [optional] if omitted the server will use the default value of False
+ **type** | **str**| Type of the templates. | [optional] [default to &#39;all&#39;]
+ **by_type** | **bool**| [Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type. | [optional] [default to False]
 
 ### Return type
 
@@ -1126,9 +1024,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Templates list. |  -  |
@@ -1146,12 +1042,12 @@ Lists the units of measure.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_units_of_measure_response import ListUnitsOfMeasureResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -1164,25 +1060,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List Units of Measure
         api_response = api_instance.list_units_of_measure()
+        print("The response of InfoApi->list_units_of_measure:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_units_of_measure: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -1200,9 +1092,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Units of measure. |  -  |
@@ -1211,7 +1101,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_vat_types**
-> ListVatTypesResponse list_vat_types(company_id)
+> ListVatTypesResponse list_vat_types(company_id, fieldset=fieldset)
 
 List Vat Types
 
@@ -1220,12 +1110,12 @@ Lists the available vat types.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import info_api
-from fattureincloud_python_sdk.model.list_vat_types_response import ListVatTypesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -1238,43 +1128,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = info_api.InfoApi(api_client)
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Vat Types
-        api_response = api_instance.list_vat_types(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling InfoApi->list_vat_types: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Vat Types
         api_response = api_instance.list_vat_types(company_id, fieldset=fieldset)
+        print("The response of InfoApi->list_vat_types:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling InfoApi->list_vat_types: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -1289,9 +1166,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of Vat Types. |  -  |

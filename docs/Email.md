@@ -20,9 +20,25 @@ Name | Type | Description | Notes
 **recipient_status** | [**EmailRecipientStatus**](EmailRecipientStatus.md) |  | [optional] 
 **recipient_date** | **datetime** |  | [optional] 
 **kind** | **str** | Email kind. | [optional] 
-**attachments** | [**[EmailAttachment]**](EmailAttachment.md) | Email attachments. | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**attachments** | [**List[EmailAttachment]**](EmailAttachment.md) | Email attachments. | [optional] 
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.email import Email
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of Email from a JSON string
+email_instance = Email.from_json(json)
+# print the JSON string representation of the object
+print Email.to_json()
+
+# convert the object into a dict
+email_dict = email_instance.to_dict()
+# create an instance of Email from a dict
+email_form_dict = email.from_dict(email_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

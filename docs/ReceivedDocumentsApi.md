@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 
 # **create_received_document**
-> CreateReceivedDocumentResponse create_received_document(company_id)
+> CreateReceivedDocumentResponse create_received_document(company_id, create_received_document_request=create_received_document_request)
 
 Create Received Document
 
@@ -26,13 +26,12 @@ Creates a new document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.create_received_document_request import CreateReceivedDocumentRequest
-from fattureincloud_python_sdk.model.create_received_document_response import CreateReceivedDocumentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -45,122 +44,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_received_document_request = CreateReceivedDocumentRequest(
-        pending_id=1,
-        data=ReceivedDocument(
-            id=1,
-            type=ReceivedDocumentType("expense"),
-            entity=ReceivedDocumentEntity(
-                id=1,
-                name="name_example",
-            ),
-            date=dateutil_parser('1970-01-01').date(),
-            category="category_example",
-            description="description_example",
-            amount_net=3.14,
-            amount_vat=3.14,
-            amount_withholding_tax=3.14,
-            amount_other_withholding_tax=3.14,
-            amortization=3.14,
-            rc_center="rc_center_example",
-            invoice_number="invoice_number_example",
-            is_marked=True,
-            is_detailed=True,
-            e_invoice=True,
-            currency=Currency(
-                id="EUR",
-                symbol="€",
-                exchange_rate="1",
-                html_symbol="EUR",
-            ),
-            tax_deductibility=3.14,
-            vat_deductibility=3.14,
-            items_list=[
-                ReceivedDocumentItemsListItem(
-                    id=1,
-                    product_id=1,
-                    code="code_example",
-                    name="name_example",
-                    measure="measure_example",
-                    net_price=3.14,
-                    category="category_example",
-                    qty=3.14,
-                    vat=VatType(
-                        id=1,
-                        value=22,
-                        description="Non imponibile art. 123",
-                        notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                        e_invoice=True,
-                        ei_type="2",
-                        ei_description="ei_description_example",
-                        is_disabled=True,
-                    ),
-                    stock=3.14,
-                ),
-            ],
-            payments_list=[
-                ReceivedDocumentPaymentsListItem(
-                    id=1,
-                    amount=3.14,
-                    due_date=dateutil_parser('1970-01-01').date(),
-                    paid_date=dateutil_parser('1970-01-01').date(),
-                    payment_terms=ReceivedDocumentPaymentsListItemPaymentTerms(
-                        days=1,
-                        type="type_example",
-                    ),
-                    status="status_example",
-                    payment_account=PaymentAccount(
-                        id=1,
-                        name="Conto Banca Intesa",
-                        type=PaymentAccountType("standard"),
-                        iban="iban_example",
-                        sia="sia_example",
-                        cuc="cuc_example",
-                        virtual=True,
-                    ),
-                ),
-            ],
-            attachment_token="attachment_token_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # CreateReceivedDocumentRequest | Document to create (optional)
+    create_received_document_request = {"data":{"type":"expense","description":"Soggiorno di lavoro","amortization":1,"rc_center":"","invoice_number":"","is_marked":false,"is_detailed":false,"e_invoice":false,"entity":{"id":111,"name":"Hotel Rubino Palace"},"date":"2021-08-15","next_due_date":"2021-08-15","currency":{"id":"EUR","exchange_rate":"1.00000","symbol":"€"},"amount_net":592,"amount_vat":0,"amount_gross":592,"amount_withholding_tax":0,"amount_other_withholding_tax":0,"tax_deductibility":50,"vat_deductibility":100,"payments_list":[{"amount":592,"due_date":"2021-08-15","paid_date":"2021-08-15","id":777,"payment_terms":{"days":0,"type":"standard"},"status":"paid","payment_account":{"id":222,"name":"Contanti","virtual":false}}],"attachment_token":"bnopjao8gvydtgnewgiovs74yrfqwefEF"}} # CreateReceivedDocumentRequest | Document to create (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Received Document
-        api_response = api_instance.create_received_document(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->create_received_document: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Received Document
         api_response = api_instance.create_received_document(company_id, create_received_document_request=create_received_document_request)
+        print("The response of ReceivedDocumentsApi->create_received_document:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->create_received_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_received_document_request** | [**CreateReceivedDocumentRequest**](CreateReceivedDocumentRequest.md)| Document to create | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_received_document_request** | [**CreateReceivedDocumentRequest**](CreateReceivedDocumentRequest.md)| Document to create | [optional] 
 
 ### Return type
 
@@ -175,9 +82,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document created. |  -  |
@@ -194,11 +99,12 @@ Deletes the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -211,33 +117,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Received Document
         api_instance.delete_received_document(company_id, document_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_received_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -252,9 +153,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed. |  -  |
@@ -273,11 +172,12 @@ Removes the attachment of the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -290,33 +190,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Received Document Attachment
         api_instance.delete_received_document_attachment(company_id, document_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_received_document_attachment: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -331,9 +226,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | File removed |  -  |
@@ -343,7 +236,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_existing_received_document_totals**
-> GetExistingReceivedDocumentTotalsResponse get_existing_received_document_totals(company_id, document_id)
+> GetExistingReceivedDocumentTotalsResponse get_existing_received_document_totals(company_id, document_id, get_existing_received_document_totals_request=get_existing_received_document_totals_request)
 
 Get Existing Received Document Totals
 
@@ -352,13 +245,12 @@ Returns the totals for the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.get_existing_received_document_totals_request import GetExistingReceivedDocumentTotalsRequest
-from fattureincloud_python_sdk.model.get_existing_received_document_totals_response import GetExistingReceivedDocumentTotalsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -371,123 +263,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    get_existing_received_document_totals_request = GetExistingReceivedDocumentTotalsRequest(
-        data=ReceivedDocument(
-            id=1,
-            type=ReceivedDocumentType("expense"),
-            entity=ReceivedDocumentEntity(
-                id=1,
-                name="name_example",
-            ),
-            date=dateutil_parser('1970-01-01').date(),
-            category="category_example",
-            description="description_example",
-            amount_net=3.14,
-            amount_vat=3.14,
-            amount_withholding_tax=3.14,
-            amount_other_withholding_tax=3.14,
-            amortization=3.14,
-            rc_center="rc_center_example",
-            invoice_number="invoice_number_example",
-            is_marked=True,
-            is_detailed=True,
-            e_invoice=True,
-            currency=Currency(
-                id="EUR",
-                symbol="€",
-                exchange_rate="1",
-                html_symbol="EUR",
-            ),
-            tax_deductibility=3.14,
-            vat_deductibility=3.14,
-            items_list=[
-                ReceivedDocumentItemsListItem(
-                    id=1,
-                    product_id=1,
-                    code="code_example",
-                    name="name_example",
-                    measure="measure_example",
-                    net_price=3.14,
-                    category="category_example",
-                    qty=3.14,
-                    vat=VatType(
-                        id=1,
-                        value=22,
-                        description="Non imponibile art. 123",
-                        notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                        e_invoice=True,
-                        ei_type="2",
-                        ei_description="ei_description_example",
-                        is_disabled=True,
-                    ),
-                    stock=3.14,
-                ),
-            ],
-            payments_list=[
-                ReceivedDocumentPaymentsListItem(
-                    id=1,
-                    amount=3.14,
-                    due_date=dateutil_parser('1970-01-01').date(),
-                    paid_date=dateutil_parser('1970-01-01').date(),
-                    payment_terms=ReceivedDocumentPaymentsListItemPaymentTerms(
-                        days=1,
-                        type="type_example",
-                    ),
-                    status="status_example",
-                    payment_account=PaymentAccount(
-                        id=1,
-                        name="Conto Banca Intesa",
-                        type=PaymentAccountType("standard"),
-                        iban="iban_example",
-                        sia="sia_example",
-                        cuc="cuc_example",
-                        virtual=True,
-                    ),
-                ),
-            ],
-            attachment_token="attachment_token_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # GetExistingReceivedDocumentTotalsRequest | Received document. (optional)
+    document_id = 56 # int | The ID of the document.
+    get_existing_received_document_totals_request = {"data":{"amount_vat":20}} # GetExistingReceivedDocumentTotalsRequest | Received document. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Existing Received Document Totals
-        api_response = api_instance.get_existing_received_document_totals(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->get_existing_received_document_totals: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Existing Received Document Totals
         api_response = api_instance.get_existing_received_document_totals(company_id, document_id, get_existing_received_document_totals_request=get_existing_received_document_totals_request)
+        print("The response of ReceivedDocumentsApi->get_existing_received_document_totals:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_existing_received_document_totals: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **get_existing_received_document_totals_request** | [**GetExistingReceivedDocumentTotalsRequest**](GetExistingReceivedDocumentTotalsRequest.md)| Received document. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **get_existing_received_document_totals_request** | [**GetExistingReceivedDocumentTotalsRequest**](GetExistingReceivedDocumentTotalsRequest.md)| Received document. | [optional] 
 
 ### Return type
 
@@ -502,9 +303,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document Totals. |  -  |
@@ -512,7 +311,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_new_received_document_totals**
-> GetNewReceivedDocumentTotalsResponse get_new_received_document_totals(company_id)
+> GetNewReceivedDocumentTotalsResponse get_new_received_document_totals(company_id, get_new_received_document_totals_request=get_new_received_document_totals_request)
 
 Get New Received Document Totals
 
@@ -521,13 +320,12 @@ Returns the totals for a new document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.get_new_received_document_totals_request import GetNewReceivedDocumentTotalsRequest
-from fattureincloud_python_sdk.model.get_new_received_document_totals_response import GetNewReceivedDocumentTotalsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -540,121 +338,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    get_new_received_document_totals_request = GetNewReceivedDocumentTotalsRequest(
-        data=ReceivedDocument(
-            id=1,
-            type=ReceivedDocumentType("expense"),
-            entity=ReceivedDocumentEntity(
-                id=1,
-                name="name_example",
-            ),
-            date=dateutil_parser('1970-01-01').date(),
-            category="category_example",
-            description="description_example",
-            amount_net=3.14,
-            amount_vat=3.14,
-            amount_withholding_tax=3.14,
-            amount_other_withholding_tax=3.14,
-            amortization=3.14,
-            rc_center="rc_center_example",
-            invoice_number="invoice_number_example",
-            is_marked=True,
-            is_detailed=True,
-            e_invoice=True,
-            currency=Currency(
-                id="EUR",
-                symbol="€",
-                exchange_rate="1",
-                html_symbol="EUR",
-            ),
-            tax_deductibility=3.14,
-            vat_deductibility=3.14,
-            items_list=[
-                ReceivedDocumentItemsListItem(
-                    id=1,
-                    product_id=1,
-                    code="code_example",
-                    name="name_example",
-                    measure="measure_example",
-                    net_price=3.14,
-                    category="category_example",
-                    qty=3.14,
-                    vat=VatType(
-                        id=1,
-                        value=22,
-                        description="Non imponibile art. 123",
-                        notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                        e_invoice=True,
-                        ei_type="2",
-                        ei_description="ei_description_example",
-                        is_disabled=True,
-                    ),
-                    stock=3.14,
-                ),
-            ],
-            payments_list=[
-                ReceivedDocumentPaymentsListItem(
-                    id=1,
-                    amount=3.14,
-                    due_date=dateutil_parser('1970-01-01').date(),
-                    paid_date=dateutil_parser('1970-01-01').date(),
-                    payment_terms=ReceivedDocumentPaymentsListItemPaymentTerms(
-                        days=1,
-                        type="type_example",
-                    ),
-                    status="status_example",
-                    payment_account=PaymentAccount(
-                        id=1,
-                        name="Conto Banca Intesa",
-                        type=PaymentAccountType("standard"),
-                        iban="iban_example",
-                        sia="sia_example",
-                        cuc="cuc_example",
-                        virtual=True,
-                    ),
-                ),
-            ],
-            attachment_token="attachment_token_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # GetNewReceivedDocumentTotalsRequest | Received document. (optional)
+    get_new_received_document_totals_request = {"data":{"type":"expense","description":"Soggiorno di lavoro","amortization":1,"rc_center":"","invoice_number":"","is_marked":false,"is_detailed":false,"e_invoice":false,"created_at":"2021-08-15 14:02:02","updated_at":"2021-08-15 14:02:02","entity":{"id":111,"name":"Hotel Rubino Palace"},"date":"2021-08-15","next_due_date":"2021-08-15","currency":{"id":"EUR","exchange_rate":"1.00000","symbol":"€"},"amount_net":592,"amount_vat":10,"amount_withholding_tax":0,"amount_other_withholding_tax":0,"tax_deductibility":50,"vat_deductibility":100,"payments_list":[{"amount":592,"due_date":"2021-08-15","paid_date":"2021-08-15","id":777,"payment_terms":{"days":0,"type":"standard"},"status":"paid"}]}} # GetNewReceivedDocumentTotalsRequest | Received document. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get New Received Document Totals
-        api_response = api_instance.get_new_received_document_totals(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->get_new_received_document_totals: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get New Received Document Totals
         api_response = api_instance.get_new_received_document_totals(company_id, get_new_received_document_totals_request=get_new_received_document_totals_request)
+        print("The response of ReceivedDocumentsApi->get_new_received_document_totals:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_new_received_document_totals: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **get_new_received_document_totals_request** | [**GetNewReceivedDocumentTotalsRequest**](GetNewReceivedDocumentTotalsRequest.md)| Received document. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **get_new_received_document_totals_request** | [**GetNewReceivedDocumentTotalsRequest**](GetNewReceivedDocumentTotalsRequest.md)| Received document. | [optional] 
 
 ### Return type
 
@@ -669,9 +376,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document Totals. |  -  |
@@ -681,7 +386,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_received_document**
-> GetReceivedDocumentResponse get_received_document(company_id, document_id)
+> GetReceivedDocumentResponse get_received_document(company_id, document_id, fields=fields, fieldset=fieldset)
 
 Get Received Document
 
@@ -690,12 +395,12 @@ Gets the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.get_received_document_response import GetReceivedDocumentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -708,47 +413,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    document_id = 56 # int | The ID of the document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Received Document
-        api_response = api_instance.get_received_document(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->get_received_document: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Received Document
         api_response = api_instance.get_received_document(company_id, document_id, fields=fields, fieldset=fieldset)
+        print("The response of ReceivedDocumentsApi->get_received_document:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_received_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -763,9 +455,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document details. |  -  |
@@ -784,12 +474,12 @@ Retrieves the information useful while creating a new document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.get_received_document_pre_create_info_response import GetReceivedDocumentPreCreateInfoResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -802,34 +492,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    type = "expense" # str | The type of the received document.
+    type = 'type_example' # str | The type of the received document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Get Received Document Pre-Create Info
         api_response = api_instance.get_received_document_pre_create_info(company_id, type)
+        print("The response of ReceivedDocumentsApi->get_received_document_pre_create_info:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_received_document_pre_create_info: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **type** | **str**| The type of the received document. |
+ **company_id** | **int**| The ID of the company. | 
+ **type** | **str**| The type of the received document. | 
 
 ### Return type
 
@@ -844,9 +530,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Pre-create info |  -  |
@@ -854,7 +538,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_received_documents**
-> ListReceivedDocumentsResponse list_received_documents(company_id, type)
+> ListReceivedDocumentsResponse list_received_documents(company_id, type, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List Received Documents
 
@@ -863,12 +547,12 @@ Lists the received documents.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.list_received_documents_response import ListReceivedDocumentsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -881,55 +565,42 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    type = "expense" # str | The type of the received document.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    q = "q_example" # str | Query for filtering the results. (optional)
+    type = 'type_example' # str | The type of the received document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Received Documents
-        api_response = api_instance.list_received_documents(company_id, type)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->list_received_documents: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Received Documents
         api_response = api_instance.list_received_documents(company_id, type, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of ReceivedDocumentsApi->list_received_documents:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->list_received_documents: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **type** | **str**| The type of the received document. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **type** | **str**| The type of the received document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -944,9 +615,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Results list. |  -  |
@@ -955,7 +624,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_received_document**
-> ModifyReceivedDocumentResponse modify_received_document(company_id, document_id)
+> ModifyReceivedDocumentResponse modify_received_document(company_id, document_id, modify_received_document_request=modify_received_document_request)
 
 Modify Received Document
 
@@ -964,13 +633,12 @@ Modifies the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.modify_received_document_request import ModifyReceivedDocumentRequest
-from fattureincloud_python_sdk.model.modify_received_document_response import ModifyReceivedDocumentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -983,123 +651,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    modify_received_document_request = ModifyReceivedDocumentRequest(
-        data=ReceivedDocument(
-            id=1,
-            type=ReceivedDocumentType("expense"),
-            entity=ReceivedDocumentEntity(
-                id=1,
-                name="name_example",
-            ),
-            date=dateutil_parser('1970-01-01').date(),
-            category="category_example",
-            description="description_example",
-            amount_net=3.14,
-            amount_vat=3.14,
-            amount_withholding_tax=3.14,
-            amount_other_withholding_tax=3.14,
-            amortization=3.14,
-            rc_center="rc_center_example",
-            invoice_number="invoice_number_example",
-            is_marked=True,
-            is_detailed=True,
-            e_invoice=True,
-            currency=Currency(
-                id="EUR",
-                symbol="€",
-                exchange_rate="1",
-                html_symbol="EUR",
-            ),
-            tax_deductibility=3.14,
-            vat_deductibility=3.14,
-            items_list=[
-                ReceivedDocumentItemsListItem(
-                    id=1,
-                    product_id=1,
-                    code="code_example",
-                    name="name_example",
-                    measure="measure_example",
-                    net_price=3.14,
-                    category="category_example",
-                    qty=3.14,
-                    vat=VatType(
-                        id=1,
-                        value=22,
-                        description="Non imponibile art. 123",
-                        notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                        e_invoice=True,
-                        ei_type="2",
-                        ei_description="ei_description_example",
-                        is_disabled=True,
-                    ),
-                    stock=3.14,
-                ),
-            ],
-            payments_list=[
-                ReceivedDocumentPaymentsListItem(
-                    id=1,
-                    amount=3.14,
-                    due_date=dateutil_parser('1970-01-01').date(),
-                    paid_date=dateutil_parser('1970-01-01').date(),
-                    payment_terms=ReceivedDocumentPaymentsListItemPaymentTerms(
-                        days=1,
-                        type="type_example",
-                    ),
-                    status="status_example",
-                    payment_account=PaymentAccount(
-                        id=1,
-                        name="Conto Banca Intesa",
-                        type=PaymentAccountType("standard"),
-                        iban="iban_example",
-                        sia="sia_example",
-                        cuc="cuc_example",
-                        virtual=True,
-                    ),
-                ),
-            ],
-            attachment_token="attachment_token_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-        ),
-    ) # ModifyReceivedDocumentRequest | Modified document. (optional)
+    document_id = 56 # int | The ID of the document.
+    modify_received_document_request = {"data":{"type":"expense","description":"Soggiorno di lavoro","amortization":1,"rc_center":"","invoice_number":"","is_marked":false,"is_detailed":false,"e_invoice":false,"entity":{"id":111,"name":"Hotel Rubino Palace"},"date":"2021-08-15","next_due_date":"2021-08-15","currency":{"id":"EUR","exchange_rate":"1.00000","symbol":"€"},"amount_net":592,"amount_vat":0,"amount_gross":592,"amount_withholding_tax":0,"amount_other_withholding_tax":0,"tax_deductibility":50,"vat_deductibility":100,"payments_list":[{"amount":592,"due_date":"2021-08-15","paid_date":"2021-08-15","id":777,"payment_terms":{"days":0,"type":"standard"},"status":"paid","payment_account":{"id":222,"name":"Contanti","virtual":false}}]}} # ModifyReceivedDocumentRequest | Modified document. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify Received Document
-        api_response = api_instance.modify_received_document(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->modify_received_document: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify Received Document
         api_response = api_instance.modify_received_document(company_id, document_id, modify_received_document_request=modify_received_document_request)
+        print("The response of ReceivedDocumentsApi->modify_received_document:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->modify_received_document: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **modify_received_document_request** | [**ModifyReceivedDocumentRequest**](ModifyReceivedDocumentRequest.md)| Modified document. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **modify_received_document_request** | [**ModifyReceivedDocumentRequest**](ModifyReceivedDocumentRequest.md)| Modified document. | [optional] 
 
 ### Return type
 
@@ -1114,9 +691,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Modified document. |  -  |
@@ -1126,7 +701,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_received_document_attachment**
-> UploadReceivedDocumentAttachmentResponse upload_received_document_attachment(company_id)
+> UploadReceivedDocumentAttachmentResponse upload_received_document_attachment(company_id, filename=filename, attachment=attachment)
 
 Upload Received Document Attachment
 
@@ -1135,12 +710,12 @@ Uploads an attachment destined to a received document. The actual association be
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import received_documents_api
-from fattureincloud_python_sdk.model.upload_received_document_attachment_response import UploadReceivedDocumentAttachmentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -1153,45 +728,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = received_documents_api.ReceivedDocumentsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = 'filename_example' # str | Name of the file. (optional)
+    attachment = 'attachment_example' # str | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Upload Received Document Attachment
-        api_response = api_instance.upload_received_document_attachment(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceivedDocumentsApi->upload_received_document_attachment: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Upload Received Document Attachment
         api_response = api_instance.upload_received_document_attachment(company_id, filename=filename, attachment=attachment)
+        print("The response of ReceivedDocumentsApi->upload_received_document_attachment:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->upload_received_document_attachment: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **filename** | **str, none_type**| Name of the file. | [optional]
- **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **filename** | **str**| Name of the file. | [optional] 
+ **attachment** | **str**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
 
 ### Return type
 
@@ -1206,9 +768,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Attachment Token. |  -  |

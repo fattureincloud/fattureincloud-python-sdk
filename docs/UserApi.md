@@ -18,12 +18,12 @@ Gets the current user's info.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import user_api
-from fattureincloud_python_sdk.model.get_user_info_response import GetUserInfoResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -36,25 +36,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = user_api.UserApi(api_client)
+    api_instance = fattureincloud_python_sdk.UserApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # Get User Info
         api_response = api_instance.get_user_info()
+        print("The response of UserApi->get_user_info:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling UserApi->get_user_info: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -72,9 +68,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -92,12 +86,12 @@ Lists the companies controlled by the current user.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import user_api
-from fattureincloud_python_sdk.model.list_user_companies_response import ListUserCompaniesResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -110,25 +104,21 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = user_api.UserApi(api_client)
+    api_instance = fattureincloud_python_sdk.UserApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         # List User Companies
         api_response = api_instance.list_user_companies()
+        print("The response of UserApi->list_user_companies:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling UserApi->list_user_companies: %s\n" % e)
 ```
-
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -146,9 +136,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User Companies. |  -  |
