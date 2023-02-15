@@ -15,7 +15,7 @@ import unittest
 from functions import json_serial
 from functions import create_from_json
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.received_document_payments_list_item_payment_terms import (
+from fattureincloud_python_sdk.models.received_document_payments_list_item_payment_terms import (
     ReceivedDocumentPaymentsListItemPaymentTerms,
 )
 

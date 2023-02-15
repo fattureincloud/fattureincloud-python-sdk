@@ -16,12 +16,12 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.original_document_type import OriginalDocumentType
-from fattureincloud_python_sdk.model.vat_kind import VatKind
+from fattureincloud_python_sdk.models.original_document_type import OriginalDocumentType
+from fattureincloud_python_sdk.models.vat_kind import VatKind
 
 globals()["OriginalDocumentType"] = OriginalDocumentType
 globals()["VatKind"] = VatKind
-from fattureincloud_python_sdk.model.issued_document_ei_data import IssuedDocumentEiData
+from fattureincloud_python_sdk.models.issued_document_ei_data import IssuedDocumentEiData
 
 
 class TestIssuedDocumentEiData(unittest.TestCase):

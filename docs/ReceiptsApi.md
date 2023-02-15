@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **create_receipt**
-> CreateReceiptResponse create_receipt(company_id)
+> CreateReceiptResponse create_receipt(company_id, create_receipt_request=create_receipt_request)
 
 Create Receipt
 
@@ -23,13 +23,12 @@ Creates a new receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
-from fattureincloud_python_sdk.model.create_receipt_request import CreateReceiptRequest
-from fattureincloud_python_sdk.model.create_receipt_response import CreateReceiptResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -42,87 +41,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_receipt_request = CreateReceiptRequest(
-        data=Receipt(
-            id=1,
-            date=dateutil_parser('1970-01-01').date(),
-            number=3.14,
-            numeration="numeration_example",
-            amount_net=3.14,
-            amount_vat=3.14,
-            amount_gross=3.14,
-            use_gross_prices=True,
-            type=ReceiptType("till_receipt"),
-            description="description_example",
-            rc_center="rc_center_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-            payment_account=PaymentAccount(
-                id=1,
-                name="Conto Banca Intesa",
-                type=PaymentAccountType("standard"),
-                iban="iban_example",
-                sia="sia_example",
-                cuc="cuc_example",
-                virtual=True,
-            ),
-            items_list=[
-                ReceiptItemsListItem(
-                    id=1,
-                    amount_net=3.14,
-                    amount_gross=3.14,
-                    category="category_example",
-                    vat=VatType(
-                        id=1,
-                        value=22,
-                        description="Non imponibile art. 123",
-                        notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                        e_invoice=True,
-                        ei_type="2",
-                        ei_description="ei_description_example",
-                        is_disabled=True,
-                    ),
-                ),
-            ],
-        ),
-        autocomplete_number=True,
-    ) # CreateReceiptRequest | The Receipt to create. (optional)
+    create_receipt_request = {"data":{"date":"2021-08-19","number":6,"numeration":"REC006","amount_net":8.2,"amount_vat":1.8,"type":"sales_receipt","description":"cassa 1","rc_center":"","payment_account":{"id":555,"name":"contanti"},"items_list":[{"id":888,"amount_net":8.2,"amount_vat":1.8,"category":"altro","vat":{"id":0,"value":22,"description":"iva"}}]}} # CreateReceiptRequest | The Receipt to create. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Receipt
-        api_response = api_instance.create_receipt(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceiptsApi->create_receipt: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Receipt
         api_response = api_instance.create_receipt(company_id, create_receipt_request=create_receipt_request)
+        print("The response of ReceiptsApi->create_receipt:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->create_receipt: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_receipt_request** | [**CreateReceiptRequest**](CreateReceiptRequest.md)| The Receipt to create. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_receipt_request** | [**CreateReceiptRequest**](CreateReceiptRequest.md)| The Receipt to create. | [optional] 
 
 ### Return type
 
@@ -137,9 +79,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created Receipt. |  -  |
@@ -157,11 +97,12 @@ Deletes the specified receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -174,33 +115,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Receipt
         api_instance.delete_receipt(company_id, document_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->delete_receipt: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -215,9 +151,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed. |  -  |
@@ -227,7 +161,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_receipt**
-> GetReceiptResponse get_receipt(company_id, document_id)
+> GetReceiptResponse get_receipt(company_id, document_id, fields=fields, fieldset=fieldset)
 
 Get Receipt
 
@@ -236,12 +170,12 @@ Gets the specified receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
-from fattureincloud_python_sdk.model.get_receipt_response import GetReceiptResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -254,47 +188,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    document_id = 56 # int | The ID of the document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Receipt
-        api_response = api_instance.get_receipt(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceiptsApi->get_receipt: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Receipt
         api_response = api_instance.get_receipt(company_id, document_id, fields=fields, fieldset=fieldset)
+        print("The response of ReceiptsApi->get_receipt:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->get_receipt: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -309,9 +230,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Receipt Details. |  -  |
@@ -330,12 +249,12 @@ Retrieves the information useful while creating a new receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
-from fattureincloud_python_sdk.model.get_receipt_pre_create_info_response import GetReceiptPreCreateInfoResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -348,32 +267,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
 
-    # example passing only required values which don't have defaults set
     try:
         # Get Receipt Pre-Create Info
         api_response = api_instance.get_receipt_pre_create_info(company_id)
+        print("The response of ReceiptsApi->get_receipt_pre_create_info:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->get_receipt_pre_create_info: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
+ **company_id** | **int**| The ID of the company. | 
 
 ### Return type
 
@@ -388,9 +303,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Pre-create info. |  -  |
@@ -409,12 +322,12 @@ Returns the monthly totals by year and receipt type.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
-from fattureincloud_python_sdk.model.get_receipts_monthly_totals_response import GetReceiptsMonthlyTotalsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -427,36 +340,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    type = "sales_receipt" # str | Receipt Type
-    year = "year_example" # str | Year for which you want monthly totals
+    type = 'type_example' # str | Receipt Type
+    year = 'year_example' # str | Year for which you want monthly totals
 
-    # example passing only required values which don't have defaults set
     try:
         # Get Receipts Monthly Totals
         api_response = api_instance.get_receipts_monthly_totals(company_id, type, year)
+        print("The response of ReceiptsApi->get_receipts_monthly_totals:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->get_receipts_monthly_totals: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **type** | **str**| Receipt Type |
- **year** | **str**| Year for which you want monthly totals |
+ **company_id** | **int**| The ID of the company. | 
+ **type** | **str**| Receipt Type | 
+ **year** | **str**| Year for which you want monthly totals | 
 
 ### Return type
 
@@ -471,9 +380,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Monthly Totals. |  -  |
@@ -483,7 +390,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_receipts**
-> ListReceiptsResponse list_receipts(company_id)
+> ListReceiptsResponse list_receipts(company_id, fields=fields, fieldset=fieldset, page=page, per_page=per_page, sort=sort, q=q)
 
 List Receipts
 
@@ -492,12 +399,12 @@ Lists the receipts.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
-from fattureincloud_python_sdk.model.list_receipts_response import ListReceiptsResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -510,53 +417,40 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    q = "q_example" # str | Query for filtering the results. (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List Receipts
-        api_response = api_instance.list_receipts(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceiptsApi->list_receipts: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List Receipts
         api_response = api_instance.list_receipts(company_id, fields=fields, fieldset=fieldset, page=page, per_page=per_page, sort=sort, q=q)
+        print("The response of ReceiptsApi->list_receipts:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->list_receipts: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -571,9 +465,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Receipts list. |  -  |
@@ -582,7 +474,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_receipt**
-> ModifyReceiptResponse modify_receipt(company_id, document_id)
+> ModifyReceiptResponse modify_receipt(company_id, document_id, modify_receipt_request=modify_receipt_request)
 
 Modify Receipt
 
@@ -591,13 +483,12 @@ Modifies the specified receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import receipts_api
-from fattureincloud_python_sdk.model.modify_receipt_request import ModifyReceiptRequest
-from fattureincloud_python_sdk.model.modify_receipt_response import ModifyReceiptResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -610,88 +501,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = receipts_api.ReceiptsApi(api_client)
+    api_instance = fattureincloud_python_sdk.ReceiptsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    modify_receipt_request = ModifyReceiptRequest(
-        data=Receipt(
-            id=1,
-            date=dateutil_parser('1970-01-01').date(),
-            number=3.14,
-            numeration="numeration_example",
-            amount_net=3.14,
-            amount_vat=3.14,
-            amount_gross=3.14,
-            use_gross_prices=True,
-            type=ReceiptType("till_receipt"),
-            description="description_example",
-            rc_center="rc_center_example",
-            created_at="created_at_example",
-            updated_at="updated_at_example",
-            payment_account=PaymentAccount(
-                id=1,
-                name="Conto Banca Intesa",
-                type=PaymentAccountType("standard"),
-                iban="iban_example",
-                sia="sia_example",
-                cuc="cuc_example",
-                virtual=True,
-            ),
-            items_list=[
-                ReceiptItemsListItem(
-                    id=1,
-                    amount_net=3.14,
-                    amount_gross=3.14,
-                    category="category_example",
-                    vat=VatType(
-                        id=1,
-                        value=22,
-                        description="Non imponibile art. 123",
-                        notes="IVA non imponibile ai sensi dell'articolo 123, comma 2",
-                        e_invoice=True,
-                        ei_type="2",
-                        ei_description="ei_description_example",
-                        is_disabled=True,
-                    ),
-                ),
-            ],
-        ),
-    ) # ModifyReceiptRequest | Modified receipt. (optional)
+    document_id = 56 # int | The ID of the document.
+    modify_receipt_request = {"data":{"date":"2021-08-19","number":6,"numeration":"REC006","amount_net":8.2,"amount_vat":1.8,"type":"sales_receipt","description":"cassa 1","rc_center":"","payment_account":{"id":555,"name":"contanti"},"items_list":[{"id":888,"amount_net":8.2,"amount_vat":1.8,"category":"altro","vat":{"id":0,"value":22,"description":"iva"}}]}} # ModifyReceiptRequest | Modified receipt. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify Receipt
-        api_response = api_instance.modify_receipt(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling ReceiptsApi->modify_receipt: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify Receipt
         api_response = api_instance.modify_receipt(company_id, document_id, modify_receipt_request=modify_receipt_request)
+        print("The response of ReceiptsApi->modify_receipt:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling ReceiptsApi->modify_receipt: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **modify_receipt_request** | [**ModifyReceiptRequest**](ModifyReceiptRequest.md)| Modified receipt. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **modify_receipt_request** | [**ModifyReceiptRequest**](ModifyReceiptRequest.md)| Modified receipt. | [optional] 
 
 ### Return type
 
@@ -706,9 +541,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Modified receipt. |  -  |

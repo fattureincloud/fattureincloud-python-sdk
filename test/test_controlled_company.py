@@ -17,10 +17,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.company_type import CompanyType
+from fattureincloud_python_sdk.models.company_type import CompanyType
 
 globals()["CompanyType"] = CompanyType
-from fattureincloud_python_sdk.model.controlled_company import ControlledCompany
+from fattureincloud_python_sdk.models.controlled_company import ControlledCompany
 
 
 class TestControlledCompany(unittest.TestCase):

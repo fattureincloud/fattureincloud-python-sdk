@@ -20,12 +20,12 @@ Get e-invoice rejection reason
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import issued_e_invoices_api
-from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import GetEInvoiceRejectionReasonResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -38,34 +38,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = issued_e_invoices_api.IssuedEInvoicesApi(api_client)
+    api_instance = fattureincloud_python_sdk.IssuedEInvoicesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Get e-invoice rejection reason
         api_response = api_instance.get_e_invoice_rejection_reason(company_id, document_id)
+        print("The response of IssuedEInvoicesApi->get_e_invoice_rejection_reason:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->get_e_invoice_rejection_reason: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -80,9 +76,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -90,7 +84,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_e_invoice_xml**
-> str get_e_invoice_xml(company_id, document_id)
+> str get_e_invoice_xml(company_id, document_id, include_attachment=include_attachment)
 
 Get e-invoice XML
 
@@ -99,11 +93,12 @@ Downloads the e-invoice in XML format.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import issued_e_invoices_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -116,45 +111,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = issued_e_invoices_api.IssuedEInvoicesApi(api_client)
+    api_instance = fattureincloud_python_sdk.IssuedEInvoicesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
     include_attachment = True # bool | Include the attachment to the XML e-invoice. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get e-invoice XML
-        api_response = api_instance.get_e_invoice_xml(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling IssuedEInvoicesApi->get_e_invoice_xml: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get e-invoice XML
         api_response = api_instance.get_e_invoice_xml(company_id, document_id, include_attachment=include_attachment)
+        print("The response of IssuedEInvoicesApi->get_e_invoice_xml:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->get_e_invoice_xml: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **include_attachment** | **bool**| Include the attachment to the XML e-invoice. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **include_attachment** | **bool**| Include the attachment to the XML e-invoice. | [optional] 
 
 ### Return type
 
@@ -169,9 +151,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: text/xml
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -181,7 +161,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_e_invoice**
-> SendEInvoiceResponse send_e_invoice(company_id, document_id)
+> SendEInvoiceResponse send_e_invoice(company_id, document_id, send_e_invoice_request=send_e_invoice_request)
 
 Send the e-invoice
 
@@ -190,13 +170,12 @@ Sends the e-invoice to SDI.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import issued_e_invoices_api
-from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
-from fattureincloud_python_sdk.model.send_e_invoice_request import SendEInvoiceRequest
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -209,50 +188,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = issued_e_invoices_api.IssuedEInvoicesApi(api_client)
+    api_instance = fattureincloud_python_sdk.IssuedEInvoicesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    send_e_invoice_request = SendEInvoiceRequest(
-        data=SendEInvoiceRequestData(
-            cassa_type="cassa_type_example",
-            withholding_tax_causal="withholding_tax_causal_example",
-        ),
-    ) # SendEInvoiceRequest |  (optional)
+    document_id = 56 # int | The ID of the document.
+    send_e_invoice_request = {"data":{"withholding_tax_causal":"causale"}} # SendEInvoiceRequest |  (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Send the e-invoice
-        api_response = api_instance.send_e_invoice(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling IssuedEInvoicesApi->send_e_invoice: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Send the e-invoice
         api_response = api_instance.send_e_invoice(company_id, document_id, send_e_invoice_request=send_e_invoice_request)
+        print("The response of IssuedEInvoicesApi->send_e_invoice:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->send_e_invoice: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **send_e_invoice_request** | [**SendEInvoiceRequest**](SendEInvoiceRequest.md)|  | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **send_e_invoice_request** | [**SendEInvoiceRequest**](SendEInvoiceRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -267,9 +228,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -288,13 +247,12 @@ Verifies the e-invoice XML format. Checks if all of the mandatory fields are fil
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import issued_e_invoices_api
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import VerifyEInvoiceXmlResponse
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response import VerifyEInvoiceXmlErrorResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -307,34 +265,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = issued_e_invoices_api.IssuedEInvoicesApi(api_client)
+    api_instance = fattureincloud_python_sdk.IssuedEInvoicesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Verify e-invoice XML
         api_response = api_instance.verify_e_invoice_xml(company_id, document_id)
+        print("The response of IssuedEInvoicesApi->verify_e_invoice_xml:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->verify_e_invoice_xml: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -349,9 +303,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |

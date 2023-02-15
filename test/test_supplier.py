@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.supplier_type import SupplierType
+from fattureincloud_python_sdk.models.supplier_type import SupplierType
 
 globals()["SupplierType"] = SupplierType
-from fattureincloud_python_sdk.model.supplier import Supplier
+from fattureincloud_python_sdk.models.supplier import Supplier
 
 
 class TestSupplier(unittest.TestCase):

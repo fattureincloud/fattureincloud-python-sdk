@@ -16,28 +16,28 @@ import functions
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.receipts_api import ReceiptsApi
-from fattureincloud_python_sdk.model.create_receipt_response import (
+from fattureincloud_python_sdk.models.create_receipt_response import (
     CreateReceiptResponse,
 )
-from fattureincloud_python_sdk.model.get_receipt_pre_create_info_response import (
+from fattureincloud_python_sdk.models.get_receipt_pre_create_info_response import (
     GetReceiptPreCreateInfoResponse,
 )
-from fattureincloud_python_sdk.model.get_receipt_response import GetReceiptResponse
-from fattureincloud_python_sdk.model.get_receipts_monthly_totals_response import (
+from fattureincloud_python_sdk.models.get_receipt_response import GetReceiptResponse
+from fattureincloud_python_sdk.models.get_receipts_monthly_totals_response import (
     GetReceiptsMonthlyTotalsResponse,
 )
-from fattureincloud_python_sdk.model.list_receipts_response import ListReceiptsResponse
-from fattureincloud_python_sdk.model.modify_receipt_response import (
+from fattureincloud_python_sdk.models.list_receipts_response import ListReceiptsResponse
+from fattureincloud_python_sdk.models.modify_receipt_response import (
     ModifyReceiptResponse,
 )
-from fattureincloud_python_sdk.model.monthly_total import MonthlyTotal
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.receipt import Receipt
-from fattureincloud_python_sdk.model.receipt_items_list_item import ReceiptItemsListItem
-from fattureincloud_python_sdk.model.receipt_pre_create_info import ReceiptPreCreateInfo
-from fattureincloud_python_sdk.model.receipt_type import ReceiptType
-from fattureincloud_python_sdk.model.vat_type import VatType  # noqa: E501
+from fattureincloud_python_sdk.models.monthly_total import MonthlyTotal
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.receipt import Receipt
+from fattureincloud_python_sdk.models.receipt_items_list_item import ReceiptItemsListItem
+from fattureincloud_python_sdk.models.receipt_pre_create_info import ReceiptPreCreateInfo
+from fattureincloud_python_sdk.models.receipt_type import ReceiptType
+from fattureincloud_python_sdk.models.vat_type import VatType  # noqa: E501
 
 
 class TestReceiptsApi(unittest.TestCase):
@@ -60,7 +60,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateReceiptResponse(
@@ -118,7 +118,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_receipt(2, 12345)
@@ -135,7 +135,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetReceiptResponse(
@@ -197,7 +197,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetReceiptPreCreateInfoResponse(
@@ -223,7 +223,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetReceiptsMonthlyTotalsResponse(
@@ -246,7 +246,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListReceiptsResponse(
@@ -310,7 +310,7 @@ class TestReceiptsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyReceiptResponse(

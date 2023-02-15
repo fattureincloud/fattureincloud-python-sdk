@@ -15,15 +15,15 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.email_attachment import EmailAttachment
-from fattureincloud_python_sdk.model.email_recipient_status import EmailRecipientStatus
-from fattureincloud_python_sdk.model.email_status import EmailStatus
+from fattureincloud_python_sdk.models.email_attachment import EmailAttachment
+from fattureincloud_python_sdk.models.email_recipient_status import EmailRecipientStatus
+from fattureincloud_python_sdk.models.email_status import EmailStatus
 from functions import json_serial
 
 globals()["EmailAttachment"] = EmailAttachment
 globals()["EmailRecipientStatus"] = EmailRecipientStatus
 globals()["EmailStatus"] = EmailStatus
-from fattureincloud_python_sdk.model.email import Email
+from fattureincloud_python_sdk.models.email import Email
 
 
 class TestEmail(unittest.TestCase):

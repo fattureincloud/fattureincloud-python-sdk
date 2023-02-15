@@ -16,25 +16,25 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.f24 import F24
-from fattureincloud_python_sdk.model.list_f24_response_aggregated_data import (
+from fattureincloud_python_sdk.models.f24 import F24
+from fattureincloud_python_sdk.models.list_f24_response_aggregated_data import (
     ListF24ResponseAggregatedData,
 )
-from fattureincloud_python_sdk.model.list_f24_response_aggregation import (
+from fattureincloud_python_sdk.models.list_f24_response_aggregation import (
     ListF24ResponseAggregation,
 )
-from fattureincloud_python_sdk.model.list_f24_response_page import ListF24ResponsePage
-from fattureincloud_python_sdk.model.pagination import Pagination
-from fattureincloud_python_sdk.model.f24_status import F24Status
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.list_f24_response_page import ListF24ResponsePage
+from fattureincloud_python_sdk.models.pagination import Pagination
+from fattureincloud_python_sdk.models.f24_status import F24Status
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 
 globals()["F24"] = F24
 globals()["ListF24ResponseAggregatedData"] = ListF24ResponseAggregatedData
 globals()["ListF24ResponseAggregation"] = ListF24ResponseAggregation
 globals()["ListF24ResponsePage"] = ListF24ResponsePage
 globals()["Pagination"] = Pagination
-from fattureincloud_python_sdk.model.list_f24_response import ListF24Response
+from fattureincloud_python_sdk.models.list_f24_response import ListF24Response
 
 
 class TestListF24Response(unittest.TestCase):
@@ -100,7 +100,7 @@ class TestListF24Response(unittest.TestCase):
             to=10,
             total=10,
         )
-        expected_json = '{"data": [{"id": 1, "due_date": "2022-01-01", "status": "paid", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 300.0, "attachment_token": "attachment_token_example", "description": "description_example"}, {"id": 2, "due_date": "2022-01-02", "status": "paid", "payment_account": {"id": 2, "name": "Conto Banca Unicredici", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 31.0, "attachment_token": "attachment_token_example", "description": "description_example"}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}'
+        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "due_date": "2022-01-01", "status": "paid", "payment_account": {"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 300.0, "attachment_token": "attachment_token_example", "description": "description_example"}, {"id": 2, "due_date": "2022-01-02", "status": "paid", "payment_account": {"id": 2, "name": "Conto Banca Unicredici", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}, "amount": 31.0, "attachment_token": "attachment_token_example", "description": "description_example"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

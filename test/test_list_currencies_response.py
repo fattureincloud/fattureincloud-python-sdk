@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.currency import Currency
+from fattureincloud_python_sdk.models.currency import Currency
 
 globals()["Currency"] = Currency
-from fattureincloud_python_sdk.model.list_currencies_response import (
+from fattureincloud_python_sdk.models.list_currencies_response import (
     ListCurrenciesResponse,
 )
 

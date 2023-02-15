@@ -16,12 +16,12 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.document_template import DocumentTemplate
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.document_template import DocumentTemplate
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 
 globals()["DocumentTemplate"] = DocumentTemplate
 globals()["PaymentMethod"] = PaymentMethod
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_default_values import (
     IssuedDocumentPreCreateInfoDefaultValues,
 )
 
@@ -41,10 +41,10 @@ class TestIssuedDocumentPreCreateInfoDefaultValues(unittest.TestCase):
             rivalsa=10.0,
             notes="default notes",
             cassa=10.0,
-            whithholding_tax=15,
-            use_goss_pricess=False,
+            withholding_tax=15.0,
+            use_gross_prices=False,
         )
-        expected_json = '{"rivalsa": 10.0, "notes": "default notes", "cassa": 10.0, "whithholding_tax": 15, "use_goss_pricess": false}'
+        expected_json = '{"notes": "default notes", "rivalsa": 10.0, "cassa": 10.0, "withholding_tax": 15.0, "use_gross_prices": false}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

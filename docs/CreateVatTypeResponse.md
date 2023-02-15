@@ -5,8 +5,24 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**VatType**](VatType.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.create_vat_type_response import CreateVatTypeResponse
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CreateVatTypeResponse from a JSON string
+create_vat_type_response_instance = CreateVatTypeResponse.from_json(json)
+# print the JSON string representation of the object
+print CreateVatTypeResponse.to_json()
+
+# convert the object into a dict
+create_vat_type_response_dict = create_vat_type_response_instance.to_dict()
+# create an instance of CreateVatTypeResponse from a dict
+create_vat_type_response_form_dict = create_vat_type_response.from_dict(create_vat_type_response_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

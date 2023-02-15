@@ -16,11 +16,11 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.product import Product
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.product import Product
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["Product"] = Product
-from fattureincloud_python_sdk.model.list_products_response_page import (
+from fattureincloud_python_sdk.models.list_products_response_page import (
     ListProductsResponsePage,
 )
 

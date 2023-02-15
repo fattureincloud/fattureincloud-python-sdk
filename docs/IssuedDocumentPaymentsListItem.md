@@ -4,16 +4,32 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int, none_type** | Unique identifier. | [optional] 
-**due_date** | **date, none_type** | Due date. | [optional] 
-**amount** | **float, none_type** | Payment amount. | [optional] 
+**id** | **int** | Unique identifier. | [optional] 
+**due_date** | **date** | Due date. | [optional] 
+**amount** | **float** | Payment amount. | [optional] 
 **status** | [**IssuedDocumentStatus**](IssuedDocumentStatus.md) |  | [optional] 
 **payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
-**paid_date** | **date, none_type** | Payment date. [Only if status is paid] | [optional] 
-**ei_raw** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Advanced raw attributes for e-invoices. | [optional] 
+**paid_date** | **date** | Payment date. [Only if status is paid] | [optional] 
+**ei_raw** | **object** | Advanced raw attributes for e-invoices. | [optional] 
 **payment_terms** | [**IssuedDocumentPaymentsListItemPaymentTerms**](IssuedDocumentPaymentsListItemPaymentTerms.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.issued_document_payments_list_item import IssuedDocumentPaymentsListItem
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of IssuedDocumentPaymentsListItem from a JSON string
+issued_document_payments_list_item_instance = IssuedDocumentPaymentsListItem.from_json(json)
+# print the JSON string representation of the object
+print IssuedDocumentPaymentsListItem.to_json()
+
+# convert the object into a dict
+issued_document_payments_list_item_dict = issued_document_payments_list_item_instance.to_dict()
+# create an instance of IssuedDocumentPaymentsListItem from a dict
+issued_document_payments_list_item_form_dict = issued_document_payments_list_item.from_dict(issued_document_payments_list_item_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

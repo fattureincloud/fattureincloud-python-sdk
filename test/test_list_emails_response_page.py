@@ -15,13 +15,13 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.email import Email
-from fattureincloud_python_sdk.model.email_recipient_status import EmailRecipientStatus
-from fattureincloud_python_sdk.model.email_status import EmailStatus
+from fattureincloud_python_sdk.models.email import Email
+from fattureincloud_python_sdk.models.email_recipient_status import EmailRecipientStatus
+from fattureincloud_python_sdk.models.email_status import EmailStatus
 from functions import json_serial
 
 globals()["Email"] = Email
-from fattureincloud_python_sdk.model.list_emails_response_page import (
+from fattureincloud_python_sdk.models.list_emails_response_page import (
     ListEmailsResponsePage,
 )
 

@@ -16,16 +16,16 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.cashbook_entry import CashbookEntry
-from fattureincloud_python_sdk.model.cashbook_entry_document import (
+from fattureincloud_python_sdk.models.cashbook_entry import CashbookEntry
+from fattureincloud_python_sdk.models.cashbook_entry_document import (
     CashbookEntryDocument,
 )
-from fattureincloud_python_sdk.model.cashbook_entry_kind import CashbookEntryKind
-from fattureincloud_python_sdk.model.cashbook_entry_type import CashbookEntryType
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.cashbook_entry_kind import CashbookEntryKind
+from fattureincloud_python_sdk.models.cashbook_entry_type import CashbookEntryType
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 
 globals()["CashbookEntry"] = CashbookEntry
-from fattureincloud_python_sdk.model.list_cashbook_entries_response import (
+from fattureincloud_python_sdk.models.list_cashbook_entries_response import (
     ListCashbookEntriesResponse,
 )
 
@@ -54,19 +54,9 @@ class TestListCashbookEntriesResponse(unittest.TestCase):
                     amount_in=10.0,
                     payment_account_in=PaymentAccount(id=1, name="banca"),
                 )
-            ],
-            current_page=10,
-            first_page_url="http://url.com",
-            last_page=10,
-            last_page_url="http://url.com",
-            next_page_url="http://url.com",
-            path="http://url.com",
-            per_page=10,
-            prev_page_url="http://url.com",
-            to=10,
-            total=10,
+            ]
         )
-        expected_json = '{"data": [{"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}'
+        expected_json = '{"data": [{"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "type": "doc", "path": "/path"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

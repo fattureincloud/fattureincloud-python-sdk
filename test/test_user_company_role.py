@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.user_company_role import UserCompanyRole
+from fattureincloud_python_sdk.models.user_company_role import UserCompanyRole
 
 
 class TestUserCompanyRole(unittest.TestCase):

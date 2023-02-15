@@ -17,10 +17,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.document_template import DocumentTemplate
+from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 
 globals()["DocumentTemplate"] = DocumentTemplate
-from fattureincloud_python_sdk.model.list_templates_response import (
+from fattureincloud_python_sdk.models.list_templates_response import (
     ListTemplatesResponse,
 )
 

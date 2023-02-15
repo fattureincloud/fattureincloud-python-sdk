@@ -16,18 +16,18 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.client import Client
-from fattureincloud_python_sdk.model.client_type import ClientType
-from fattureincloud_python_sdk.model.payment_terms_type import PaymentTermsType
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
-from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.client import Client
+from fattureincloud_python_sdk.models.client_type import ClientType
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["Client"] = Client
-from fattureincloud_python_sdk.model.modify_client_response import ModifyClientResponse
+from fattureincloud_python_sdk.models.modify_client_response import ModifyClientResponse
 
 
 class TestModifyClientResponse(unittest.TestCase):

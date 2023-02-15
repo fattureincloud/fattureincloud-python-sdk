@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.receipt_type import ReceiptType
+from fattureincloud_python_sdk.models.receipt_type import ReceiptType
 
 
 class TestReceiptType(unittest.TestCase):

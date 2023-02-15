@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **create_f24**
-> CreateF24Response create_f24(company_id)
+> CreateF24Response create_f24(company_id, create_f24_request=create_f24_request)
 
 Create F24
 
@@ -23,13 +23,12 @@ Creates a new F24.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
-from fattureincloud_python_sdk.model.create_f24_response import CreateF24Response
-from fattureincloud_python_sdk.model.create_f24_request import CreateF24Request
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -42,61 +41,30 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_f24_request = CreateF24Request(
-        data=F24(
-            id=1,
-            due_date=dateutil_parser('Mon Feb 12 00:00:00 UTC 2018').date(),
-            status=F24Status("paid"),
-            payment_account=PaymentAccount(
-                id=1,
-                name="Conto Banca Intesa",
-                type=PaymentAccountType("standard"),
-                iban="iban_example",
-                sia="sia_example",
-                cuc="cuc_example",
-                virtual=True,
-            ),
-            amount=300,
-            attachment_token="attachment_token_example",
-            description="description_example",
-        ),
-    ) # CreateF24Request | The F24 to create (optional)
+    create_f24_request = {"data":{"amount":840.36,"description":"PAGAMENTO IVA 2021","due_date":"2021-12-31","status":"paid","payment_account":{"id":111},"attachment_token":"b19c01da9b1688fb73d0d9e8ad"}} # CreateF24Request | The F24 to create (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create F24
-        api_response = api_instance.create_f24(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling TaxesApi->create_f24: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create F24
         api_response = api_instance.create_f24(company_id, create_f24_request=create_f24_request)
+        print("The response of TaxesApi->create_f24:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->create_f24: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **create_f24_request** | [**CreateF24Request**](CreateF24Request.md)| The F24 to create | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **create_f24_request** | [**CreateF24Request**](CreateF24Request.md)| The F24 to create | [optional] 
 
 ### Return type
 
@@ -111,9 +79,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The created F24 |  -  |
@@ -132,11 +98,12 @@ Removes the specified F24.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -149,33 +116,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete F24
         api_instance.delete_f24(company_id, document_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->delete_f24: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -190,9 +152,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed. |  -  |
@@ -211,11 +171,12 @@ Removes the attachment of the specified F24.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -228,33 +189,28 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
+    document_id = 56 # int | The ID of the document.
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete F24 Attachment
         api_instance.delete_f24_attachment(company_id, document_id)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->delete_f24_attachment: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
 
 ### Return type
 
@@ -269,9 +225,7 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | File Removed. |  -  |
@@ -281,7 +235,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_f24**
-> GetF24Response get_f24(company_id, document_id)
+> GetF24Response get_f24(company_id, document_id, fields=fields, fieldset=fieldset)
 
 Get F24
 
@@ -290,12 +244,12 @@ Gets the specified F24.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
-from fattureincloud_python_sdk.model.get_f24_response import GetF24Response
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -308,47 +262,34 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
+    document_id = 56 # int | The ID of the document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get F24
-        api_response = api_instance.get_f24(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling TaxesApi->get_f24: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get F24
         api_response = api_instance.get_f24(company_id, document_id, fields=fields, fieldset=fieldset)
+        print("The response of TaxesApi->get_f24:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->get_f24: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
 
 ### Return type
 
@@ -363,9 +304,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The F24 |  -  |
@@ -375,7 +314,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_f24**
-> ListF24Response list_f24(company_id)
+> ListF24Response list_f24(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List F24
 
@@ -384,12 +323,12 @@ Lists the F24s.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
-from fattureincloud_python_sdk.model.list_f24_response import ListF24Response
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -402,53 +341,40 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    fields = "fields_example" # str | List of comma-separated fields. (optional)
-    fieldset = "basic" # str | Name of the fieldset. (optional)
-    sort = "sort_example" # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
-    page = 1 # int | The page to retrieve. (optional) if omitted the server will use the default value of 1
-    per_page = 5 # int | The size of the page. (optional) if omitted the server will use the default value of 5
-    q = "q_example" # str | Query for filtering the results. (optional)
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # List F24
-        api_response = api_instance.list_f24(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling TaxesApi->list_f24: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # List F24
         api_response = api_instance.list_f24(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of TaxesApi->list_f24:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->list_f24: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **fields** | **str**| List of comma-separated fields. | [optional]
- **fieldset** | **str**| Name of the fieldset. | [optional]
- **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional]
- **page** | **int**| The page to retrieve. | [optional] if omitted the server will use the default value of 1
- **per_page** | **int**| The size of the page. | [optional] if omitted the server will use the default value of 5
- **q** | **str**| Query for filtering the results. | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
@@ -463,9 +389,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Results list. |  -  |
@@ -474,7 +398,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **modify_f24**
-> ModifyF24Response modify_f24(company_id, document_id)
+> ModifyF24Response modify_f24(company_id, document_id, modify_f24_request=modify_f24_request)
 
 Modify F24
 
@@ -483,13 +407,12 @@ Modifies the specified F24.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
-from fattureincloud_python_sdk.model.modify_f24_response import ModifyF24Response
-from fattureincloud_python_sdk.model.modify_f24_request import ModifyF24Request
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -502,63 +425,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    document_id = 1 # int | The ID of the document.
-    modify_f24_request = ModifyF24Request(
-        data=F24(
-            id=1,
-            due_date=dateutil_parser('Mon Feb 12 00:00:00 UTC 2018').date(),
-            status=F24Status("paid"),
-            payment_account=PaymentAccount(
-                id=1,
-                name="Conto Banca Intesa",
-                type=PaymentAccountType("standard"),
-                iban="iban_example",
-                sia="sia_example",
-                cuc="cuc_example",
-                virtual=True,
-            ),
-            amount=300,
-            attachment_token="attachment_token_example",
-            description="description_example",
-        ),
-    ) # ModifyF24Request | The F24 (optional)
+    document_id = 56 # int | The ID of the document.
+    modify_f24_request = {"data":{"amount":840.36,"description":"PAGAMENTO IVA 2021","due_date":"2021-12-31","status":"paid","payment_account":{"id":111}}} # ModifyF24Request | The F24 (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Modify F24
-        api_response = api_instance.modify_f24(company_id, document_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling TaxesApi->modify_f24: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Modify F24
         api_response = api_instance.modify_f24(company_id, document_id, modify_f24_request=modify_f24_request)
+        print("The response of TaxesApi->modify_f24:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->modify_f24: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **document_id** | **int**| The ID of the document. |
- **modify_f24_request** | [**ModifyF24Request**](ModifyF24Request.md)| The F24 | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **modify_f24_request** | [**ModifyF24Request**](ModifyF24Request.md)| The F24 | [optional] 
 
 ### Return type
 
@@ -573,9 +465,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The modified F24 |  -  |
@@ -585,7 +475,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_f24_attachment**
-> UploadF24AttachmentResponse upload_f24_attachment(company_id)
+> UploadF24AttachmentResponse upload_f24_attachment(company_id, filename=filename, attachment=attachment)
 
 Upload F24 Attachment
 
@@ -594,12 +484,12 @@ Uploads an attachment destined to a F24. The actual association between the docu
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
 ```python
+from __future__ import print_function
 import time
+import os
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.api import taxes_api
-from fattureincloud_python_sdk.model.upload_f24_attachment_response import UploadF24AttachmentResponse
+from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
@@ -612,45 +502,32 @@ configuration = fattureincloud_python_sdk.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure OAuth2 access token for authorization: OAuth2AuthenticationCodeFlow
-configuration = fattureincloud_python_sdk.Configuration(
-    access_token = "YOUR_ACCESS_TOKEN"
-)
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = taxes_api.TaxesApi(api_client)
+    api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = "attachment.pdf" # str, none_type | Name of the file. (optional)
-    attachment = open('/path/to/file', 'rb') # file_type | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = 'filename_example' # str | Name of the file. (optional)
+    attachment = 'attachment_example' # str | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Upload F24 Attachment
-        api_response = api_instance.upload_f24_attachment(company_id)
-        pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
-        print("Exception when calling TaxesApi->upload_f24_attachment: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Upload F24 Attachment
         api_response = api_instance.upload_f24_attachment(company_id, filename=filename, attachment=attachment)
+        print("The response of TaxesApi->upload_f24_attachment:\n")
         pprint(api_response)
-    except fattureincloud_python_sdk.ApiException as e:
+    except Exception as e:
         print("Exception when calling TaxesApi->upload_f24_attachment: %s\n" % e)
 ```
-
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **company_id** | **int**| The ID of the company. |
- **filename** | **str, none_type**| Name of the file. | [optional]
- **attachment** | **file_type**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional]
+ **company_id** | **int**| The ID of the company. | 
+ **filename** | **str**| Name of the file. | [optional] 
+ **attachment** | **str**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
 
 ### Return type
 
@@ -665,9 +542,7 @@ Name | Type | Description  | Notes
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Attachment Token. |  -  |

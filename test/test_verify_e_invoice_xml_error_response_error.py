@@ -17,7 +17,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_error_response_error import (
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_error_response_error import (
     VerifyEInvoiceXmlErrorResponseError,
 )
 

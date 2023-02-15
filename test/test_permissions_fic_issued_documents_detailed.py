@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.permission_level import PermissionLevel
+from fattureincloud_python_sdk.models.permission_level import PermissionLevel
 
 globals()["PermissionLevel"] = PermissionLevel
-from fattureincloud_python_sdk.model.permissions_fic_issued_documents_detailed import (
+from fattureincloud_python_sdk.models.permissions_fic_issued_documents_detailed import (
     PermissionsFicIssuedDocumentsDetailed,
 )
 
@@ -40,14 +40,14 @@ class TestPermissionsFicIssuedDocumentsDetailed(unittest.TestCase):
             proformas=PermissionLevel("write"),
             invoices=PermissionLevel("write"),
             receipts=PermissionLevel("write"),
-            deliveryNotes=PermissionLevel("write"),
-            creditNotes=PermissionLevel("write"),
+            delivery_notes=PermissionLevel("write"),
+            credit_notes=PermissionLevel("write"),
             orders=PermissionLevel("write"),
-            workReports=PermissionLevel("write"),
-            supplierOrders=PermissionLevel("write"),
-            selfInvoices=PermissionLevel("write"),
+            work_reports=PermissionLevel("write"),
+            supplier_orders=PermissionLevel("write"),
+            self_invoices=PermissionLevel("write"),
         )
-        expected_json = '{"quotes": "write", "proformas": "write", "invoices": "write", "receipts": "write", "deliveryNotes": "write", "creditNotes": "write", "orders": "write", "workReports": "write", "supplierOrders": "write", "selfInvoices": "write"}'
+        expected_json = '{"quotes": "write", "proformas": "write", "invoices": "write", "receipts": "write", "delivery_notes": "write", "credit_notes": "write", "orders": "write", "work_reports": "write", "supplier_orders": "write", "self_invoices": "write"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

@@ -14,21 +14,21 @@ import sys
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.model.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.client import Client
+from fattureincloud_python_sdk.models.client import Client
 
-from fattureincloud_python_sdk.model.entity_type import EntityType
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
-from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-from fattureincloud_python_sdk.model.supplier import Supplier
-from fattureincloud_python_sdk.model.supplier_type import SupplierType
-from fattureincloud_python_sdk.model.vat_type import VatType
-from fattureincloud_python_sdk.model.entity import Entity
+from fattureincloud_python_sdk.models.entity_type import EntityType
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.supplier import Supplier
+from fattureincloud_python_sdk.models.supplier_type import SupplierType
+from fattureincloud_python_sdk.models.vat_type import VatType
+from fattureincloud_python_sdk.models.entity import Entity
 
 globals()["Client"] = Client
 globals()["PaymentTermsType"] = PaymentTermsType

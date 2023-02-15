@@ -15,20 +15,20 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.issued_e_invoices_api import IssuedEInvoicesApi
-from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
-from fattureincloud_python_sdk.model.send_e_invoice_response_data import (
+from fattureincloud_python_sdk.models.send_e_invoice_response import SendEInvoiceResponse
+from fattureincloud_python_sdk.models.send_e_invoice_response_data import (
     SendEInvoiceResponseData,
 )
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_response import (
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_response import (
     VerifyEInvoiceXmlResponse,
 )
-from fattureincloud_python_sdk.model.verify_e_invoice_xml_response_data import (
+from fattureincloud_python_sdk.models.verify_e_invoice_xml_response_data import (
     VerifyEInvoiceXmlResponseData,
 )
-from fattureincloud_python_sdk.model.get_e_invoice_rejection_reason_response import (
+from fattureincloud_python_sdk.models.get_e_invoice_rejection_reason_response import (
     GetEInvoiceRejectionReasonResponse,
 )
-from fattureincloud_python_sdk.model.e_invoice_rejection_reason import (
+from fattureincloud_python_sdk.models.e_invoice_rejection_reason import (
     EInvoiceRejectionReason,
 )
 
@@ -53,7 +53,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = SendEInvoiceResponse(
@@ -70,7 +70,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = VerifyEInvoiceXmlResponse(
@@ -90,7 +90,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetEInvoiceRejectionReasonResponse(

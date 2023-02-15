@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_countries_response import (
+from fattureincloud_python_sdk.models.list_countries_response import (
     ListCountriesResponse,
 )
 

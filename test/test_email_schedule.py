@@ -16,10 +16,10 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.email_schedule_include import EmailScheduleInclude
+from fattureincloud_python_sdk.models.email_schedule_include import EmailScheduleInclude
 
 globals()["EmailScheduleInclude"] = EmailScheduleInclude
-from fattureincloud_python_sdk.model.email_schedule import EmailSchedule
+from fattureincloud_python_sdk.models.email_schedule import EmailSchedule
 
 
 class TestEmailSchedule(unittest.TestCase):

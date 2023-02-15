@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.cashbook_entry_document import (
+from fattureincloud_python_sdk.models.cashbook_entry_document import (
     CashbookEntryDocument,
 )
 
@@ -33,7 +33,7 @@ class TestCashbookEntryDocument(unittest.TestCase):
     def testCashbookEntryDocument(self):
         """Test CashbookEntryDocument"""
         model = CashbookEntryDocument(id=1, path="/path", type="doc")
-        expected_json = '{"id": 1, "path": "/path", "type": "doc"}'
+        expected_json = '{"id": 1, "type": "doc", "path": "/path"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

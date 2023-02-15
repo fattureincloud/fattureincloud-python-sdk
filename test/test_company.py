@@ -16,12 +16,12 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.company_type import CompanyType
-from fattureincloud_python_sdk.model.controlled_company import ControlledCompany
+from fattureincloud_python_sdk.models.company_type import CompanyType
+from fattureincloud_python_sdk.models.controlled_company import ControlledCompany
 
 globals()["CompanyType"] = CompanyType
 globals()["ControlledCompany"] = ControlledCompany
-from fattureincloud_python_sdk.model.company import Company
+from fattureincloud_python_sdk.models.company import Company
 
 
 class TestCompany(unittest.TestCase):
@@ -61,7 +61,7 @@ class TestCompany(unittest.TestCase):
                 ),
             ],
         )
-        expected_json = '{"id": 1, "name": "mario srl", "type": "company", "access_token": "zpaiefapfjaojf56546456456", "connection_id": 2, "tax_code": "0123456789", "controlled_companies": [{"id": 2, "name": "mario2 srl", "type": "company", "access_token": "zpaiefadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567d9"}, {"id": 3, "name": "mario4 srl", "type": "company", "access_token": "zpa4efadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567df"}]}'
+        expected_json = '{"id": 1, "name": "mario srl", "type": "company", "access_token": "zpaiefapfjaojf56546456456", "controlled_companies": [{"id": 2, "name": "mario2 srl", "type": "company", "access_token": "zpaiefadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567d9"}, {"id": 3, "name": "mario4 srl", "type": "company", "access_token": "zpa4efadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567df"}], "connection_id": 2, "tax_code": "0123456789"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

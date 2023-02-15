@@ -16,12 +16,12 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.send_e_invoice_response_data import (
+from fattureincloud_python_sdk.models.send_e_invoice_response_data import (
     SendEInvoiceResponseData,
 )
 
 globals()["SendEInvoiceResponseData"] = SendEInvoiceResponseData
-from fattureincloud_python_sdk.model.send_e_invoice_response import SendEInvoiceResponse
+from fattureincloud_python_sdk.models.send_e_invoice_response import SendEInvoiceResponse
 
 
 class TestSendEInvoiceResponse(unittest.TestCase):

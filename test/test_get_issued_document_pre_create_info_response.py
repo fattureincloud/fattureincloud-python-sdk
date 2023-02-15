@@ -16,22 +16,22 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document_pre_create_info import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info import (
     IssuedDocumentPreCreateInfo,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_default_values import (
     IssuedDocumentPreCreateInfoDefaultValues,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_extra_data_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_extra_data_default_values import (
     IssuedDocumentPreCreateInfoExtraDataDefaultValues,
 )
-from fattureincloud_python_sdk.model.issued_document_pre_create_info_items_default_values import (
+from fattureincloud_python_sdk.models.issued_document_pre_create_info_items_default_values import (
     IssuedDocumentPreCreateInfoItemsDefaultValues,
 )
-from fattureincloud_python_sdk.model.vat_type import VatType
+from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["IssuedDocumentPreCreateInfo"] = IssuedDocumentPreCreateInfo
-from fattureincloud_python_sdk.model.get_issued_document_pre_create_info_response import (
+from fattureincloud_python_sdk.models.get_issued_document_pre_create_info_response import (
     GetIssuedDocumentPreCreateInfoResponse,
 )
 

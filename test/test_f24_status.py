@@ -16,7 +16,7 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.f24_status import F24Status
+from fattureincloud_python_sdk.models.f24_status import F24Status
 
 
 class TestF24Status(unittest.TestCase):

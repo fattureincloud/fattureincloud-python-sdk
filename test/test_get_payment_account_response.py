@@ -16,11 +16,11 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 
 globals()["PaymentAccount"] = PaymentAccount
-from fattureincloud_python_sdk.model.get_payment_account_response import (
+from fattureincloud_python_sdk.models.get_payment_account_response import (
     GetPaymentAccountResponse,
 )
 

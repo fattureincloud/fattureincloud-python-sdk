@@ -16,12 +16,12 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.list_f24_response_aggregated_data import (
+from fattureincloud_python_sdk.models.list_f24_response_aggregated_data import (
     ListF24ResponseAggregatedData,
 )
 
 globals()["ListF24ResponseAggregatedData"] = ListF24ResponseAggregatedData
-from fattureincloud_python_sdk.model.list_f24_response_aggregation import (
+from fattureincloud_python_sdk.models.list_f24_response_aggregation import (
     ListF24ResponseAggregation,
 )
 
@@ -37,8 +37,8 @@ class TestListF24ResponseAggregatedDataAggregatedData(unittest.TestCase):
 
     def testListF24ResponseAggregatedDataAggregatedData(self):
         """Test ListF24ResponseAggregatedDataAggregatedData"""
-        model = ListF24ResponseAggregation(amount=10.0)
-        expected_json = '{"amount": 10.0}'
+        model = ListF24ResponseAggregation(aggregated_data=ListF24ResponseAggregatedData(amount=10.0))
+        expected_json = '{"aggregated_data": {"amount": 10.0}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

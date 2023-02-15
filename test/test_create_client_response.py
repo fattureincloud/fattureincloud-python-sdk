@@ -13,21 +13,21 @@ import json
 import sys
 import unittest
 
-from fattureincloud_python_sdk.model.client import Client
-from fattureincloud_python_sdk.model.client_type import ClientType
+from fattureincloud_python_sdk.models.client import Client
+from fattureincloud_python_sdk.models.client_type import ClientType
 
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.model.payment_method import PaymentMethod
-from fattureincloud_python_sdk.model.payment_method_details import PaymentMethodDetails
-from fattureincloud_python_sdk.model.payment_method_type import PaymentMethodType
-from fattureincloud_python_sdk.model.payment_terms_type import PaymentTermsType
-from fattureincloud_python_sdk.model.vat_type import VatType
-from fattureincloud_python_sdk.model.client import Client
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.vat_type import VatType
+from fattureincloud_python_sdk.models.client import Client
 
 globals()["Client"] = Client
 from functions import json_serial
-from fattureincloud_python_sdk.model.create_client_response import CreateClientResponse
+from fattureincloud_python_sdk.models.create_client_response import CreateClientResponse
 
 
 class TestCreateClientResponse(unittest.TestCase):

@@ -16,10 +16,10 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.archive_document import ArchiveDocument
+from fattureincloud_python_sdk.models.archive_document import ArchiveDocument
 
 globals()["ArchiveDocument"] = ArchiveDocument
-from fattureincloud_python_sdk.model.get_archive_document_response import (
+from fattureincloud_python_sdk.models.get_archive_document_response import (
     GetArchiveDocumentResponse,
 )
 

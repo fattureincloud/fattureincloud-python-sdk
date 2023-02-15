@@ -4,13 +4,29 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int, none_type** | Item unique identifier. | [optional] 
-**amount_net** | **float, none_type** | Item total net amount. | [optional] 
-**amount_gross** | **float, none_type** | Item total gross amount. | [optional] 
-**category** | **str, none_type** | Item category. | [optional] 
+**id** | **int** | Item unique identifier. | [optional] 
+**amount_net** | **float** | Item total net amount. | [optional] 
+**amount_gross** | **float** | Item total gross amount. | [optional] 
+**category** | **str** | Item category. | [optional] 
 **vat** | [**VatType**](VatType.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from fattureincloud_python_sdk.models.receipt_items_list_item import ReceiptItemsListItem
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ReceiptItemsListItem from a JSON string
+receipt_items_list_item_instance = ReceiptItemsListItem.from_json(json)
+# print the JSON string representation of the object
+print ReceiptItemsListItem.to_json()
+
+# convert the object into a dict
+receipt_items_list_item_dict = receipt_items_list_item_instance.to_dict()
+# create an instance of ReceiptItemsListItem from a dict
+receipt_items_list_item_form_dict = receipt_items_list_item.from_dict(receipt_items_list_item_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

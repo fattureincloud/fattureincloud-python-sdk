@@ -16,11 +16,11 @@ import datetime
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.issued_document import IssuedDocument
-from fattureincloud_python_sdk.model.issued_document_type import IssuedDocumentType
+from fattureincloud_python_sdk.models.issued_document import IssuedDocument
+from fattureincloud_python_sdk.models.issued_document_type import IssuedDocumentType
 
 globals()["IssuedDocument"] = IssuedDocument
-from fattureincloud_python_sdk.model.get_existing_issued_document_totals_request import (
+from fattureincloud_python_sdk.models.get_existing_issued_document_totals_request import (
     GetExistingIssuedDocumentTotalsRequest,
 )
 

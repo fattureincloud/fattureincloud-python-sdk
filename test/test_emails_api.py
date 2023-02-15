@@ -11,10 +11,10 @@
 
 import datetime
 import unittest
-from fattureincloud_python_sdk.model.email import Email
-from fattureincloud_python_sdk.model.email_recipient_status import EmailRecipientStatus
-from fattureincloud_python_sdk.model.email_status import EmailStatus
-from fattureincloud_python_sdk.model.list_emails_response import ListEmailsResponse
+from fattureincloud_python_sdk.models.email import Email
+from fattureincloud_python_sdk.models.email_recipient_status import EmailRecipientStatus
+from fattureincloud_python_sdk.models.email_status import EmailStatus
+from fattureincloud_python_sdk.models.list_emails_response import ListEmailsResponse
 import functions
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.api.emails_api import EmailsApi
@@ -41,7 +41,7 @@ class TestEmailsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListEmailsResponse(

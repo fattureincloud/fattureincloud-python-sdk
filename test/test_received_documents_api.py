@@ -16,49 +16,49 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.received_documents_api import ReceivedDocumentsApi
-from fattureincloud_python_sdk.model.attachment_data import AttachmentData
-from fattureincloud_python_sdk.model.create_received_document_response import (
+from fattureincloud_python_sdk.models.attachment_data import AttachmentData
+from fattureincloud_python_sdk.models.create_received_document_response import (
     CreateReceivedDocumentResponse,
 )
-from fattureincloud_python_sdk.model.get_received_document_response import (
+from fattureincloud_python_sdk.models.get_received_document_response import (
     GetReceivedDocumentResponse,
 )
-from fattureincloud_python_sdk.model.list_received_documents_response import (
+from fattureincloud_python_sdk.models.list_received_documents_response import (
     ListReceivedDocumentsResponse,
 )
-from fattureincloud_python_sdk.model.modify_received_document_response import (
+from fattureincloud_python_sdk.models.modify_received_document_response import (
     ModifyReceivedDocumentResponse,
 )
-from fattureincloud_python_sdk.model.received_document import ReceivedDocument
-from fattureincloud_python_sdk.model.received_document_entity import (
+from fattureincloud_python_sdk.models.received_document import ReceivedDocument
+from fattureincloud_python_sdk.models.received_document_entity import (
     ReceivedDocumentEntity,
 )
-from fattureincloud_python_sdk.model.received_document_type import ReceivedDocumentType
-from fattureincloud_python_sdk.model.upload_received_document_attachment_response import (
+from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
+from fattureincloud_python_sdk.models.upload_received_document_attachment_response import (
     UploadReceivedDocumentAttachmentResponse,
 )
-from fattureincloud_python_sdk.model.payment_account import PaymentAccount
-from fattureincloud_python_sdk.model.received_document_info import ReceivedDocumentInfo
-from fattureincloud_python_sdk.model.received_document_info_default_values import (
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.received_document_info import ReceivedDocumentInfo
+from fattureincloud_python_sdk.models.received_document_info_default_values import (
     ReceivedDocumentInfoDefaultValues,
 )
-from fattureincloud_python_sdk.model.received_document_info_items_default_values import (
+from fattureincloud_python_sdk.models.received_document_info_items_default_values import (
     ReceivedDocumentInfoItemsDefaultValues,
 )
-from fattureincloud_python_sdk.model.received_document_totals import (
+from fattureincloud_python_sdk.models.received_document_totals import (
     ReceivedDocumentTotals,
 )
-from fattureincloud_python_sdk.model.vat_type import VatType
-from fattureincloud_python_sdk.model.get_existing_received_document_totals_response import (
+from fattureincloud_python_sdk.models.vat_type import VatType
+from fattureincloud_python_sdk.models.get_existing_received_document_totals_response import (
     GetExistingReceivedDocumentTotalsResponse,
 )
-from fattureincloud_python_sdk.model.get_new_received_document_totals_response import (
+from fattureincloud_python_sdk.models.get_new_received_document_totals_response import (
     GetNewReceivedDocumentTotalsResponse,
 )
-from fattureincloud_python_sdk.model.get_received_document_pre_create_info_response import (
+from fattureincloud_python_sdk.models.get_received_document_pre_create_info_response import (
     GetReceivedDocumentPreCreateInfoResponse,
 )
-from fattureincloud_python_sdk.model.received_document_items_list_item import (
+from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
 )
 
@@ -83,7 +83,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateReceivedDocumentResponse(
@@ -145,7 +145,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_received_document(2, 12345)
@@ -158,7 +158,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.DELETE = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_received_document_attachment(2, 12345)
@@ -175,7 +175,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetExistingReceivedDocumentTotalsResponse(
@@ -206,7 +206,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetNewReceivedDocumentTotalsResponse(
@@ -237,7 +237,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetReceivedDocumentResponse(
@@ -303,7 +303,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetReceivedDocumentPreCreateInfoResponse(
@@ -330,7 +330,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListReceivedDocumentsResponse(
@@ -445,7 +445,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.PUT = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyReceivedDocumentResponse(
@@ -511,7 +511,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.POST = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = UploadReceivedDocumentAttachmentResponse(

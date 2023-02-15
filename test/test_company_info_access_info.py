@@ -17,12 +17,12 @@ import unittest
 import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
-from fattureincloud_python_sdk.model.permissions import Permissions
-from fattureincloud_python_sdk.model.user_company_role import UserCompanyRole
+from fattureincloud_python_sdk.models.permissions import Permissions
+from fattureincloud_python_sdk.models.user_company_role import UserCompanyRole
 
 globals()["Permissions"] = Permissions
 globals()["UserCompanyRole"] = UserCompanyRole
-from fattureincloud_python_sdk.model.company_info_access_info import (
+from fattureincloud_python_sdk.models.company_info_access_info import (
     CompanyInfoAccessInfo,
 )
 

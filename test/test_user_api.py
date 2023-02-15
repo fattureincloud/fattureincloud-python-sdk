@@ -15,21 +15,21 @@ import fattureincloud_python_sdk
 import functions
 from fattureincloud_python_sdk.rest import RESTResponse
 from fattureincloud_python_sdk.api.user_api import UserApi  # noqa: E501
-from fattureincloud_python_sdk.model.user import User
-from fattureincloud_python_sdk.model.company import Company
-from fattureincloud_python_sdk.model.company_type import CompanyType
-from fattureincloud_python_sdk.model.controlled_company import ControlledCompany
-from fattureincloud_python_sdk.model.get_user_info_response import GetUserInfoResponse
-from fattureincloud_python_sdk.model.get_user_info_response_info import (
+from fattureincloud_python_sdk.models.user import User
+from fattureincloud_python_sdk.models.company import Company
+from fattureincloud_python_sdk.models.company_type import CompanyType
+from fattureincloud_python_sdk.models.controlled_company import ControlledCompany
+from fattureincloud_python_sdk.models.get_user_info_response import GetUserInfoResponse
+from fattureincloud_python_sdk.models.get_user_info_response_info import (
     GetUserInfoResponseInfo,
 )
-from fattureincloud_python_sdk.model.get_user_info_response_email_confirmation_state import (
+from fattureincloud_python_sdk.models.get_user_info_response_email_confirmation_state import (
     GetUserInfoResponseEmailConfirmationState,
 )
-from fattureincloud_python_sdk.model.list_user_companies_response import (
+from fattureincloud_python_sdk.models.list_user_companies_response import (
     ListUserCompaniesResponse,
 )
-from fattureincloud_python_sdk.model.list_user_companies_response_data import (
+from fattureincloud_python_sdk.models.list_user_companies_response_data import (
     ListUserCompaniesResponseData,
 )
 
@@ -54,7 +54,7 @@ class TestUserApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetUserInfoResponse(
@@ -88,7 +88,7 @@ class TestUserApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.GET = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListUserCompaniesResponse(
