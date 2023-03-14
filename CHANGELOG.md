@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 2.0.12 (2023-02-15)
 
+#### Changed models imports
+
+before:
+```py
+fattureincloud_python_sdk.model.some_model
+```
+
+now:
+```py
+fattureincloud_python_sdk.models.some_model
+```
+
+### Changed Configuration constructor
+
+setting the access token before:
+```py
+configuration = fattureincloud_python_sdk.Configuration(
+    access_token = "YOUR_ACCESS_TOKEN"
+)
+```
+
+now:
+```py
+configuration = fattureincloud_python_sdk.Configuration()
+configuration.access_token = "YOUR_ACCESS_TOKEN"
+```
+
 ### 2.0.11 (2022-12-14)
 
 ### 2.0.10 (2022-11-21)
