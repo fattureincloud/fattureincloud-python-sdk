@@ -1049,7 +1049,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     api_instance = fattureincloud_python_sdk.IssuedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
     filename = 'filename_example' # str | Name of the file. (optional)
-    attachment = 'attachment_example' # str | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    attachment = fattureincloud_python_sdk.bytearray() # bytearray | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
 
     try:
         # Upload Issued Document Attachment
@@ -1066,7 +1066,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
  **filename** | **str**| Name of the file. | [optional] 
- **attachment** | **str**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
+ **attachment** | **bytearray**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
 
 ### Return type
 

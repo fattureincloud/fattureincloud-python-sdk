@@ -19,7 +19,9 @@ from functions import create_from_json
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 from fattureincloud_python_sdk.models.entity import Entity
-from fattureincloud_python_sdk.models.issued_document_ei_data import IssuedDocumentEiData
+from fattureincloud_python_sdk.models.issued_document_ei_data import (
+    IssuedDocumentEiData,
+)
 from fattureincloud_python_sdk.models.issued_document_extra_data import (
     IssuedDocumentExtraData,
 )

@@ -21,7 +21,9 @@ from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["PaymentAccount"] = PaymentAccount
 globals()["VatType"] = VatType
-from fattureincloud_python_sdk.models.receipt_pre_create_info import ReceiptPreCreateInfo
+from fattureincloud_python_sdk.models.receipt_pre_create_info import (
+    ReceiptPreCreateInfo,
+)
 
 
 class TestReceiptPreCreateInfo(unittest.TestCase):

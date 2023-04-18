@@ -46,6 +46,8 @@ docs/CreateSupplierRequest.md
 docs/CreateSupplierResponse.md
 docs/CreateVatTypeRequest.md
 docs/CreateVatTypeResponse.md
+docs/CreateWebhooksSubscriptionRequest.md
+docs/CreateWebhooksSubscriptionResponse.md
 docs/Currency.md
 docs/DetailedCountry.md
 docs/DocumentTemplate.md
@@ -61,6 +63,7 @@ docs/EmailStatus.md
 docs/EmailsApi.md
 docs/Entity.md
 docs/EntityType.md
+docs/EventType.md
 docs/F24.md
 docs/F24Status.md
 docs/FunctionStatus.md
@@ -94,6 +97,7 @@ docs/GetUserInfoResponse.md
 docs/GetUserInfoResponseEmailConfirmationState.md
 docs/GetUserInfoResponseInfo.md
 docs/GetVatTypeResponse.md
+docs/GetWebhooksSubscriptionResponse.md
 docs/InfoApi.md
 docs/IssuedDocument.md
 docs/IssuedDocumentEiData.md
@@ -152,6 +156,7 @@ docs/ListUnitsOfMeasureResponse.md
 docs/ListUserCompaniesResponse.md
 docs/ListUserCompaniesResponseData.md
 docs/ListVatTypesResponse.md
+docs/ListWebhooksSubscriptionsResponse.md
 docs/ModifyArchiveDocumentRequest.md
 docs/ModifyArchiveDocumentResponse.md
 docs/ModifyCashbookEntryRequest.md
@@ -176,6 +181,8 @@ docs/ModifySupplierRequest.md
 docs/ModifySupplierResponse.md
 docs/ModifyVatTypeRequest.md
 docs/ModifyVatTypeResponse.md
+docs/ModifyWebhooksSubscriptionRequest.md
+docs/ModifyWebhooksSubscriptionResponse.md
 docs/MonthlyTotal.md
 docs/OriginalDocumentType.md
 docs/Pagination.md
@@ -196,7 +203,6 @@ docs/ReceiptPreCreateInfo.md
 docs/ReceiptType.md
 docs/ReceiptsApi.md
 docs/ReceivedDocument.md
-docs/ReceivedDocumentEntity.md
 docs/ReceivedDocumentInfo.md
 docs/ReceivedDocumentInfoDefaultValues.md
 docs/ReceivedDocumentInfoItemsDefaultValues.md
@@ -236,6 +242,8 @@ docs/VerifyEInvoiceXmlErrorResponseErrorValidationResult.md
 docs/VerifyEInvoiceXmlErrorResponseExtra.md
 docs/VerifyEInvoiceXmlResponse.md
 docs/VerifyEInvoiceXmlResponseData.md
+docs/WebhooksApi.md
+docs/WebhooksSubscription.md
 fattureincloud_python_sdk/__init__.py
 fattureincloud_python_sdk/api/__init__.py
 fattureincloud_python_sdk/api/archive_api.py
@@ -253,6 +261,7 @@ fattureincloud_python_sdk/api/settings_api.py
 fattureincloud_python_sdk/api/suppliers_api.py
 fattureincloud_python_sdk/api/taxes_api.py
 fattureincloud_python_sdk/api/user_api.py
+fattureincloud_python_sdk/api/webhooks_api.py
 fattureincloud_python_sdk/api_client.py
 fattureincloud_python_sdk/configuration.py
 fattureincloud_python_sdk/exceptions.py
@@ -299,6 +308,8 @@ fattureincloud_python_sdk/models/create_supplier_request.py
 fattureincloud_python_sdk/models/create_supplier_response.py
 fattureincloud_python_sdk/models/create_vat_type_request.py
 fattureincloud_python_sdk/models/create_vat_type_response.py
+fattureincloud_python_sdk/models/create_webhooks_subscription_request.py
+fattureincloud_python_sdk/models/create_webhooks_subscription_response.py
 fattureincloud_python_sdk/models/currency.py
 fattureincloud_python_sdk/models/detailed_country.py
 fattureincloud_python_sdk/models/document_template.py
@@ -313,6 +324,7 @@ fattureincloud_python_sdk/models/email_schedule_include.py
 fattureincloud_python_sdk/models/email_status.py
 fattureincloud_python_sdk/models/entity.py
 fattureincloud_python_sdk/models/entity_type.py
+fattureincloud_python_sdk/models/event_type.py
 fattureincloud_python_sdk/models/f24.py
 fattureincloud_python_sdk/models/f24_status.py
 fattureincloud_python_sdk/models/function_status.py
@@ -346,6 +358,7 @@ fattureincloud_python_sdk/models/get_user_info_response.py
 fattureincloud_python_sdk/models/get_user_info_response_email_confirmation_state.py
 fattureincloud_python_sdk/models/get_user_info_response_info.py
 fattureincloud_python_sdk/models/get_vat_type_response.py
+fattureincloud_python_sdk/models/get_webhooks_subscription_response.py
 fattureincloud_python_sdk/models/issued_document.py
 fattureincloud_python_sdk/models/issued_document_ei_data.py
 fattureincloud_python_sdk/models/issued_document_extra_data.py
@@ -401,6 +414,7 @@ fattureincloud_python_sdk/models/list_units_of_measure_response.py
 fattureincloud_python_sdk/models/list_user_companies_response.py
 fattureincloud_python_sdk/models/list_user_companies_response_data.py
 fattureincloud_python_sdk/models/list_vat_types_response.py
+fattureincloud_python_sdk/models/list_webhooks_subscriptions_response.py
 fattureincloud_python_sdk/models/modify_archive_document_request.py
 fattureincloud_python_sdk/models/modify_archive_document_response.py
 fattureincloud_python_sdk/models/modify_cashbook_entry_request.py
@@ -425,6 +439,8 @@ fattureincloud_python_sdk/models/modify_supplier_request.py
 fattureincloud_python_sdk/models/modify_supplier_response.py
 fattureincloud_python_sdk/models/modify_vat_type_request.py
 fattureincloud_python_sdk/models/modify_vat_type_response.py
+fattureincloud_python_sdk/models/modify_webhooks_subscription_request.py
+fattureincloud_python_sdk/models/modify_webhooks_subscription_response.py
 fattureincloud_python_sdk/models/monthly_total.py
 fattureincloud_python_sdk/models/original_document_type.py
 fattureincloud_python_sdk/models/pagination.py
@@ -443,7 +459,6 @@ fattureincloud_python_sdk/models/receipt_items_list_item.py
 fattureincloud_python_sdk/models/receipt_pre_create_info.py
 fattureincloud_python_sdk/models/receipt_type.py
 fattureincloud_python_sdk/models/received_document.py
-fattureincloud_python_sdk/models/received_document_entity.py
 fattureincloud_python_sdk/models/received_document_info.py
 fattureincloud_python_sdk/models/received_document_info_default_values.py
 fattureincloud_python_sdk/models/received_document_info_items_default_values.py
@@ -478,10 +493,21 @@ fattureincloud_python_sdk/models/verify_e_invoice_xml_error_response_error_valid
 fattureincloud_python_sdk/models/verify_e_invoice_xml_error_response_extra.py
 fattureincloud_python_sdk/models/verify_e_invoice_xml_response.py
 fattureincloud_python_sdk/models/verify_e_invoice_xml_response_data.py
+fattureincloud_python_sdk/models/webhooks_subscription.py
 fattureincloud_python_sdk/rest.py
+pyproject.toml
 requirements.txt
 setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_create_webhooks_subscription_request.py
+test/test_create_webhooks_subscription_response.py
+test/test_event_type.py
+test/test_get_webhooks_subscription_response.py
+test/test_list_webhooks_subscriptions_response.py
+test/test_modify_webhooks_subscription_request.py
+test/test_modify_webhooks_subscription_response.py
 test/test_send_e_invoice_request_options.py
+test/test_webhooks_api.py
+test/test_webhooks_subscription.py

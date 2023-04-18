@@ -95,7 +95,7 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
                             ),
                             stock=3.14,
                         )
-                    ]
+                    ],
                 )
             ],
             current_page=10,

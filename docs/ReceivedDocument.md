@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Unique identifier of the document. | [optional] 
 **type** | [**ReceivedDocumentType**](ReceivedDocumentType.md) |  | [optional] 
-**entity** | [**ReceivedDocumentEntity**](ReceivedDocumentEntity.md) |  | [optional] 
+**entity** | [**Entity**](Entity.md) |  | [optional] 
 **var_date** | **date** | Date of the document [If not specified, today date is used]. | [optional] 
 **category** | **str** | Document category. | [optional] 
 **description** | **str** | Document description. | [optional] 
