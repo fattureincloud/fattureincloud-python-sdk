@@ -17,8 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.models.received_document import ReceivedDocument
-from fattureincloud_python_sdk.models.received_document_entity import (
-    ReceivedDocumentEntity,
+from fattureincloud_python_sdk.models.entity import (
+    Entity,
 )
 from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
@@ -47,7 +47,7 @@ class TestGetExistingReceivedDocumentTotalsRequest(unittest.TestCase):
             data=ReceivedDocument(
                 id=1,
                 type=ReceivedDocumentType("expense"),
-                entity=ReceivedDocumentEntity(
+                entity=Entity(
                     id=1,
                     name="name_example",
                 ),

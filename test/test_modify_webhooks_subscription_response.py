@@ -13,14 +13,18 @@
 """
 
 
+import json
 import unittest
 import datetime
 
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.event_type import EventType
 from fattureincloud_python_sdk.models.modify_webhooks_subscription_response import (
     ModifyWebhooksSubscriptionResponse,
-)  # noqa: E501
+)
+from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription  # noqa: E501
 from fattureincloud_python_sdk.rest import ApiException
+from functions import json_serial
 
 
 class TestModifyWebhooksSubscriptionResponse(unittest.TestCase):
@@ -32,36 +36,21 @@ class TestModifyWebhooksSubscriptionResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ModifyWebhooksSubscriptionResponse
-        include_option is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `ModifyWebhooksSubscriptionResponse`
-        """
-        model = fattureincloud_python_sdk.models.modify_webhooks_subscription_response.ModifyWebhooksSubscriptionResponse()  # noqa: E501
-        if include_optional :
-            return ModifyWebhooksSubscriptionResponse(
-                data = fattureincloud_python_sdk.models.webhooks_subscription.WebhooksSubscription(
-                    id = '', 
-                    sink = '', 
-                    verified = True, 
-                    types = [
-                        'it.fattureincloud.issued_documents.invoices.create'
-                        ], ), 
-                warnings = [
-                    ''
-                    ]
-            )
-        else :
-            return ModifyWebhooksSubscriptionResponse(
-        )
-        """
-
     def testModifyWebhooksSubscriptionResponse(self):
         """Test ModifyWebhooksSubscriptionResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = ModifyWebhooksSubscriptionResponse(
+            data=WebhooksSubscription(
+                id="SUB123",
+                sink="https://endpoint.test",
+                verified=True,
+                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_CREATE]
+            ),
+            warnings=["error"]
+        )
+        expected_json = '{"data": {"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.cashbook.create"]}, "warnings": ["error"]}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
+
 
 
 if __name__ == "__main__":

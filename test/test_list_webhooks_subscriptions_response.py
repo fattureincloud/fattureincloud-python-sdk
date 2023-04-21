@@ -13,14 +13,18 @@
 """
 
 
+import json
 import unittest
 import datetime
 
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.event_type import EventType
 from fattureincloud_python_sdk.models.list_webhooks_subscriptions_response import (
     ListWebhooksSubscriptionsResponse,
-)  # noqa: E501
+)
+from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription  # noqa: E501
 from fattureincloud_python_sdk.rest import ApiException
+from functions import json_serial
 
 
 class TestListWebhooksSubscriptionsResponse(unittest.TestCase):
@@ -32,35 +36,27 @@ class TestListWebhooksSubscriptionsResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test ListWebhooksSubscriptionsResponse
-        include_option is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `ListWebhooksSubscriptionsResponse`
-        """
-        model = fattureincloud_python_sdk.models.list_webhooks_subscriptions_response.ListWebhooksSubscriptionsResponse()  # noqa: E501
-        if include_optional :
-            return ListWebhooksSubscriptionsResponse(
-                data = [
-                    fattureincloud_python_sdk.models.webhooks_subscription.WebhooksSubscription(
-                        id = '', 
-                        sink = '', 
-                        verified = True, 
-                        types = [
-                            'it.fattureincloud.issued_documents.invoices.create'
-                            ], )
-                    ]
-            )
-        else :
-            return ListWebhooksSubscriptionsResponse(
-        )
-        """
-
     def testListWebhooksSubscriptionsResponse(self):
         """Test ListWebhooksSubscriptionsResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = ListWebhooksSubscriptionsResponse(
+            data=[
+                WebhooksSubscription(
+                    id="SUB123",
+                    sink="https://endpoint.test",
+                    verified=True,
+                    types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_CREATE]
+                ),
+                WebhooksSubscription(
+                    id="SUB12345",
+                    sink="https://endpoint.test",
+                    verified=True,
+                    types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_UPDATE]
+                )
+            ]
+        )
+        expected_json = '{"data": [{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.cashbook.create"]}, {"id": "SUB12345", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.cashbook.update"]}]}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

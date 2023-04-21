@@ -13,14 +13,18 @@
 """
 
 
+import json
 import unittest
 import datetime
 
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.event_type import EventType
+from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription
 from fattureincloud_python_sdk.models.create_webhooks_subscription_request import (
     CreateWebhooksSubscriptionRequest,
 )  # noqa: E501
 from fattureincloud_python_sdk.rest import ApiException
+from functions import json_serial
 
 
 class TestCreateWebhooksSubscriptionRequest(unittest.TestCase):
@@ -32,33 +36,17 @@ class TestCreateWebhooksSubscriptionRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
-        """Test CreateWebhooksSubscriptionRequest
-        include_option is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `CreateWebhooksSubscriptionRequest`
-        """
-        model = fattureincloud_python_sdk.models.create_webhooks_subscription_request.CreateWebhooksSubscriptionRequest()  # noqa: E501
-        if include_optional :
-            return CreateWebhooksSubscriptionRequest(
-                data = fattureincloud_python_sdk.models.webhooks_subscription.WebhooksSubscription(
-                    id = '', 
-                    sink = '', 
-                    verified = True, 
-                    types = [
-                        'it.fattureincloud.issued_documents.invoices.create'
-                        ], )
-            )
-        else :
-            return CreateWebhooksSubscriptionRequest(
-        )
-        """
-
     def testCreateWebhooksSubscriptionRequest(self):
         """Test CreateWebhooksSubscriptionRequest"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = CreateWebhooksSubscriptionRequest(
+            data=WebhooksSubscription(
+                sink="https://endpoint.test",
+                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_CREATE]
+            )
+        )
+        expected_json = '{"data": {"sink": "https://endpoint.test", "types": ["it.fattureincloud.cashbook.create"]}}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

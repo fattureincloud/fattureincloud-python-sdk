@@ -51,8 +51,8 @@ class EventType(str, Enum):
     IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_PROFORMAS_DOT_UPDATE = (
         "it.fattureincloud.issued_documents.proformas.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_PROFORMAS_DOT_CREATE = (
-        "it.fattureincloud.issued_documents.proformas.create"
+    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_PROFORMAS_DOT_DELETE = (
+        "it.fattureincloud.issued_documents.proformas.delete"
     )
     IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_RECEIPTS_DOT_CREATE = (
         "it.fattureincloud.issued_documents.receipts.create"
