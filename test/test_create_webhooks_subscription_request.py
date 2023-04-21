@@ -41,7 +41,7 @@ class TestCreateWebhooksSubscriptionRequest(unittest.TestCase):
         model = CreateWebhooksSubscriptionRequest(
             data=WebhooksSubscription(
                 sink="https://endpoint.test",
-                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_CREATE]
+                types=[EventType.CASHBOOK_CREATE]
             )
         )
         expected_json = '{"data": {"sink": "https://endpoint.test", "types": ["it.fattureincloud.cashbook.create"]}}'

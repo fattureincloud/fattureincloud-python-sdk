@@ -27,156 +27,156 @@ class EventType(str, Enum):
     """
     allowed enum values
     """
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_INVOICES_DOT_CREATE = (
+    ISSUED_DOCUMENTS_INVOICES_CREATE = (
         "it.fattureincloud.issued_documents.invoices.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_INVOICES_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_INVOICES_UPDATE = (
         "it.fattureincloud.issued_documents.invoices.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_INVOICES_DOT_DELETE = (
+    ISSUED_DOCUMENTS_INVOICES_DELETE = (
         "it.fattureincloud.issued_documents.invoices.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_QUOTES_DOT_CREATE = (
+    ISSUED_DOCUMENTS_QUOTES_CREATE = (
         "it.fattureincloud.issued_documents.quotes.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_QUOTES_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_QUOTES_UPDATE = (
         "it.fattureincloud.issued_documents.quotes.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_QUOTES_DOT_DELETE = (
+    ISSUED_DOCUMENTS_QUOTES_DELETE = (
         "it.fattureincloud.issued_documents.quotes.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_PROFORMAS_DOT_CREATE = (
+    ISSUED_DOCUMENTS_PROFORMAS_CREATE = (
         "it.fattureincloud.issued_documents.proformas.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_PROFORMAS_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_PROFORMAS_UPDATE = (
         "it.fattureincloud.issued_documents.proformas.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_PROFORMAS_DOT_DELETE = (
+    ISSUED_DOCUMENTS_PROFORMAS_DELETE = (
         "it.fattureincloud.issued_documents.proformas.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_RECEIPTS_DOT_CREATE = (
+    ISSUED_DOCUMENTS_RECEIPTS_CREATE = (
         "it.fattureincloud.issued_documents.receipts.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_RECEIPTS_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_RECEIPTS_UPDATE = (
         "it.fattureincloud.issued_documents.receipts.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_RECEIPTS_DOT_DELETE = (
+    ISSUED_DOCUMENTS_RECEIPTS_DELETE = (
         "it.fattureincloud.issued_documents.receipts.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_DELIVERY_NOTES_DOT_CREATE = (
+    ISSUED_DOCUMENTS_DELIVERY_NOTES_CREATE = (
         "it.fattureincloud.issued_documents.delivery_notes.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_DELIVERY_NOTES_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_DELIVERY_NOTES_UPDATE = (
         "it.fattureincloud.issued_documents.delivery_notes.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_DELIVERY_NOTES_DOT_DELETE = (
+    ISSUED_DOCUMENTS_DELIVERY_NOTES_DELETE = (
         "it.fattureincloud.issued_documents.delivery_notes.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_CREDIT_NOTES_DOT_CREATE = (
+    ISSUED_DOCUMENTS_CREDIT_NOTES_CREATE = (
         "it.fattureincloud.issued_documents.credit_notes.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_CREDIT_NOTES_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_CREDIT_NOTES_UPDATE = (
         "it.fattureincloud.issued_documents.credit_notes.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_CREDIT_NOTES_DOT_DELETE = (
+    ISSUED_DOCUMENTS_CREDIT_NOTES_DELETE = (
         "it.fattureincloud.issued_documents.credit_notes.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_ORDERS_DOT_CREATE = (
+    ISSUED_DOCUMENTS_ORDERS_CREATE = (
         "it.fattureincloud.issued_documents.orders.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_ORDERS_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_ORDERS_UPDATE = (
         "it.fattureincloud.issued_documents.orders.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_ORDERS_DOT_DELETE = (
+    ISSUED_DOCUMENTS_ORDERS_DELETE = (
         "it.fattureincloud.issued_documents.orders.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_WORK_REPORTS_DOT_CREATE = (
+    ISSUED_DOCUMENTS_WORK_REPORTS_CREATE = (
         "it.fattureincloud.issued_documents.work_reports.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_WORK_REPORTS_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_WORK_REPORTS_UPDATE = (
         "it.fattureincloud.issued_documents.work_reports.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_WORK_REPORTS_DOT_DELETE = (
+    ISSUED_DOCUMENTS_WORK_REPORTS_DELETE = (
         "it.fattureincloud.issued_documents.work_reports.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_SUPPLIER_ORDERS_DOT_CREATE = (
+    ISSUED_DOCUMENTS_SUPPLIER_ORDERS_CREATE = (
         "it.fattureincloud.issued_documents.supplier_orders.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_SUPPLIER_ORDERS_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_SUPPLIER_ORDERS_UPDATE = (
         "it.fattureincloud.issued_documents.supplier_orders.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_SUPPLIER_ORDERS_DOT_DELETE = (
+    ISSUED_DOCUMENTS_SUPPLIER_ORDERS_DELETE = (
         "it.fattureincloud.issued_documents.supplier_orders.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_SELF_INVOICES_DOT_CREATE = (
+    ISSUED_DOCUMENTS_SELF_INVOICES_CREATE = (
         "it.fattureincloud.issued_documents.self_invoices.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_SELF_INVOICES_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_SELF_INVOICES_UPDATE = (
         "it.fattureincloud.issued_documents.self_invoices.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_SELF_INVOICES_DOT_DELETE = (
+    ISSUED_DOCUMENTS_SELF_INVOICES_DELETE = (
         "it.fattureincloud.issued_documents.self_invoices.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_ALL_DOT_CREATE = (
+    ISSUED_DOCUMENTS_ALL_CREATE = (
         "it.fattureincloud.issued_documents.all.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_ALL_DOT_UPDATE = (
+    ISSUED_DOCUMENTS_ALL_UPDATE = (
         "it.fattureincloud.issued_documents.all.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_ALL_DOT_DELETE = (
+    ISSUED_DOCUMENTS_ALL_DELETE = (
         "it.fattureincloud.issued_documents.all.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIVED_DOCUMENTS_DOT_CREATE = (
+    RECEIVED_DOCUMENTS_CREATE = (
         "it.fattureincloud.received_documents.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIVED_DOCUMENTS_DOT_UPDATE = (
+    RECEIVED_DOCUMENTS_UPDATE = (
         "it.fattureincloud.received_documents.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIVED_DOCUMENTS_DOT_DELETE = (
+    RECEIVED_DOCUMENTS_DELETE = (
         "it.fattureincloud.received_documents.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIPTS_DOT_CREATE = "it.fattureincloud.receipts.create"
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIPTS_DOT_UPDATE = "it.fattureincloud.receipts.update"
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIPTS_DOT_DELETE = "it.fattureincloud.receipts.delete"
-    IT_DOT_FATTUREINCLOUD_DOT_TAXES_DOT_CREATE = "it.fattureincloud.taxes.create"
-    IT_DOT_FATTUREINCLOUD_DOT_TAXES_DOT_UPDATE = "it.fattureincloud.taxes.update"
-    IT_DOT_FATTUREINCLOUD_DOT_TAXES_DOT_DELETE = "it.fattureincloud.taxes.delete"
-    IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_CREATE = "it.fattureincloud.cashbook.create"
-    IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_UPDATE = "it.fattureincloud.cashbook.update"
-    IT_DOT_FATTUREINCLOUD_DOT_CASHBOOK_DOT_DELETE = "it.fattureincloud.cashbook.delete"
-    IT_DOT_FATTUREINCLOUD_DOT_PRODUCTS_DOT_CREATE = "it.fattureincloud.products.create"
-    IT_DOT_FATTUREINCLOUD_DOT_PRODUCTS_DOT_UPDATE = "it.fattureincloud.products.update"
-    IT_DOT_FATTUREINCLOUD_DOT_PRODUCTS_DOT_DELETE = "it.fattureincloud.products.delete"
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_CLIENTS_DOT_CREATE = (
+    RECEIPTS_CREATE = "it.fattureincloud.receipts.create"
+    RECEIPTS_UPDATE = "it.fattureincloud.receipts.update"
+    RECEIPTS_DELETE = "it.fattureincloud.receipts.delete"
+    TAXES_CREATE = "it.fattureincloud.taxes.create"
+    TAXES_UPDATE = "it.fattureincloud.taxes.update"
+    TAXES_DELETE = "it.fattureincloud.taxes.delete"
+    CASHBOOK_CREATE = "it.fattureincloud.cashbook.create"
+    CASHBOOK_UPDATE = "it.fattureincloud.cashbook.update"
+    CASHBOOK_DELETE = "it.fattureincloud.cashbook.delete"
+    PRODUCTS_CREATE = "it.fattureincloud.products.create"
+    PRODUCTS_UPDATE = "it.fattureincloud.products.update"
+    PRODUCTS_DELETE = "it.fattureincloud.products.delete"
+    ENTITIES_CLIENTS_CREATE = (
         "it.fattureincloud.entities.clients.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_CLIENTS_DOT_UPDATE = (
+    ENTITIES_CLIENTS_UPDATE = (
         "it.fattureincloud.entities.clients.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_CLIENTS_DOT_DELETE = (
+    ENTITIES_CLIENTS_DELETE = (
         "it.fattureincloud.entities.clients.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_SUPPLIERS_DOT_CREATE = (
+    ENTITIES_SUPPLIERS_CREATE = (
         "it.fattureincloud.entities.suppliers.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_SUPPLIERS_DOT_UPDATE = (
+    ENTITIES_SUPPLIERS_UPDATE = (
         "it.fattureincloud.entities.suppliers.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_SUPPLIERS_DOT_DELETE = (
+    ENTITIES_SUPPLIERS_DELETE = (
         "it.fattureincloud.entities.suppliers.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_ALL_DOT_CREATE = (
+    ENTITIES_ALL_CREATE = (
         "it.fattureincloud.entities.all.create"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_ALL_DOT_UPDATE = (
+    ENTITIES_ALL_UPDATE = (
         "it.fattureincloud.entities.all.update"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ENTITIES_DOT_ALL_DOT_DELETE = (
+    ENTITIES_ALL_DELETE = (
         "it.fattureincloud.entities.all.delete"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_ISSUED_DOCUMENTS_DOT_E_INVOICES = (
+    ISSUED_DOCUMENTS_E_INVOICES = (
         "it.fattureincloud.issued_documents.e_invoices"
     )
-    IT_DOT_FATTUREINCLOUD_DOT_RECEIVED_DOCUMENTS_DOT_E_INVOICES = (
+    RECEIVED_DOCUMENTS_E_INVOICES = (
         "it.fattureincloud.received_documents.e_invoices"
     )
