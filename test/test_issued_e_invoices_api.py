@@ -15,7 +15,9 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import RESTResponse
 import functions
 from fattureincloud_python_sdk.api.issued_e_invoices_api import IssuedEInvoicesApi
-from fattureincloud_python_sdk.models.send_e_invoice_response import SendEInvoiceResponse
+from fattureincloud_python_sdk.models.send_e_invoice_response import (
+    SendEInvoiceResponse,
+)
 from fattureincloud_python_sdk.models.send_e_invoice_response_data import (
     SendEInvoiceResponseData,
 )

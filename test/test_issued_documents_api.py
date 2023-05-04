@@ -50,7 +50,9 @@ from fattureincloud_python_sdk.models.email_data_default_sender_email import (
     EmailDataDefaultSenderEmail,
 )
 from fattureincloud_python_sdk.models.sender_email import SenderEmail
-from fattureincloud_python_sdk.models.get_email_data_response import GetEmailDataResponse
+from fattureincloud_python_sdk.models.get_email_data_response import (
+    GetEmailDataResponse,
+)
 from fattureincloud_python_sdk.models.get_existing_issued_document_totals_response import (
     GetExistingIssuedDocumentTotalsResponse,
 )

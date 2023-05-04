@@ -21,8 +21,8 @@ from fattureincloud_python_sdk.models.list_received_documents_response_page impo
 )
 from fattureincloud_python_sdk.models.pagination import Pagination
 from fattureincloud_python_sdk.models.received_document import ReceivedDocument
-from fattureincloud_python_sdk.models.received_document_entity import (
-    ReceivedDocumentEntity,
+from fattureincloud_python_sdk.models.entity import (
+    Entity,
 )
 from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
@@ -54,7 +54,7 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
                 ReceivedDocument(
                     id=1,
                     type=ReceivedDocumentType("expense"),
-                    entity=ReceivedDocumentEntity(
+                    entity=Entity(
                         id=1,
                         name="name_example",
                     ),
@@ -95,7 +95,7 @@ class TestListReceivedDocumentsResponse(unittest.TestCase):
                             ),
                             stock=3.14,
                         )
-                    ]
+                    ],
                 )
             ],
             current_page=10,

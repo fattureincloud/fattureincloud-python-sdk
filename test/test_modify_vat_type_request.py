@@ -19,7 +19,9 @@ from functions import create_from_json
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["VatType"] = VatType
-from fattureincloud_python_sdk.models.modify_vat_type_request import ModifyVatTypeRequest
+from fattureincloud_python_sdk.models.modify_vat_type_request import (
+    ModifyVatTypeRequest,
+)
 
 
 class TestModifyVatTypeRequest(unittest.TestCase):

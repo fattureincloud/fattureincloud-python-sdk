@@ -17,8 +17,8 @@ import fattureincloud_python_sdk
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.models.currency import Currency
-from fattureincloud_python_sdk.models.received_document_entity import (
-    ReceivedDocumentEntity,
+from fattureincloud_python_sdk.models.entity import (
+    Entity,
 )
 from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
@@ -30,7 +30,7 @@ from fattureincloud_python_sdk.models.received_document_type import ReceivedDocu
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 globals()["Currency"] = Currency
-globals()["ReceivedDocumentEntity"] = ReceivedDocumentEntity
+globals()["Entity"] = Entity
 globals()["ReceivedDocumentItemsListItem"] = ReceivedDocumentItemsListItem
 globals()["ReceivedDocumentPaymentsListItem"] = ReceivedDocumentPaymentsListItem
 globals()["ReceivedDocumentType"] = ReceivedDocumentType
@@ -51,7 +51,7 @@ class TestReceivedDocument(unittest.TestCase):
         model = ReceivedDocument(
             id=1,
             type=ReceivedDocumentType("expense"),
-            entity=ReceivedDocumentEntity(
+            entity=Entity(
                 id=1,
                 name="name_example",
             ),

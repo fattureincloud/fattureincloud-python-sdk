@@ -23,7 +23,9 @@ from fattureincloud_python_sdk.models.email_data_default_sender_email import (
 from fattureincloud_python_sdk.models.sender_email import SenderEmail
 
 globals()["EmailData"] = EmailData
-from fattureincloud_python_sdk.models.get_email_data_response import GetEmailDataResponse
+from fattureincloud_python_sdk.models.get_email_data_response import (
+    GetEmailDataResponse,
+)
 
 
 class TestGetEmailDataResponse(unittest.TestCase):

@@ -21,7 +21,9 @@ from fattureincloud_python_sdk.models.vat_kind import VatKind
 
 globals()["OriginalDocumentType"] = OriginalDocumentType
 globals()["VatKind"] = VatKind
-from fattureincloud_python_sdk.models.issued_document_ei_data import IssuedDocumentEiData
+from fattureincloud_python_sdk.models.issued_document_ei_data import (
+    IssuedDocumentEiData,
+)
 
 
 class TestIssuedDocumentEiData(unittest.TestCase):

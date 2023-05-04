@@ -30,8 +30,8 @@ from fattureincloud_python_sdk.models.modify_received_document_response import (
     ModifyReceivedDocumentResponse,
 )
 from fattureincloud_python_sdk.models.received_document import ReceivedDocument
-from fattureincloud_python_sdk.models.received_document_entity import (
-    ReceivedDocumentEntity,
+from fattureincloud_python_sdk.models.entity import (
+    Entity,
 )
 from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
 from fattureincloud_python_sdk.models.upload_received_document_attachment_response import (
@@ -90,7 +90,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
             data=ReceivedDocument(
                 id=2,
                 type=ReceivedDocumentType("expense"),
-                entity=ReceivedDocumentEntity(
+                entity=Entity(
                     id=1,
                     name="name_example",
                 ),
@@ -244,7 +244,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
             data=ReceivedDocument(
                 id=2,
                 type=ReceivedDocumentType("expense"),
-                entity=ReceivedDocumentEntity(
+                entity=Entity(
                     id=1,
                     name="name_example",
                 ),
@@ -338,7 +338,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
                 ReceivedDocument(
                     id=2,
                     type=ReceivedDocumentType("expense"),
-                    entity=ReceivedDocumentEntity(
+                    entity=Entity(
                         id=1,
                         name="name_example",
                     ),
@@ -384,7 +384,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
                 ReceivedDocument(
                     id=2,
                     type=ReceivedDocumentType("expense"),
-                    entity=ReceivedDocumentEntity(
+                    entity=Entity(
                         id=1,
                         name="name_example",
                     ),
@@ -452,7 +452,7 @@ class TestReceivedDocumentsApi(unittest.TestCase):
             data=ReceivedDocument(
                 id=2,
                 type=ReceivedDocumentType("expense"),
-                entity=ReceivedDocumentEntity(
+                entity=Entity(
                     id=1,
                     name="name_example",
                 ),

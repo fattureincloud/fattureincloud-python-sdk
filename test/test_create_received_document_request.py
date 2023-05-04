@@ -20,8 +20,8 @@ from fattureincloud_python_sdk.models.received_document import ReceivedDocument
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.models.received_document_entity import (
-    ReceivedDocumentEntity,
+from fattureincloud_python_sdk.models.entity import (
+    Entity,
 )
 from fattureincloud_python_sdk.models.received_document_items_list_item import (
     ReceivedDocumentItemsListItem,
@@ -57,7 +57,7 @@ class TestCreateReceivedDocumentRequest(unittest.TestCase):
             data=ReceivedDocument(
                 id=1,
                 type=ReceivedDocumentType("expense"),
-                entity=ReceivedDocumentEntity(
+                entity=Entity(
                     id=1,
                     name="name_example",
                 ),

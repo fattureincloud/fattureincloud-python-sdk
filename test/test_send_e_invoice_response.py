@@ -21,7 +21,9 @@ from fattureincloud_python_sdk.models.send_e_invoice_response_data import (
 )
 
 globals()["SendEInvoiceResponseData"] = SendEInvoiceResponseData
-from fattureincloud_python_sdk.models.send_e_invoice_response import SendEInvoiceResponse
+from fattureincloud_python_sdk.models.send_e_invoice_response import (
+    SendEInvoiceResponse,
+)
 
 
 class TestSendEInvoiceResponse(unittest.TestCase):

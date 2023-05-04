@@ -63,7 +63,9 @@ from fattureincloud_python_sdk.models.list_templates_response import (
 from fattureincloud_python_sdk.models.list_units_of_measure_response import (
     ListUnitsOfMeasureResponse,
 )
-from fattureincloud_python_sdk.models.list_vat_types_response import ListVatTypesResponse
+from fattureincloud_python_sdk.models.list_vat_types_response import (
+    ListVatTypesResponse,
+)
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod

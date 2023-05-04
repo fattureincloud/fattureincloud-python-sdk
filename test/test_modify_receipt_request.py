@@ -18,7 +18,9 @@ from functions import create_from_json
 from fattureincloud_python_sdk.models.receipt import Receipt
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
-from fattureincloud_python_sdk.models.receipt_items_list_item import ReceiptItemsListItem
+from fattureincloud_python_sdk.models.receipt_items_list_item import (
+    ReceiptItemsListItem,
+)
 from fattureincloud_python_sdk.models.receipt_type import ReceiptType
 from fattureincloud_python_sdk.models.vat_type import VatType
 
