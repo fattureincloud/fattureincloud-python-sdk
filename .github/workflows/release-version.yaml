@@ -85,7 +85,7 @@ jobs:
       - id: create-tag
         name: Create tag
         if: ${{ !env.ACT && github.event.inputs.env == 'prod' }}
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
           script: |
@@ -115,7 +115,7 @@ jobs:
       - id: test-pypi-publish
         name: Publish to Test PyPI
         if: ${{ !env.ACT && github.event.inputs.env == 'test' }}
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
@@ -123,6 +123,6 @@ jobs:
       - id: pypi-publish
         name: Publish to PyPI
         if: ${{ !env.ACT && github.event.inputs.env == 'prod' }}
-        uses: pypa/gh-action-pypi-publish@master
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
