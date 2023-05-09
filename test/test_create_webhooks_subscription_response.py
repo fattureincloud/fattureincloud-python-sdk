@@ -49,7 +49,7 @@ class TestCreateWebhooksSubscriptionResponse(unittest.TestCase):
             ),
             warnings=["error"],
         )
-        expected_json = '{"data": {"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.cashbook.create"]}, "warnings": ["error"]}'
+        expected_json = '{"data": {"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"]}, "warnings": ["error"]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

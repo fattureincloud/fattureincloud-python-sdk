@@ -56,7 +56,7 @@ class TestListWebhooksSubscriptionsResponse(unittest.TestCase):
                 ),
             ]
         )
-        expected_json = '{"data": [{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.cashbook.create"]}, {"id": "SUB12345", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.cashbook.update"]}]}'
+        expected_json = '{"data": [{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"]}, {"id": "SUB12345", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.update"]}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
