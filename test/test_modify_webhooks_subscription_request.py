@@ -22,7 +22,9 @@ from fattureincloud_python_sdk.models.event_type import EventType
 from fattureincloud_python_sdk.models.modify_webhooks_subscription_request import (
     ModifyWebhooksSubscriptionRequest,
 )
-from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription  # noqa: E501
+from fattureincloud_python_sdk.models.webhooks_subscription import (
+    WebhooksSubscription,
+)  # noqa: E501
 from fattureincloud_python_sdk.rest import ApiException
 from functions import json_serial
 
@@ -40,8 +42,7 @@ class TestModifyWebhooksSubscriptionRequest(unittest.TestCase):
         """Test ModifyWebhooksSubscriptionRequest"""
         model = ModifyWebhooksSubscriptionRequest(
             data=WebhooksSubscription(
-                sink="https://endpoint.test",
-                types=[EventType.CASHBOOK_CREATE]
+                sink="https://endpoint.test", types=[EventType.CASHBOOK_CREATE]
             )
         )
         expected_json = '{"data": {"sink": "https://endpoint.test", "types": ["it.fattureincloud.cashbook.create"]}}'

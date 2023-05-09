@@ -501,13 +501,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_create_webhooks_subscription_request.py
-test/test_create_webhooks_subscription_response.py
-test/test_event_type.py
-test/test_get_webhooks_subscription_response.py
-test/test_list_webhooks_subscriptions_response.py
-test/test_modify_webhooks_subscription_request.py
-test/test_modify_webhooks_subscription_response.py
-test/test_send_e_invoice_request_options.py
-test/test_webhooks_api.py
-test/test_webhooks_subscription.py
