@@ -40,11 +40,10 @@ class TestCreateWebhooksSubscriptionRequest(unittest.TestCase):
         """Test CreateWebhooksSubscriptionRequest"""
         model = CreateWebhooksSubscriptionRequest(
             data=WebhooksSubscription(
-                sink="https://endpoint.test",
-                types=[EventType.CASHBOOK_CREATE]
+                sink="https://endpoint.test", types=[EventType.CASHBOOK_CREATE]
             )
         )
-        expected_json = '{"data": {"sink": "https://endpoint.test", "types": ["it.fattureincloud.cashbook.create"]}}'
+        expected_json = '{"data": {"sink": "https://endpoint.test", "types": ["it.fattureincloud.webhooks.cashbook.create"]}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

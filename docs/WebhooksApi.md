@@ -46,7 +46,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.WebhooksApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_webhooks_subscription_request = {"data":{"sink":"http://www.test.com","types":["it.fattureincloud.entities.create","it.fattureincloud.issued_documents.create"]}} # CreateWebhooksSubscriptionRequest |  (optional)
+    create_webhooks_subscription_request = {"data":{"sink":"http://www.test.com","types":["it.fattureincloud.webhooks.entities.create","it.fattureincloud.webhooks.issued_documents.create"]}} # CreateWebhooksSubscriptionRequest |  (optional)
 
     try:
         # Create a Webhook Subscription
