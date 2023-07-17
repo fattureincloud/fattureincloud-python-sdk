@@ -4,15 +4,15 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Unique identifier | [optional] 
-**name** | **str** | Name of the payment method | [optional] 
+**id** | **int** | Payment method id | [optional] 
+**name** | **str** | Payment method name | [optional] 
 **type** | [**PaymentMethodType**](PaymentMethodType.md) |  | [optional] 
-**is_default** | **bool** | Determines if this is the default payment method. | [optional] 
+**is_default** | **bool** | Payment method is default | [optional] 
 **default_payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
-**details** | [**List[PaymentMethodDetails]**](PaymentMethodDetails.md) | Method details rows | [optional] 
-**bank_iban** | **str** | Bank iban | [optional] 
-**bank_name** | **str** | Bank name | [optional] 
-**bank_beneficiary** | **str** | Bank beneficiary | [optional] 
+**details** | [**List[PaymentMethodDetails]**](PaymentMethodDetails.md) | Payment method details | [optional] 
+**bank_iban** | **str** | Payment method bank iban | [optional] 
+**bank_name** | **str** | Payment method bank name | [optional] 
+**bank_beneficiary** | **str** | Payment method bank beneficiary | [optional] 
 **ei_payment_method** | **str** | E-invoice payment method | [optional] 
 
 ## Example

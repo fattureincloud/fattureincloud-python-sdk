@@ -1,5 +1,6 @@
 # CompanyInfoPlanInfo
 
+Company plan info
 
 ## Properties
 Name | Type | Description | Notes

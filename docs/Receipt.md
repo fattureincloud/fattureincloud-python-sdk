@@ -1,23 +1,22 @@
 # Receipt
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Receipt unique identifier. | [optional] 
-**var_date** | **date** | Receipt date. | [optional] 
-**number** | **float** | Receipt number. | [optional] 
-**numeration** | **str** | If it&#39;s null or empty string use the default numeration. | [optional] 
-**amount_net** | **float** | Total net amount. | [optional] 
-**amount_vat** | **float** | Total vat amount. | [optional] 
-**amount_gross** | **float** | Total gross amount. | [optional] 
-**use_gross_prices** | **bool** |  | [optional] 
+**id** | **int** | Receipt id | [optional] 
+**var_date** | **date** | Receipt date | [optional] 
+**number** | **float** | Receipt number | [optional] 
+**numeration** | **str** | Receipt numeration | [optional] 
+**amount_net** | **float** | Receipt total net amount | [optional] 
+**amount_vat** | **float** | Receipt total vat amount | [optional] 
+**amount_gross** | **float** | Receipt total gross amount | [optional] 
+**use_gross_prices** | **bool** | Receipt uses gross prices | [optional] 
 **type** | [**ReceiptType**](ReceiptType.md) |  | [optional] 
-**description** | **str** | Receipt description. | [optional] 
-**rc_center** | **str** | Revenue center. | [optional] 
-**created_at** | **str** |  | [optional] 
-**updated_at** | **str** |  | [optional] 
+**description** | **str** | Receipt description | [optional] 
+**rc_center** | **str** | Receipt revenue center | [optional] 
+**created_at** | **str** | Receipt creation date | [optional] 
+**updated_at** | **str** | Receipt last update date | [optional] 
 **payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
 **items_list** | [**List[ReceiptItemsListItem]**](ReceiptItemsListItem.md) |  | [optional] 
 

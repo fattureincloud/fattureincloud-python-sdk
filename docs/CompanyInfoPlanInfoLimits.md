@@ -1,14 +1,14 @@
 # CompanyInfoPlanInfoLimits
 
-Limits for this company.
+Company plan limits
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clients** | **int** |  | [optional] 
-**suppliers** | **int** |  | [optional] 
-**products** | **int** |  | [optional] 
-**documents** | **int** |  | [optional] 
+**clients** | **int** | Company plan clients limits | [optional] 
+**suppliers** | **int** | Company plan suppliers limits | [optional] 
+**products** | **int** | Company plan products limits | [optional] 
+**documents** | **int** | Company plan documents limits | [optional] 
 
 ## Example
 

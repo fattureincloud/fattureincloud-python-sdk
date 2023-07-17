@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **str** | Details title. | [optional] 
-**description** | **str** | Details description. | [optional] 
+**title** | **str** | Payment method details title | [optional] 
+**description** | **str** | Payment method details description | [optional] 
 
 ## Example
 

@@ -1,6 +1,6 @@
 # PaymentAccountType
 
-Payment account type.
+Payment account type
 
 ## Properties
 Name | Type | Description | Notes

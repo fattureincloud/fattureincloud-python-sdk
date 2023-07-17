@@ -4,13 +4,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Unique identifier. | [optional] 
-**due_date** | **date** | Due date. | [optional] 
-**amount** | **float** | Payment amount. | [optional] 
+**id** | **int** | Issued document payment item id | [optional] 
+**due_date** | **date** | Issued document payment due date | [optional] 
+**amount** | **float** | Issued document payment amount | [optional] 
 **status** | [**IssuedDocumentStatus**](IssuedDocumentStatus.md) |  | [optional] 
 **payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
-**paid_date** | **date** | Payment date. [Only if status is paid] | [optional] 
-**ei_raw** | **object** | Advanced raw attributes for e-invoices. | [optional] 
+**paid_date** | **date** | Issued document payment date [Only if status is paid] | [optional] 
+**ei_raw** | **object** | Issued document payment advanced raw attributes for e-invoices | [optional] 
 **payment_terms** | [**IssuedDocumentPaymentsListItemPaymentTerms**](IssuedDocumentPaymentsListItemPaymentTerms.md) |  | [optional] 
 
 ## Example

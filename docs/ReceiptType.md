@@ -1,6 +1,6 @@
 # ReceiptType
 
-Receipt type.
+Receipt type
 
 ## Properties
 Name | Type | Description | Notes

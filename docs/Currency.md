@@ -1,14 +1,13 @@
 # Currency
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Currency code. | [optional] 
-**symbol** | **str** | Currency symbol. | [optional] 
-**exchange_rate** | **str** | Currency exchange rate (EUR to this). | [optional] 
-**html_symbol** | **str** | Currency html code. | [optional] 
+**id** | **str** | Currency code | [optional] 
+**symbol** | **str** | Currency symbol | [optional] 
+**exchange_rate** | **str** | Currency exchange rate (EUR to this) | [optional] 
+**html_symbol** | **str** | Currency html code | [optional] 
 
 ## Example
 

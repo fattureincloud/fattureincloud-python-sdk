@@ -1,6 +1,6 @@
 # CashbookEntryType
 
-Cashbook type.
+Cashbook type
 
 ## Properties
 Name | Type | Description | Notes

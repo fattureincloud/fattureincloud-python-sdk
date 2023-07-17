@@ -1,6 +1,6 @@
 # EntityType
 
-Entity type.
+Entity type
 
 ## Properties
 Name | Type | Description | Notes

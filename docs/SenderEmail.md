@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Id | [optional] 
-**email** | **str** | Email address | [optional] 
+**id** | **int** | Sender email id | [optional] 
+**email** | **str** | Sender email address | [optional] 
 
 ## Example
 

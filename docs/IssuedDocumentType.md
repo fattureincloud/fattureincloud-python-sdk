@@ -1,6 +1,6 @@
 # IssuedDocumentType
 
-Issued document type.
+Issued document type
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,6 +1,6 @@
 # ClientType
 
-Client type.
+Client type
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,11 +1,11 @@
 # ReceivedDocumentInfoItemsDefaultValues
 
-Default values for the document items.
+Received document items default values
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**vat** | **float** | Default vat value. | [optional] 
+**vat** | **float** | Vat default value | [optional] 
 
 ## Example
 

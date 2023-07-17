@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Cashbook unique identifier. | [optional] 
-**var_date** | **date** | Cashbook date. | [optional] 
-**description** | **str** | Cashbook description. | [optional] 
+**id** | **str** | Cashbook id | [optional] 
+**var_date** | **date** | Cashbook date | [optional] 
+**description** | **str** | Cashbook description | [optional] 
 **kind** | [**CashbookEntryKind**](CashbookEntryKind.md) |  | [optional] 
 **type** | [**CashbookEntryType**](CashbookEntryType.md) |  | [optional] 
-**entity_name** | **str** | Entity name. | [optional] 
+**entity_name** | **str** | Cashbook entity name | [optional] 
 **document** | [**CashbookEntryDocument**](CashbookEntryDocument.md) |  | [optional] 
-**amount_in** | **float** | [Only for cashbook entry in] Total amount in. | [optional] 
+**amount_in** | **float** | [Only for cashbook entry in] Cashbook total amount in | [optional] 
 **payment_account_in** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
-**amount_out** | **float** | [Only for cashbook entry out] Total amount out. | [optional] 
+**amount_out** | **float** | [Only for cashbook entry out] Cashbook total amount out | [optional] 
 **payment_account_out** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
 
 ## Example

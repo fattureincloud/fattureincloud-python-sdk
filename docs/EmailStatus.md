@@ -1,6 +1,6 @@
 # EmailStatus
 
-Email status.
+Email status
 
 ## Properties
 Name | Type | Description | Notes

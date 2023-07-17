@@ -1,6 +1,6 @@
 # ReceivedDocumentInfoDefaultValues
 
-Default values for the document.
+Received document default values
 
 ## Properties
 Name | Type | Description | Notes

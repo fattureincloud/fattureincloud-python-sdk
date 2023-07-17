@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | **str** | Rejection reason. | [optional] 
-**ei_status** | **str** | E-invoice status. | [optional] 
+**reason** | **str** | E-invoice rejection reason | [optional] 
+**ei_status** | **str** | E-invoice status | [optional] 
 **solution** | **str** | Error solution. | [optional] 
-**code** | **str** | Error code. | [optional] 
-**var_date** | **datetime** | Rejection date. | [optional] 
+**code** | **str** | E-invoice rejection error code | [optional] 
+**var_date** | **datetime** | E-invoice rejection date | [optional] 
 
 ## Example
 

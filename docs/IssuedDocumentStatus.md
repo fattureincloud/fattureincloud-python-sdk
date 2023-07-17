@@ -1,6 +1,6 @@
 # IssuedDocumentStatus
 
-Payment status.
+Issued document status
 
 ## Properties
 Name | Type | Description | Notes

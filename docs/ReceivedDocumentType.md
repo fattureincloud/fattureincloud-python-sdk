@@ -1,6 +1,6 @@
 # ReceivedDocumentType
 
-Received document type.
+Received document type
 
 ## Properties
 Name | Type | Description | Notes

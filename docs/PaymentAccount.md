@@ -1,17 +1,16 @@
 # PaymentAccount
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Unique identifier | [optional] 
-**name** | **str** | Payment account name. | [optional] 
+**id** | **int** | Payment account id | [optional] 
+**name** | **str** | Payment account name | [optional] 
 **type** | [**PaymentAccountType**](PaymentAccountType.md) |  | [optional] 
-**iban** | **str** | Payment account iban. | [optional] 
-**sia** | **str** | Payment account sia. | [optional] 
-**cuc** | **str** | Payment account cuc. | [optional] 
-**virtual** | **bool** | Determine if the payment method is virtual. | [optional] 
+**iban** | **str** | Payment account iban | [optional] 
+**sia** | **str** | Payment account sia | [optional] 
+**cuc** | **str** | Payment account cuc | [optional] 
+**virtual** | **bool** | Payment method is virtual | [optional] 
 
 ## Example
 

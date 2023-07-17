@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Document unique identifier. | [optional] 
-**type** | **str** | Document type. | [optional] 
-**path** | **str** | Document path. | [optional] 
+**id** | **int** | Cashbook related document id | [optional] 
+**type** | **str** | Cashbook related document type | [optional] 
+**path** | **str** | Cashbook related document path | [optional] 
 
 ## Example
 

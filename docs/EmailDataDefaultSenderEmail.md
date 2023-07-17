@@ -1,12 +1,12 @@
 # EmailDataDefaultSenderEmail
 
-Default sender email. (Other emails can be found in `sender_emails_list`)
+Default sender email. (Other emails can be found in **sender_emails_list**)
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Id | [optional] 
-**email** | **str** | Email address | [optional] 
+**id** | **int** | Default sender email id | [optional] 
+**email** | **str** | Default sender email address | [optional] 
 
 ## Example
 

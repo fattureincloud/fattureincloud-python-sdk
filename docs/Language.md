@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **str** | Language code. | [optional] 
-**name** | **str** | Language extended name. | [optional] 
+**code** | **str** | Language code | [optional] 
+**name** | **str** | Language extended name | [optional] 
 
 ## Example
 

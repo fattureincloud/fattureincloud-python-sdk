@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount_net** | **float** |  | [optional] 
-**amount_vat** | **float** |  | [optional] 
+**amount_net** | **float** | Vat item net amount | [optional] 
+**amount_vat** | **float** | Vat item vat amount | [optional] 
 
 ## Example
 

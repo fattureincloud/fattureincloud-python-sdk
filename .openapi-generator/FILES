@@ -263,6 +263,7 @@ fattureincloud_python_sdk/api/taxes_api.py
 fattureincloud_python_sdk/api/user_api.py
 fattureincloud_python_sdk/api/webhooks_api.py
 fattureincloud_python_sdk/api_client.py
+fattureincloud_python_sdk/api_response.py
 fattureincloud_python_sdk/configuration.py
 fattureincloud_python_sdk/exceptions.py
 fattureincloud_python_sdk/models/__init__.py

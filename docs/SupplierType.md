@@ -1,6 +1,6 @@
 # SupplierType
 
-Supplier type.
+Supplier type
 
 ## Properties
 Name | Type | Description | Notes

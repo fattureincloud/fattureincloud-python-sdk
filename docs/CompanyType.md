@@ -1,6 +1,6 @@
 # CompanyType
 
-Company type.
+Company type
 
 ## Properties
 Name | Type | Description | Notes

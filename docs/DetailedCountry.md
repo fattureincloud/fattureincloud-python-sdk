@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Country name. | [optional] 
-**settings_name** | **str** |  | [optional] 
-**iso** | **str** | Country iso. | [optional] 
-**fiscal_iso** | **str** |  | [optional] 
-**uic** | **str** | Country uic. | [optional] 
+**name** | **str** | Country name | [optional] 
+**settings_name** | **str** | Country settings name | [optional] 
+**iso** | **str** | Country iso code | [optional] 
+**fiscal_iso** | **str** | Country fiscal iso code | [optional] 
+**uic** | **str** | Country uic | [optional] 
 
 ## Example
 

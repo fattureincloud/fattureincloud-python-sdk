@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Unique identifier. | [optional] 
-**name** | **str** | Template name. | [optional] 
-**type** | **str** | Template type. | [optional] 
+**id** | **int** | Template id | [optional] 
+**name** | **str** | Template name | [optional] 
+**type** | **str** | Template type | [optional] 
 
 ## Example
 
