@@ -1,16 +1,15 @@
 # ReceiptPreCreateInfo
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **numerations** | **Dict[str, Dict]** |  | [optional] 
-**numerations_list** | **List[str]** | List of series used in the past. | [optional] 
-**rc_centers_list** | **List[str]** | List of revenue centers used in the past. | [optional] 
-**payment_accounts_list** | [**List[PaymentAccount]**](PaymentAccount.md) | User payment accounts list. | [optional] 
-**categories_list** | **List[str]** | List of categories used in the past. | [optional] 
-**vat_types_list** | [**List[VatType]**](VatType.md) | List of user vat types with the default 22%, 10%, 4% and 0% vats. | [optional] 
+**numerations_list** | **List[str]** | Receipt used numerations list | [optional] 
+**rc_centers_list** | **List[str]** | Receipt used revenue centers list | [optional] 
+**payment_accounts_list** | [**List[PaymentAccount]**](PaymentAccount.md) | Payment accounts list | [optional] 
+**categories_list** | **List[str]** | Receipt categories list | [optional] 
+**vat_types_list** | [**List[VatType]**](VatType.md) | Vat types list | [optional] 
 
 ## Example
 

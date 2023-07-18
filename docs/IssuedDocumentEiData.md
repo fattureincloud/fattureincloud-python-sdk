@@ -1,22 +1,22 @@
 # IssuedDocumentEiData
 
-E-invoice data. [Only if e_invoice=true]
+Issued document e-invoice data [Only if e_invoice=true]
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vat_kind** | [**VatKind**](VatKind.md) |  | [optional] 
 **original_document_type** | [**OriginalDocumentType**](OriginalDocumentType.md) |  | [optional] 
-**od_number** | **str** | Original document number. | [optional] 
-**od_date** | **date** | Original document date. | [optional] 
-**cig** | **str** | CIG. | [optional] 
-**cup** | **str** | CUP. | [optional] 
-**payment_method** | **str** | Payment method (see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.1/Rappresentazione-tabellare-fattura-ordinaria.pdf for the accepted values of ModalitaPagamento). | [optional] 
-**bank_name** | **str** | Bank name. | [optional] 
-**bank_iban** | **str** | IBAN. | [optional] 
-**bank_beneficiary** | **str** | Bank beneficiary. | [optional] 
-**invoice_number** | **str** | Invoice number. | [optional] 
-**invoice_date** | **date** | Invoice date. | [optional] 
+**od_number** | **str** | E-invoice original document number | [optional] 
+**od_date** | **date** | E-invoice original document date | [optional] 
+**cig** | **str** | E-invoice CIG | [optional] 
+**cup** | **str** | E-invoice CUP | [optional] 
+**payment_method** | **str** | E-invoice payment method [required for e-invoices](see https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf for the accepted values of ModalitaPagamento) | [optional] 
+**bank_name** | **str** | E-invoice bank name | [optional] 
+**bank_iban** | **str** | E-invoice bank IBAN | [optional] 
+**bank_beneficiary** | **str** | E-invoice bank beneficiary | [optional] 
+**invoice_number** | **str** | E-invoice invoice number | [optional] 
+**invoice_date** | **date** | E-invoice invoice date | [optional] 
 
 ## Example
 

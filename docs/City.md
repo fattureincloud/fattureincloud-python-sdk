@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**postal_code** | **str** | City postal code. | [optional] 
-**city** | **str** | City name. | [optional] 
-**province** | **str** | Province. | [optional] 
+**postal_code** | **str** | City postal code | [optional] 
+**city** | **str** | City name | [optional] 
+**province** | **str** | City province | [optional] 
 
 ## Example
 

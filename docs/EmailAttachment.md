@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filename** | **str** | Email attachment filename. | [optional] 
-**url** | **str** | Email attachment url. | [optional] 
+**filename** | **str** | Email attachment filename | [optional] 
+**url** | **str** | Email attachment url | [optional] 
 
 ## Example
 

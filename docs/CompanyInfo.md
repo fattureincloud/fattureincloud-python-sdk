@@ -1,18 +1,17 @@
 # CompanyInfo
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Company unique identifier. | [optional] 
-**name** | **str** | Company name. | [optional] 
-**email** | **str** | Company email. | [optional] 
+**id** | **int** | Company id | [optional] 
+**name** | **str** | Company name | [optional] 
+**email** | **str** | Company email | [optional] 
 **type** | [**CompanyType**](CompanyType.md) |  | [optional] 
 **access_info** | [**CompanyInfoAccessInfo**](CompanyInfoAccessInfo.md) |  | [optional] 
 **plan_info** | [**CompanyInfoPlanInfo**](CompanyInfoPlanInfo.md) |  | [optional] 
-**accountant_id** | **int** | Accountant unique identifier. | [optional] 
-**is_accountant** | **bool** | Determine if the logged account is an accountant. | [optional] 
+**accountant_id** | **int** | Company accountant id | [optional] 
+**is_accountant** | **bool** | Is the logged account an accountant. | [optional] 
 
 ## Example
 

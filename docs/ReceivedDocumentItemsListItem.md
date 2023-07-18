@@ -4,16 +4,16 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Unique identifier. | [optional] 
-**product_id** | **int** | Unique identifier of the product | [optional] 
-**code** | **str** | Product code. | [optional] 
-**name** | **str** | Product name. | [optional] 
-**measure** | **str** | Product measure. | [optional] 
-**net_price** | **float** | Product net price. | [optional] 
-**category** | **str** | Product category. | [optional] 
-**qty** | **float** | Product quantity. | [optional] 
+**id** | **int** | Received document item id | [optional] 
+**product_id** | **int** | Received document product id | [optional] 
+**code** | **str** | Received document item product code | [optional] 
+**name** | **str** | Received document item product name | [optional] 
+**measure** | **str** | Received document item measure | [optional] 
+**net_price** | **float** | Received document item product net price | [optional] 
+**category** | **str** | Received document item product category | [optional] 
+**qty** | **float** | Received document item quantity | [optional] 
 **vat** | [**VatType**](VatType.md) |  | [optional] 
-**stock** | **float** | Number of items in stock | [optional] 
+**stock** | **float** | Received document item product number of items in stock | [optional] 
 
 ## Example
 

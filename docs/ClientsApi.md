@@ -22,12 +22,14 @@ Creates a new client.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_client_request import CreateClientRequest
+from fattureincloud_python_sdk.models.create_client_response import CreateClientResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -56,6 +58,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ClientsApi->create_client: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -95,12 +98,12 @@ Deletes the specified client.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -127,6 +130,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ClientsApi->delete_client: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -168,12 +172,13 @@ Gets the specified client.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_client_response import GetClientResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -204,6 +209,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ClientsApi->get_client: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -247,12 +253,13 @@ Lists the clients.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_clients_response import ListClientsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -286,6 +293,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ClientsApi->list_clients: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -331,12 +339,14 @@ Modifies the specified client.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.modify_client_request import ModifyClientRequest
+from fattureincloud_python_sdk.models.modify_client_response import ModifyClientResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -366,6 +376,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ClientsApi->modify_client: %s\n" % e)
 ```
+
 
 ### Parameters
 

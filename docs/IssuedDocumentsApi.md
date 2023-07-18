@@ -31,12 +31,14 @@ Creates a new document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_issued_document_request import CreateIssuedDocumentRequest
+from fattureincloud_python_sdk.models.create_issued_document_response import CreateIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -65,6 +67,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->create_issued_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -105,12 +108,12 @@ Deletes the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -137,6 +140,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->delete_issued_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -178,12 +182,12 @@ Removes the attachment of the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -210,6 +214,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->delete_issued_document_attachment: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -251,12 +256,13 @@ Gets the pre-compiled email details.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_email_data_response import GetEmailDataResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -285,6 +291,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_email_data: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -324,12 +331,14 @@ Returns the totals for a specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_existing_issued_document_totals_request import GetExistingIssuedDocumentTotalsRequest
+from fattureincloud_python_sdk.models.get_existing_issued_document_totals_response import GetExistingIssuedDocumentTotalsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -359,6 +368,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_existing_issued_document_totals: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -401,12 +411,13 @@ Gets the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_issued_document_response import GetIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -437,6 +448,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_issued_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -480,12 +492,13 @@ Retrieves the information useful while creating a new document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_issued_document_pre_create_info_response import GetIssuedDocumentPreCreateInfoResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -514,6 +527,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_issued_document_pre_create_info: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -553,12 +567,14 @@ Returns the totals for a new document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_new_issued_document_totals_request import GetNewIssuedDocumentTotalsRequest
+from fattureincloud_python_sdk.models.get_new_issued_document_totals_response import GetNewIssuedDocumentTotalsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -587,6 +603,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_new_issued_document_totals: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -627,12 +644,13 @@ Joins issued documents.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.join_issued_documents_response import JoinIssuedDocumentsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -663,6 +681,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->join_issued_documents: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -704,12 +723,13 @@ Lists the issued documents.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_issued_documents_response import ListIssuedDocumentsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -745,6 +765,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->list_issued_documents: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -793,12 +814,14 @@ Modifies the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.modify_issued_document_request import ModifyIssuedDocumentRequest
+from fattureincloud_python_sdk.models.modify_issued_document_response import ModifyIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -828,6 +851,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->modify_issued_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -870,12 +894,13 @@ Schedules the sending of a document by email.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.schedule_email_request import ScheduleEmailRequest
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -903,6 +928,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->schedule_email: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -945,12 +971,13 @@ Transforms the document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.transform_issued_document_response import TransformIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -982,6 +1009,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->transform_issued_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1024,12 +1052,13 @@ Uploads an attachment destined to an issued document. The actual association bet
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.upload_issued_document_attachment_response import UploadIssuedDocumentAttachmentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -1048,8 +1077,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.IssuedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = 'filename_example' # str | Name of the file. (optional)
-    attachment = fattureincloud_python_sdk.bytearray() # bytearray | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = 'filename_example' # str | Attachment file name (optional)
+    attachment = None # bytearray | Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] (optional)
 
     try:
         # Upload Issued Document Attachment
@@ -1060,13 +1089,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
         print("Exception when calling IssuedDocumentsApi->upload_issued_document_attachment: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
- **filename** | **str**| Name of the file. | [optional] 
- **attachment** | **bytearray**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
+ **filename** | **str**| Attachment file name | [optional] 
+ **attachment** | **bytearray**| Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] | [optional] 
 
 ### Return type
 

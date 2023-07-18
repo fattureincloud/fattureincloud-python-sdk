@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Item unique identifier. | [optional] 
-**amount_net** | **float** | Item total net amount. | [optional] 
-**amount_gross** | **float** | Item total gross amount. | [optional] 
-**category** | **str** | Item category. | [optional] 
+**id** | **int** | Receipt item id | [optional] 
+**amount_net** | **float** | Receipt item total net amount | [optional] 
+**amount_gross** | **float** | Receipt item total gross amount | [optional] 
+**category** | **str** | Receipt item category | [optional] 
 **vat** | [**VatType**](VatType.md) |  | [optional] 
 
 ## Example

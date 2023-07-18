@@ -1,6 +1,6 @@
 # UserCompanyRole
 
-Role of the user in this company.
+User company role
 
 ## Properties
 Name | Type | Description | Notes

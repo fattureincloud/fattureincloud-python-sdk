@@ -1,6 +1,6 @@
 # OriginalDocumentType
 
-Type of document followed by the the current invoice.
+Issued document original document type
 
 ## Properties
 Name | Type | Description | Notes

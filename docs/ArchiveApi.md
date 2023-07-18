@@ -23,12 +23,14 @@ Creates a new archive document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_archive_document_request import CreateArchiveDocumentRequest
+from fattureincloud_python_sdk.models.create_archive_document_response import CreateArchiveDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -57,6 +59,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->create_archive_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -98,12 +101,12 @@ Deletes the specified archive document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -130,6 +133,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->delete_archive_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -171,12 +175,13 @@ Gets the specified archive document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_archive_document_response import GetArchiveDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -207,6 +212,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->get_archive_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -250,12 +256,13 @@ Lists the archive documents.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_archive_documents_response import ListArchiveDocumentsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -289,6 +296,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->list_archive_documents: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -335,12 +343,14 @@ Modifies the specified archive document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.modify_archive_document_request import ModifyArchiveDocumentRequest
+from fattureincloud_python_sdk.models.modify_archive_document_response import ModifyArchiveDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -370,6 +380,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->modify_archive_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -412,12 +423,13 @@ Uploads an attachment destined to an archive document. The actual association be
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.upload_archive_attachment_response import UploadArchiveAttachmentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -436,8 +448,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.ArchiveApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = 'filename_example' # str | Name of the file. (optional)
-    attachment = fattureincloud_python_sdk.bytearray() # bytearray | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = 'filename_example' # str | Attachment file name (optional)
+    attachment = None # bytearray | Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] (optional)
 
     try:
         # Upload Archive Document Attachment
@@ -448,13 +460,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
         print("Exception when calling ArchiveApi->upload_archive_document_attachment: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
- **filename** | **str**| Name of the file. | [optional] 
- **attachment** | **bytearray**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
+ **filename** | **str**| Attachment file name | [optional] 
+ **attachment** | **bytearray**| Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] | [optional] 
 
 ### Return type
 

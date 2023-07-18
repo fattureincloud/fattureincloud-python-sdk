@@ -1,6 +1,6 @@
 # VatKind
 
-Vat kind (esigibilità IVA).
+Vat kind [esigibilità IVA]
 
 ## Properties
 Name | Type | Description | Notes

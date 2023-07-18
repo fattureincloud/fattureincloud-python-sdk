@@ -1,6 +1,6 @@
 # PaymentTermsType
 
-Payment terms Type.
+Payment terms type
 
 ## Properties
 Name | Type | Description | Notes

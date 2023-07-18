@@ -24,12 +24,14 @@ Creates a new receipt.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_receipt_request import CreateReceiptRequest
+from fattureincloud_python_sdk.models.create_receipt_response import CreateReceiptResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -58,6 +60,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->create_receipt: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -98,12 +101,12 @@ Deletes the specified receipt.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -130,6 +133,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->delete_receipt: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -171,12 +175,13 @@ Gets the specified receipt.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_receipt_response import GetReceiptResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -207,6 +212,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->get_receipt: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -250,12 +256,13 @@ Retrieves the information useful while creating a new receipt.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_receipt_pre_create_info_response import GetReceiptPreCreateInfoResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -283,6 +290,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->get_receipt_pre_create_info: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -323,12 +331,13 @@ Returns the monthly totals by year and receipt type.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_receipts_monthly_totals_response import GetReceiptsMonthlyTotalsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -358,6 +367,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->get_receipts_monthly_totals: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -400,12 +410,13 @@ Lists the receipts.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_receipts_response import ListReceiptsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -439,6 +450,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->list_receipts: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -484,12 +496,14 @@ Modifies the specified receipt.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.modify_receipt_request import ModifyReceiptRequest
+from fattureincloud_python_sdk.models.modify_receipt_response import ModifyReceiptResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -519,6 +533,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceiptsApi->modify_receipt: %s\n" % e)
 ```
+
 
 ### Parameters
 

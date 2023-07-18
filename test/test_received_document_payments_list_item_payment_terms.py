@@ -12,6 +12,7 @@
 import json
 import sys
 import unittest
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
 from functions import json_serial
 from functions import create_from_json
 import fattureincloud_python_sdk
@@ -31,8 +32,8 @@ class TestReceivedDocumentPaymentsListItemPaymentTerms(unittest.TestCase):
 
     def testReceivedDocumentPaymentsListItemPaymentTerms(self):
         """Test ReceivedDocumentPaymentsListItemPaymentTerms"""
-        model = ReceivedDocumentPaymentsListItemPaymentTerms(days=20, type="dn")
-        expected_json = '{"days": 20, "type": "dn"}'
+        model = ReceivedDocumentPaymentsListItemPaymentTerms(days=20, type=PaymentTermsType.STANDARD)
+        expected_json = '{"days": 20, "type": "standard"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

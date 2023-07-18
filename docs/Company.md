@@ -1,17 +1,16 @@
 # Company
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Company unique identifier. | [optional] 
-**name** | **str** | Company name. | [optional] 
+**id** | **int** | Company id | [optional] 
+**name** | **str** | Company name | [optional] 
 **type** | [**CompanyType**](CompanyType.md) |  | [optional] 
-**access_token** | **str** | CompanyAuthentication token for this company. [Only if type&#x3D;company] | [optional] 
-**controlled_companies** | [**List[ControlledCompany]**](ControlledCompany.md) | List of controlled companies. [Only if type&#x3D;accountant] | [optional] 
-**connection_id** | **int** | Company connection id. | [optional] 
-**tax_code** | **str** | Tax code. | [optional] 
+**access_token** | **str** | Company authentication token for this company. [Only if type&#x3D;company] | [optional] 
+**controlled_companies** | [**List[ControlledCompany]**](ControlledCompany.md) | Company list of controlled companies [Only if type&#x3D;accountant] | [optional] 
+**connection_id** | **int** | Company connection id | [optional] 
+**tax_code** | **str** | Company tax code | [optional] 
 
 ## Example
 

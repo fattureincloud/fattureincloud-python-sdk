@@ -22,12 +22,14 @@ Register some webhooks Subscriptions.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_webhooks_subscription_request import CreateWebhooksSubscriptionRequest
+from fattureincloud_python_sdk.models.create_webhooks_subscription_response import CreateWebhooksSubscriptionResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -56,6 +58,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->create_webhooks_subscription: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -95,12 +98,12 @@ Delete a webhooks subscription.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -127,6 +130,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->delete_webhooks_subscription: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -166,12 +170,13 @@ Get a webhooks subscription.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_webhooks_subscription_response import GetWebhooksSubscriptionResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -200,6 +205,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->get_webhooks_subscription: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -239,12 +245,13 @@ List active webhooks subscriptions.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_webhooks_subscriptions_response import ListWebhooksSubscriptionsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -272,6 +279,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->list_webhooks_subscriptions: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -310,12 +318,14 @@ Edit a webhooks subscription.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.modify_webhooks_subscription_request import ModifyWebhooksSubscriptionRequest
+from fattureincloud_python_sdk.models.modify_webhooks_subscription_response import ModifyWebhooksSubscriptionResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -345,6 +355,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->modify_webhooks_subscription: %s\n" % e)
 ```
+
 
 ### Parameters
 

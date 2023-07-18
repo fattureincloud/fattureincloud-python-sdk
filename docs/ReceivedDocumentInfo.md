@@ -1,17 +1,16 @@
 # ReceivedDocumentInfo
 
 
-
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_values** | [**ReceivedDocumentInfoDefaultValues**](ReceivedDocumentInfoDefaultValues.md) |  | [optional] 
 **items_default_values** | [**ReceivedDocumentInfoItemsDefaultValues**](ReceivedDocumentInfoItemsDefaultValues.md) |  | [optional] 
-**countries_list** | **List[str]** |  | [optional] 
-**currencies_list** | [**List[Currency]**](Currency.md) |  | [optional] 
-**categories_list** | **List[str]** |  | [optional] 
-**payment_accounts_list** | [**List[PaymentAccount]**](PaymentAccount.md) |  | [optional] 
-**vat_types_list** | [**List[VatType]**](VatType.md) |  | [optional] 
+**countries_list** | **List[str]** | Countries list | [optional] 
+**currencies_list** | [**List[Currency]**](Currency.md) | Currencies list | [optional] 
+**categories_list** | **List[str]** | Categories list | [optional] 
+**payment_accounts_list** | [**List[PaymentAccount]**](PaymentAccount.md) | Payments accounts list | [optional] 
+**vat_types_list** | [**List[VatType]**](VatType.md) | Vat types list | [optional] 
 
 ## Example
 

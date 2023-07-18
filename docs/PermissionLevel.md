@@ -1,6 +1,6 @@
 # PermissionLevel
 
-Level of the permission.
+Permission level
 
 ## Properties
 Name | Type | Description | Notes

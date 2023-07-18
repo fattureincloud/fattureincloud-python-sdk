@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Unique identifier. | [optional] 
-**amount** | **float** | Amount of items. | [optional] 
+**id** | **int** | Received document payment id | [optional] 
+**amount** | **float** | Received document payment total amount | [optional] 
 **due_date** | **date** | Due date | [optional] 
-**paid_date** | **date** | Paid date | [optional] 
+**paid_date** | **date** | Received document payment paid date | [optional] 
 **payment_terms** | [**ReceivedDocumentPaymentsListItemPaymentTerms**](ReceivedDocumentPaymentsListItemPaymentTerms.md) |  | [optional] 
-**status** | **str** | Payment status. | [optional] 
+**status** | **str** | Received document payment status | [optional] 
 **payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
 
 ## Example

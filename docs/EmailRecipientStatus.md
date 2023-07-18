@@ -1,6 +1,6 @@
 # EmailRecipientStatus
 
-Email recipient status.
+Email recipient status
 
 ## Properties
 Name | Type | Description | Notes

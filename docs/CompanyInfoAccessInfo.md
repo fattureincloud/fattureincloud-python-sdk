@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **role** | [**UserCompanyRole**](UserCompanyRole.md) |  | [optional] 
 **permissions** | [**Permissions**](Permissions.md) |  | [optional] 
-**through_accountant** | **bool** |  | [optional] 
+**through_accountant** | **bool** | Company activated through accountant | [optional] 
 
 ## Example
 

@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Archive document unique identifier. | [optional] 
-**var_date** | **date** | Archive document date. | [optional] 
-**description** | **str** | Archive Document description. | [optional] 
-**attachment_url** | **str** | [Temporary] [Read Only] Absolute url of the attached file. Authomatically set if a valid attachment token is passed via POST /archive or PUT /archive/{documentId}. | [optional] [readonly] 
-**category** | **str** | Archive document category. | [optional] 
-**attachment_token** | **str** | [Write Only]  [Required] Attachment token returned by POST /archive/attachment. Used to attach the file already uploaded. | [optional] 
+**id** | **int** | Archive document id | [optional] 
+**var_date** | **date** | Archive document date | [optional] 
+**description** | **str** | Archive Document description | [optional] 
+**attachment_url** | **str** | [Temporary] [Read Only] Archive Document url of the attached file | [optional] [readonly] 
+**category** | **str** | Archive document category | [optional] 
+**attachment_token** | **str** | [Write Only]  [Required] Archive document attachment token returned by POST /archive/attachment | [optional] 
 
 ## Example
 

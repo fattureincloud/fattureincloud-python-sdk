@@ -27,12 +27,14 @@ Creates a new document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_received_document_request import CreateReceivedDocumentRequest
+from fattureincloud_python_sdk.models.create_received_document_response import CreateReceivedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -61,6 +63,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->create_received_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -100,12 +103,12 @@ Deletes the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -132,6 +135,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_received_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -173,12 +177,12 @@ Removes the attachment of the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -205,6 +209,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_received_document_attachment: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -246,12 +251,14 @@ Returns the totals for the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_existing_received_document_totals_request import GetExistingReceivedDocumentTotalsRequest
+from fattureincloud_python_sdk.models.get_existing_received_document_totals_response import GetExistingReceivedDocumentTotalsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -281,6 +288,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_existing_received_document_totals: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -321,12 +329,14 @@ Returns the totals for a new document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_new_received_document_totals_request import GetNewReceivedDocumentTotalsRequest
+from fattureincloud_python_sdk.models.get_new_received_document_totals_response import GetNewReceivedDocumentTotalsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -355,6 +365,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_new_received_document_totals: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -396,12 +407,13 @@ Gets the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_received_document_response import GetReceivedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -432,6 +444,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_received_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -475,12 +488,13 @@ Retrieves the information useful while creating a new document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_received_document_pre_create_info_response import GetReceivedDocumentPreCreateInfoResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -509,6 +523,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_received_document_pre_create_info: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -548,12 +563,13 @@ Lists the received documents.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_received_documents_response import ListReceivedDocumentsResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -588,6 +604,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->list_received_documents: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -634,12 +651,14 @@ Modifies the specified document.
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.modify_received_document_request import ModifyReceivedDocumentRequest
+from fattureincloud_python_sdk.models.modify_received_document_response import ModifyReceivedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -669,6 +688,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->modify_received_document: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -711,12 +731,13 @@ Uploads an attachment destined to a received document. The actual association be
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
 ```python
-from __future__ import print_function
 import time
 import os
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.upload_received_document_attachment_response import UploadReceivedDocumentAttachmentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api-v2.fattureincloud.it
 # See configuration.py for a list of all supported configuration parameters.
 configuration = fattureincloud_python_sdk.Configuration(
@@ -735,8 +756,8 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    filename = 'filename_example' # str | Name of the file. (optional)
-    attachment = fattureincloud_python_sdk.bytearray() # bytearray | Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx (optional)
+    filename = 'filename_example' # str | Attachment file name (optional)
+    attachment = None # bytearray | Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] (optional)
 
     try:
         # Upload Received Document Attachment
@@ -747,13 +768,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
         print("Exception when calling ReceivedDocumentsApi->upload_received_document_attachment: %s\n" % e)
 ```
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
- **filename** | **str**| Name of the file. | [optional] 
- **attachment** | **bytearray**| Valid format: .png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx | [optional] 
+ **filename** | **str**| Attachment file name | [optional] 
+ **attachment** | **bytearray**| Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] | [optional] 
 
 ### Return type
 
