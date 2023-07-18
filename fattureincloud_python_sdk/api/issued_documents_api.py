@@ -1112,7 +1112,7 @@ class IssuedDocumentsApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -1282,7 +1282,7 @@ class IssuedDocumentsApi(object):
         # process the query parameters
         _query_params = []
         if _params.get("type") is not None:  # noqa: E501
-            _query_params.append(("type", _params["type"].value))
+            _query_params.append(("type", _params["type"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -1642,10 +1642,10 @@ class IssuedDocumentsApi(object):
             _query_params.append(("ids", _params["ids"]))
 
         if _params.get("group") is not None:  # noqa: E501
-            _query_params.append(("group", _params["group"].value))
+            _query_params.append(("group", _params["group"]))
 
         if _params.get("e_invoice") is not None:  # noqa: E501
-            _query_params.append(("e_invoice", _params["e_invoice"].value))
+            _query_params.append(("e_invoice", _params["e_invoice"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -1916,13 +1916,13 @@ class IssuedDocumentsApi(object):
         # process the query parameters
         _query_params = []
         if _params.get("type") is not None:  # noqa: E501
-            _query_params.append(("type", _params["type"].value))
+            _query_params.append(("type", _params["type"]))
 
         if _params.get("fields") is not None:  # noqa: E501
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         if _params.get("sort") is not None:  # noqa: E501
             _query_params.append(("sort", _params["sort"]))
@@ -1937,7 +1937,7 @@ class IssuedDocumentsApi(object):
             _query_params.append(("q", _params["q"]))
 
         if _params.get("inclusive") is not None:  # noqa: E501
-            _query_params.append(("inclusive", _params["inclusive"].value))
+            _query_params.append(("inclusive", _params["inclusive"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -2527,11 +2527,11 @@ class IssuedDocumentsApi(object):
             _query_params.append(("new_type", _params["new_type"]))
 
         if _params.get("e_invoice") is not None:  # noqa: E501
-            _query_params.append(("e_invoice", _params["e_invoice"].value))
+            _query_params.append(("e_invoice", _params["e_invoice"]))
 
         if _params.get("transform_keep_copy") is not None:  # noqa: E501
             _query_params.append(
-                ("transform_keep_copy", _params["transform_keep_copy"].value)
+                ("transform_keep_copy", _params["transform_keep_copy"])
             )
 
         # process the header parameters

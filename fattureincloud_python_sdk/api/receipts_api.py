@@ -553,7 +553,7 @@ class ReceiptsApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -886,7 +886,7 @@ class ReceiptsApi(object):
         # process the query parameters
         _query_params = []
         if _params.get("type") is not None:  # noqa: E501
-            _query_params.append(("type", _params["type"].value))
+            _query_params.append(("type", _params["type"]))
 
         if _params.get("year") is not None:  # noqa: E501
             _query_params.append(("year", _params["year"]))
@@ -1128,7 +1128,7 @@ class ReceiptsApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         if _params.get("page") is not None:  # noqa: E501
             _query_params.append(("page", _params["page"]))

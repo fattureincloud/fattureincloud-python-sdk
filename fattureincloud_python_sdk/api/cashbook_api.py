@@ -556,7 +556,7 @@ class CashbookApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -774,7 +774,7 @@ class CashbookApi(object):
             _query_params.append(("year", _params["year"]))
 
         if _params.get("type") is not None:  # noqa: E501
-            _query_params.append(("type", _params["type"].value))
+            _query_params.append(("type", _params["type"]))
 
         if _params.get("payment_account_id") is not None:  # noqa: E501
             _query_params.append(("payment_account_id", _params["payment_account_id"]))

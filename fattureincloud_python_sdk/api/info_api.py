@@ -1421,7 +1421,7 @@ class InfoApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         if _params.get("sort") is not None:  # noqa: E501
             _query_params.append(("sort", _params["sort"]))
@@ -1623,7 +1623,7 @@ class InfoApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         if _params.get("sort") is not None:  # noqa: E501
             _query_params.append(("sort", _params["sort"]))
@@ -1792,7 +1792,7 @@ class InfoApi(object):
         # process the query parameters
         _query_params = []
         if _params.get("context") is not None:  # noqa: E501
-            _query_params.append(("context", _params["context"].value))
+            _query_params.append(("context", _params["context"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -2276,7 +2276,7 @@ class InfoApi(object):
         # process the query parameters
         _query_params = []
         if _params.get("type") is not None:  # noqa: E501
-            _query_params.append(("type", _params["type"].value))
+            _query_params.append(("type", _params["type"]))
 
         if _params.get("by_type") is not None:  # noqa: E501
             _query_params.append(("by_type", _params["by_type"]))
@@ -2588,7 +2588,7 @@ class InfoApi(object):
         # process the query parameters
         _query_params = []
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))

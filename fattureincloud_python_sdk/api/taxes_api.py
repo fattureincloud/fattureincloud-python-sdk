@@ -708,7 +708,7 @@ class TaxesApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         # process the header parameters
         _header_params = dict(_params.get("_headers", {}))
@@ -947,7 +947,7 @@ class TaxesApi(object):
             _query_params.append(("fields", _params["fields"]))
 
         if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"].value))
+            _query_params.append(("fieldset", _params["fieldset"]))
 
         if _params.get("sort") is not None:  # noqa: E501
             _query_params.append(("sort", _params["sort"]))
