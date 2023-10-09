@@ -60,6 +60,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -132,6 +133,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CashbookApi->delete_cashbook_entry: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -211,6 +213,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CashbookApi->get_cashbook_entry: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -296,6 +299,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -377,6 +381,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CashbookApi->modify_cashbook_entry: %s\n" % e)
 ```
+
 
 
 ### Parameters

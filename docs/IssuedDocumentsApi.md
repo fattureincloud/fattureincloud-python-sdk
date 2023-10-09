@@ -10,13 +10,13 @@ Method | HTTP request | Description
 [**get_email_data**](IssuedDocumentsApi.md#get_email_data) | **GET** /c/{company_id}/issued_documents/{document_id}/email | Get Email Data
 [**get_existing_issued_document_totals**](IssuedDocumentsApi.md#get_existing_issued_document_totals) | **POST** /c/{company_id}/issued_documents/{document_id}/totals | Get Existing Issued Document Totals
 [**get_issued_document**](IssuedDocumentsApi.md#get_issued_document) | **GET** /c/{company_id}/issued_documents/{document_id} | Get Issued Document
-[**get_issued_document_pre_create_info**](IssuedDocumentsApi.md#get_issued_document_pre_create_info) | **GET** /c/{company_id}/issued_documents/info | Get Issued Document Pre-create info
+[**get_issued_document_pre_create_info**](IssuedDocumentsApi.md#get_issued_document_pre_create_info) | **GET** /c/{company_id}/issued_documents/info | Get Issued Document Pre-Create Info
 [**get_new_issued_document_totals**](IssuedDocumentsApi.md#get_new_issued_document_totals) | **POST** /c/{company_id}/issued_documents/totals | Get New Issued Document Totals
-[**join_issued_documents**](IssuedDocumentsApi.md#join_issued_documents) | **GET** /c/{company_id}/issued_documents/join | Join issued documents
+[**join_issued_documents**](IssuedDocumentsApi.md#join_issued_documents) | **GET** /c/{company_id}/issued_documents/join | Join Issued Documents
 [**list_issued_documents**](IssuedDocumentsApi.md#list_issued_documents) | **GET** /c/{company_id}/issued_documents | List Issued Documents
 [**modify_issued_document**](IssuedDocumentsApi.md#modify_issued_document) | **PUT** /c/{company_id}/issued_documents/{document_id} | Modify Issued Document
 [**schedule_email**](IssuedDocumentsApi.md#schedule_email) | **POST** /c/{company_id}/issued_documents/{document_id}/email | Schedule Email
-[**transform_issued_document**](IssuedDocumentsApi.md#transform_issued_document) | **GET** /c/{company_id}/issued_documents/transform | Transform issued document
+[**transform_issued_document**](IssuedDocumentsApi.md#transform_issued_document) | **GET** /c/{company_id}/issued_documents/transform | Transform Issued Document
 [**upload_issued_document_attachment**](IssuedDocumentsApi.md#upload_issued_document_attachment) | **POST** /c/{company_id}/issued_documents/attachment | Upload Issued Document Attachment
 
 
@@ -67,6 +67,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->create_issued_document: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -142,6 +143,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -214,6 +216,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->delete_issued_document_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -293,6 +296,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -368,6 +372,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_existing_issued_document_totals: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -450,6 +455,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -484,7 +490,7 @@ Name | Type | Description  | Notes
 # **get_issued_document_pre_create_info**
 > GetIssuedDocumentPreCreateInfoResponse get_issued_document_pre_create_info(company_id, type)
 
-Get Issued Document Pre-create info
+Get Issued Document Pre-Create Info
 
 Retrieves the information useful while creating a new document.
 
@@ -520,13 +526,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     type = 'type_example' # str | The type of the issued document.
 
     try:
-        # Get Issued Document Pre-create info
+        # Get Issued Document Pre-Create Info
         api_response = api_instance.get_issued_document_pre_create_info(company_id, type)
         print("The response of IssuedDocumentsApi->get_issued_document_pre_create_info:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->get_issued_document_pre_create_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -605,6 +612,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -636,7 +644,7 @@ Name | Type | Description  | Notes
 # **join_issued_documents**
 > JoinIssuedDocumentsResponse join_issued_documents(company_id, ids, group=group, e_invoice=e_invoice)
 
-Join issued documents
+Join Issued Documents
 
 Joins issued documents.
 
@@ -674,13 +682,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     e_invoice = 56 # int | New document e_invoice. (optional)
 
     try:
-        # Join issued documents
+        # Join Issued Documents
         api_response = api_instance.join_issued_documents(company_id, ids, group=group, e_invoice=e_invoice)
         print("The response of IssuedDocumentsApi->join_issued_documents:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->join_issued_documents: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -765,6 +774,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->list_issued_documents: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -853,6 +863,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -930,6 +941,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -963,7 +975,7 @@ void (empty response body)
 # **transform_issued_document**
 > TransformIssuedDocumentResponse transform_issued_document(company_id, original_document_id, new_type, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
 
-Transform issued document
+Transform Issued Document
 
 Transforms the document.
 
@@ -1002,13 +1014,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     transform_keep_copy = 56 # int | Keep the old document. (optional)
 
     try:
-        # Transform issued document
+        # Transform Issued Document
         api_response = api_instance.transform_issued_document(company_id, original_document_id, new_type, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
         print("The response of IssuedDocumentsApi->transform_issued_document:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->transform_issued_document: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -1088,6 +1101,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->upload_issued_document_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **sink** | **str** | Webhooks callback uri. | [optional] 
 **verified** | **bool** | [Read Only] True if the webhooks subscription has been verified. | [optional] 
 **types** | [**List[EventType]**](EventType.md) | Webhooks events types. | [optional] 
+**config** | [**WebhooksSubscriptionConfig**](WebhooksSubscriptionConfig.md) |  | [optional] 
 
 ## Example
 

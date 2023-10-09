@@ -65,6 +65,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -135,6 +136,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_received_document: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -209,6 +211,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_received_document_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -290,6 +293,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -365,6 +369,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_new_received_document_totals: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -446,6 +451,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -523,6 +529,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->get_received_document_pre_create_info: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -604,6 +611,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->list_received_documents: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -690,6 +698,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -767,6 +776,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->upload_received_document_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters

@@ -244,6 +244,8 @@ docs/VerifyEInvoiceXmlResponse.md
 docs/VerifyEInvoiceXmlResponseData.md
 docs/WebhooksApi.md
 docs/WebhooksSubscription.md
+docs/WebhooksSubscriptionConfig.md
+docs/WebhooksSubscriptionMapping.md
 fattureincloud_python_sdk/__init__.py
 fattureincloud_python_sdk/api/__init__.py
 fattureincloud_python_sdk/api/archive_api.py
@@ -495,6 +497,9 @@ fattureincloud_python_sdk/models/verify_e_invoice_xml_error_response_extra.py
 fattureincloud_python_sdk/models/verify_e_invoice_xml_response.py
 fattureincloud_python_sdk/models/verify_e_invoice_xml_response_data.py
 fattureincloud_python_sdk/models/webhooks_subscription.py
+fattureincloud_python_sdk/models/webhooks_subscription_config.py
+fattureincloud_python_sdk/models/webhooks_subscription_mapping.py
+fattureincloud_python_sdk/py.typed
 fattureincloud_python_sdk/rest.py
 pyproject.toml
 requirements.txt
@@ -502,3 +507,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_webhooks_subscription_config.py
+test/test_webhooks_subscription_mapping.py
