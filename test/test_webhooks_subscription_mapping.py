@@ -32,7 +32,10 @@ class TestWebhooksSubscriptionMapping(unittest.TestCase):
 
     def testWebhooksSubscriptionMapping(self):
         """Test WebhooksSubscriptionMapping"""
-        # inst = WebhooksSubscriptionMapping()
+        model = WebhooksSubscriptionMapping("binary")
+        expected_json = "binary"
+        actual_json = model.value
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

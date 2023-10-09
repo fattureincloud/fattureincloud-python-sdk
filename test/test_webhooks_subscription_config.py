@@ -14,7 +14,9 @@
 
 
 import unittest
-import datetime
+import json
+from fattureincloud_python_sdk.models.webhooks_subscription_mapping import WebhooksSubscriptionMapping
+from functions import json_serial
 
 from fattureincloud_python_sdk.models.webhooks_subscription_config import (
     WebhooksSubscriptionConfig,
@@ -30,27 +32,15 @@ class TestWebhooksSubscriptionConfig(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> WebhooksSubscriptionConfig:
-        """Test WebhooksSubscriptionConfig
-        include_option is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `WebhooksSubscriptionConfig`
-        """
-        model = WebhooksSubscriptionConfig()  # noqa: E501
-        if include_optional:
-            return WebhooksSubscriptionConfig(
-                mapping = 'binary'
-            )
-        else:
-            return WebhooksSubscriptionConfig(
-        )
-        """
-
     def testWebhooksSubscriptionConfig(self):
         """Test WebhooksSubscriptionConfig"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+
+        model = WebhooksSubscriptionConfig(
+            mapping = WebhooksSubscriptionMapping('binary')
+        )
+        expected_json = '{"mapping": "binary"}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":
