@@ -16,55 +16,162 @@
 import unittest
 
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.create_webhooks_subscription_response import CreateWebhooksSubscriptionResponse
+from fattureincloud_python_sdk.models.event_type import EventType
+from fattureincloud_python_sdk.models.get_webhooks_subscription_response import GetWebhooksSubscriptionResponse
+from fattureincloud_python_sdk.models.list_webhooks_subscriptions_response import ListWebhooksSubscriptionsResponse
+from fattureincloud_python_sdk.models.modify_webhooks_subscription_response import ModifyWebhooksSubscriptionResponse
+from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription
+from fattureincloud_python_sdk.models.webhooks_subscription_config import WebhooksSubscriptionConfig
+from fattureincloud_python_sdk.models.webhooks_subscription_mapping import WebhooksSubscriptionMapping
+import functions
 from fattureincloud_python_sdk.api.webhooks_api import WebhooksApi  # noqa: E501
-from fattureincloud_python_sdk.rest import ApiException
+from fattureincloud_python_sdk.rest import RESTResponse
 
 
 class TestWebhooksApi(unittest.TestCase):
     """WebhooksApi unit test stubs"""
 
     def setUp(self):
-        self.api = (
-            fattureincloud_python_sdk.api.webhooks_api.WebhooksApi()
-        )  # noqa: E501
+        self.api = WebhooksApi()
 
     def tearDown(self):
         pass
 
     def test_create_webhooks_subscription(self):
-        """Test case for create_webhooks_subscription
+        resp = {
+            "status": 200,
+            "data": b'{"data":{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"], "config": {"mapping": "binary"}}}',
+            "reason": "OK",
+        }
 
-        Create a Webhook Subscription  # noqa: E501
-        """
-        pass
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = CreateWebhooksSubscriptionResponse(
+            data= WebhooksSubscription(
+                id="SUB1234",
+                sink="https://endpoint.test",
+                verified=True,
+                types=[EventType.CASHBOOK_CREATE],
+                config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+            )
+        )
+
+        actual = self.api.create_webhooks_subscription(2)
+        actual.data.id = "SUB1234"
+        assert actual == expected
 
     def test_delete_webhooks_subscription(self):
-        """Test case for delete_webhooks_subscription
+        resp = {"status": 200, "data": b"{}", "reason": "OK"}
 
-        Delete Webhooks Subscription  # noqa: E501
-        """
-        pass
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        actual = self.api.delete_webhooks_subscription(2, "SUB12345")
+        assert actual == None
 
     def test_get_webhooks_subscription(self):
-        """Test case for get_webhooks_subscription
+        resp = {
+            "status": 200,
+            "data": b'{"data":{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"], "config": {"mapping": "binary"}}}',
+            "reason": "OK",
+        }
 
-        Get Webhooks Subscription  # noqa: E501
-        """
-        pass
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = GetWebhooksSubscriptionResponse(
+            data= WebhooksSubscription(
+                id="SUB1234",
+                sink="https://endpoint.test",
+                verified=True,
+                types=[EventType.CASHBOOK_CREATE],
+                config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+            )
+        )
+
+        actual = self.api.get_webhooks_subscription(2, "SUB12345")
+        actual.data.id = "SUB1234"
+        assert actual == expected
 
     def test_list_webhooks_subscriptions(self):
-        """Test case for list_webhooks_subscriptions
+        resp = {
+            "status": 200,
+            "data": b'{"data":[{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"], "config": {"mapping": "binary"}}, {"id": "SUB1234", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"], "config": {"mapping": "binary"}}]}',
+            "reason": "OK",
+        }
 
-        List Webhooks Subscriptions  # noqa: E501
-        """
-        pass
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = ListWebhooksSubscriptionsResponse(
+            data = [
+                WebhooksSubscription(
+                    id="SUB0",
+                    sink="https://endpoint.test",
+                    verified=True,
+                    types=[EventType.CASHBOOK_CREATE],
+                    config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+                ),
+                WebhooksSubscription(
+                    id="SUB1",
+                    sink="https://endpoint.test",
+                    verified=True,
+                    types=[EventType.CASHBOOK_CREATE],
+                    config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+                )
+            ]
+        )
+
+        actual = self.api.list_webhooks_subscriptions(2)
+        actual.data[0].id = "SUB0"
+        actual.data[1].id = "SUB1"
+        assert actual == expected
 
     def test_modify_webhooks_subscription(self):
-        """Test case for modify_webhooks_subscription
+        resp = {
+            "status": 200,
+            "data": b'{"data":{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"], "config": {"mapping": "binary"}}}',
+            "reason": "OK",
+        }
 
-        Modify Webhooks Subscription  # noqa: E501
-        """
-        pass
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = ModifyWebhooksSubscriptionResponse(
+            data= WebhooksSubscription(
+                id="SUB1234",
+                sink="https://endpoint.test",
+                verified=True,
+                types=[EventType.CASHBOOK_CREATE],
+                config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+            )
+        )
+
+        actual = self.api.modify_webhooks_subscription(2, "SUB12345")
+        actual.data.id = "SUB1234"
+        assert actual == expected
 
 
 if __name__ == "__main__":

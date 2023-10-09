@@ -62,6 +62,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -136,6 +137,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -208,6 +210,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TaxesApi->delete_f24_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -287,6 +290,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TaxesApi->get_f24: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -373,6 +377,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -456,6 +461,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -533,6 +539,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TaxesApi->upload_f24_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters

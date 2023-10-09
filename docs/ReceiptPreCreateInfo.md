@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**numerations** | **Dict[str, Dict]** |  | [optional] 
+**numerations** | **Dict[str, Dict[str, int]]** |  | [optional] 
 **numerations_list** | **List[str]** | Receipt used numerations list | [optional] 
 **rc_centers_list** | **List[str]** | Receipt used revenue centers list | [optional] 
 **payment_accounts_list** | [**List[PaymentAccount]**](PaymentAccount.md) | Payment accounts list | [optional] 

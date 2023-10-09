@@ -60,6 +60,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -130,6 +131,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->delete_webhooks_subscription: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -207,6 +209,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -279,6 +282,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->list_webhooks_subscriptions: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -355,6 +359,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling WebhooksApi->modify_webhooks_subscription: %s\n" % e)
 ```
+
 
 
 ### Parameters

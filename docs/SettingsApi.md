@@ -67,6 +67,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -141,6 +142,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SettingsApi->create_payment_method: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -219,6 +221,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -289,6 +292,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SettingsApi->delete_payment_account: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -363,6 +367,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -433,6 +438,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SettingsApi->delete_vat_type: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -510,6 +516,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SettingsApi->get_payment_account: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -591,6 +598,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -668,6 +676,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -743,6 +752,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SettingsApi->modify_payment_account: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -823,6 +833,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -899,6 +910,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SettingsApi->modify_vat_type: %s\n" % e)
 ```
+
 
 
 ### Parameters

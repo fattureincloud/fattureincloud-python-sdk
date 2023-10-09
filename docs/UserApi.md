@@ -54,6 +54,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -122,6 +123,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling UserApi->list_user_companies: %s\n" % e)
 ```
+
 
 
 ### Parameters

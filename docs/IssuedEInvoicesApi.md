@@ -4,16 +4,16 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_e_invoice_rejection_reason**](IssuedEInvoicesApi.md#get_e_invoice_rejection_reason) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/error_reason | Get e-invoice rejection reason
-[**get_e_invoice_xml**](IssuedEInvoicesApi.md#get_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml | Get e-invoice XML
-[**send_e_invoice**](IssuedEInvoicesApi.md#send_e_invoice) | **POST** /c/{company_id}/issued_documents/{document_id}/e_invoice/send | Send the e-invoice
-[**verify_e_invoice_xml**](IssuedEInvoicesApi.md#verify_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml_verify | Verify e-invoice XML
+[**get_e_invoice_rejection_reason**](IssuedEInvoicesApi.md#get_e_invoice_rejection_reason) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/error_reason | Get E-Invoice Rejection Reason
+[**get_e_invoice_xml**](IssuedEInvoicesApi.md#get_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml | Get E-Invoice XML
+[**send_e_invoice**](IssuedEInvoicesApi.md#send_e_invoice) | **POST** /c/{company_id}/issued_documents/{document_id}/e_invoice/send | Send E-Invoice
+[**verify_e_invoice_xml**](IssuedEInvoicesApi.md#verify_e_invoice_xml) | **GET** /c/{company_id}/issued_documents/{document_id}/e_invoice/xml_verify | Verify E-Invoice XML
 
 
 # **get_e_invoice_rejection_reason**
 > GetEInvoiceRejectionReasonResponse get_e_invoice_rejection_reason(company_id, document_id)
 
-Get e-invoice rejection reason
+Get E-Invoice Rejection Reason
 
 Get e-invoice rejection reason
 
@@ -49,13 +49,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # Get e-invoice rejection reason
+        # Get E-Invoice Rejection Reason
         api_response = api_instance.get_e_invoice_rejection_reason(company_id, document_id)
         print("The response of IssuedEInvoicesApi->get_e_invoice_rejection_reason:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->get_e_invoice_rejection_reason: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -88,7 +89,7 @@ Name | Type | Description  | Notes
 # **get_e_invoice_xml**
 > str get_e_invoice_xml(company_id, document_id, include_attachment=include_attachment)
 
-Get e-invoice XML
+Get E-Invoice XML
 
 Downloads the e-invoice in XML format.
 
@@ -124,13 +125,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     include_attachment = True # bool | Include the attachment to the XML e-invoice. (optional)
 
     try:
-        # Get e-invoice XML
+        # Get E-Invoice XML
         api_response = api_instance.get_e_invoice_xml(company_id, document_id, include_attachment=include_attachment)
         print("The response of IssuedEInvoicesApi->get_e_invoice_xml:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->get_e_invoice_xml: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -166,7 +168,7 @@ Name | Type | Description  | Notes
 # **send_e_invoice**
 > SendEInvoiceResponse send_e_invoice(company_id, document_id, send_e_invoice_request=send_e_invoice_request)
 
-Send the e-invoice
+Send E-Invoice
 
 Sends the e-invoice to SDI.
 
@@ -204,13 +206,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     send_e_invoice_request = {"data":{"withholding_tax_causal":"causale"}} # SendEInvoiceRequest |  (optional)
 
     try:
-        # Send the e-invoice
+        # Send E-Invoice
         api_response = api_instance.send_e_invoice(company_id, document_id, send_e_invoice_request=send_e_invoice_request)
         print("The response of IssuedEInvoicesApi->send_e_invoice:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->send_e_invoice: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -246,7 +249,7 @@ Name | Type | Description  | Notes
 # **verify_e_invoice_xml**
 > VerifyEInvoiceXmlResponse verify_e_invoice_xml(company_id, document_id)
 
-Verify e-invoice XML
+Verify E-Invoice XML
 
 Verifies the e-invoice XML format. Checks if all of the mandatory fields are filled and compliant to the right format.
 
@@ -282,13 +285,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # Verify e-invoice XML
+        # Verify E-Invoice XML
         api_response = api_instance.verify_e_invoice_xml(company_id, document_id)
         print("The response of IssuedEInvoicesApi->verify_e_invoice_xml:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling IssuedEInvoicesApi->verify_e_invoice_xml: %s\n" % e)
 ```
+
 
 
 ### Parameters

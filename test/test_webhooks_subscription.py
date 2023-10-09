@@ -21,7 +21,9 @@ import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.event_type import EventType
 from fattureincloud_python_sdk.models.webhooks_subscription import (
     WebhooksSubscription,
-)  # noqa: E501
+)
+from fattureincloud_python_sdk.models.webhooks_subscription_config import WebhooksSubscriptionConfig
+from fattureincloud_python_sdk.models.webhooks_subscription_mapping import WebhooksSubscriptionMapping  # noqa: E501
 from fattureincloud_python_sdk.rest import ApiException
 from functions import create_from_json, json_serial
 
@@ -42,8 +44,9 @@ class TestWebhooksSubscription(unittest.TestCase):
             sink="https://endpoint.test",
             verified=True,
             types=[EventType.CASHBOOK_CREATE],
+            config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
         )
-        expected_json = '{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"]}'
+        expected_json = '{"id": "SUB123", "sink": "https://endpoint.test", "verified": true, "types": ["it.fattureincloud.webhooks.cashbook.create"], "config": {"mapping": "binary"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

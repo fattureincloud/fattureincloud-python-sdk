@@ -61,6 +61,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -133,6 +134,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->delete_archive_document: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -212,6 +214,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->get_archive_document: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -298,6 +301,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -382,6 +386,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -459,6 +464,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ArchiveApi->upload_archive_document_attachment: %s\n" % e)
 ```
+
 
 
 ### Parameters

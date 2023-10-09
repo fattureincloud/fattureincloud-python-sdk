@@ -4,13 +4,13 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_emails**](EmailsApi.md#list_emails) | **GET** /c/{company_id}/emails | List emails
+[**list_emails**](EmailsApi.md#list_emails) | **GET** /c/{company_id}/emails | List Emails
 
 
 # **list_emails**
 > ListEmailsResponse list_emails(company_id)
 
-List emails
+List Emails
 
 List Emails.
 
@@ -45,13 +45,14 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     company_id = 12345 # int | The ID of the company.
 
     try:
-        # List emails
+        # List Emails
         api_response = api_instance.list_emails(company_id)
         print("The response of EmailsApi->list_emails:\n")
         pprint(api_response)
     except Exception as e:
         print("Exception when calling EmailsApi->list_emails: %s\n" % e)
 ```
+
 
 
 ### Parameters

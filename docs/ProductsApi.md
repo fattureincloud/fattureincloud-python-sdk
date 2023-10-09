@@ -60,6 +60,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -130,6 +131,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProductsApi->delete_product: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -209,6 +211,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProductsApi->get_product: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -295,6 +298,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -376,6 +380,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProductsApi->modify_product: %s\n" % e)
 ```
+
 
 
 ### Parameters

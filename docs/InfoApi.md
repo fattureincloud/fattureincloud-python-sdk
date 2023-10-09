@@ -69,6 +69,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -145,6 +146,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -217,6 +219,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_cost_centers: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -293,6 +296,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -361,6 +365,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_currencies: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -433,6 +438,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -503,6 +509,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -571,6 +578,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_languages: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -645,6 +653,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_payment_accounts: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -728,6 +737,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -795,7 +805,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.InfoApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    context = 'context_example' # str | 
+    context = 'context_example' # str | Categories resource type.
 
     try:
         # List Product Categories
@@ -807,12 +817,13 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
- **context** | **str**|  | 
+ **context** | **str**| Categories resource type. | 
 
 ### Return type
 
@@ -881,6 +892,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_received_document_categories: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -954,6 +966,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_revenue_centers: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -1032,6 +1045,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -1106,6 +1120,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 This endpoint does not need any parameter.
 
@@ -1176,6 +1191,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InfoApi->list_vat_types: %s\n" % e)
 ```
+
 
 
 ### Parameters

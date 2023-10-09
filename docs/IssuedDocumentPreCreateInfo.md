@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**numerations** | **Dict[str, Dict]** |  | [optional] 
-**dn_numerations** | **Dict[str, Dict]** |  | [optional] 
+**numerations** | **Dict[str, Dict[str, int]]** |  | [optional] 
+**dn_numerations** | **Dict[str, Dict[str, int]]** |  | [optional] 
 **default_values** | [**IssuedDocumentPreCreateInfoDefaultValues**](IssuedDocumentPreCreateInfoDefaultValues.md) |  | [optional] 
 **extra_data_default_values** | [**IssuedDocumentPreCreateInfoExtraDataDefaultValues**](IssuedDocumentPreCreateInfoExtraDataDefaultValues.md) |  | [optional] 
 **items_default_values** | [**IssuedDocumentPreCreateInfoItemsDefaultValues**](IssuedDocumentPreCreateInfoItemsDefaultValues.md) |  | [optional] 
