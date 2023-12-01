@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class SendEInvoiceRequestData(BaseModel):
@@ -29,11 +29,11 @@ class SendEInvoiceRequestData(BaseModel):
     """
 
     cassa_type: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Value of TipoCassa used (optional, override the company default value).",
     )
     withholding_tax_causal: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Value of CausalePagamento used (optional, override the company default value).",
     )
     __properties = ["cassa_type", "withholding_tax_causal"]

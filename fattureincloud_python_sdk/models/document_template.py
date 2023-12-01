@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 
 
 class DocumentTemplate(BaseModel):
@@ -28,9 +28,9 @@ class DocumentTemplate(BaseModel):
     DocumentTemplate
     """
 
-    id: Optional[StrictInt] = Field(None, description="Template id")
-    name: Optional[StrictStr] = Field(None, description="Template name")
-    type: Optional[StrictStr] = Field(None, description="Template type")
+    id: Optional[StrictInt] = Field(default=None, description="Template id")
+    name: Optional[StrictStr] = Field(default=None, description="Template name")
+    type: Optional[StrictStr] = Field(default=None, description="Template type")
     __properties = ["id", "name", "type"]
 
     class Config:

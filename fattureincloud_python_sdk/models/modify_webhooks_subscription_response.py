@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription
 
 
@@ -30,8 +30,8 @@ class ModifyWebhooksSubscriptionResponse(BaseModel):
     """
 
     data: Optional[WebhooksSubscription] = None
-    warnings: Optional[conlist(StrictStr)] = Field(
-        None, description="Webhooks registration warnings"
+    warnings: Optional[List[StrictStr]] = Field(
+        default=None, description="Webhooks registration warnings"
     )
     __properties = ["data", "warnings"]
 

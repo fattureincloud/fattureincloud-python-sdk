@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr, conint
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -64,9 +65,7 @@ class SuppliersApi:
     @validate_arguments
     def create_supplier(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_supplier_request: Annotated[
             Optional[CreateSupplierRequest], Field(description="The supplier to create")
         ] = None,
@@ -107,9 +106,7 @@ class SuppliersApi:
     @validate_arguments
     def create_supplier_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_supplier_request: Annotated[
             Optional[CreateSupplierRequest], Field(description="The supplier to create")
         ] = None,
@@ -239,12 +236,8 @@ class SuppliersApi:
     @validate_arguments
     def delete_supplier(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        supplier_id: Annotated[
-            StrictInt, Field(..., description="The ID of the supplier.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        supplier_id: Annotated[StrictInt, Field(description="The ID of the supplier.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Supplier  # noqa: E501
@@ -282,12 +275,8 @@ class SuppliersApi:
     @validate_arguments
     def delete_supplier_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        supplier_id: Annotated[
-            StrictInt, Field(..., description="The ID of the supplier.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        supplier_id: Annotated[StrictInt, Field(description="The ID of the supplier.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Supplier  # noqa: E501
@@ -399,12 +388,8 @@ class SuppliersApi:
     @validate_arguments
     def get_supplier(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        supplier_id: Annotated[
-            StrictInt, Field(..., description="The ID of the supplier.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        supplier_id: Annotated[StrictInt, Field(description="The ID of the supplier.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -452,12 +437,8 @@ class SuppliersApi:
     @validate_arguments
     def get_supplier_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        supplier_id: Annotated[
-            StrictInt, Field(..., description="The ID of the supplier.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        supplier_id: Annotated[StrictInt, Field(description="The ID of the supplier.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -594,9 +575,7 @@ class SuppliersApi:
     @validate_arguments
     def list_suppliers(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -613,7 +592,7 @@ class SuppliersApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -666,9 +645,7 @@ class SuppliersApi:
     @validate_arguments
     def list_suppliers_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -685,7 +662,7 @@ class SuppliersApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -843,12 +820,8 @@ class SuppliersApi:
     @validate_arguments
     def modify_supplier(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        supplier_id: Annotated[
-            StrictInt, Field(..., description="The ID of the supplier.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        supplier_id: Annotated[StrictInt, Field(description="The ID of the supplier.")],
         modify_supplier_request: Annotated[
             Optional[ModifySupplierRequest],
             Field(
@@ -894,12 +867,8 @@ class SuppliersApi:
     @validate_arguments
     def modify_supplier_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        supplier_id: Annotated[
-            StrictInt, Field(..., description="The ID of the supplier.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        supplier_id: Annotated[StrictInt, Field(description="The ID of the supplier.")],
         modify_supplier_request: Annotated[
             Optional[ModifySupplierRequest],
             Field(

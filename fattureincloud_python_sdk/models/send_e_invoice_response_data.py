@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class SendEInvoiceResponseData(BaseModel):
@@ -28,9 +28,9 @@ class SendEInvoiceResponseData(BaseModel):
     SendEInvoiceResponseData
     """
 
-    name: Optional[StrictStr] = Field(None, description="Response message.")
+    name: Optional[StrictStr] = Field(default=None, description="Response message.")
     var_date: Optional[StrictStr] = Field(
-        None, alias="date", description="E-invoice sent date."
+        default=None, description="E-invoice sent date.", alias="date"
     )
     __properties = ["name", "date"]
 

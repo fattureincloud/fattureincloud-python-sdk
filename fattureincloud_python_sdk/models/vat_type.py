@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 
 
 class VatType(BaseModel):
@@ -28,30 +28,30 @@ class VatType(BaseModel):
     VatType
     """
 
-    id: Optional[StrictInt] = Field(None, description="Vat type id")
+    id: Optional[StrictInt] = Field(default=None, description="Vat type id")
     value: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Vat type percentual value"
+        default=None, description="[Read Only] Vat type percentual value"
     )
     description: Optional[StrictStr] = Field(
-        None, description="Vat type short description"
+        default=None, description="Vat type short description"
     )
     notes: Optional[StrictStr] = Field(
-        None, description="Vat type notes shown in documents"
+        default=None, description="Vat type notes shown in documents"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="Vat type is usable for e-invoices"
+        default=None, description="Vat type is usable for e-invoices"
     )
     ei_type: Optional[StrictStr] = Field(
-        None, description="Vat type e-invoice type (natura)"
+        default=None, description="Vat type e-invoice type (natura)"
     )
     ei_description: Optional[StrictStr] = Field(
-        None, description="Vat type e-invoice description"
+        default=None, description="Vat type e-invoice description"
     )
     editable: Optional[StrictBool] = Field(
-        None, description="[Read Only] Is the vat type is editable."
+        default=None, description="[Read Only] Is the vat type is editable."
     )
     is_disabled: Optional[StrictBool] = Field(
-        None, description="Is the vat type disabled"
+        default=None, description="Is the vat type disabled"
     )
     __properties = [
         "id",

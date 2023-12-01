@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt
 
 
 class IssuedDocumentTotals(BaseModel):
@@ -29,54 +29,56 @@ class IssuedDocumentTotals(BaseModel):
     """
 
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total net amount"
+        default=None, description="Issued document total net amount"
     )
     amount_rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document rivalsa amount"
+        default=None, description="Issued document rivalsa amount"
     )
     amount_net_with_rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document net amount with rivalsa"
+        default=None, description="Issued document net amount with rivalsa"
     )
     amount_cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document cassa amount"
+        default=None, description="Issued document cassa amount"
     )
     taxable_amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable amount"
+        default=None, description="Issued document taxable amount"
     )
     not_taxable_amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document not taxable amount"
+        default=None, description="Issued document not taxable amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total vat amount"
+        default=None, description="Issued document total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total gross amount"
+        default=None, description="Issued document total gross amount"
     )
     taxable_amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document Taxable withholding tax amount"
+        default=None, description="Issued document Taxable withholding tax amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document withholding tax amount"
+        default=None, description="Issued document withholding tax amount"
     )
     taxable_amount_other_withholding_tax: Optional[
         Union[StrictFloat, StrictInt]
-    ] = Field(None, description="Issued document other withholding tax taxable amount")
+    ] = Field(
+        default=None, description="Issued document other withholding tax taxable amount"
+    )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document other withholding tax amount"
+        default=None, description="Issued document other withholding tax amount"
     )
     stamp_duty: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document stamp duty value [0 if not present]."
+        default=None, description="Issued document stamp duty value [0 if not present]."
     )
     amount_due: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total amount due"
+        default=None, description="Issued document total amount due"
     )
     is_enasarco_maximal_exceeded: Optional[StrictBool] = Field(
-        None, description="Is enasarco maximal excedeed"
+        default=None, description="Is enasarco maximal excedeed"
     )
     payments_sum: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document payments sum"
+        default=None, description="Issued document payments sum"
     )
-    vat_list: Optional[Dict[str, Dict[str, Any]]] = None
+    vat_list: Optional[Dict[str, Union[str, Any]]] = None
     __properties = [
         "amount_net",
         "amount_rivalsa",

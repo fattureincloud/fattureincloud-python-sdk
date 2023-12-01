@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from fattureincloud_python_sdk.models.company_info_plan_info_functions import (
     CompanyInfoPlanInfoFunctions,

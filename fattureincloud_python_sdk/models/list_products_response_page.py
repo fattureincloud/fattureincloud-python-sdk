@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
 from fattureincloud_python_sdk.models.product import Product
 
 
@@ -29,7 +29,7 @@ class ListProductsResponsePage(BaseModel):
     ListProductsResponsePage
     """
 
-    data: Optional[conlist(Product)] = None
+    data: Optional[List[Product]] = None
     __properties = ["data"]
 
     class Config:

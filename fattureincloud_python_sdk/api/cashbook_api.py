@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -66,9 +67,7 @@ class CashbookApi:
     @validate_arguments
     def create_cashbook_entry(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_cashbook_entry_request: Annotated[
             Optional[CreateCashbookEntryRequest], Field(description="Cashbook entry. ")
         ] = None,
@@ -109,9 +108,7 @@ class CashbookApi:
     @validate_arguments
     def create_cashbook_entry_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_cashbook_entry_request: Annotated[
             Optional[CreateCashbookEntryRequest], Field(description="Cashbook entry. ")
         ] = None,
@@ -243,12 +240,8 @@ class CashbookApi:
     @validate_arguments
     def delete_cashbook_entry(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictStr, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictStr, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Cashbook Entry  # noqa: E501
@@ -286,12 +279,8 @@ class CashbookApi:
     @validate_arguments
     def delete_cashbook_entry_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictStr, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictStr, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Cashbook Entry  # noqa: E501
@@ -403,12 +392,8 @@ class CashbookApi:
     @validate_arguments
     def get_cashbook_entry(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictStr, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictStr, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -456,12 +441,8 @@ class CashbookApi:
     @validate_arguments
     def get_cashbook_entry_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictStr, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictStr, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -598,11 +579,9 @@ class CashbookApi:
     @validate_arguments
     def list_cashbook_entries(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        date_from: Annotated[StrictStr, Field(..., description="Start date.")],
-        date_to: Annotated[StrictStr, Field(..., description="End date.")],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        date_from: Annotated[StrictStr, Field(description="Start date.")],
+        date_to: Annotated[StrictStr, Field(description="End date.")],
         year: Annotated[
             Optional[StrictInt], Field(description="Filter cashbook by year.")
         ] = None,
@@ -657,11 +636,9 @@ class CashbookApi:
     @validate_arguments
     def list_cashbook_entries_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        date_from: Annotated[StrictStr, Field(..., description="Start date.")],
-        date_to: Annotated[StrictStr, Field(..., description="End date.")],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        date_from: Annotated[StrictStr, Field(description="Start date.")],
+        date_to: Annotated[StrictStr, Field(description="End date.")],
         year: Annotated[
             Optional[StrictInt], Field(description="Filter cashbook by year.")
         ] = None,
@@ -818,12 +795,8 @@ class CashbookApi:
     @validate_arguments
     def modify_cashbook_entry(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictStr, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictStr, Field(description="The ID of the document.")],
         modify_cashbook_entry_request: Annotated[
             Optional[ModifyCashbookEntryRequest], Field(description="Cashbook Entry")
         ] = None,
@@ -866,12 +839,8 @@ class CashbookApi:
     @validate_arguments
     def modify_cashbook_entry_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictStr, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictStr, Field(description="The ID of the document.")],
         modify_cashbook_entry_request: Annotated[
             Optional[ModifyCashbookEntryRequest], Field(description="Cashbook Entry")
         ] = None,

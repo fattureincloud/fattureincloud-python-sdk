@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.company_info_access_info import (
     CompanyInfoAccessInfo,
 )
@@ -33,17 +33,17 @@ class CompanyInfo(BaseModel):
     CompanyInfo
     """
 
-    id: Optional[StrictInt] = Field(None, description="Company id")
-    name: Optional[StrictStr] = Field(None, description="Company name")
-    email: Optional[StrictStr] = Field(None, description="Company email")
+    id: Optional[StrictInt] = Field(default=None, description="Company id")
+    name: Optional[StrictStr] = Field(default=None, description="Company name")
+    email: Optional[StrictStr] = Field(default=None, description="Company email")
     type: Optional[CompanyType] = None
     access_info: Optional[CompanyInfoAccessInfo] = None
     plan_info: Optional[CompanyInfoPlanInfo] = None
     accountant_id: Optional[StrictInt] = Field(
-        None, description="Company accountant id"
+        default=None, description="Company accountant id"
     )
     is_accountant: Optional[StrictBool] = Field(
-        None, description="Is the logged account an accountant."
+        default=None, description="Is the logged account an accountant."
     )
     __properties = [
         "id",

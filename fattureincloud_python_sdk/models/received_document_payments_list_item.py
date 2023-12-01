@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.received_document_payments_list_item_payment_terms import (
     ReceivedDocumentPaymentsListItemPaymentTerms,
@@ -32,17 +32,19 @@ class ReceivedDocumentPaymentsListItem(BaseModel):
     ReceivedDocumentPaymentsListItem
     """
 
-    id: Optional[StrictInt] = Field(None, description="Received document payment id")
-    amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document payment total amount"
+    id: Optional[StrictInt] = Field(
+        default=None, description="Received document payment id"
     )
-    due_date: Optional[date] = Field(None, description="Due date")
+    amount: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Received document payment total amount"
+    )
+    due_date: Optional[date] = Field(default=None, description="Due date")
     paid_date: Optional[date] = Field(
-        None, description="Received document payment paid date"
+        default=None, description="Received document payment paid date"
     )
     payment_terms: Optional[ReceivedDocumentPaymentsListItemPaymentTerms] = None
     status: Optional[StrictStr] = Field(
-        None, description="Received document payment status"
+        default=None, description="Received document payment status"
     )
     payment_account: Optional[PaymentAccount] = None
     __properties = [

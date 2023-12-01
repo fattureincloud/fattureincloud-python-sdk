@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.company_type import CompanyType
 
 
@@ -29,17 +29,18 @@ class ControlledCompany(BaseModel):
     ControlledCompany
     """
 
-    id: Optional[StrictInt] = Field(None, description="Controlled company id")
-    name: Optional[StrictStr] = Field(None, description="Controlled company id")
+    id: Optional[StrictInt] = Field(default=None, description="Controlled company id")
+    name: Optional[StrictStr] = Field(default=None, description="Controlled company id")
     type: Optional[CompanyType] = None
     access_token: Optional[StrictStr] = Field(
-        None, description="Controlled company access token Only if type=company]"
+        default=None,
+        description="Controlled company access token Only if type=company]",
     )
     connection_id: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Controlled company connection id"
+        default=None, description="Controlled company connection id"
     )
     tax_code: Optional[StrictStr] = Field(
-        None, description="Controlled company tax code"
+        default=None, description="Controlled company tax code"
     )
     __properties = ["id", "name", "type", "access_token", "connection_id", "tax_code"]
 

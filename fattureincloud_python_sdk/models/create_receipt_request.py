@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool
 from fattureincloud_python_sdk.models.receipt import Receipt
 
 
@@ -31,7 +31,7 @@ class CreateReceiptRequest(BaseModel):
 
     data: Optional[Receipt] = None
     autocomplete_number: Optional[StrictBool] = Field(
-        None, description="If true, the number is autocompleted progressively."
+        default=None, description="If true, the number is autocompleted progressively."
     )
     __properties = ["data", "autocomplete_number"]
 

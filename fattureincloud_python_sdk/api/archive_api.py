@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictBytes, StrictInt, StrictStr, conint
+from pydantic import StrictBytes, StrictInt, StrictStr, field_validator
 
 from typing import Optional, Union
 
@@ -69,9 +70,7 @@ class ArchiveApi:
     @validate_arguments
     def create_archive_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_archive_document_request: Annotated[
             Optional[CreateArchiveDocumentRequest],
             Field(description="The Archive Document."),
@@ -113,9 +112,7 @@ class ArchiveApi:
     @validate_arguments
     def create_archive_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_archive_document_request: Annotated[
             Optional[CreateArchiveDocumentRequest],
             Field(description="The Archive Document."),
@@ -248,12 +245,8 @@ class ArchiveApi:
     @validate_arguments
     def delete_archive_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Archive Document  # noqa: E501
@@ -291,12 +284,8 @@ class ArchiveApi:
     @validate_arguments
     def delete_archive_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Archive Document  # noqa: E501
@@ -408,12 +397,8 @@ class ArchiveApi:
     @validate_arguments
     def get_archive_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -461,12 +446,8 @@ class ArchiveApi:
     @validate_arguments
     def get_archive_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -603,9 +584,7 @@ class ArchiveApi:
     @validate_arguments
     def list_archive_documents(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -622,7 +601,7 @@ class ArchiveApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -675,9 +654,7 @@ class ArchiveApi:
     @validate_arguments
     def list_archive_documents_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -694,7 +671,7 @@ class ArchiveApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -853,12 +830,8 @@ class ArchiveApi:
     @validate_arguments
     def modify_archive_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_archive_document_request: Annotated[
             Optional[ModifyArchiveDocumentRequest],
             Field(description="Modified Archive Document"),
@@ -902,12 +875,8 @@ class ArchiveApi:
     @validate_arguments
     def modify_archive_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_archive_document_request: Annotated[
             Optional[ModifyArchiveDocumentRequest],
             Field(description="Modified Archive Document"),
@@ -1045,9 +1014,7 @@ class ArchiveApi:
     @validate_arguments
     def upload_archive_document_attachment(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         filename: Annotated[
             Optional[StrictStr], Field(description="Attachment file name")
         ] = None,
@@ -1096,9 +1063,7 @@ class ArchiveApi:
     @validate_arguments
     def upload_archive_document_attachment_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         filename: Annotated[
             Optional[StrictStr], Field(description="Attachment file name")
         ] = None,

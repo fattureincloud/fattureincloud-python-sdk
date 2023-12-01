@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class EmailAttachment(BaseModel):
@@ -28,8 +28,10 @@ class EmailAttachment(BaseModel):
     EmailAttachment
     """
 
-    filename: Optional[StrictStr] = Field(None, description="Email attachment filename")
-    url: Optional[StrictStr] = Field(None, description="Email attachment url")
+    filename: Optional[StrictStr] = Field(
+        default=None, description="Email attachment filename"
+    )
+    url: Optional[StrictStr] = Field(default=None, description="Email attachment url")
     __properties = ["filename", "url"]
 
     class Config:

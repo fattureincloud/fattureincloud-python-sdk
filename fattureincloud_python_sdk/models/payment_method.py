@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
 from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
@@ -31,23 +31,27 @@ class PaymentMethod(BaseModel):
     PaymentMethod
     """
 
-    id: Optional[StrictInt] = Field(None, description="Payment method id")
-    name: Optional[StrictStr] = Field(None, description="Payment method name")
+    id: Optional[StrictInt] = Field(default=None, description="Payment method id")
+    name: Optional[StrictStr] = Field(default=None, description="Payment method name")
     type: Optional[PaymentMethodType] = None
     is_default: Optional[StrictBool] = Field(
-        None, description="Payment method is default"
+        default=None, description="Payment method is default"
     )
     default_payment_account: Optional[PaymentAccount] = None
-    details: Optional[conlist(PaymentMethodDetails, max_items=5)] = Field(
-        None, description="Payment method details"
+    details: Optional[
+        Annotated[List[PaymentMethodDetails], Field(max_length=5)]
+    ] = Field(default=None, description="Payment method details")
+    bank_iban: Optional[StrictStr] = Field(
+        default=None, description="Payment method bank iban"
     )
-    bank_iban: Optional[StrictStr] = Field(None, description="Payment method bank iban")
-    bank_name: Optional[StrictStr] = Field(None, description="Payment method bank name")
+    bank_name: Optional[StrictStr] = Field(
+        default=None, description="Payment method bank name"
+    )
     bank_beneficiary: Optional[StrictStr] = Field(
-        None, description="Payment method bank beneficiary"
+        default=None, description="Payment method bank beneficiary"
     )
     ei_payment_method: Optional[StrictStr] = Field(
-        None, description="E-invoice payment method"
+        default=None, description="E-invoice payment method"
     )
     __properties = [
         "id",

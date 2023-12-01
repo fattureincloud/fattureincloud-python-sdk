@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -91,9 +92,7 @@ class SettingsApi:
     @validate_arguments
     def create_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_account_request: Optional[CreatePaymentAccountRequest] = None,
         **kwargs
     ) -> CreatePaymentAccountResponse:  # noqa: E501
@@ -132,9 +131,7 @@ class SettingsApi:
     @validate_arguments
     def create_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_account_request: Optional[CreatePaymentAccountRequest] = None,
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -262,9 +259,7 @@ class SettingsApi:
     @validate_arguments
     def create_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_method_request: Optional[CreatePaymentMethodRequest] = None,
         **kwargs
     ) -> CreatePaymentMethodResponse:  # noqa: E501
@@ -303,9 +298,7 @@ class SettingsApi:
     @validate_arguments
     def create_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_method_request: Optional[CreatePaymentMethodRequest] = None,
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -433,9 +426,7 @@ class SettingsApi:
     @validate_arguments
     def create_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_vat_type_request: Optional[CreateVatTypeRequest] = None,
         **kwargs
     ) -> CreateVatTypeResponse:  # noqa: E501
@@ -474,9 +465,7 @@ class SettingsApi:
     @validate_arguments
     def create_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_vat_type_request: Optional[CreateVatTypeRequest] = None,
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -604,11 +593,9 @@ class SettingsApi:
     @validate_arguments
     def delete_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -647,11 +634,9 @@ class SettingsApi:
     @validate_arguments
     def delete_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -764,11 +749,9 @@ class SettingsApi:
     @validate_arguments
     def delete_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -807,11 +790,9 @@ class SettingsApi:
     @validate_arguments
     def delete_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -924,11 +905,9 @@ class SettingsApi:
     @validate_arguments
     def delete_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -967,11 +946,9 @@ class SettingsApi:
     @validate_arguments
     def delete_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -1084,11 +1061,9 @@ class SettingsApi:
     @validate_arguments
     def get_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1137,11 +1112,9 @@ class SettingsApi:
     @validate_arguments
     def get_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1277,11 +1250,9 @@ class SettingsApi:
     @validate_arguments
     def get_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1330,11 +1301,9 @@ class SettingsApi:
     @validate_arguments
     def get_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1470,11 +1439,9 @@ class SettingsApi:
     @validate_arguments
     def get_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         **kwargs
     ) -> GetVatTypeResponse:  # noqa: E501
@@ -1513,11 +1480,9 @@ class SettingsApi:
     @validate_arguments
     def get_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -1637,11 +1602,9 @@ class SettingsApi:
     @validate_arguments
     def modify_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         modify_payment_account_request: Optional[ModifyPaymentAccountRequest] = None,
         **kwargs
@@ -1683,11 +1646,9 @@ class SettingsApi:
     @validate_arguments
     def modify_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         modify_payment_account_request: Optional[ModifyPaymentAccountRequest] = None,
         **kwargs
@@ -1825,11 +1786,9 @@ class SettingsApi:
     @validate_arguments
     def modify_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         modify_payment_method_request: Optional[ModifyPaymentMethodRequest] = None,
         **kwargs
@@ -1871,11 +1830,9 @@ class SettingsApi:
     @validate_arguments
     def modify_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         modify_payment_method_request: Optional[ModifyPaymentMethodRequest] = None,
         **kwargs
@@ -2013,11 +1970,9 @@ class SettingsApi:
     @validate_arguments
     def modify_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         modify_vat_type_request: Optional[ModifyVatTypeRequest] = None,
         **kwargs
@@ -2059,11 +2014,9 @@ class SettingsApi:
     @validate_arguments
     def modify_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         modify_vat_type_request: Optional[ModifyVatTypeRequest] = None,
         **kwargs

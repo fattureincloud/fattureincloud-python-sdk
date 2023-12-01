@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 
 
 class SenderEmail(BaseModel):
@@ -28,8 +28,8 @@ class SenderEmail(BaseModel):
     SenderEmail
     """
 
-    id: Optional[StrictInt] = Field(None, description="Sender email id")
-    email: Optional[StrictStr] = Field(None, description="Sender email address")
+    id: Optional[StrictInt] = Field(default=None, description="Sender email id")
+    email: Optional[StrictStr] = Field(default=None, description="Sender email address")
     __properties = ["id", "email"]
 
     class Config:

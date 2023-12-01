@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.email_attachment import EmailAttachment
 from fattureincloud_python_sdk.models.email_recipient_status import EmailRecipientStatus
 from fattureincloud_python_sdk.models.email_status import EmailStatus
@@ -31,23 +31,35 @@ class Email(BaseModel):
     Email
     """
 
-    id: Optional[StrictInt] = Field(None, description="Email id")
+    id: Optional[StrictInt] = Field(default=None, description="Email id")
     status: Optional[EmailStatus] = None
-    sent_date: Optional[datetime] = Field(None, description="Email sent date")
-    errors_count: Optional[StrictInt] = Field(None, description="Email errors count")
-    error_log: Optional[StrictStr] = Field(None, description="Email errors log")
-    from_email: Optional[StrictStr] = Field(None, description="Email sender email")
-    from_name: Optional[StrictStr] = Field(None, description="Email sender name")
-    to_email: Optional[StrictStr] = Field(None, description="Email recipient email")
-    to_name: Optional[StrictStr] = Field(None, description="Email receipient name")
-    subject: Optional[StrictStr] = Field(None, description="Email subject")
-    content: Optional[StrictStr] = Field(None, description="Email content")
-    copy_to: Optional[StrictStr] = Field(None, description="Email cc")
+    sent_date: Optional[datetime] = Field(default=None, description="Email sent date")
+    errors_count: Optional[StrictInt] = Field(
+        default=None, description="Email errors count"
+    )
+    error_log: Optional[StrictStr] = Field(default=None, description="Email errors log")
+    from_email: Optional[StrictStr] = Field(
+        default=None, description="Email sender email"
+    )
+    from_name: Optional[StrictStr] = Field(
+        default=None, description="Email sender name"
+    )
+    to_email: Optional[StrictStr] = Field(
+        default=None, description="Email recipient email"
+    )
+    to_name: Optional[StrictStr] = Field(
+        default=None, description="Email receipient name"
+    )
+    subject: Optional[StrictStr] = Field(default=None, description="Email subject")
+    content: Optional[StrictStr] = Field(default=None, description="Email content")
+    copy_to: Optional[StrictStr] = Field(default=None, description="Email cc")
     recipient_status: Optional[EmailRecipientStatus] = None
-    recipient_date: Optional[datetime] = Field(None, description="Email recipient date")
-    kind: Optional[StrictStr] = Field(None, description="Email kind")
-    attachments: Optional[conlist(EmailAttachment)] = Field(
-        None, description="Email attachments"
+    recipient_date: Optional[datetime] = Field(
+        default=None, description="Email recipient date"
+    )
+    kind: Optional[StrictStr] = Field(default=None, description="Email kind")
+    attachments: Optional[List[EmailAttachment]] = Field(
+        default=None, description="Email attachments"
     )
     __properties = [
         "id",

@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 
@@ -29,7 +29,7 @@ class ListVatTypesResponse(BaseModel):
     # noqa: E501
     """
 
-    data: Optional[conlist(VatType)] = None
+    data: Optional[List[VatType]] = None
     __properties = ["data"]
 
     class Config:

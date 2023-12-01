@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.supplier import Supplier
 
 
@@ -29,22 +29,38 @@ class ListSuppliersResponse(BaseModel):
     ListSuppliersResponse
     """
 
-    current_page: Optional[StrictInt] = Field(None, description="Current page number.")
-    first_page_url: Optional[StrictStr] = Field(None, description="First page url.")
+    current_page: Optional[StrictInt] = Field(
+        default=None, description="Current page number."
+    )
+    first_page_url: Optional[StrictStr] = Field(
+        default=None, description="First page url."
+    )
     var_from: Optional[StrictInt] = Field(
-        None, alias="from", description="First result of the page."
+        default=None, description="First result of the page.", alias="from"
     )
-    last_page: Optional[StrictInt] = Field(None, description="Last page number.")
-    last_page_url: Optional[StrictStr] = Field(None, description="Last page url.")
-    next_page_url: Optional[StrictStr] = Field(None, description="Next page url")
-    path: Optional[StrictStr] = Field(None, description="Request path.")
+    last_page: Optional[StrictInt] = Field(
+        default=None, description="Last page number."
+    )
+    last_page_url: Optional[StrictStr] = Field(
+        default=None, description="Last page url."
+    )
+    next_page_url: Optional[StrictStr] = Field(
+        default=None, description="Next page url"
+    )
+    path: Optional[StrictStr] = Field(default=None, description="Request path.")
     per_page: Optional[StrictInt] = Field(
-        None, description="Number of result per page."
+        default=None, description="Number of result per page."
     )
-    prev_page_url: Optional[StrictStr] = Field(None, description="Previous page url.")
-    to: Optional[StrictInt] = Field(None, description="Last result of the page.")
-    total: Optional[StrictInt] = Field(None, description="Total number of results")
-    data: Optional[conlist(Supplier)] = None
+    prev_page_url: Optional[StrictStr] = Field(
+        default=None, description="Previous page url."
+    )
+    to: Optional[StrictInt] = Field(
+        default=None, description="Last result of the page."
+    )
+    total: Optional[StrictInt] = Field(
+        default=None, description="Total number of results"
+    )
+    data: Optional[List[Supplier]] = None
     __properties = [
         "current_page",
         "first_page_url",

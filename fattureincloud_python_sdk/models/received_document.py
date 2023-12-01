@@ -19,16 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import List, Optional, Union
-from pydantic import (
-    BaseModel,
-    Field,
-    StrictBool,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    conlist,
-)
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.entity import Entity
 from fattureincloud_python_sdk.models.received_document_items_list_item import (
@@ -45,90 +37,90 @@ class ReceivedDocument(BaseModel):
     ReceivedDocument
     """
 
-    id: Optional[StrictInt] = Field(None, description="Received document id")
+    id: Optional[StrictInt] = Field(default=None, description="Received document id")
     type: Optional[ReceivedDocumentType] = None
     entity: Optional[Entity] = None
     var_date: Optional[date] = Field(
-        None,
-        alias="date",
+        default=None,
         description="Received document date [defaults to today's date]",
+        alias="date",
     )
     category: Optional[StrictStr] = Field(
-        None, description="Received document category"
+        default=None, description="Received document category"
     )
     description: Optional[StrictStr] = Field(
-        None, description="Received document description"
+        default=None, description="Received document description"
     )
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total net amount"
+        default=None, description="Received document total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total vat amount"
+        default=None, description="Received document total vat amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document withholding tax amount"
+        default=None, description="Received document withholding tax amount"
     )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document other withholding tax amount"
+        default=None, description="Received document other withholding tax amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Received document total gross amount"
+        default=None, description="[Read Only] Received document total gross amount"
     )
     amortization: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document amortization value"
+        default=None, description="Received document amortization value"
     )
     rc_center: Optional[StrictStr] = Field(
-        None, description="Received document revenue center"
+        default=None, description="Received document revenue center"
     )
     invoice_number: Optional[StrictStr] = Field(
-        None, description="Received document invoice number"
+        default=None, description="Received document invoice number"
     )
     is_marked: Optional[StrictBool] = Field(
-        None, description="Received document is marked"
+        default=None, description="Received document is marked"
     )
     is_detailed: Optional[StrictBool] = Field(
-        None, description="Received document has items"
+        default=None, description="Received document has items"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="[Read Only] Received document is an e-invoice"
+        default=None, description="[Read Only] Received document is an e-invoice"
     )
     next_due_date: Optional[date] = Field(
-        None,
+        default=None,
         description="[Read Only] Received document date of the next not paid payment",
     )
     currency: Optional[Currency] = None
     tax_deductibility: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document tax deducibility percentage"
+        default=None, description="Received document tax deducibility percentage"
     )
     vat_deductibility: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document vat deducibility percentage"
+        default=None, description="Received document vat deducibility percentage"
     )
-    items_list: Optional[conlist(ReceivedDocumentItemsListItem)] = None
-    payments_list: Optional[conlist(ReceivedDocumentPaymentsListItem)] = None
+    items_list: Optional[List[ReceivedDocumentItemsListItem]] = None
+    payments_list: Optional[List[ReceivedDocumentPaymentsListItem]] = None
     attachment_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Received document url of the attached file",
     )
     attachment_preview_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Received document url of the attachment preview",
     )
     auto_calculate: Optional[StrictBool] = Field(
-        None,
+        default=None,
         description="Received document total items amount and total payments amount can differ if this field is set to false",
     )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only] Received document attachment token returned by POST /received_documents/attachment",
     )
     locked: Optional[StrictBool] = Field(
-        None, description="Received Document can't be edited"
+        default=None, description="Received Document can't be edited"
     )
     created_at: Optional[StrictStr] = Field(
-        None, description="Received document creation date"
+        default=None, description="Received document creation date"
     )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Received document last update date"
+        default=None, description="Received document last update date"
     )
     __properties = [
         "id",

@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr, conint
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -64,9 +65,7 @@ class ReceiptsApi:
     @validate_arguments
     def create_receipt(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_receipt_request: Annotated[
             Optional[CreateReceiptRequest], Field(description="The Receipt to create.")
         ] = None,
@@ -107,9 +106,7 @@ class ReceiptsApi:
     @validate_arguments
     def create_receipt_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_receipt_request: Annotated[
             Optional[CreateReceiptRequest], Field(description="The Receipt to create.")
         ] = None,
@@ -240,12 +237,8 @@ class ReceiptsApi:
     @validate_arguments
     def delete_receipt(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Receipt  # noqa: E501
@@ -283,12 +276,8 @@ class ReceiptsApi:
     @validate_arguments
     def delete_receipt_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Receipt  # noqa: E501
@@ -400,12 +389,8 @@ class ReceiptsApi:
     @validate_arguments
     def get_receipt(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -453,12 +438,8 @@ class ReceiptsApi:
     @validate_arguments
     def get_receipt_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -595,9 +576,7 @@ class ReceiptsApi:
     @validate_arguments
     def get_receipt_pre_create_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> GetReceiptPreCreateInfoResponse:  # noqa: E501
         """Get Receipt Pre-Create Info  # noqa: E501
@@ -633,9 +612,7 @@ class ReceiptsApi:
     @validate_arguments
     def get_receipt_pre_create_info_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Get Receipt Pre-Create Info  # noqa: E501
@@ -751,12 +728,10 @@ class ReceiptsApi:
     @validate_arguments
     def get_receipts_monthly_totals(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        type: Annotated[StrictStr, Field(..., description="Receipt Type")],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        type: Annotated[StrictStr, Field(description="Receipt Type")],
         year: Annotated[
-            StrictStr, Field(..., description="Year for which you want monthly totals")
+            StrictStr, Field(description="Year for which you want monthly totals")
         ],
         **kwargs
     ) -> GetReceiptsMonthlyTotalsResponse:  # noqa: E501
@@ -797,12 +772,10 @@ class ReceiptsApi:
     @validate_arguments
     def get_receipts_monthly_totals_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        type: Annotated[StrictStr, Field(..., description="Receipt Type")],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        type: Annotated[StrictStr, Field(description="Receipt Type")],
         year: Annotated[
-            StrictStr, Field(..., description="Year for which you want monthly totals")
+            StrictStr, Field(description="Year for which you want monthly totals")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -929,9 +902,7 @@ class ReceiptsApi:
     @validate_arguments
     def list_receipts(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -942,7 +913,7 @@ class ReceiptsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         sort: Annotated[
@@ -1001,9 +972,7 @@ class ReceiptsApi:
     @validate_arguments
     def list_receipts_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1014,7 +983,7 @@ class ReceiptsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         sort: Annotated[
@@ -1178,12 +1147,8 @@ class ReceiptsApi:
     @validate_arguments
     def modify_receipt(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_receipt_request: Annotated[
             Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
         ] = None,
@@ -1226,12 +1191,8 @@ class ReceiptsApi:
     @validate_arguments
     def modify_receipt_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_receipt_request: Annotated[
             Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
         ] = None,

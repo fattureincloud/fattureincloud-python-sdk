@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.cashbook_entry_document import (
     CashbookEntryDocument,
 )
@@ -34,19 +34,27 @@ class CashbookEntry(BaseModel):
     CashbookEntry
     """
 
-    id: Optional[StrictStr] = Field(None, description="Cashbook id")
-    var_date: Optional[date] = Field(None, alias="date", description="Cashbook date")
-    description: Optional[StrictStr] = Field(None, description="Cashbook description")
+    id: Optional[StrictStr] = Field(default=None, description="Cashbook id")
+    var_date: Optional[date] = Field(
+        default=None, description="Cashbook date", alias="date"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Cashbook description"
+    )
     kind: Optional[CashbookEntryKind] = None
     type: Optional[CashbookEntryType] = None
-    entity_name: Optional[StrictStr] = Field(None, description="Cashbook entity name")
+    entity_name: Optional[StrictStr] = Field(
+        default=None, description="Cashbook entity name"
+    )
     document: Optional[CashbookEntryDocument] = None
     amount_in: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Only for cashbook entry in] Cashbook total amount in"
+        default=None,
+        description="[Only for cashbook entry in] Cashbook total amount in",
     )
     payment_account_in: Optional[PaymentAccount] = None
     amount_out: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Only for cashbook entry out] Cashbook total amount out"
+        default=None,
+        description="[Only for cashbook entry out] Cashbook total amount out",
     )
     payment_account_out: Optional[PaymentAccount] = None
     __properties = [

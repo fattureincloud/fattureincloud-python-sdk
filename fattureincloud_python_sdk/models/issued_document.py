@@ -19,16 +19,14 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from pydantic import (
     BaseModel,
-    Field,
     StrictBool,
     StrictFloat,
     StrictInt,
     StrictStr,
-    conlist,
-    validator,
+    field_validator,
 )
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
@@ -56,244 +54,260 @@ class IssuedDocument(BaseModel):
     IssuedDocument
     """
 
-    id: Optional[StrictInt] = Field(None, description="Issued document id")
+    id: Optional[StrictInt] = Field(default=None, description="Issued document id")
     entity: Optional[Entity] = None
     type: Optional[IssuedDocumentType] = None
     number: Optional[StrictInt] = Field(
-        None,
+        default=None,
         description="Issued document number [If not specified, next number is used]",
     )
     numeration: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Issued document numeration [Not available if type=delivery_note]",
     )
     var_date: Optional[date] = Field(
-        None,
-        alias="date",
+        default=None,
         description="Issued document date [defaults to today's date]",
+        alias="date",
     )
-    year: Optional[StrictInt] = Field(None, description="Issued document year")
+    year: Optional[StrictInt] = Field(default=None, description="Issued document year")
     currency: Optional[Currency] = None
     language: Optional[Language] = None
-    subject: Optional[StrictStr] = Field(None, description="Issued document subject")
+    subject: Optional[StrictStr] = Field(
+        default=None, description="Issued document subject"
+    )
     visible_subject: Optional[StrictStr] = Field(
-        None, description="Issued document visible subject"
+        default=None, description="Issued document visible subject"
     )
     rc_center: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Issued document revenue center [or cost center if type=supplier_order].",
     )
-    notes: Optional[StrictStr] = Field(None, description="Issued document extra notes")
+    notes: Optional[StrictStr] = Field(
+        default=None, description="Issued document extra notes"
+    )
     rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description='Issued document "Rivalsa INPS" percentual value'
+        default=None, description='Issued document "Rivalsa INPS" percentual value'
     )
     cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description='Issued document "Cassa previdenziale" percentual value'
+        default=None,
+        description='Issued document "Cassa previdenziale" percentual value',
     )
     amount_cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document cassa amount."
+        default=None, description="[Read Only] Issued document cassa amount."
     )
     cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document cassa taxable percentage"
+        default=None, description="Issued document cassa taxable percentage"
     )
     amount_cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Can be set only if cassa_taxable is NULL] Issued document cassa taxable amount",
     )
     cassa2: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description='Issued document "Cassa previdenziale 2" percentual value'
+        default=None,
+        description='Issued document "Cassa previdenziale 2" percentual value',
     )
     amount_cassa2: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document cassa2 amount"
+        default=None, description="[Read Only] Issued document cassa2 amount"
     )
     cassa2_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document cassa2 taxable percentage"
+        default=None, description="Issued document cassa2 taxable percentage"
     )
     amount_cassa2_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Can be set only if cassa2_taxable is NULL] Issued document cassa2 taxable amount",
     )
     global_cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document global cassa taxable percentage"
+        default=None, description="Issued document global cassa taxable percentage"
     )
     amount_global_cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Can be set only if global_cassa_taxable is NULL] Issued document global cassa taxable amount",
     )
     withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="Issued document withholding tax (ritenuta d'acconto) percentual value",
     )
     withholding_tax_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="Issued document withholding tax taxable (imponibile) percentual value",
     )
     other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="Issued document other withholding tax (altra ritenuta) percentual value",
     )
     stamp_duty: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document stamp duty value [0 if not present]"
+        default=None, description="Issued document stamp duty value [0 if not present]"
     )
     payment_method: Optional[PaymentMethod] = None
     use_split_payment: Optional[StrictBool] = Field(
-        None, description="Issued document uses split payment"
+        default=None, description="Issued document uses split payment"
     )
     use_gross_prices: Optional[StrictBool] = Field(
-        None, description="Issued document uses gross prices"
+        default=None, description="Issued document uses gross prices"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="Issued document is an e-invoice."
+        default=None, description="Issued document is an e-invoice."
     )
     ei_data: Optional[IssuedDocumentEiData] = None
-    ei_cassa_type: Optional[StrictStr] = Field(None, description="E-invoice cassa type")
+    ei_cassa_type: Optional[StrictStr] = Field(
+        default=None, description="E-invoice cassa type"
+    )
     ei_cassa2_type: Optional[StrictStr] = Field(
-        None, description="E-invoice cassa2 type"
+        default=None, description="E-invoice cassa2 type"
     )
     ei_withholding_tax_causal: Optional[StrictStr] = Field(
-        None, description="E-invoice withholding tax causal"
+        default=None, description="E-invoice withholding tax causal"
     )
     ei_other_withholding_tax_type: Optional[StrictStr] = Field(
-        None, description="E-invoice other withholding tax type"
+        default=None, description="E-invoice other withholding tax type"
     )
     ei_other_withholding_tax_causal: Optional[StrictStr] = Field(
-        None, description="E-invoice other withholding tax causal"
+        default=None, description="E-invoice other withholding tax causal"
     )
-    items_list: Optional[conlist(IssuedDocumentItemsListItem)] = None
-    payments_list: Optional[conlist(IssuedDocumentPaymentsListItem)] = None
+    items_list: Optional[List[IssuedDocumentItemsListItem]] = None
+    payments_list: Optional[List[IssuedDocumentPaymentsListItem]] = None
     template: Optional[DocumentTemplate] = None
     delivery_note_template: Optional[DocumentTemplate] = None
     acc_inv_template: Optional[DocumentTemplate] = None
     h_margins: Optional[StrictInt] = Field(
-        None, description="Issued document PDF horizontal margins"
+        default=None, description="Issued document PDF horizontal margins"
     )
     v_margins: Optional[StrictInt] = Field(
-        None, description="Issued document PDF vertical margins"
+        default=None, description="Issued document PDF vertical margins"
     )
     show_payments: Optional[StrictBool] = Field(
-        None, description="Show the expiration dates of the payments on the document"
+        default=None,
+        description="Show the expiration dates of the payments on the document",
     )
     show_payment_method: Optional[StrictBool] = Field(
-        None, description="Show the payment method details on the document"
+        default=None, description="Show the payment method details on the document"
     )
     show_totals: Optional[ShowTotalsMode] = None
     show_paypal_button: Optional[StrictBool] = Field(
-        None, description="Show paypal button in the PDF"
+        default=None, description="Show paypal button in the PDF"
     )
     show_notification_button: Optional[StrictBool] = Field(
-        None, description="Show notification button in the PDF"
+        default=None, description="Show notification button in the PDF"
     )
     show_tspay_button: Optional[StrictBool] = Field(
-        None, description="Show ts pay button in the PDF"
+        default=None, description="Show ts pay button in the PDF"
     )
     delivery_note: Optional[StrictBool] = Field(
-        None, description="Issued document has delivery note"
+        default=None, description="Issued document has delivery note"
     )
     accompanying_invoice: Optional[StrictBool] = Field(
-        None, description="Issued document has an accompanying invoice"
+        default=None, description="Issued document has an accompanying invoice"
     )
     dn_number: Optional[StrictInt] = Field(
-        None, description="Issued document attached delivery note number"
+        default=None, description="Issued document attached delivery note number"
     )
     dn_date: Optional[date] = Field(
-        None, description="Issued document attached delivery note date"
+        default=None, description="Issued document attached delivery note date"
     )
     dn_ai_packages_number: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note number of packages"
+        default=None,
+        description="Issued document attached delivery note number of packages",
     )
     dn_ai_weight: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note package weight"
+        default=None,
+        description="Issued document attached delivery note package weight",
     )
     dn_ai_causal: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note causal"
+        default=None, description="Issued document attached delivery note causal"
     )
     dn_ai_destination: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note destination"
+        default=None, description="Issued document attached delivery note destination"
     )
     dn_ai_transporter: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note transporter"
+        default=None, description="Issued document attached delivery note transporter"
     )
     dn_ai_notes: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note notes"
+        default=None, description="Issued document attached delivery note notes"
     )
     is_marked: Optional[StrictBool] = Field(
-        None, description="Issued document is marked"
+        default=None, description="Issued document is marked"
     )
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read only] Issued document total net amount"
+        default=None, description="[Read only] Issued document total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document total vat amount"
+        default=None, description="[Read Only] Issued document total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document total gross amount"
+        default=None, description="[Read Only] Issued document total gross amount"
     )
     amount_due_discount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document amount due discount"
+        default=None, description="Issued document amount due discount"
     )
     amount_rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document rivalsa amount"
+        default=None, description="[Read Only] Issued document rivalsa amount"
     )
     amount_rivalsa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable rivalsa amount"
+        default=None, description="Issued document taxable rivalsa amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Read Only] Issued document withholding tax amount (ritenuta d'acconto).",
     )
     amount_withholding_tax_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable withholding tax amount"
+        default=None, description="Issued document taxable withholding tax amount"
     )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Read Only] Issued document other withholding tax amount (altra ritenuta)",
     )
     amount_other_withholding_tax_taxable: Optional[
         Union[StrictFloat, StrictInt]
-    ] = Field(None, description="Issued document taxable other withholding tax amount")
+    ] = Field(
+        default=None, description="Issued document taxable other withholding tax amount"
+    )
     amount_enasarco_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable enasarco amount"
+        default=None, description="Issued document taxable enasarco amount"
     )
     extra_data: Optional[IssuedDocumentExtraData] = None
-    seen_date: Optional[date] = Field(None, description="Issued document seen date")
+    seen_date: Optional[date] = Field(
+        default=None, description="Issued document seen date"
+    )
     next_due_date: Optional[date] = Field(
-        None, description="Issued document date of the next not paid payment"
+        default=None, description="Issued document date of the next not paid payment"
     )
     url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the document PDF file",
     )
     dn_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the attached delivery note PDF file",
     )
     ai_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the accompanying invoice PDF file",
     )
     attachment_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the attached file",
     )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only] Issued document attachment token returned by POST /issued_documents/attachment",
     )
-    ei_raw: Optional[Dict[str, Any]] = Field(
-        None, description="Issued document advanced raw attributes for e-invoices"
+    ei_raw: Optional[Union[str, Any]] = Field(
+        default=None,
+        description="Issued document advanced raw attributes for e-invoices",
     )
     ei_status: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Read only] Status of the e-invoice.   * **attempt** - We are trying to send the invoice, please wait up to 2 hours   * **missing** - The invoice is missing   * **not_sent** - The invoice has yet to be sent   * **sent** - The invoice was sent   * **pending** - The checks for the digital signature and sending are in progress   * **processing** - The SDI is delivering the invoice to the customer   * **error** - An error occurred while handling the invoice, please try to resend it or contact support   * **discarded** - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * **not_delivered** - The SDI was unable to deliver the invoice   * **accepted** - The customer accepted the invoice   * **rejected** - The customer rejected the invoice, so it must be corrected   * **no_response** - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice   * **manual_accepted** - The customer accepted the invoice   * **manual_rejected** - The customer rejected the invoice ",
     )
     locked: Optional[StrictBool] = Field(
-        None, description="Issued Document can't be edited"
+        default=None, description="Issued Document can't be edited"
     )
     created_at: Optional[StrictStr] = Field(
-        None, description="Issued document creation date"
+        default=None, description="Issued document creation date"
     )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Issued document last update date"
+        default=None, description="Issued document last update date"
     )
     __properties = [
         "id",

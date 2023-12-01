@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.entity_type import EntityType
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
@@ -32,76 +32,88 @@ class Entity(BaseModel):
     Entity
     """
 
-    id: Optional[StrictInt] = Field(None, description="Entity id")
-    code: Optional[StrictStr] = Field(None, description="Entity code")
-    name: Optional[StrictStr] = Field(None, description="Entity name")
+    id: Optional[StrictInt] = Field(default=None, description="Entity id")
+    code: Optional[StrictStr] = Field(default=None, description="Entity code")
+    name: Optional[StrictStr] = Field(default=None, description="Entity name")
     type: Optional[EntityType] = None
-    first_name: Optional[StrictStr] = Field(None, description="Entity first name")
-    last_name: Optional[StrictStr] = Field(None, description="Entity last name")
-    contact_person: Optional[StrictStr] = Field(
-        None, description="Entity contact person"
+    first_name: Optional[StrictStr] = Field(
+        default=None, description="Entity first name"
     )
-    vat_number: Optional[StrictStr] = Field(None, description="Entity vat number")
-    tax_code: Optional[StrictStr] = Field(None, description="Entity tax code")
+    last_name: Optional[StrictStr] = Field(default=None, description="Entity last name")
+    contact_person: Optional[StrictStr] = Field(
+        default=None, description="Entity contact person"
+    )
+    vat_number: Optional[StrictStr] = Field(
+        default=None, description="Entity vat number"
+    )
+    tax_code: Optional[StrictStr] = Field(default=None, description="Entity tax code")
     address_street: Optional[StrictStr] = Field(
-        None, description="Entitity address street"
+        default=None, description="Entitity address street"
     )
     address_postal_code: Optional[StrictStr] = Field(
-        None, description="Entity address postal code"
+        default=None, description="Entity address postal code"
     )
-    address_city: Optional[StrictStr] = Field(None, description="Entity address city")
+    address_city: Optional[StrictStr] = Field(
+        default=None, description="Entity address city"
+    )
     address_province: Optional[StrictStr] = Field(
-        None, description="Entity address province"
+        default=None, description="Entity address province"
     )
     address_extra: Optional[StrictStr] = Field(
-        None, description="Entity address extra info"
+        default=None, description="Entity address extra info"
     )
-    country: Optional[StrictStr] = Field(None, description="Entity country")
+    country: Optional[StrictStr] = Field(default=None, description="Entity country")
     country_iso: Optional[StrictStr] = Field(
-        None, description="Entity country iso code"
+        default=None, description="Entity country iso code"
     )
-    email: Optional[StrictStr] = Field(None, description="Entity email")
+    email: Optional[StrictStr] = Field(default=None, description="Entity email")
     certified_email: Optional[StrictStr] = Field(
-        None, description="Entity certified email"
+        default=None, description="Entity certified email"
     )
-    phone: Optional[StrictStr] = Field(None, description="Entity phone")
-    fax: Optional[StrictStr] = Field(None, description="Entity fax")
-    notes: Optional[StrictStr] = Field(None, description="Entity extra")
+    phone: Optional[StrictStr] = Field(default=None, description="Entity phone")
+    fax: Optional[StrictStr] = Field(default=None, description="Entity fax")
+    notes: Optional[StrictStr] = Field(default=None, description="Entity extra")
     default_payment_terms: Optional[StrictInt] = Field(
-        None, description="[Only for client] Client default payment terms"
+        default=None, description="[Only for client] Client default payment terms"
     )
     default_vat: Optional[VatType] = None
     default_payment_terms_type: Optional[PaymentTermsType] = None
     default_payment_method: Optional[PaymentMethod] = None
     bank_name: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client bank name"
+        default=None, description="[Only for client] Client bank name"
     )
     bank_iban: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client bank iban"
+        default=None, description="[Only for client] Client bank iban"
     )
     bank_swift_code: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client bank swift code"
+        default=None, description="[Only for client] Client bank swift code"
     )
     shipping_address: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client Shipping address"
+        default=None, description="[Only for client] Client Shipping address"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="[Only for client] Use e-invoices."
+        default=None, description="[Only for client] Use e-invoices."
     )
     ei_code: Optional[StrictStr] = Field(
-        None, description="[Only for client] E-invoices code."
+        default=None, description="[Only for client] E-invoices code."
     )
     has_intent_declaration: Optional[StrictBool] = Field(
-        None, description="[Only for client] Has intent declaration."
+        default=None, description="[Only for client] Has intent declaration."
     )
     intent_declaration_protocol_number: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client intent declaration protocol number"
+        default=None,
+        description="[Only for client] Client intent declaration protocol number",
     )
     intent_declaration_protocol_date: Optional[date] = Field(
-        None, description="[Only for client] Client intent declaration protocol date"
+        default=None,
+        description="[Only for client] Client intent declaration protocol date",
     )
-    created_at: Optional[StrictStr] = Field(None, description="Entity creation date")
-    updated_at: Optional[StrictStr] = Field(None, description="Entity last update date")
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Entity creation date"
+    )
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="Entity last update date"
+    )
     __properties = [
         "id",
         "code",

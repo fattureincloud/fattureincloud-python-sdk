@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 
@@ -29,42 +29,48 @@ class Product(BaseModel):
     Product
     """
 
-    id: Optional[StrictInt] = Field(None, description="Product id")
-    name: Optional[StrictStr] = Field(None, description="Product name")
-    code: Optional[StrictStr] = Field(None, description="Product code")
+    id: Optional[StrictInt] = Field(default=None, description="Product id")
+    name: Optional[StrictStr] = Field(default=None, description="Product name")
+    code: Optional[StrictStr] = Field(default=None, description="Product code")
     net_price: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Product net price"
+        default=None, description="Product net price"
     )
     gross_price: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Product gross price"
+        default=None, description="Product gross price"
     )
     use_gross_price: Optional[StrictBool] = Field(
-        None, description="Product uses gross prices"
+        default=None, description="Product uses gross prices"
     )
     default_vat: Optional[VatType] = None
     net_cost: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Product net cost"
+        default=None, description="Product net cost"
     )
-    measure: Optional[StrictStr] = Field(None, description="Product measure")
-    description: Optional[StrictStr] = Field(None, description="Product description")
-    category: Optional[StrictStr] = Field(None, description="Product category")
-    notes: Optional[StrictStr] = Field(None, description="Product extra notes")
-    in_stock: Optional[StrictBool] = Field(None, description="Product has stock")
+    measure: Optional[StrictStr] = Field(default=None, description="Product measure")
+    description: Optional[StrictStr] = Field(
+        default=None, description="Product description"
+    )
+    category: Optional[StrictStr] = Field(default=None, description="Product category")
+    notes: Optional[StrictStr] = Field(default=None, description="Product extra notes")
+    in_stock: Optional[StrictBool] = Field(
+        default=None, description="Product has stock"
+    )
     stock_initial: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Product initial stock"
+        default=None, description="Product initial stock"
     )
     stock_current: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Product current stock"
+        default=None, description="[Read Only] Product current stock"
     )
     average_cost: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Product average cost"
+        default=None, description="Product average cost"
     )
     average_price: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Product average price"
+        default=None, description="Product average price"
     )
-    created_at: Optional[StrictStr] = Field(None, description="Product creation date")
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Product creation date"
+    )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Product last update date"
+        default=None, description="Product last update date"
     )
     __properties = [
         "id",

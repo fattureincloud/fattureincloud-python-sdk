@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.received_document_info_default_values import (
@@ -39,20 +39,20 @@ class ReceivedDocumentInfo(BaseModel):
 
     default_values: Optional[ReceivedDocumentInfoDefaultValues] = None
     items_default_values: Optional[ReceivedDocumentInfoItemsDefaultValues] = None
-    countries_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Countries list"
+    countries_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Countries list"
     )
-    currencies_list: Optional[conlist(Currency)] = Field(
-        None, description="Currencies list"
+    currencies_list: Optional[List[Currency]] = Field(
+        default=None, description="Currencies list"
     )
-    categories_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Categories list"
+    categories_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Categories list"
     )
-    payment_accounts_list: Optional[conlist(PaymentAccount)] = Field(
-        None, description="Payments accounts list"
+    payment_accounts_list: Optional[List[PaymentAccount]] = Field(
+        default=None, description="Payments accounts list"
     )
-    vat_types_list: Optional[conlist(VatType)] = Field(
-        None, description="Vat types list"
+    vat_types_list: Optional[List[VatType]] = Field(
+        default=None, description="Vat types list"
     )
     __properties = [
         "default_values",

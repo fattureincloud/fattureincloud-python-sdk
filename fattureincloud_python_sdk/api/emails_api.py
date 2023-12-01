@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt
+from pydantic import StrictInt
 
 from fattureincloud_python_sdk.models.list_emails_response import ListEmailsResponse
 
@@ -47,9 +48,7 @@ class EmailsApi:
     @validate_arguments
     def list_emails(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ListEmailsResponse:  # noqa: E501
         """List Emails  # noqa: E501
@@ -83,9 +82,7 @@ class EmailsApi:
     @validate_arguments
     def list_emails_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Emails  # noqa: E501

@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictStr
 from fattureincloud_python_sdk.models.event_type import EventType
 from fattureincloud_python_sdk.models.webhooks_subscription_config import (
     WebhooksSubscriptionConfig,
@@ -32,14 +32,18 @@ class WebhooksSubscription(BaseModel):
     WebhooksSubscription
     """
 
-    id: Optional[StrictStr] = Field(None, description="Webhooks subscription id")
-    sink: Optional[StrictStr] = Field(None, description="Webhooks callback uri.")
+    id: Optional[StrictStr] = Field(
+        default=None, description="Webhooks subscription id"
+    )
+    sink: Optional[StrictStr] = Field(
+        default=None, description="Webhooks callback uri."
+    )
     verified: Optional[StrictBool] = Field(
-        None,
+        default=None,
         description="[Read Only] True if the webhooks subscription has been verified.",
     )
-    types: Optional[conlist(EventType)] = Field(
-        None, description="Webhooks events types."
+    types: Optional[List[EventType]] = Field(
+        default=None, description="Webhooks events types."
     )
     config: Optional[WebhooksSubscriptionConfig] = None
     __properties = ["id", "sink", "verified", "types", "config"]

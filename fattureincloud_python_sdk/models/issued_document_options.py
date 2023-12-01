@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictStr
 
 
 class IssuedDocumentOptions(BaseModel):
@@ -29,19 +29,20 @@ class IssuedDocumentOptions(BaseModel):
     """
 
     fix_payments: Optional[StrictBool] = Field(
-        None, description="Fixes your last payment amount to match your document total"
+        default=None,
+        description="Fixes your last payment amount to match your document total",
     )
-    create_from: Optional[conlist(StrictStr)] = Field(
-        None, description="Original documents ids [only for join/transform]"
+    create_from: Optional[List[StrictStr]] = Field(
+        default=None, description="Original documents ids [only for join/transform]"
     )
     transform: Optional[StrictBool] = Field(
-        None, description="Tranform a document [only for transform]"
+        default=None, description="Tranform a document [only for transform]"
     )
     keep_copy: Optional[StrictBool] = Field(
-        None, description="Keep original document [only for transform]"
+        default=None, description="Keep original document [only for transform]"
     )
     join_type: Optional[StrictStr] = Field(
-        None, description="Join type [only for join]"
+        default=None, description="Join type [only for join]"
     )
     __properties = [
         "fix_payments",

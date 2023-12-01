@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.supplier_type import SupplierType
 
 
@@ -29,43 +29,55 @@ class Supplier(BaseModel):
     Supplier
     """
 
-    id: Optional[StrictInt] = Field(None, description="Supplier id")
-    code: Optional[StrictStr] = Field(None, description="Supplier code")
-    name: Optional[StrictStr] = Field(None, description="Supplier name")
+    id: Optional[StrictInt] = Field(default=None, description="Supplier id")
+    code: Optional[StrictStr] = Field(default=None, description="Supplier code")
+    name: Optional[StrictStr] = Field(default=None, description="Supplier name")
     type: Optional[SupplierType] = None
-    first_name: Optional[StrictStr] = Field(None, description="Supplier first name")
-    last_name: Optional[StrictStr] = Field(None, description="Supplier last name")
-    contact_person: Optional[StrictStr] = Field(
-        None, description="Supplier contact person"
+    first_name: Optional[StrictStr] = Field(
+        default=None, description="Supplier first name"
     )
-    vat_number: Optional[StrictStr] = Field(None, description="Supplier vat number")
-    tax_code: Optional[StrictStr] = Field(None, description="Supplier tax code")
+    last_name: Optional[StrictStr] = Field(
+        default=None, description="Supplier last name"
+    )
+    contact_person: Optional[StrictStr] = Field(
+        default=None, description="Supplier contact person"
+    )
+    vat_number: Optional[StrictStr] = Field(
+        default=None, description="Supplier vat number"
+    )
+    tax_code: Optional[StrictStr] = Field(default=None, description="Supplier tax code")
     address_street: Optional[StrictStr] = Field(
-        None, description="Supplier street address"
+        default=None, description="Supplier street address"
     )
     address_postal_code: Optional[StrictStr] = Field(
-        None, description="Supplier postal code"
+        default=None, description="Supplier postal code"
     )
-    address_city: Optional[StrictStr] = Field(None, description="Supplier city")
-    address_province: Optional[StrictStr] = Field(None, description="Supplier province")
+    address_city: Optional[StrictStr] = Field(default=None, description="Supplier city")
+    address_province: Optional[StrictStr] = Field(
+        default=None, description="Supplier province"
+    )
     address_extra: Optional[StrictStr] = Field(
-        None, description="Supplier address extra info"
+        default=None, description="Supplier address extra info"
     )
-    country: Optional[StrictStr] = Field(None, description="Supplier country")
+    country: Optional[StrictStr] = Field(default=None, description="Supplier country")
     country_iso: Optional[StrictStr] = Field(
-        None, description="Supplier country iso code"
+        default=None, description="Supplier country iso code"
     )
-    email: Optional[StrictStr] = Field(None, description="Supplier email")
+    email: Optional[StrictStr] = Field(default=None, description="Supplier email")
     certified_email: Optional[StrictStr] = Field(
-        None, description="Supplier certified email"
+        default=None, description="Supplier certified email"
     )
-    phone: Optional[StrictStr] = Field(None, description="Supplier phone")
-    fax: Optional[StrictStr] = Field(None, description="Supplier fax")
-    notes: Optional[StrictStr] = Field(None, description="Supplier extra notes")
-    bank_iban: Optional[StrictStr] = Field(None, description="Supplier bank IBAN")
-    created_at: Optional[StrictStr] = Field(None, description="Supplier creation date")
+    phone: Optional[StrictStr] = Field(default=None, description="Supplier phone")
+    fax: Optional[StrictStr] = Field(default=None, description="Supplier fax")
+    notes: Optional[StrictStr] = Field(default=None, description="Supplier extra notes")
+    bank_iban: Optional[StrictStr] = Field(
+        default=None, description="Supplier bank IBAN"
+    )
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Supplier creation date"
+    )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Supplier last update date"
+        default=None, description="Supplier last update date"
     )
     __properties = [
         "id",

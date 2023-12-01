@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool
 
 
 class EmailScheduleInclude(BaseModel):
@@ -29,16 +29,16 @@ class EmailScheduleInclude(BaseModel):
     """
 
     document: Optional[StrictBool] = Field(
-        None, description="Include a button to view the document"
+        default=None, description="Include a button to view the document"
     )
     delivery_note: Optional[StrictBool] = Field(
-        None, description="Include a button to view the delivery note"
+        default=None, description="Include a button to view the delivery note"
     )
     attachment: Optional[StrictBool] = Field(
-        None, description="Include a button to view the attachment"
+        default=None, description="Include a button to view the attachment"
     )
     accompanying_invoice: Optional[StrictBool] = Field(
-        None, description="Include a button to view the accompanying invoice"
+        default=None, description="Include a button to view the accompanying invoice"
     )
     __properties = ["document", "delivery_note", "attachment", "accompanying_invoice"]
 

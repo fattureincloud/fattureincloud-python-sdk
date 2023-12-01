@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.email_schedule_include import EmailScheduleInclude
 
 
@@ -30,26 +30,26 @@ class EmailSchedule(BaseModel):
     """
 
     sender_id: Optional[StrictInt] = Field(
-        None,
+        default=None,
         description="Email sender id [required if **sender_email** is not specified]",
     )
     sender_email: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Email sender address [required if **sender_id** is not specified]",
     )
     recipient_email: Optional[StrictStr] = Field(
-        None, description="Email recipient emails [comma separated]"
+        default=None, description="Email recipient emails [comma separated]"
     )
-    subject: Optional[StrictStr] = Field(None, description="Email subject")
+    subject: Optional[StrictStr] = Field(default=None, description="Email subject")
     body: Optional[StrictStr] = Field(
-        None, description="Email body [HTML Escaped] [max size 50KiB]"
+        default=None, description="Email body [HTML Escaped] [max size 50KiB]"
     )
     include: Optional[EmailScheduleInclude] = None
     attach_pdf: Optional[StrictBool] = Field(
-        None, description="Attach the pdf of the document"
+        default=None, description="Attach the pdf of the document"
     )
     send_copy: Optional[StrictBool] = Field(
-        None,
+        default=None,
         description="Send a copy of the email to the **cc_email** specified by **Get email data**",
     )
     __properties = [

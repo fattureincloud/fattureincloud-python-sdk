@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 
@@ -33,24 +33,24 @@ class IssuedDocumentPreCreateInfoDefaultValues(BaseModel):
     default_template: Optional[DocumentTemplate] = None
     dn_template: Optional[DocumentTemplate] = None
     ai_template: Optional[DocumentTemplate] = None
-    notes: Optional[StrictStr] = Field(None, description="Default notes.")
+    notes: Optional[StrictStr] = Field(default=None, description="Default notes.")
     rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default rivalsa percentage."
+        default=None, description="Default rivalsa percentage."
     )
     cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default cassa percentage."
+        default=None, description="Default cassa percentage."
     )
     withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default withholding tax percentage."
+        default=None, description="Default withholding tax percentage."
     )
     withholding_tax_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default withholding tax taxable percentage."
+        default=None, description="Default withholding tax taxable percentage."
     )
     other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default other withholding tax percentage."
+        default=None, description="Default other withholding tax percentage."
     )
     use_gross_prices: Optional[StrictBool] = Field(
-        None, description="Use gross price by default."
+        default=None, description="Use gross price by default."
     )
     payment_method: Optional[PaymentMethod] = None
     __properties = [

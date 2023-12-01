@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool
 from fattureincloud_python_sdk.models.permissions import Permissions
 from fattureincloud_python_sdk.models.user_company_role import UserCompanyRole
 
@@ -33,7 +33,7 @@ class CompanyInfoAccessInfo(BaseModel):
     role: Optional[UserCompanyRole] = None
     permissions: Optional[Permissions] = None
     through_accountant: Optional[StrictBool] = Field(
-        None, description="Company activated through accountant"
+        default=None, description="Company activated through accountant"
     )
     __properties = ["role", "permissions", "through_accountant"]
 

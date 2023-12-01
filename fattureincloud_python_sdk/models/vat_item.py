@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt
 
 
 class VatItem(BaseModel):
@@ -29,10 +29,10 @@ class VatItem(BaseModel):
     """
 
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Vat item net amount"
+        default=None, description="Vat item net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Vat item vat amount"
+        default=None, description="Vat item vat amount"
     )
     __properties = ["amount_net", "amount_vat"]
 

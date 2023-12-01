@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictBytes, StrictInt, StrictStr, conint
+from pydantic import StrictBytes, StrictInt, StrictStr, field_validator
 
 from typing import Optional, Union
 
@@ -84,9 +85,7 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def create_received_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_received_document_request: Annotated[
             Optional[CreateReceivedDocumentRequest],
             Field(description="Document to create"),
@@ -128,9 +127,7 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def create_received_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_received_document_request: Annotated[
             Optional[CreateReceivedDocumentRequest],
             Field(description="Document to create"),
@@ -261,12 +258,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def delete_received_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Received Document  # noqa: E501
@@ -304,12 +297,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def delete_received_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Received Document  # noqa: E501
@@ -421,12 +410,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def delete_received_document_attachment(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Received Document Attachment  # noqa: E501
@@ -464,12 +449,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def delete_received_document_attachment_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Received Document Attachment  # noqa: E501
@@ -581,12 +562,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_existing_received_document_totals(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         get_existing_received_document_totals_request: Annotated[
             Optional[GetExistingReceivedDocumentTotalsRequest],
             Field(description="Received document."),
@@ -633,12 +610,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_existing_received_document_totals_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         get_existing_received_document_totals_request: Annotated[
             Optional[GetExistingReceivedDocumentTotalsRequest],
             Field(description="Received document."),
@@ -778,9 +751,7 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_new_received_document_totals(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         get_new_received_document_totals_request: Annotated[
             Optional[GetNewReceivedDocumentTotalsRequest],
             Field(description="Received document."),
@@ -822,9 +793,7 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_new_received_document_totals_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         get_new_received_document_totals_request: Annotated[
             Optional[GetNewReceivedDocumentTotalsRequest],
             Field(description="Received document."),
@@ -957,12 +926,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_received_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1010,12 +975,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_received_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1152,11 +1113,9 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_received_document_pre_create_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         type: Annotated[
-            StrictStr, Field(..., description="The type of the received document.")
+            StrictStr, Field(description="The type of the received document.")
         ],
         **kwargs
     ) -> GetReceivedDocumentPreCreateInfoResponse:  # noqa: E501
@@ -1195,11 +1154,9 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def get_received_document_pre_create_info_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         type: Annotated[
-            StrictStr, Field(..., description="The type of the received document.")
+            StrictStr, Field(description="The type of the received document.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -1319,11 +1276,9 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def list_received_documents(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         type: Annotated[
-            StrictStr, Field(..., description="The type of the received document.")
+            StrictStr, Field(description="The type of the received document.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1341,7 +1296,7 @@ class ReceivedDocumentsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -1396,11 +1351,9 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def list_received_documents_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         type: Annotated[
-            StrictStr, Field(..., description="The type of the received document.")
+            StrictStr, Field(description="The type of the received document.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1418,7 +1371,7 @@ class ReceivedDocumentsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -1582,12 +1535,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def modify_received_document(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_received_document_request: Annotated[
             Optional[ModifyReceivedDocumentRequest],
             Field(description="Modified document."),
@@ -1631,12 +1580,8 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def modify_received_document_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_received_document_request: Annotated[
             Optional[ModifyReceivedDocumentRequest],
             Field(description="Modified document."),
@@ -1774,9 +1719,7 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def upload_received_document_attachment(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         filename: Annotated[
             Optional[StrictStr], Field(description="Attachment file name")
         ] = None,
@@ -1825,9 +1768,7 @@ class ReceivedDocumentsApi:
     @validate_arguments
     def upload_received_document_attachment_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         filename: Annotated[
             Optional[StrictStr], Field(description="Attachment file name")
         ] = None,

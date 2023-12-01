@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictBytes, StrictInt, StrictStr, conint
+from pydantic import StrictBytes, StrictInt, StrictStr, field_validator
 
 from typing import Optional, Union
 
@@ -57,9 +58,7 @@ class TaxesApi:
     @validate_arguments
     def create_f24(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_f24_request: Annotated[
             Optional[CreateF24Request], Field(description="The F24 to create")
         ] = None,
@@ -100,9 +99,7 @@ class TaxesApi:
     @validate_arguments
     def create_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_f24_request: Annotated[
             Optional[CreateF24Request], Field(description="The F24 to create")
         ] = None,
@@ -234,12 +231,8 @@ class TaxesApi:
     @validate_arguments
     def delete_f24(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete F24  # noqa: E501
@@ -277,12 +270,8 @@ class TaxesApi:
     @validate_arguments
     def delete_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete F24  # noqa: E501
@@ -394,12 +383,8 @@ class TaxesApi:
     @validate_arguments
     def delete_f24_attachment(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete F24 Attachment  # noqa: E501
@@ -437,12 +422,8 @@ class TaxesApi:
     @validate_arguments
     def delete_f24_attachment_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete F24 Attachment  # noqa: E501
@@ -554,12 +535,8 @@ class TaxesApi:
     @validate_arguments
     def get_f24(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -607,12 +584,8 @@ class TaxesApi:
     @validate_arguments
     def get_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -749,9 +722,7 @@ class TaxesApi:
     @validate_arguments
     def list_f24(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -768,7 +739,7 @@ class TaxesApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -821,9 +792,7 @@ class TaxesApi:
     @validate_arguments
     def list_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -840,7 +809,7 @@ class TaxesApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -998,12 +967,8 @@ class TaxesApi:
     @validate_arguments
     def modify_f24(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_f24_request: Annotated[
             Optional[ModifyF24Request], Field(description="The F24")
         ] = None,
@@ -1046,12 +1011,8 @@ class TaxesApi:
     @validate_arguments
     def modify_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         modify_f24_request: Annotated[
             Optional[ModifyF24Request], Field(description="The F24")
         ] = None,
@@ -1188,9 +1149,7 @@ class TaxesApi:
     @validate_arguments
     def upload_f24_attachment(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         filename: Annotated[
             Optional[StrictStr], Field(description="Attachment file name")
         ] = None,
@@ -1239,9 +1198,7 @@ class TaxesApi:
     @validate_arguments
     def upload_f24_attachment_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         filename: Annotated[
             Optional[StrictStr], Field(description="Attachment file name")
         ] = None,

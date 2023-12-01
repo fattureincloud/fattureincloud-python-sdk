@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class DetailedCountry(BaseModel):
@@ -28,13 +28,15 @@ class DetailedCountry(BaseModel):
     DetailedCountry
     """
 
-    name: Optional[StrictStr] = Field(None, description="Country name")
+    name: Optional[StrictStr] = Field(default=None, description="Country name")
     settings_name: Optional[StrictStr] = Field(
-        None, description="Country settings name"
+        default=None, description="Country settings name"
     )
-    iso: Optional[StrictStr] = Field(None, description="Country iso code")
-    fiscal_iso: Optional[StrictStr] = Field(None, description="Country fiscal iso code")
-    uic: Optional[StrictStr] = Field(None, description="Country uic")
+    iso: Optional[StrictStr] = Field(default=None, description="Country iso code")
+    fiscal_iso: Optional[StrictStr] = Field(
+        default=None, description="Country fiscal iso code"
+    )
+    uic: Optional[StrictStr] = Field(default=None, description="Country uic")
     __properties = ["name", "settings_name", "iso", "fiscal_iso", "uic"]
 
     class Config:

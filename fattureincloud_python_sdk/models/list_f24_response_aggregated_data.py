@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt
 
 
 class ListF24ResponseAggregatedData(BaseModel):
@@ -29,7 +29,7 @@ class ListF24ResponseAggregatedData(BaseModel):
     """
 
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Total amount."
+        default=None, description="Total amount."
     )
     __properties = ["amount"]
 

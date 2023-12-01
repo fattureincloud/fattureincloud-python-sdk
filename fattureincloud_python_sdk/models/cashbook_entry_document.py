@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 
 
 class CashbookEntryDocument(BaseModel):
@@ -28,12 +28,14 @@ class CashbookEntryDocument(BaseModel):
     CashbookEntryDocument
     """
 
-    id: Optional[StrictInt] = Field(None, description="Cashbook related document id")
+    id: Optional[StrictInt] = Field(
+        default=None, description="Cashbook related document id"
+    )
     type: Optional[StrictStr] = Field(
-        None, description="Cashbook related document type"
+        default=None, description="Cashbook related document type"
     )
     path: Optional[StrictStr] = Field(
-        None, description="Cashbook related document path"
+        default=None, description="Cashbook related document path"
     )
     __properties = ["id", "type", "path"]
 

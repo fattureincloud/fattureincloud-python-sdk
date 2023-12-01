@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class EInvoiceRejectionReason(BaseModel):
@@ -28,14 +28,16 @@ class EInvoiceRejectionReason(BaseModel):
     EInvoiceRejectionReason
     """
 
-    reason: Optional[StrictStr] = Field(None, description="E-invoice rejection reason")
-    ei_status: Optional[StrictStr] = Field(None, description="E-invoice status")
-    solution: Optional[StrictStr] = Field(None, description="Error solution.")
+    reason: Optional[StrictStr] = Field(
+        default=None, description="E-invoice rejection reason"
+    )
+    ei_status: Optional[StrictStr] = Field(default=None, description="E-invoice status")
+    solution: Optional[StrictStr] = Field(default=None, description="Error solution.")
     code: Optional[StrictStr] = Field(
-        None, description="E-invoice rejection error code"
+        default=None, description="E-invoice rejection error code"
     )
     var_date: Optional[datetime] = Field(
-        None, alias="date", description="E-invoice rejection date"
+        default=None, description="E-invoice rejection date", alias="date"
     )
     __properties = ["reason", "ei_status", "solution", "code", "date"]
 

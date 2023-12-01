@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt
 from fattureincloud_python_sdk.models.received_document import ReceivedDocument
 
 
@@ -30,7 +30,7 @@ class CreateReceivedDocumentRequest(BaseModel):
     """
 
     pending_id: Optional[StrictInt] = Field(
-        None,
+        default=None,
         description="Pending received document id of the document from which the new document is created.",
     )
     data: Optional[ReceivedDocument] = None

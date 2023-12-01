@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictStr
 from fattureincloud_python_sdk.models.email_data_default_sender_email import (
     EmailDataDefaultSenderEmail,
 )
@@ -32,30 +32,33 @@ class EmailData(BaseModel):
     EmailData
     """
 
-    recipient_email: Optional[StrictStr] = Field(None, description="Email recipient")
+    recipient_email: Optional[StrictStr] = Field(
+        default=None, description="Email recipient"
+    )
     default_sender_email: Optional[EmailDataDefaultSenderEmail] = None
-    sender_emails_list: Optional[conlist(SenderEmail)] = Field(
-        None, description="List of all emails from which the document can be sent"
+    sender_emails_list: Optional[List[SenderEmail]] = Field(
+        default=None,
+        description="List of all emails from which the document can be sent",
     )
     cc_email: Optional[StrictStr] = Field(
-        None, description="Email cc [by default is the logged company email]"
+        default=None, description="Email cc [by default is the logged company email]"
     )
-    subject: Optional[StrictStr] = Field(None, description="Email subject")
-    body: Optional[StrictStr] = Field(None, description="Email body")
+    subject: Optional[StrictStr] = Field(default=None, description="Email subject")
+    body: Optional[StrictStr] = Field(default=None, description="Email body")
     document_exists: Optional[StrictBool] = Field(
-        None, description="Document exists if it is not a delivery note"
+        default=None, description="Document exists if it is not a delivery note"
     )
     delivery_note_exists: Optional[StrictBool] = Field(
-        None, description="Document is a delivery note"
+        default=None, description="Document is a delivery note"
     )
     attachment_exists: Optional[StrictBool] = Field(
-        None, description="Document has attachment"
+        default=None, description="Document has attachment"
     )
     accompanying_invoice_exists: Optional[StrictBool] = Field(
-        None, description="Document has accompanying invoice"
+        default=None, description="Document has accompanying invoice"
     )
     default_attach_pdf: Optional[StrictBool] = Field(
-        None, description="Attach document pdf"
+        default=None, description="Attach document pdf"
     )
     __properties = [
         "recipient_email",

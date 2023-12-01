@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from fattureincloud_python_sdk.models.get_user_info_response_email_confirmation_state import (
     GetUserInfoResponseEmailConfirmationState,

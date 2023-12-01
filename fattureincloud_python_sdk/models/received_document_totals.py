@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt
 
 
 class ReceivedDocumentTotals(BaseModel):
@@ -29,25 +29,25 @@ class ReceivedDocumentTotals(BaseModel):
     """
 
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total net amount"
+        default=None, description="Received document total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total vat amount"
+        default=None, description="Received document total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total gross amount"
+        default=None, description="Received document total gross amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document withholding tax amount"
+        default=None, description="Received document withholding tax amount"
     )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document other withholding tax amount"
+        default=None, description="Received document other withholding tax amount"
     )
     amount_due: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total amount due"
+        default=None, description="Received document total amount due"
     )
     payments_sum: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document payments sum"
+        default=None, description="Received document payments sum"
     )
     __properties = [
         "amount_net",

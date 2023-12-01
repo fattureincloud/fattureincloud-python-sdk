@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
 from fattureincloud_python_sdk.models.detailed_country import DetailedCountry
 
 
@@ -29,7 +29,7 @@ class ListDetailedCountriesResponse(BaseModel):
     ListDetailedCountriesResponse
     """
 
-    data: Optional[conlist(DetailedCountry)] = None
+    data: Optional[List[DetailedCountry]] = None
     __properties = ["data"]
 
     class Config:

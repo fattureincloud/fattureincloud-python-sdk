@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class Language(BaseModel):
@@ -28,8 +28,10 @@ class Language(BaseModel):
     Language
     """
 
-    code: Optional[StrictStr] = Field(None, description="Language code")
-    name: Optional[StrictStr] = Field(None, description="Language extended name")
+    code: Optional[StrictStr] = Field(default=None, description="Language code")
+    name: Optional[StrictStr] = Field(
+        default=None, description="Language extended name"
+    )
     __properties = ["code", "name"]
 
     class Config:

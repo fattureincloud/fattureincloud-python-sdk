@@ -19,16 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import List, Optional, Union
-from pydantic import (
-    BaseModel,
-    Field,
-    StrictBool,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    conlist,
-)
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.receipt_items_list_item import (
     ReceiptItemsListItem,
@@ -41,33 +33,43 @@ class Receipt(BaseModel):
     Receipt
     """
 
-    id: Optional[StrictInt] = Field(None, description="Receipt id")
-    var_date: Optional[date] = Field(None, alias="date", description="Receipt date")
-    number: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt number"
+    id: Optional[StrictInt] = Field(default=None, description="Receipt id")
+    var_date: Optional[date] = Field(
+        default=None, description="Receipt date", alias="date"
     )
-    numeration: Optional[StrictStr] = Field(None, description="Receipt numeration")
+    number: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Receipt number"
+    )
+    numeration: Optional[StrictStr] = Field(
+        default=None, description="Receipt numeration"
+    )
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt total net amount"
+        default=None, description="Receipt total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt total vat amount"
+        default=None, description="Receipt total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt total gross amount"
+        default=None, description="Receipt total gross amount"
     )
     use_gross_prices: Optional[StrictBool] = Field(
-        None, description="Receipt uses gross prices"
+        default=None, description="Receipt uses gross prices"
     )
     type: Optional[ReceiptType] = None
-    description: Optional[StrictStr] = Field(None, description="Receipt description")
-    rc_center: Optional[StrictStr] = Field(None, description="Receipt revenue center")
-    created_at: Optional[StrictStr] = Field(None, description="Receipt creation date")
+    description: Optional[StrictStr] = Field(
+        default=None, description="Receipt description"
+    )
+    rc_center: Optional[StrictStr] = Field(
+        default=None, description="Receipt revenue center"
+    )
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Receipt creation date"
+    )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Receipt last update date"
+        default=None, description="Receipt last update date"
     )
     payment_account: Optional[PaymentAccount] = None
-    items_list: Optional[conlist(ReceiptItemsListItem)] = None
+    items_list: Optional[List[ReceiptItemsListItem]] = None
     __properties = [
         "id",
         "date",

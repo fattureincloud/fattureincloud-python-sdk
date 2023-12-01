@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class Currency(BaseModel):
@@ -28,12 +28,14 @@ class Currency(BaseModel):
     Currency
     """
 
-    id: Optional[StrictStr] = Field(None, description="Currency code")
-    symbol: Optional[StrictStr] = Field(None, description="Currency symbol")
+    id: Optional[StrictStr] = Field(default=None, description="Currency code")
+    symbol: Optional[StrictStr] = Field(default=None, description="Currency symbol")
     exchange_rate: Optional[StrictStr] = Field(
-        None, description="Currency exchange rate (EUR to this)"
+        default=None, description="Currency exchange rate (EUR to this)"
     )
-    html_symbol: Optional[StrictStr] = Field(None, description="Currency html code")
+    html_symbol: Optional[StrictStr] = Field(
+        default=None, description="Currency html code"
+    )
     __properties = ["id", "symbol", "exchange_rate", "html_symbol"]
 
     class Config:

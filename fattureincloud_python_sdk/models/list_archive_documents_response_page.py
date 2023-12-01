@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
 from fattureincloud_python_sdk.models.archive_document import ArchiveDocument
 
 
@@ -29,7 +29,7 @@ class ListArchiveDocumentsResponsePage(BaseModel):
     ListArchiveDocumentsResponsePage
     """
 
-    data: Optional[conlist(ArchiveDocument)] = None
+    data: Optional[List[ArchiveDocument]] = None
     __properties = ["data"]
 
     class Config:

@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt
 
 
 class MonthlyTotal(BaseModel):
@@ -29,13 +29,13 @@ class MonthlyTotal(BaseModel):
     """
 
     net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Monthly total net amount"
+        default=None, description="Monthly total net amount"
     )
     gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Monthly total gross amount"
+        default=None, description="Monthly total gross amount"
     )
     count: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Monthly total receipt number"
+        default=None, description="Monthly total receipt number"
     )
     __properties = ["net", "gross", "count"]
 

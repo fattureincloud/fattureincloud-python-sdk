@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool
 
 
 class VerifyEInvoiceXmlResponseData(BaseModel):
@@ -29,7 +29,7 @@ class VerifyEInvoiceXmlResponseData(BaseModel):
     """
 
     success: Optional[StrictBool] = Field(
-        None, description="Determine if the invoice XML is valid."
+        default=None, description="Determine if the invoice XML is valid."
     )
     __properties = ["success"]
 

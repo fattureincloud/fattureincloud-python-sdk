@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 
 
 class User(BaseModel):
@@ -28,13 +28,13 @@ class User(BaseModel):
     User
     """
 
-    id: Optional[StrictInt] = Field(None, description="User id")
-    name: Optional[StrictStr] = Field(None, description="User full name")
-    first_name: Optional[StrictStr] = Field(None, description="User first name")
-    last_name: Optional[StrictStr] = Field(None, description="User last name")
-    email: Optional[StrictStr] = Field(None, description="User email address")
-    hash: Optional[StrictStr] = Field(None, description="User hash")
-    picture: Optional[StrictStr] = Field(None, description="User picture")
+    id: Optional[StrictInt] = Field(default=None, description="User id")
+    name: Optional[StrictStr] = Field(default=None, description="User full name")
+    first_name: Optional[StrictStr] = Field(default=None, description="User first name")
+    last_name: Optional[StrictStr] = Field(default=None, description="User last name")
+    email: Optional[StrictStr] = Field(default=None, description="User email address")
+    hash: Optional[StrictStr] = Field(default=None, description="User hash")
+    picture: Optional[StrictStr] = Field(default=None, description="User picture")
     __properties = ["id", "name", "first_name", "last_name", "email", "hash", "picture"]
 
     class Config:

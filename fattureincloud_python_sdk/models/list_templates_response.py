@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 
 
@@ -29,7 +29,7 @@ class ListTemplatesResponse(BaseModel):
     # noqa: E501
     """
 
-    data: Optional[conlist(DocumentTemplate)] = None
+    data: Optional[List[DocumentTemplate]] = None
     __properties = ["data"]
 
     class Config:

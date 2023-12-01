@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 from fattureincloud_python_sdk.models.original_document_type import OriginalDocumentType
 from fattureincloud_python_sdk.models.vat_kind import VatKind
 
@@ -33,26 +33,32 @@ class IssuedDocumentEiData(BaseModel):
     vat_kind: Optional[VatKind] = None
     original_document_type: Optional[OriginalDocumentType] = None
     od_number: Optional[StrictStr] = Field(
-        None, description="E-invoice original document number"
+        default=None, description="E-invoice original document number"
     )
     od_date: Optional[date] = Field(
-        None, description="E-invoice original document date"
+        default=None, description="E-invoice original document date"
     )
-    cig: Optional[StrictStr] = Field(None, description="E-invoice CIG")
-    cup: Optional[StrictStr] = Field(None, description="E-invoice CUP")
+    cig: Optional[StrictStr] = Field(default=None, description="E-invoice CIG")
+    cup: Optional[StrictStr] = Field(default=None, description="E-invoice CUP")
     payment_method: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="E-invoice payment method [required for e-invoices] (see [here](https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf) for the accepted values of ModalitaPagamento)",
     )
-    bank_name: Optional[StrictStr] = Field(None, description="E-invoice bank name")
-    bank_iban: Optional[StrictStr] = Field(None, description="E-invoice bank IBAN")
+    bank_name: Optional[StrictStr] = Field(
+        default=None, description="E-invoice bank name"
+    )
+    bank_iban: Optional[StrictStr] = Field(
+        default=None, description="E-invoice bank IBAN"
+    )
     bank_beneficiary: Optional[StrictStr] = Field(
-        None, description="E-invoice bank beneficiary"
+        default=None, description="E-invoice bank beneficiary"
     )
     invoice_number: Optional[StrictStr] = Field(
-        None, description="E-invoice invoice number"
+        default=None, description="E-invoice invoice number"
     )
-    invoice_date: Optional[date] = Field(None, description="E-invoice invoice date")
+    invoice_date: Optional[date] = Field(
+        default=None, description="E-invoice invoice date"
+    )
     __properties = [
         "vat_kind",
         "original_document_type",

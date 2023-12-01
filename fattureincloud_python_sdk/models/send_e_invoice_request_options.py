@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool
 
 
 class SendEInvoiceRequestOptions(BaseModel):
@@ -29,7 +29,8 @@ class SendEInvoiceRequestOptions(BaseModel):
     """
 
     dry_run: Optional[StrictBool] = Field(
-        None, description="If set to true the e-invoice will not be sent to the SDI."
+        default=None,
+        description="If set to true the e-invoice will not be sent to the SDI.",
     )
     __properties = ["dry_run"]
 

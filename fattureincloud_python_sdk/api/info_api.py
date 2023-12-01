@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import StrictBool, StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -94,9 +95,7 @@ class InfoApi:
     @validate_arguments
     def list_archive_categories(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ListArchiveCategoriesResponse:  # noqa: E501
         """List Archive Categories  # noqa: E501
@@ -132,9 +131,7 @@ class InfoApi:
     @validate_arguments
     def list_archive_categories_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Archive Categories  # noqa: E501
@@ -420,9 +417,7 @@ class InfoApi:
     @validate_arguments
     def list_cost_centers(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ListCostCentersResponse:  # noqa: E501
         """List Cost Centers  # noqa: E501
@@ -456,9 +451,7 @@ class InfoApi:
     @validate_arguments
     def list_cost_centers_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Cost Centers  # noqa: E501
@@ -1259,9 +1252,7 @@ class InfoApi:
     @validate_arguments
     def list_payment_accounts(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1315,9 +1306,7 @@ class InfoApi:
     @validate_arguments
     def list_payment_accounts_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1460,9 +1449,7 @@ class InfoApi:
     @validate_arguments
     def list_payment_methods(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1516,9 +1503,7 @@ class InfoApi:
     @validate_arguments
     def list_payment_methods_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -1661,12 +1646,8 @@ class InfoApi:
     @validate_arguments
     def list_product_categories(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        context: Annotated[
-            StrictStr, Field(..., description="Categories resource type.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        context: Annotated[StrictStr, Field(description="Categories resource type.")],
         **kwargs
     ) -> ListProductCategoriesResponse:  # noqa: E501
         """List Product Categories  # noqa: E501
@@ -1704,12 +1685,8 @@ class InfoApi:
     @validate_arguments
     def list_product_categories_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        context: Annotated[
-            StrictStr, Field(..., description="Categories resource type.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        context: Annotated[StrictStr, Field(description="Categories resource type.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Product Categories  # noqa: E501
@@ -1830,9 +1807,7 @@ class InfoApi:
     @validate_arguments
     def list_received_document_categories(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ListReceivedDocumentCategoriesResponse:  # noqa: E501
         """List Received Document Categories  # noqa: E501
@@ -1868,9 +1843,7 @@ class InfoApi:
     @validate_arguments
     def list_received_document_categories_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Received Document Categories  # noqa: E501
@@ -1984,9 +1957,7 @@ class InfoApi:
     @validate_arguments
     def list_revenue_centers(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ListRevenueCentersResponse:  # noqa: E501
         """List Revenue Centers  # noqa: E501
@@ -2022,9 +1993,7 @@ class InfoApi:
     @validate_arguments
     def list_revenue_centers_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Revenue Centers  # noqa: E501
@@ -2452,9 +2421,7 @@ class InfoApi:
     @validate_arguments
     def list_vat_types(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
@@ -2495,9 +2462,7 @@ class InfoApi:
     @validate_arguments
     def list_vat_types_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,

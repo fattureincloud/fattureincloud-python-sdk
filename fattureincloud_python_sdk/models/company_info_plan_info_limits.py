@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt
 
 
 class CompanyInfoPlanInfoLimits(BaseModel):
@@ -29,16 +29,16 @@ class CompanyInfoPlanInfoLimits(BaseModel):
     """
 
     clients: Optional[StrictInt] = Field(
-        None, description="Company plan clients limits"
+        default=None, description="Company plan clients limits"
     )
     suppliers: Optional[StrictInt] = Field(
-        None, description="Company plan suppliers limits"
+        default=None, description="Company plan suppliers limits"
     )
     products: Optional[StrictInt] = Field(
-        None, description="Company plan products limits"
+        default=None, description="Company plan products limits"
     )
     documents: Optional[StrictInt] = Field(
-        None, description="Company plan documents limits"
+        default=None, description="Company plan documents limits"
     )
     __properties = ["clients", "suppliers", "products", "documents"]
 

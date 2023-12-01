@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr, conint
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -54,9 +55,7 @@ class ClientsApi:
     @validate_arguments
     def create_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_client_request: Annotated[
             Optional[CreateClientRequest], Field(description="The client to create")
         ] = None,
@@ -97,9 +96,7 @@ class ClientsApi:
     @validate_arguments
     def create_client_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_client_request: Annotated[
             Optional[CreateClientRequest], Field(description="The client to create")
         ] = None,
@@ -229,12 +226,8 @@ class ClientsApi:
     @validate_arguments
     def delete_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Client  # noqa: E501
@@ -272,12 +265,8 @@ class ClientsApi:
     @validate_arguments
     def delete_client_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Client  # noqa: E501
@@ -389,12 +378,8 @@ class ClientsApi:
     @validate_arguments
     def get_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -442,12 +427,8 @@ class ClientsApi:
     @validate_arguments
     def get_client_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -584,9 +565,7 @@ class ClientsApi:
     @validate_arguments
     def list_clients(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -603,7 +582,7 @@ class ClientsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -656,9 +635,7 @@ class ClientsApi:
     @validate_arguments
     def list_clients_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -675,7 +652,7 @@ class ClientsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -833,12 +810,8 @@ class ClientsApi:
     @validate_arguments
     def modify_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         modify_client_request: Annotated[
             Optional[ModifyClientRequest],
             Field(
@@ -884,12 +857,8 @@ class ClientsApi:
     @validate_arguments
     def modify_client_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         modify_client_request: Annotated[
             Optional[ModifyClientRequest],
             Field(

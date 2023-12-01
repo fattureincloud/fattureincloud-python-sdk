@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from fattureincloud_python_sdk.models.receipt_pre_create_info import (
     ReceiptPreCreateInfo,

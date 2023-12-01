@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Dict, List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 from fattureincloud_python_sdk.models.issued_document_pre_create_info_default_values import (
@@ -50,32 +50,32 @@ class IssuedDocumentPreCreateInfo(BaseModel):
         IssuedDocumentPreCreateInfoExtraDataDefaultValues
     ] = None
     items_default_values: Optional[IssuedDocumentPreCreateInfoItemsDefaultValues] = None
-    countries_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Countries list"
+    countries_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Countries list"
     )
-    currencies_list: Optional[conlist(Currency)] = Field(
-        None, description="Currencies list"
+    currencies_list: Optional[List[Currency]] = Field(
+        default=None, description="Currencies list"
     )
-    templates_list: Optional[conlist(DocumentTemplate)] = Field(
-        None, description="Document templates list"
+    templates_list: Optional[List[DocumentTemplate]] = Field(
+        default=None, description="Document templates list"
     )
-    dn_templates_list: Optional[conlist(DocumentTemplate)] = Field(
-        None, description="Delivery note templates list"
+    dn_templates_list: Optional[List[DocumentTemplate]] = Field(
+        default=None, description="Delivery note templates list"
     )
-    ai_templates_list: Optional[conlist(DocumentTemplate)] = Field(
-        None, description="Accompanying invoice templates list"
+    ai_templates_list: Optional[List[DocumentTemplate]] = Field(
+        default=None, description="Accompanying invoice templates list"
     )
-    payment_methods_list: Optional[conlist(PaymentMethod)] = Field(
-        None, description="Payment methods list"
+    payment_methods_list: Optional[List[PaymentMethod]] = Field(
+        default=None, description="Payment methods list"
     )
-    payment_accounts_list: Optional[conlist(PaymentAccount)] = Field(
-        None, description="Payment accounts list"
+    payment_accounts_list: Optional[List[PaymentAccount]] = Field(
+        default=None, description="Payment accounts list"
     )
-    vat_types_list: Optional[conlist(VatType)] = Field(
-        None, description="Vat types list"
+    vat_types_list: Optional[List[VatType]] = Field(
+        default=None, description="Vat types list"
     )
-    languages_list: Optional[conlist(Language)] = Field(
-        None, description="Languages list"
+    languages_list: Optional[List[Language]] = Field(
+        default=None, description="Languages list"
     )
     __properties = [
         "numerations",

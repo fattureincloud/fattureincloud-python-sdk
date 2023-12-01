@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class PaymentMethodDetails(BaseModel):
@@ -28,9 +28,11 @@ class PaymentMethodDetails(BaseModel):
     PaymentMethodDetails
     """
 
-    title: Optional[StrictStr] = Field(None, description="Payment method details title")
+    title: Optional[StrictStr] = Field(
+        default=None, description="Payment method details title"
+    )
     description: Optional[StrictStr] = Field(
-        None, description="Payment method details description"
+        default=None, description="Payment method details description"
     )
     __properties = ["title", "description"]
 

@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 
@@ -29,14 +29,16 @@ class ReceiptItemsListItem(BaseModel):
     ReceiptItemsListItem
     """
 
-    id: Optional[StrictInt] = Field(None, description="Receipt item id")
+    id: Optional[StrictInt] = Field(default=None, description="Receipt item id")
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt item total net amount"
+        default=None, description="Receipt item total net amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt item total gross amount"
+        default=None, description="Receipt item total gross amount"
     )
-    category: Optional[StrictStr] = Field(None, description="Receipt item category")
+    category: Optional[StrictStr] = Field(
+        default=None, description="Receipt item category"
+    )
     vat: Optional[VatType] = None
     __properties = ["id", "amount_net", "amount_gross", "category", "vat"]
 

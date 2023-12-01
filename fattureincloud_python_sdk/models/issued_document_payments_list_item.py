@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt
 from fattureincloud_python_sdk.models.issued_document_payments_list_item_payment_terms import (
     IssuedDocumentPaymentsListItemPaymentTerms,
 )
@@ -33,20 +33,23 @@ class IssuedDocumentPaymentsListItem(BaseModel):
     IssuedDocumentPaymentsListItem
     """
 
-    id: Optional[StrictInt] = Field(None, description="Issued document payment item id")
+    id: Optional[StrictInt] = Field(
+        default=None, description="Issued document payment item id"
+    )
     due_date: Optional[date] = Field(
-        None, description="Issued document payment due date"
+        default=None, description="Issued document payment due date"
     )
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document payment amount"
+        default=None, description="Issued document payment amount"
     )
     status: Optional[IssuedDocumentStatus] = None
     payment_account: Optional[PaymentAccount] = None
     paid_date: Optional[date] = Field(
-        None, description="Issued document payment date [Only if status is paid]"
+        default=None,
+        description="Issued document payment date [Only if status is paid]",
     )
-    ei_raw: Optional[Dict[str, Any]] = Field(
-        None,
+    ei_raw: Optional[Union[str, Any]] = Field(
+        default=None,
         description="Issued document payment advanced raw attributes for e-invoices",
     )
     payment_terms: Optional[IssuedDocumentPaymentsListItemPaymentTerms] = None

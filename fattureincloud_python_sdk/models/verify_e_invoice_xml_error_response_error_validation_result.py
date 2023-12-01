@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class VerifyEInvoiceXmlErrorResponseErrorValidationResult(BaseModel):
@@ -28,7 +28,7 @@ class VerifyEInvoiceXmlErrorResponseErrorValidationResult(BaseModel):
     VerifyEInvoiceXmlErrorResponseErrorValidationResult
     """
 
-    xml_errors: Optional[conlist(StrictStr)] = None
+    xml_errors: Optional[List[StrictStr]] = None
     __properties = ["xml_errors"]
 
     class Config:

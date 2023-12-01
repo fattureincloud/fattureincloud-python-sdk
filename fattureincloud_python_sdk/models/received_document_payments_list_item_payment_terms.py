@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt
 from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
 
 
@@ -30,7 +30,7 @@ class ReceivedDocumentPaymentsListItemPaymentTerms(BaseModel):
     """
 
     days: Optional[StrictInt] = Field(
-        None,
+        default=None,
         description="Received document payment number of days by which the payment must be made",
     )
     type: Optional[PaymentTermsType] = None

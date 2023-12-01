@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 
 
 class IssuedDocumentExtraData(BaseModel):
@@ -31,36 +31,36 @@ class IssuedDocumentExtraData(BaseModel):
     show_sofort_button: Optional[StrictBool] = None
     multifatture_sent: Optional[StrictInt] = None
     ts_communication: Optional[StrictBool] = Field(
-        None, description='Send issued document to "Sistema Tessera Sanitaria"'
+        default=None, description='Send issued document to "Sistema Tessera Sanitaria"'
     )
     ts_flag_tipo_spesa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description='Issued document ts "tipo spesa" [TK, FC, FV, SV,SP, AD, AS, ECG, SR]',
     )
     ts_pagamento_tracciato: Optional[StrictBool] = Field(
-        None, description="Issued document ts traced payment"
+        default=None, description="Issued document ts traced payment"
     )
     ts_tipo_spesa: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more.",
     )
     ts_opposizione: Optional[StrictBool] = Field(
-        None, description='Issued document ts "opposizione"'
+        default=None, description='Issued document ts "opposizione"'
     )
     ts_status: Optional[StrictInt] = Field(
-        None, description="Issued document ts status"
+        default=None, description="Issued document ts status"
     )
     ts_file_id: Optional[StrictStr] = Field(
-        None, description="Issued document ts file id"
+        default=None, description="Issued document ts file id"
     )
     ts_sent_date: Optional[date] = Field(
-        None, description="Issued document ts sent date"
+        default=None, description="Issued document ts sent date"
     )
     ts_full_amount: Optional[StrictBool] = Field(
-        None, description="Issued document ts total amount"
+        default=None, description="Issued document ts total amount"
     )
     imported_by: Optional[StrictStr] = Field(
-        None, description="Issued document imported by software"
+        default=None, description="Issued document imported by software"
     )
     __properties = [
         "show_sofort_button",

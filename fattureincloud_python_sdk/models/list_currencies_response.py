@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel
 from fattureincloud_python_sdk.models.currency import Currency
 
 
@@ -29,7 +29,7 @@ class ListCurrenciesResponse(BaseModel):
     # noqa: E501
     """
 
-    data: Optional[conlist(Currency)] = None
+    data: Optional[List[Currency]] = None
     __properties = ["data"]
 
     class Config:

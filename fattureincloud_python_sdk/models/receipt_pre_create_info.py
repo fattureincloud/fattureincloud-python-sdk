@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Dict, List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.vat_type import VatType
 
@@ -31,20 +31,20 @@ class ReceiptPreCreateInfo(BaseModel):
     """
 
     numerations: Optional[Dict[str, Dict[str, StrictInt]]] = None
-    numerations_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Receipt used numerations list"
+    numerations_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Receipt used numerations list"
     )
-    rc_centers_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Receipt used revenue centers list"
+    rc_centers_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Receipt used revenue centers list"
     )
-    payment_accounts_list: Optional[conlist(PaymentAccount)] = Field(
-        None, description="Payment accounts list"
+    payment_accounts_list: Optional[List[PaymentAccount]] = Field(
+        default=None, description="Payment accounts list"
     )
-    categories_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Receipt categories list"
+    categories_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Receipt categories list"
     )
-    vat_types_list: Optional[conlist(VatType)] = Field(
-        None, description="Vat types list"
+    vat_types_list: Optional[List[VatType]] = Field(
+        default=None, description="Vat types list"
     )
     __properties = [
         "numerations",

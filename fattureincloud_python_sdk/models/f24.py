@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.f24_status import F24Status
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 
@@ -30,21 +30,23 @@ class F24(BaseModel):
     F24
     """
 
-    id: Optional[StrictInt] = Field(None, description="F24 id")
-    due_date: Optional[date] = Field(None, description="F24 due date")
+    id: Optional[StrictInt] = Field(default=None, description="F24 id")
+    due_date: Optional[date] = Field(default=None, description="F24 due date")
     status: Optional[F24Status] = None
     payment_account: Optional[PaymentAccount] = None
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="F24 amount"
+        default=None, description="F24 amount"
     )
     attachment_url: Optional[StrictStr] = Field(
-        None, description="[Temporary] [Read Only] F24 url of the attached file"
+        default=None, description="[Temporary] [Read Only] F24 url of the attached file"
     )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only]  F24 attachment token returned by POST /taxes/attachment",
     )
-    description: Optional[StrictStr] = Field(None, description="F24 description")
+    description: Optional[StrictStr] = Field(
+        default=None, description="F24 description"
+    )
     __properties = [
         "id",
         "due_date",

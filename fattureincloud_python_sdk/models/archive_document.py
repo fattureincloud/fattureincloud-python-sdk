@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
 
 
 class ArchiveDocument(BaseModel):
@@ -28,20 +28,22 @@ class ArchiveDocument(BaseModel):
     ArchiveDocument
     """
 
-    id: Optional[StrictInt] = Field(None, description="Archive document id")
+    id: Optional[StrictInt] = Field(default=None, description="Archive document id")
     var_date: Optional[date] = Field(
-        None, alias="date", description="Archive document date"
+        default=None, description="Archive document date", alias="date"
     )
     description: Optional[StrictStr] = Field(
-        None, description="Archive Document description"
+        default=None, description="Archive Document description"
     )
     attachment_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Archive Document url of the attached file",
     )
-    category: Optional[StrictStr] = Field(None, description="Archive document category")
+    category: Optional[StrictStr] = Field(
+        default=None, description="Archive document category"
+    )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only]  [Required] Archive document attachment token returned by POST /archive/attachment",
     )
     __properties = [

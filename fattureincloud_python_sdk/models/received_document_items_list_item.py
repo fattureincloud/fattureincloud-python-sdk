@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 
@@ -29,31 +29,34 @@ class ReceivedDocumentItemsListItem(BaseModel):
     ReceivedDocumentItemsListItem
     """
 
-    id: Optional[StrictInt] = Field(None, description="Received document item id")
+    id: Optional[StrictInt] = Field(
+        default=None, description="Received document item id"
+    )
     product_id: Optional[StrictInt] = Field(
-        None, description="Received document product id"
+        default=None, description="Received document product id"
     )
     code: Optional[StrictStr] = Field(
-        None, description="Received document item product code"
+        default=None, description="Received document item product code"
     )
     name: Optional[StrictStr] = Field(
-        None, description="Received document item product name"
+        default=None, description="Received document item product name"
     )
     measure: Optional[StrictStr] = Field(
-        None, description="Received document item measure"
+        default=None, description="Received document item measure"
     )
     net_price: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document item product net price"
+        default=None, description="Received document item product net price"
     )
     category: Optional[StrictStr] = Field(
-        None, description="Received document item product category"
+        default=None, description="Received document item product category"
     )
     qty: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document item quantity"
+        default=None, description="Received document item quantity"
     )
     vat: Optional[VatType] = None
     stock: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document item product number of items in stock"
+        default=None,
+        description="Received document item product number of items in stock",
     )
     __properties = [
         "id",

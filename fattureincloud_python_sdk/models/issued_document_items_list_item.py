@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.vat_type import VatType
 
 
@@ -29,56 +29,57 @@ class IssuedDocumentItemsListItem(BaseModel):
     IssuedDocumentItemsListItem
     """
 
-    id: Optional[StrictInt] = Field(None, description="Issued document item id")
+    id: Optional[StrictInt] = Field(default=None, description="Issued document item id")
     product_id: Optional[StrictInt] = Field(
-        None, description="Issued document item product id"
+        default=None, description="Issued document item product id"
     )
     code: Optional[StrictStr] = Field(
-        None, description="Issued document item product code"
+        default=None, description="Issued document item product code"
     )
     name: Optional[StrictStr] = Field(
-        None, description="Issued document item product name"
+        default=None, description="Issued document item product name"
     )
     category: Optional[StrictStr] = Field(
-        None, description="Issued document item product category"
+        default=None, description="Issued document item product category"
     )
     description: Optional[StrictStr] = Field(
-        None, description="Issued document product description"
+        default=None, description="Issued document product description"
     )
     qty: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document item quantity"
+        default=None, description="Issued document item quantity"
     )
     measure: Optional[StrictStr] = Field(
-        None, description="Issued document item measure"
+        default=None, description="Issued document item measure"
     )
     net_price: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document item net price"
+        default=None, description="Issued document item net price"
     )
     gross_price: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document item gross price"
+        default=None, description="Issued document item gross price"
     )
     vat: Optional[VatType] = None
     not_taxable: Optional[StrictBool] = Field(
-        None, description="Issued document item is not taxable"
+        default=None, description="Issued document item is not taxable"
     )
     apply_withholding_taxes: Optional[StrictBool] = Field(
-        None,
+        default=None,
         description="Issued document item apply withholding taxes, rivalsa and cassa",
     )
     discount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document item discount percentual value"
+        default=None, description="Issued document item discount percentual value"
     )
     discount_highlight: Optional[StrictBool] = Field(
-        None, description="Issued document item highlight discount"
+        default=None, description="Issued document item highlight discount"
     )
     in_dn: Optional[StrictBool] = Field(
-        None, description="Issued document item add in delivery note"
+        default=None, description="Issued document item add in delivery note"
     )
     stock: Optional[StrictBool] = Field(
-        None, description="Issued document item move stock"
+        default=None, description="Issued document item move stock"
     )
-    ei_raw: Optional[Dict[str, Any]] = Field(
-        None, description="Issued document advanced raw attributes for e-invoices"
+    ei_raw: Optional[Union[str, Any]] = Field(
+        default=None,
+        description="Issued document advanced raw attributes for e-invoices",
     )
     __properties = [
         "id",

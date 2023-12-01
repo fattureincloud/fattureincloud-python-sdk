@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictBool, StrictInt
+from pydantic import StrictBool, StrictInt
 
 from typing import Optional
 
@@ -58,12 +59,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def get_e_invoice_rejection_reason(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> GetEInvoiceRejectionReasonResponse:  # noqa: E501
         """Get E-Invoice Rejection Reason  # noqa: E501
@@ -101,12 +98,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def get_e_invoice_rejection_reason_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Get E-Invoice Rejection Reason  # noqa: E501
@@ -225,12 +218,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def get_e_invoice_xml(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         include_attachment: Annotated[
             Optional[StrictBool],
             Field(description="Include the attachment to the XML e-invoice."),
@@ -274,12 +263,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def get_e_invoice_xml_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         include_attachment: Annotated[
             Optional[StrictBool],
             Field(description="Include the attachment to the XML e-invoice."),
@@ -409,12 +394,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def send_e_invoice(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         send_e_invoice_request: Optional[SendEInvoiceRequest] = None,
         **kwargs
     ) -> SendEInvoiceResponse:  # noqa: E501
@@ -455,12 +436,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def send_e_invoice_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         send_e_invoice_request: Optional[SendEInvoiceRequest] = None,
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -595,12 +572,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def verify_e_invoice_xml(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> VerifyEInvoiceXmlResponse:  # noqa: E501
         """Verify E-Invoice XML  # noqa: E501
@@ -638,12 +611,8 @@ class IssuedEInvoicesApi:
     @validate_arguments
     def verify_e_invoice_xml_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Verify E-Invoice XML  # noqa: E501

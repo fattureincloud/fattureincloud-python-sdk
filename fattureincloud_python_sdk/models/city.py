@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class City(BaseModel):
@@ -28,9 +28,11 @@ class City(BaseModel):
     City
     """
 
-    postal_code: Optional[StrictStr] = Field(None, description="City postal code")
-    city: Optional[StrictStr] = Field(None, description="City name")
-    province: Optional[StrictStr] = Field(None, description="City province")
+    postal_code: Optional[StrictStr] = Field(
+        default=None, description="City postal code"
+    )
+    city: Optional[StrictStr] = Field(default=None, description="City name")
+    province: Optional[StrictStr] = Field(default=None, description="City province")
     __properties = ["postal_code", "city", "province"]
 
     class Config:

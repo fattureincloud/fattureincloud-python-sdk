@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr, conint
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -58,9 +59,7 @@ class ProductsApi:
     @validate_arguments
     def create_product(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_product_request: Optional[CreateProductRequest] = None,
         **kwargs
     ) -> CreateProductResponse:  # noqa: E501
@@ -99,9 +98,7 @@ class ProductsApi:
     @validate_arguments
     def create_product_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_product_request: Optional[CreateProductRequest] = None,
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -229,12 +226,8 @@ class ProductsApi:
     @validate_arguments
     def delete_product(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        product_id: Annotated[
-            StrictInt, Field(..., description="The ID of the product.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        product_id: Annotated[StrictInt, Field(description="The ID of the product.")],
         **kwargs
     ) -> None:  # noqa: E501
         """Delete Product  # noqa: E501
@@ -272,12 +265,8 @@ class ProductsApi:
     @validate_arguments
     def delete_product_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        product_id: Annotated[
-            StrictInt, Field(..., description="The ID of the product.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        product_id: Annotated[StrictInt, Field(description="The ID of the product.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Delete Product  # noqa: E501
@@ -389,12 +378,8 @@ class ProductsApi:
     @validate_arguments
     def get_product(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        product_id: Annotated[
-            StrictInt, Field(..., description="The ID of the product.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        product_id: Annotated[StrictInt, Field(description="The ID of the product.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -442,12 +427,8 @@ class ProductsApi:
     @validate_arguments
     def get_product_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        product_id: Annotated[
-            StrictInt, Field(..., description="The ID of the product.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        product_id: Annotated[StrictInt, Field(description="The ID of the product.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -584,9 +565,7 @@ class ProductsApi:
     @validate_arguments
     def list_products(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -603,7 +582,7 @@ class ProductsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -656,9 +635,7 @@ class ProductsApi:
     @validate_arguments
     def list_products_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
@@ -675,7 +652,7 @@ class ProductsApi:
             Optional[StrictInt], Field(description="The page to retrieve.")
         ] = None,
         per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
             Field(description="The size of the page."),
         ] = None,
         q: Annotated[
@@ -833,12 +810,8 @@ class ProductsApi:
     @validate_arguments
     def modify_product(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        product_id: Annotated[
-            StrictInt, Field(..., description="The ID of the product.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        product_id: Annotated[StrictInt, Field(description="The ID of the product.")],
         modify_product_request: Annotated[
             Optional[ModifyProductRequest],
             Field(description="Modified product details."),
@@ -882,12 +855,8 @@ class ProductsApi:
     @validate_arguments
     def modify_product_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        product_id: Annotated[
-            StrictInt, Field(..., description="The ID of the product.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        product_id: Annotated[StrictInt, Field(description="The ID of the product.")],
         modify_product_request: Annotated[
             Optional[ModifyProductRequest],
             Field(description="Modified product details."),

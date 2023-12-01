@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt
+from pydantic import StrictInt
 
 from fattureincloud_python_sdk.models.get_company_info_response import (
     GetCompanyInfoResponse,
@@ -49,9 +50,7 @@ class CompaniesApi:
     @validate_arguments
     def get_company_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> GetCompanyInfoResponse:  # noqa: E501
         """Get Company Info  # noqa: E501
@@ -85,9 +84,7 @@ class CompaniesApi:
     @validate_arguments
     def get_company_info_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """Get Company Info  # noqa: E501

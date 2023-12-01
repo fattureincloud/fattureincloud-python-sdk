@@ -19,8 +19,9 @@ import warnings
 
 from pydantic import validate_arguments, ValidationError
 
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import StrictInt, StrictStr
 
 from typing import Optional
 
@@ -66,9 +67,7 @@ class WebhooksApi:
     @validate_arguments
     def create_webhooks_subscription(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_webhooks_subscription_request: Optional[
             CreateWebhooksSubscriptionRequest
         ] = None,
@@ -109,9 +108,7 @@ class WebhooksApi:
     @validate_arguments
     def create_webhooks_subscription_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_webhooks_subscription_request: Optional[
             CreateWebhooksSubscriptionRequest
         ] = None,
@@ -241,11 +238,9 @@ class WebhooksApi:
     @validate_arguments
     def delete_webhooks_subscription(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         subscription_id: Annotated[
-            StrictStr, Field(..., description="The ID of the subscription.")
+            StrictStr, Field(description="The ID of the subscription.")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -284,11 +279,9 @@ class WebhooksApi:
     @validate_arguments
     def delete_webhooks_subscription_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         subscription_id: Annotated[
-            StrictStr, Field(..., description="The ID of the subscription.")
+            StrictStr, Field(description="The ID of the subscription.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -401,11 +394,9 @@ class WebhooksApi:
     @validate_arguments
     def get_webhooks_subscription(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         subscription_id: Annotated[
-            StrictStr, Field(..., description="The ID of the subscription.")
+            StrictStr, Field(description="The ID of the subscription.")
         ],
         **kwargs
     ) -> GetWebhooksSubscriptionResponse:  # noqa: E501
@@ -444,11 +435,9 @@ class WebhooksApi:
     @validate_arguments
     def get_webhooks_subscription_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         subscription_id: Annotated[
-            StrictStr, Field(..., description="The ID of the subscription.")
+            StrictStr, Field(description="The ID of the subscription.")
         ],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
@@ -568,9 +557,7 @@ class WebhooksApi:
     @validate_arguments
     def list_webhooks_subscriptions(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ListWebhooksSubscriptionsResponse:  # noqa: E501
         """List Webhooks Subscriptions  # noqa: E501
@@ -606,9 +593,7 @@ class WebhooksApi:
     @validate_arguments
     def list_webhooks_subscriptions_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         **kwargs
     ) -> ApiResponse:  # noqa: E501
         """List Webhooks Subscriptions  # noqa: E501
@@ -722,11 +707,9 @@ class WebhooksApi:
     @validate_arguments
     def modify_webhooks_subscription(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         subscription_id: Annotated[
-            StrictStr, Field(..., description="The ID of the subscription.")
+            StrictStr, Field(description="The ID of the subscription.")
         ],
         modify_webhooks_subscription_request: Optional[
             ModifyWebhooksSubscriptionRequest
@@ -770,11 +753,9 @@ class WebhooksApi:
     @validate_arguments
     def modify_webhooks_subscription_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         subscription_id: Annotated[
-            StrictStr, Field(..., description="The ID of the subscription.")
+            StrictStr, Field(description="The ID of the subscription.")
         ],
         modify_webhooks_subscription_request: Optional[
             ModifyWebhooksSubscriptionRequest

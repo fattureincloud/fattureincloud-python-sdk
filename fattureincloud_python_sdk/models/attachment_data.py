@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 
 
 class AttachmentData(BaseModel):
@@ -29,7 +29,7 @@ class AttachmentData(BaseModel):
     """
 
     attachment_token: Optional[StrictStr] = Field(
-        None, description="Uploaded attachment token."
+        default=None, description="Uploaded attachment token."
     )
     __properties = ["attachment_token"]
 

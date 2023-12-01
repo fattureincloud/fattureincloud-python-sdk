@@ -19,8 +19,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 
 
@@ -29,13 +29,15 @@ class PaymentAccount(BaseModel):
     PaymentAccount
     """
 
-    id: Optional[StrictInt] = Field(None, description="Payment account id")
-    name: Optional[StrictStr] = Field(None, description="Payment account name")
+    id: Optional[StrictInt] = Field(default=None, description="Payment account id")
+    name: Optional[StrictStr] = Field(default=None, description="Payment account name")
     type: Optional[PaymentAccountType] = None
-    iban: Optional[StrictStr] = Field(None, description="Payment account iban")
-    sia: Optional[StrictStr] = Field(None, description="Payment account sia")
-    cuc: Optional[StrictStr] = Field(None, description="Payment account cuc")
-    virtual: Optional[StrictBool] = Field(None, description="Payment method is virtual")
+    iban: Optional[StrictStr] = Field(default=None, description="Payment account iban")
+    sia: Optional[StrictStr] = Field(default=None, description="Payment account sia")
+    cuc: Optional[StrictStr] = Field(default=None, description="Payment account cuc")
+    virtual: Optional[StrictBool] = Field(
+        default=None, description="Payment method is virtual"
+    )
     __properties = ["id", "name", "type", "iban", "sia", "cuc", "virtual"]
 
     class Config:
