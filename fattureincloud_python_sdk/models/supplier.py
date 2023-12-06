@@ -19,55 +19,73 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.supplier_type import SupplierType
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class Supplier(BaseModel):
     """
     Supplier
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Supplier id")
-    code: Optional[StrictStr] = Field(None, description="Supplier code")
-    name: Optional[StrictStr] = Field(None, description="Supplier name")
+    id: Optional[StrictInt] = Field(default=None, description="Supplier id")
+    code: Optional[StrictStr] = Field(default=None, description="Supplier code")
+    name: Optional[StrictStr] = Field(default=None, description="Supplier name")
     type: Optional[SupplierType] = None
-    first_name: Optional[StrictStr] = Field(None, description="Supplier first name")
-    last_name: Optional[StrictStr] = Field(None, description="Supplier last name")
-    contact_person: Optional[StrictStr] = Field(
-        None, description="Supplier contact person"
+    first_name: Optional[StrictStr] = Field(
+        default=None, description="Supplier first name"
     )
-    vat_number: Optional[StrictStr] = Field(None, description="Supplier vat number")
-    tax_code: Optional[StrictStr] = Field(None, description="Supplier tax code")
+    last_name: Optional[StrictStr] = Field(
+        default=None, description="Supplier last name"
+    )
+    contact_person: Optional[StrictStr] = Field(
+        default=None, description="Supplier contact person"
+    )
+    vat_number: Optional[StrictStr] = Field(
+        default=None, description="Supplier vat number"
+    )
+    tax_code: Optional[StrictStr] = Field(default=None, description="Supplier tax code")
     address_street: Optional[StrictStr] = Field(
-        None, description="Supplier street address"
+        default=None, description="Supplier street address"
     )
     address_postal_code: Optional[StrictStr] = Field(
-        None, description="Supplier postal code"
+        default=None, description="Supplier postal code"
     )
-    address_city: Optional[StrictStr] = Field(None, description="Supplier city")
-    address_province: Optional[StrictStr] = Field(None, description="Supplier province")
+    address_city: Optional[StrictStr] = Field(default=None, description="Supplier city")
+    address_province: Optional[StrictStr] = Field(
+        default=None, description="Supplier province"
+    )
     address_extra: Optional[StrictStr] = Field(
-        None, description="Supplier address extra info"
+        default=None, description="Supplier address extra info"
     )
-    country: Optional[StrictStr] = Field(None, description="Supplier country")
+    country: Optional[StrictStr] = Field(default=None, description="Supplier country")
     country_iso: Optional[StrictStr] = Field(
-        None, description="Supplier country iso code"
+        default=None, description="Supplier country iso code"
     )
-    email: Optional[StrictStr] = Field(None, description="Supplier email")
+    email: Optional[StrictStr] = Field(default=None, description="Supplier email")
     certified_email: Optional[StrictStr] = Field(
-        None, description="Supplier certified email"
+        default=None, description="Supplier certified email"
     )
-    phone: Optional[StrictStr] = Field(None, description="Supplier phone")
-    fax: Optional[StrictStr] = Field(None, description="Supplier fax")
-    notes: Optional[StrictStr] = Field(None, description="Supplier extra notes")
-    bank_iban: Optional[StrictStr] = Field(None, description="Supplier bank IBAN")
-    created_at: Optional[StrictStr] = Field(None, description="Supplier creation date")
+    phone: Optional[StrictStr] = Field(default=None, description="Supplier phone")
+    fax: Optional[StrictStr] = Field(default=None, description="Supplier fax")
+    notes: Optional[StrictStr] = Field(default=None, description="Supplier extra notes")
+    bank_iban: Optional[StrictStr] = Field(
+        default=None, description="Supplier bank IBAN"
+    )
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Supplier creation date"
+    )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Supplier last update date"
+        default=None, description="Supplier last update date"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "id",
         "code",
         "name",
@@ -94,97 +112,74 @@ class Supplier(BaseModel):
         "updated_at",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Supplier:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of Supplier from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Supplier:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Supplier from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Supplier.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Supplier.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "code": obj.get("code") if obj.get("code") is not None else None,
-                "name": obj.get("name") if obj.get("name") is not None else None,
+                "id": obj.get("id"),
+                "code": obj.get("code"),
+                "name": obj.get("name"),
                 "type": obj.get("type"),
-                "first_name": obj.get("first_name")
-                if obj.get("first_name") is not None
-                else None,
-                "last_name": obj.get("last_name")
-                if obj.get("last_name") is not None
-                else None,
-                "contact_person": obj.get("contact_person")
-                if obj.get("contact_person") is not None
-                else None,
-                "vat_number": obj.get("vat_number")
-                if obj.get("vat_number") is not None
-                else None,
-                "tax_code": obj.get("tax_code")
-                if obj.get("tax_code") is not None
-                else None,
-                "address_street": obj.get("address_street")
-                if obj.get("address_street") is not None
-                else None,
-                "address_postal_code": obj.get("address_postal_code")
-                if obj.get("address_postal_code") is not None
-                else None,
-                "address_city": obj.get("address_city")
-                if obj.get("address_city") is not None
-                else None,
-                "address_province": obj.get("address_province")
-                if obj.get("address_province") is not None
-                else None,
-                "address_extra": obj.get("address_extra")
-                if obj.get("address_extra") is not None
-                else None,
-                "country": obj.get("country")
-                if obj.get("country") is not None
-                else None,
-                "country_iso": obj.get("country_iso")
-                if obj.get("country_iso") is not None
-                else None,
-                "email": obj.get("email") if obj.get("email") is not None else None,
-                "certified_email": obj.get("certified_email")
-                if obj.get("certified_email") is not None
-                else None,
-                "phone": obj.get("phone") if obj.get("phone") is not None else None,
-                "fax": obj.get("fax") if obj.get("fax") is not None else None,
-                "notes": obj.get("notes") if obj.get("notes") is not None else None,
-                "bank_iban": obj.get("bank_iban")
-                if obj.get("bank_iban") is not None
-                else None,
-                "created_at": obj.get("created_at")
-                if obj.get("created_at") is not None
-                else None,
-                "updated_at": obj.get("updated_at")
-                if obj.get("updated_at") is not None
-                else None,
+                "first_name": obj.get("first_name"),
+                "last_name": obj.get("last_name"),
+                "contact_person": obj.get("contact_person"),
+                "vat_number": obj.get("vat_number"),
+                "tax_code": obj.get("tax_code"),
+                "address_street": obj.get("address_street"),
+                "address_postal_code": obj.get("address_postal_code"),
+                "address_city": obj.get("address_city"),
+                "address_province": obj.get("address_province"),
+                "address_extra": obj.get("address_extra"),
+                "country": obj.get("country"),
+                "country_iso": obj.get("country_iso"),
+                "email": obj.get("email"),
+                "certified_email": obj.get("certified_email"),
+                "phone": obj.get("phone"),
+                "fax": obj.get("fax"),
+                "notes": obj.get("notes"),
+                "bank_iban": obj.get("bank_iban"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
             }
         )
         return _obj

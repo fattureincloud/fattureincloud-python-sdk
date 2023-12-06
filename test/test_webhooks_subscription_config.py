@@ -15,7 +15,9 @@
 
 import unittest
 import json
-from fattureincloud_python_sdk.models.webhooks_subscription_mapping import WebhooksSubscriptionMapping
+from fattureincloud_python_sdk.models.webhooks_subscription_mapping import (
+    WebhooksSubscriptionMapping,
+)
 from functions import json_serial
 
 from fattureincloud_python_sdk.models.webhooks_subscription_config import (
@@ -36,7 +38,7 @@ class TestWebhooksSubscriptionConfig(unittest.TestCase):
         """Test WebhooksSubscriptionConfig"""
 
         model = WebhooksSubscriptionConfig(
-            mapping = WebhooksSubscriptionMapping('binary')
+            mapping=WebhooksSubscriptionMapping("binary")
         )
         expected_json = '{"mapping": "binary"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)

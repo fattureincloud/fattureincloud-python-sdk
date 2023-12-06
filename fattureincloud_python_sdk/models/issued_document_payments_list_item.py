@@ -19,38 +19,47 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt
+from pydantic import Field
 from fattureincloud_python_sdk.models.issued_document_payments_list_item_payment_terms import (
     IssuedDocumentPaymentsListItemPaymentTerms,
 )
 from fattureincloud_python_sdk.models.issued_document_status import IssuedDocumentStatus
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class IssuedDocumentPaymentsListItem(BaseModel):
     """
     IssuedDocumentPaymentsListItem
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Issued document payment item id")
+    id: Optional[StrictInt] = Field(
+        default=None, description="Issued document payment item id"
+    )
     due_date: Optional[date] = Field(
-        None, description="Issued document payment due date"
+        default=None, description="Issued document payment due date"
     )
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document payment amount"
+        default=None, description="Issued document payment amount"
     )
     status: Optional[IssuedDocumentStatus] = None
     payment_account: Optional[PaymentAccount] = None
     paid_date: Optional[date] = Field(
-        None, description="Issued document payment date [Only if status is paid]"
+        default=None,
+        description="Issued document payment date [Only if status is paid]",
     )
-    ei_raw: Optional[Dict[str, Any]] = Field(
-        None,
+    ei_raw: Optional[Union[str, Any]] = Field(
+        default=None,
         description="Issued document payment advanced raw attributes for e-invoices",
     )
     payment_terms: Optional[IssuedDocumentPaymentsListItemPaymentTerms] = None
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "id",
         "due_date",
         "amount",
@@ -61,28 +70,37 @@ class IssuedDocumentPaymentsListItem(BaseModel):
         "payment_terms",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentPaymentsListItem:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentPaymentsListItem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of payment_account
         if self.payment_account:
             _dict["payment_account"] = self.payment_account.to_dict()
@@ -92,31 +110,25 @@ class IssuedDocumentPaymentsListItem(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentPaymentsListItem:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentPaymentsListItem from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentPaymentsListItem.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentPaymentsListItem.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "due_date": obj.get("due_date")
-                if obj.get("due_date") is not None
-                else None,
-                "amount": float(obj.get("amount"))
-                if obj.get("amount") is not None
-                else None,
+                "id": obj.get("id"),
+                "due_date": obj.get("due_date"),
+                "amount": obj.get("amount"),
                 "status": obj.get("status"),
                 "payment_account": PaymentAccount.from_dict(obj.get("payment_account"))
                 if obj.get("payment_account") is not None
                 else None,
-                "paid_date": obj.get("paid_date")
-                if obj.get("paid_date") is not None
-                else None,
-                "ei_raw": obj.get("ei_raw") if obj.get("ei_raw") is not None else None,
+                "paid_date": obj.get("paid_date"),
+                "ei_raw": obj.get("ei_raw"),
                 "payment_terms": IssuedDocumentPaymentsListItemPaymentTerms.from_dict(
                     obj.get("payment_terms")
                 )

@@ -19,14 +19,19 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictBool
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class CompanyInfoPlanInfoFunctions(BaseModel):
     """
-    Access to functions for this company. # noqa: E501
-    """
+    Access to functions for this company.
+    """  # noqa: E501
 
     archive: Optional[StrictBool] = None
     cerved: Optional[StrictBool] = None
@@ -46,7 +51,7 @@ class CompanyInfoPlanInfoFunctions(BaseModel):
     ts_digital: Optional[StrictBool] = None
     ts_invoice_trading: Optional[StrictBool] = None
     ts_pay: Optional[StrictBool] = None
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "archive",
         "cerved",
         "document_attachments",
@@ -67,81 +72,68 @@ class CompanyInfoPlanInfoFunctions(BaseModel):
         "ts_pay",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CompanyInfoPlanInfoFunctions:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of CompanyInfoPlanInfoFunctions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CompanyInfoPlanInfoFunctions:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of CompanyInfoPlanInfoFunctions from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CompanyInfoPlanInfoFunctions.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = CompanyInfoPlanInfoFunctions.parse_obj(
+        _obj = cls.model_validate(
             {
-                "archive": obj.get("archive")
-                if obj.get("archive") is not None
-                else None,
-                "cerved": obj.get("cerved") if obj.get("cerved") is not None else None,
-                "document_attachments": obj.get("document_attachments")
-                if obj.get("document_attachments") is not None
-                else None,
-                "e_invoice": obj.get("e_invoice")
-                if obj.get("e_invoice") is not None
-                else None,
-                "genius": obj.get("genius") if obj.get("genius") is not None else None,
-                "mail_tracking": obj.get("mail_tracking")
-                if obj.get("mail_tracking") is not None
-                else None,
-                "payment_notifications": obj.get("payment_notifications")
-                if obj.get("payment_notifications") is not None
-                else None,
-                "paypal": obj.get("paypal") if obj.get("paypal") is not None else None,
-                "receipts": obj.get("receipts")
-                if obj.get("receipts") is not None
-                else None,
-                "recurring": obj.get("recurring")
-                if obj.get("recurring") is not None
-                else None,
-                "smtp": obj.get("smtp") if obj.get("smtp") is not None else None,
-                "sofort": obj.get("sofort") if obj.get("sofort") is not None else None,
-                "stock": obj.get("stock") if obj.get("stock") is not None else None,
-                "subaccounts": obj.get("subaccounts")
-                if obj.get("subaccounts") is not None
-                else None,
-                "tessera_sanitaria": obj.get("tessera_sanitaria")
-                if obj.get("tessera_sanitaria") is not None
-                else None,
-                "ts_digital": obj.get("ts_digital")
-                if obj.get("ts_digital") is not None
-                else None,
-                "ts_invoice_trading": obj.get("ts_invoice_trading")
-                if obj.get("ts_invoice_trading") is not None
-                else None,
-                "ts_pay": obj.get("ts_pay") if obj.get("ts_pay") is not None else None,
+                "archive": obj.get("archive"),
+                "cerved": obj.get("cerved"),
+                "document_attachments": obj.get("document_attachments"),
+                "e_invoice": obj.get("e_invoice"),
+                "genius": obj.get("genius"),
+                "mail_tracking": obj.get("mail_tracking"),
+                "payment_notifications": obj.get("payment_notifications"),
+                "paypal": obj.get("paypal"),
+                "receipts": obj.get("receipts"),
+                "recurring": obj.get("recurring"),
+                "smtp": obj.get("smtp"),
+                "sofort": obj.get("sofort"),
+                "stock": obj.get("stock"),
+                "subaccounts": obj.get("subaccounts"),
+                "tessera_sanitaria": obj.get("tessera_sanitaria"),
+                "ts_digital": obj.get("ts_digital"),
+                "ts_invoice_trading": obj.get("ts_invoice_trading"),
+                "ts_pay": obj.get("ts_pay"),
             }
         )
         return _obj

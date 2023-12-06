@@ -19,50 +19,56 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class IssuedDocumentExtraData(BaseModel):
     """
-    Issued document extra data [TS fields follow the technical specifications provided by \"Sistema Tessera Sanitaria\"] # noqa: E501
-    """
+    Issued document extra data [TS fields follow the technical specifications provided by \"Sistema Tessera Sanitaria\"]
+    """  # noqa: E501
 
     show_sofort_button: Optional[StrictBool] = None
     multifatture_sent: Optional[StrictInt] = None
     ts_communication: Optional[StrictBool] = Field(
-        None, description='Send issued document to "Sistema Tessera Sanitaria"'
+        default=None, description='Send issued document to "Sistema Tessera Sanitaria"'
     )
     ts_flag_tipo_spesa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description='Issued document ts "tipo spesa" [TK, FC, FV, SV,SP, AD, AS, ECG, SR]',
     )
     ts_pagamento_tracciato: Optional[StrictBool] = Field(
-        None, description="Issued document ts traced payment"
+        default=None, description="Issued document ts traced payment"
     )
     ts_tipo_spesa: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Can be [ 'TK', 'FC', 'FV', 'SV', 'SP', 'AD', 'AS', 'SR', 'CT', 'PI', 'IC', 'AA' ]. Refer to the technical specifications to learn more.",
     )
     ts_opposizione: Optional[StrictBool] = Field(
-        None, description='Issued document ts "opposizione"'
+        default=None, description='Issued document ts "opposizione"'
     )
     ts_status: Optional[StrictInt] = Field(
-        None, description="Issued document ts status"
+        default=None, description="Issued document ts status"
     )
     ts_file_id: Optional[StrictStr] = Field(
-        None, description="Issued document ts file id"
+        default=None, description="Issued document ts file id"
     )
     ts_sent_date: Optional[date] = Field(
-        None, description="Issued document ts sent date"
+        default=None, description="Issued document ts sent date"
     )
     ts_full_amount: Optional[StrictBool] = Field(
-        None, description="Issued document ts total amount"
+        default=None, description="Issued document ts total amount"
     )
     imported_by: Optional[StrictStr] = Field(
-        None, description="Issued document imported by software"
+        default=None, description="Issued document imported by software"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "show_sofort_button",
         "multifatture_sent",
         "ts_communication",
@@ -77,77 +83,62 @@ class IssuedDocumentExtraData(BaseModel):
         "imported_by",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentExtraData:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentExtraData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentExtraData:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentExtraData from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentExtraData.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentExtraData.parse_obj(
+        _obj = cls.model_validate(
             {
-                "show_sofort_button": obj.get("show_sofort_button")
-                if obj.get("show_sofort_button") is not None
-                else None,
-                "multifatture_sent": obj.get("multifatture_sent")
-                if obj.get("multifatture_sent") is not None
-                else None,
-                "ts_communication": obj.get("ts_communication")
-                if obj.get("ts_communication") is not None
-                else None,
-                "ts_flag_tipo_spesa": float(obj.get("ts_flag_tipo_spesa"))
-                if obj.get("ts_flag_tipo_spesa") is not None
-                else None,
-                "ts_pagamento_tracciato": obj.get("ts_pagamento_tracciato")
-                if obj.get("ts_pagamento_tracciato") is not None
-                else None,
-                "ts_tipo_spesa": obj.get("ts_tipo_spesa")
-                if obj.get("ts_tipo_spesa") is not None
-                else None,
-                "ts_opposizione": obj.get("ts_opposizione")
-                if obj.get("ts_opposizione") is not None
-                else None,
-                "ts_status": obj.get("ts_status")
-                if obj.get("ts_status") is not None
-                else None,
-                "ts_file_id": obj.get("ts_file_id")
-                if obj.get("ts_file_id") is not None
-                else None,
-                "ts_sent_date": obj.get("ts_sent_date")
-                if obj.get("ts_sent_date") is not None
-                else None,
-                "ts_full_amount": obj.get("ts_full_amount")
-                if obj.get("ts_full_amount") is not None
-                else None,
-                "imported_by": obj.get("imported_by")
-                if obj.get("imported_by") is not None
-                else None,
+                "show_sofort_button": obj.get("show_sofort_button"),
+                "multifatture_sent": obj.get("multifatture_sent"),
+                "ts_communication": obj.get("ts_communication"),
+                "ts_flag_tipo_spesa": obj.get("ts_flag_tipo_spesa"),
+                "ts_pagamento_tracciato": obj.get("ts_pagamento_tracciato"),
+                "ts_tipo_spesa": obj.get("ts_tipo_spesa"),
+                "ts_opposizione": obj.get("ts_opposizione"),
+                "ts_status": obj.get("ts_status"),
+                "ts_file_id": obj.get("ts_file_id"),
+                "ts_sent_date": obj.get("ts_sent_date"),
+                "ts_full_amount": obj.get("ts_full_amount"),
+                "imported_by": obj.get("imported_by"),
             }
         )
         return _obj

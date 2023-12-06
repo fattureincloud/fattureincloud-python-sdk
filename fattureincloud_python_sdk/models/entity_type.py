@@ -13,10 +13,17 @@
 """  # noqa: E501
 
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from aenum import Enum, no_arg
+from enum import Enum
+
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class EntityType(str, Enum):
@@ -33,6 +40,6 @@ class EntityType(str, Enum):
     CONDO = "condo"
 
     @classmethod
-    def from_json(cls, json_str: str) -> EntityType:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of EntityType from a JSON string"""
-        return EntityType(json.loads(json_str))
+        return cls(json.loads(json_str))

@@ -13,10 +13,17 @@
 """  # noqa: E501
 
 
+from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from aenum import Enum, no_arg
+from enum import Enum
+
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class ReceivedDocumentType(str, Enum):
@@ -32,6 +39,6 @@ class ReceivedDocumentType(str, Enum):
     PASSIVE_DELIVERY_NOTE = "passive_delivery_note"
 
     @classmethod
-    def from_json(cls, json_str: str) -> ReceivedDocumentType:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of ReceivedDocumentType from a JSON string"""
-        return ReceivedDocumentType(json.loads(json_str))
+        return cls(json.loads(json_str))

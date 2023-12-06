@@ -19,45 +19,54 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.email_data_default_sender_email import (
     EmailDataDefaultSenderEmail,
 )
 from fattureincloud_python_sdk.models.sender_email import SenderEmail
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class EmailData(BaseModel):
     """
     EmailData
-    """
+    """  # noqa: E501
 
-    recipient_email: Optional[StrictStr] = Field(None, description="Email recipient")
+    recipient_email: Optional[StrictStr] = Field(
+        default=None, description="Email recipient"
+    )
     default_sender_email: Optional[EmailDataDefaultSenderEmail] = None
-    sender_emails_list: Optional[conlist(SenderEmail)] = Field(
-        None, description="List of all emails from which the document can be sent"
+    sender_emails_list: Optional[List[SenderEmail]] = Field(
+        default=None,
+        description="List of all emails from which the document can be sent",
     )
     cc_email: Optional[StrictStr] = Field(
-        None, description="Email cc [by default is the logged company email]"
+        default=None, description="Email cc [by default is the logged company email]"
     )
-    subject: Optional[StrictStr] = Field(None, description="Email subject")
-    body: Optional[StrictStr] = Field(None, description="Email body")
+    subject: Optional[StrictStr] = Field(default=None, description="Email subject")
+    body: Optional[StrictStr] = Field(default=None, description="Email body")
     document_exists: Optional[StrictBool] = Field(
-        None, description="Document exists if it is not a delivery note"
+        default=None, description="Document exists if it is not a delivery note"
     )
     delivery_note_exists: Optional[StrictBool] = Field(
-        None, description="Document is a delivery note"
+        default=None, description="Document is a delivery note"
     )
     attachment_exists: Optional[StrictBool] = Field(
-        None, description="Document has attachment"
+        default=None, description="Document has attachment"
     )
     accompanying_invoice_exists: Optional[StrictBool] = Field(
-        None, description="Document has accompanying invoice"
+        default=None, description="Document has accompanying invoice"
     )
     default_attach_pdf: Optional[StrictBool] = Field(
-        None, description="Attach document pdf"
+        default=None, description="Attach document pdf"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "recipient_email",
         "default_sender_email",
         "sender_emails_list",
@@ -71,28 +80,37 @@ class EmailData(BaseModel):
         "default_attach_pdf",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> EmailData:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of EmailData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of default_sender_email
         if self.default_sender_email:
             _dict["default_sender_email"] = self.default_sender_email.to_dict()
@@ -106,19 +124,17 @@ class EmailData(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> EmailData:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of EmailData from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return EmailData.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = EmailData.parse_obj(
+        _obj = cls.model_validate(
             {
-                "recipient_email": obj.get("recipient_email")
-                if obj.get("recipient_email") is not None
-                else None,
+                "recipient_email": obj.get("recipient_email"),
                 "default_sender_email": EmailDataDefaultSenderEmail.from_dict(
                     obj.get("default_sender_email")
                 )
@@ -130,28 +146,14 @@ class EmailData(BaseModel):
                 ]
                 if obj.get("sender_emails_list") is not None
                 else None,
-                "cc_email": obj.get("cc_email")
-                if obj.get("cc_email") is not None
-                else None,
-                "subject": obj.get("subject")
-                if obj.get("subject") is not None
-                else None,
-                "body": obj.get("body") if obj.get("body") is not None else None,
-                "document_exists": obj.get("document_exists")
-                if obj.get("document_exists") is not None
-                else None,
-                "delivery_note_exists": obj.get("delivery_note_exists")
-                if obj.get("delivery_note_exists") is not None
-                else None,
-                "attachment_exists": obj.get("attachment_exists")
-                if obj.get("attachment_exists") is not None
-                else None,
-                "accompanying_invoice_exists": obj.get("accompanying_invoice_exists")
-                if obj.get("accompanying_invoice_exists") is not None
-                else None,
-                "default_attach_pdf": obj.get("default_attach_pdf")
-                if obj.get("default_attach_pdf") is not None
-                else None,
+                "cc_email": obj.get("cc_email"),
+                "subject": obj.get("subject"),
+                "body": obj.get("body"),
+                "document_exists": obj.get("document_exists"),
+                "delivery_note_exists": obj.get("delivery_note_exists"),
+                "attachment_exists": obj.get("attachment_exists"),
+                "accompanying_invoice_exists": obj.get("accompanying_invoice_exists"),
+                "default_attach_pdf": obj.get("default_attach_pdf"),
             }
         )
         return _obj

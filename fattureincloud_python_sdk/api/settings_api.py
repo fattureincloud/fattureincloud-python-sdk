@@ -13,14 +13,20 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Dict, List, Optional, Tuple, Union, Any
 
+try:
+    from typing import Annotated
+except ImportError:
+    from typing_extensions import Annotated
+
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -70,10 +76,7 @@ from fattureincloud_python_sdk.models.modify_vat_type_response import (
 
 from fattureincloud_python_sdk.api_client import ApiClient
 from fattureincloud_python_sdk.api_response import ApiResponse
-from fattureincloud_python_sdk.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError,
-)
+from fattureincloud_python_sdk.rest import RESTResponseType
 
 
 class SettingsApi:
@@ -88,1007 +91,1539 @@ class SettingsApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_account_request: Optional[CreatePaymentAccountRequest] = None,
-        **kwargs
-    ) -> CreatePaymentAccountResponse:  # noqa: E501
-        """Create Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreatePaymentAccountResponse:
+        """Create Payment Account
 
-        Creates a new payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_payment_account(company_id, create_payment_account_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_payment_account_request:
         :type create_payment_account_request: CreatePaymentAccountRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: CreatePaymentAccountResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_payment_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.create_payment_account_with_http_info(
-            company_id, create_payment_account_request, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._create_payment_account_serialize(
+            company_id=company_id,
+            create_payment_account_request=create_payment_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreatePaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def create_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_account_request: Optional[CreatePaymentAccountRequest] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Create Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreatePaymentAccountResponse]:
+        """Create Payment Account
 
-        Creates a new payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_payment_account_with_http_info(company_id, create_payment_account_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_payment_account_request:
         :type create_payment_account_request: CreatePaymentAccountRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(CreatePaymentAccountResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "create_payment_account_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_payment_account_serialize(
+            company_id=company_id,
+            create_payment_account_request=create_payment_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_payment_account" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreatePaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def create_payment_account_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_payment_account_request: Optional[CreatePaymentAccountRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Payment Account
+
+        Creates a new payment account.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param create_payment_account_request:
+        :type create_payment_account_request: CreatePaymentAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_payment_account_serialize(
+            company_id=company_id,
+            create_payment_account_request=create_payment_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreatePaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _create_payment_account_serialize(
+        self,
+        company_id,
+        create_payment_account_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["create_payment_account_request"] is not None:
-            _body_params = _params["create_payment_account_request"]
+        if create_payment_account_request is not None:
+            _body_params = create_payment_account_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "CreatePaymentAccountResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_accounts",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/settings/payment_accounts",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def create_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_method_request: Optional[CreatePaymentMethodRequest] = None,
-        **kwargs
-    ) -> CreatePaymentMethodResponse:  # noqa: E501
-        """Create Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreatePaymentMethodResponse:
+        """Create Payment Method
 
-        Creates a new payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_payment_method(company_id, create_payment_method_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_payment_method_request:
         :type create_payment_method_request: CreatePaymentMethodRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: CreatePaymentMethodResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_payment_method_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.create_payment_method_with_http_info(
-            company_id, create_payment_method_request, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._create_payment_method_serialize(
+            company_id=company_id,
+            create_payment_method_request=create_payment_method_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreatePaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def create_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_payment_method_request: Optional[CreatePaymentMethodRequest] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Create Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreatePaymentMethodResponse]:
+        """Create Payment Method
 
-        Creates a new payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_payment_method_with_http_info(company_id, create_payment_method_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_payment_method_request:
         :type create_payment_method_request: CreatePaymentMethodRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(CreatePaymentMethodResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "create_payment_method_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_payment_method_serialize(
+            company_id=company_id,
+            create_payment_method_request=create_payment_method_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_payment_method" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreatePaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def create_payment_method_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_payment_method_request: Optional[CreatePaymentMethodRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Payment Method
+
+        Creates a new payment method.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param create_payment_method_request:
+        :type create_payment_method_request: CreatePaymentMethodRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_payment_method_serialize(
+            company_id=company_id,
+            create_payment_method_request=create_payment_method_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreatePaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _create_payment_method_serialize(
+        self,
+        company_id,
+        create_payment_method_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["create_payment_method_request"] is not None:
-            _body_params = _params["create_payment_method_request"]
+        if create_payment_method_request is not None:
+            _body_params = create_payment_method_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "CreatePaymentMethodResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_methods",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/settings/payment_methods",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def create_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_vat_type_request: Optional[CreateVatTypeRequest] = None,
-        **kwargs
-    ) -> CreateVatTypeResponse:  # noqa: E501
-        """Create Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateVatTypeResponse:
+        """Create Vat Type
 
-        Creates a vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_vat_type(company_id, create_vat_type_request, async_req=True)
-        >>> result = thread.get()
+        Creates a vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_vat_type_request:
         :type create_vat_type_request: CreateVatTypeRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: CreateVatTypeResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_vat_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.create_vat_type_with_http_info(
-            company_id, create_vat_type_request, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._create_vat_type_serialize(
+            company_id=company_id,
+            create_vat_type_request=create_vat_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def create_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_vat_type_request: Optional[CreateVatTypeRequest] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Create Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateVatTypeResponse]:
+        """Create Vat Type
 
-        Creates a vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_vat_type_with_http_info(company_id, create_vat_type_request, async_req=True)
-        >>> result = thread.get()
+        Creates a vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_vat_type_request:
         :type create_vat_type_request: CreateVatTypeRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(CreateVatTypeResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "create_vat_type_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_vat_type_serialize(
+            company_id=company_id,
+            create_vat_type_request=create_vat_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_vat_type" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def create_vat_type_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_vat_type_request: Optional[CreateVatTypeRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Vat Type
+
+        Creates a vat type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param create_vat_type_request:
+        :type create_vat_type_request: CreateVatTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_vat_type_serialize(
+            company_id=company_id,
+            create_vat_type_request=create_vat_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _create_vat_type_serialize(
+        self,
+        company_id,
+        create_vat_type_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["create_vat_type_request"] is not None:
-            _body_params = _params["create_vat_type_request"]
+        if create_vat_type_request is not None:
+            _body_params = create_vat_type_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "CreateVatTypeResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/vat_types",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/settings/vat_types",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def delete_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Payment Account
 
-        Deletes the specified payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_payment_account(company_id, payment_account_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param payment_account_id: The Referred Payment Account Id. (required)
         :type payment_account_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_payment_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_payment_account_with_http_info(
-            company_id, payment_account_id, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._delete_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def delete_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Payment Account
 
-        Deletes the specified payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_payment_account_with_http_info(company_id, payment_account_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param payment_account_id: The Referred Payment Account Id. (required)
         :type payment_account_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "payment_account_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._delete_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_payment_account" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def delete_payment_account_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        payment_account_id: Annotated[
+            StrictInt, Field(description="The Referred Payment Account Id.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Payment Account
+
+        Deletes the specified payment account.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param payment_account_id: The Referred Payment Account Id. (required)
+        :type payment_account_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_payment_account_serialize(
+        self,
+        company_id,
+        payment_account_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["payment_account_id"]:
-            _path_params["payment_account_id"] = _params["payment_account_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if payment_account_id is not None:
+            _path_params["payment_account_id"] = payment_account_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_accounts/{payment_account_id}",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/settings/payment_accounts/{payment_account_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def delete_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Payment Method
 
-        Deletes the specified payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_payment_method(company_id, payment_method_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param payment_method_id: The Referred Payment Method Id. (required)
         :type payment_method_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_payment_method_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_payment_method_with_http_info(
-            company_id, payment_method_id, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._delete_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def delete_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Payment Method
 
-        Deletes the specified payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_payment_method_with_http_info(company_id, payment_method_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param payment_method_id: The Referred Payment Method Id. (required)
         :type payment_method_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "payment_method_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._delete_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_payment_method" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def delete_payment_method_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        payment_method_id: Annotated[
+            StrictInt, Field(description="The Referred Payment Method Id.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Payment Method
+
+        Deletes the specified payment method.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param payment_method_id: The Referred Payment Method Id. (required)
+        :type payment_method_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_payment_method_serialize(
+        self,
+        company_id,
+        payment_method_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["payment_method_id"]:
-            _path_params["payment_method_id"] = _params["payment_method_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if payment_method_id is not None:
+            _path_params["payment_method_id"] = payment_method_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_methods/{payment_method_id}",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/settings/payment_methods/{payment_method_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def delete_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Vat Type
 
-        Deletes the specified vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_vat_type(company_id, vat_type_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param vat_type_id: The Referred Vat Type Id. (required)
         :type vat_type_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_vat_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_vat_type_with_http_info(
-            company_id, vat_type_id, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._delete_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def delete_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Vat Type
 
-        Deletes the specified vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_vat_type_with_http_info(company_id, vat_type_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param vat_type_id: The Referred Vat Type Id. (required)
         :type vat_type_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "vat_type_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._delete_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_vat_type" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def delete_vat_type_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        vat_type_id: Annotated[
+            StrictInt, Field(description="The Referred Vat Type Id.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Vat Type
+
+        Deletes the specified vat type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param vat_type_id: The Referred Vat Type Id. (required)
+        :type vat_type_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_vat_type_serialize(
+        self,
+        company_id,
+        vat_type_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["vat_type_id"]:
-            _path_params["vat_type_id"] = _params["vat_type_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if vat_type_id is not None:
+            _path_params["vat_type_id"] = vat_type_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/vat_types/{vat_type_id}",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/settings/vat_types/{vat_type_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def get_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1096,16 +1631,21 @@ class SettingsApi:
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        **kwargs
-    ) -> GetPaymentAccountResponse:  # noqa: E501
-        """Get Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetPaymentAccountResponse:
+        """Get Payment Account
 
-        Gets the specified payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_payment_account(company_id, payment_account_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
+        Gets the specified payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1115,33 +1655,57 @@ class SettingsApi:
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetPaymentAccountResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_payment_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_payment_account_with_http_info(
-            company_id, payment_account_id, fields, fieldset, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._get_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetPaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def get_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1149,16 +1713,21 @@ class SettingsApi:
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetPaymentAccountResponse]:
+        """Get Payment Account
 
-        Gets the specified payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_payment_account_with_http_info(company_id, payment_account_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
+        Gets the specified payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1168,120 +1737,196 @@ class SettingsApi:
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetPaymentAccountResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "payment_account_id", "fields", "fieldset"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_payment_account" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetPaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_payment_account_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        payment_account_id: Annotated[
+            StrictInt, Field(description="The Referred Payment Account Id.")
+        ],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Payment Account
+
+        Gets the specified payment account.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param payment_account_id: The Referred Payment Account Id. (required)
+        :type payment_account_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetPaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_payment_account_serialize(
+        self,
+        company_id,
+        payment_account_id,
+        fields,
+        fieldset,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["payment_account_id"]:
-            _path_params["payment_account_id"] = _params["payment_account_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if payment_account_id is not None:
+            _path_params["payment_account_id"] = payment_account_id
         # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
+        if fields is not None:
+            _query_params.append(("fields", fields))
 
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
 
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "GetPaymentAccountResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_accounts/{payment_account_id}",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/settings/payment_accounts/{payment_account_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def get_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1289,16 +1934,21 @@ class SettingsApi:
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        **kwargs
-    ) -> GetPaymentMethodResponse:  # noqa: E501
-        """Get Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetPaymentMethodResponse:
+        """Get Payment Method
 
-        Gets the specified payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_payment_method(company_id, payment_method_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
+        Gets the specified payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1308,33 +1958,57 @@ class SettingsApi:
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetPaymentMethodResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_payment_method_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_payment_method_with_http_info(
-            company_id, payment_method_id, fields, fieldset, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._get_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetPaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def get_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
@@ -1342,16 +2016,21 @@ class SettingsApi:
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetPaymentMethodResponse]:
+        """Get Payment Method
 
-        Gets the specified payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_payment_method_with_http_info(company_id, payment_method_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
+        Gets the specified payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1361,299 +2040,466 @@ class SettingsApi:
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetPaymentMethodResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "payment_method_id", "fields", "fieldset"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_payment_method" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetPaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_payment_method_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        payment_method_id: Annotated[
+            StrictInt, Field(description="The Referred Payment Method Id.")
+        ],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Payment Method
+
+        Gets the specified payment method.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param payment_method_id: The Referred Payment Method Id. (required)
+        :type payment_method_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetPaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_payment_method_serialize(
+        self,
+        company_id,
+        payment_method_id,
+        fields,
+        fieldset,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["payment_method_id"]:
-            _path_params["payment_method_id"] = _params["payment_method_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if payment_method_id is not None:
+            _path_params["payment_method_id"] = payment_method_id
         # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
+        if fields is not None:
+            _query_params.append(("fields", fields))
 
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
 
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "GetPaymentMethodResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_methods/{payment_method_id}",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/settings/payment_methods/{payment_method_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def get_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
-        **kwargs
-    ) -> GetVatTypeResponse:  # noqa: E501
-        """Get Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetVatTypeResponse:
+        """Get Vat Type
 
-        Gets the specified vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_vat_type(company_id, vat_type_id, async_req=True)
-        >>> result = thread.get()
+        Gets the specified vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param vat_type_id: The Referred Vat Type Id. (required)
         :type vat_type_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetVatTypeResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_vat_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_vat_type_with_http_info(
-            company_id, vat_type_id, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._get_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "GetVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def get_vat_type_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetVatTypeResponse]:
+        """Get Vat Type
 
-        Gets the specified vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_vat_type_with_http_info(company_id, vat_type_id, async_req=True)
-        >>> result = thread.get()
+        Gets the specified vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param vat_type_id: The Referred Vat Type Id. (required)
         :type vat_type_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetVatTypeResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "vat_type_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_vat_type" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {"200": "GetVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_vat_type_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        vat_type_id: Annotated[
+            StrictInt, Field(description="The Referred Vat Type Id.")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Vat Type
+
+        Gets the specified vat type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param vat_type_id: The Referred Vat Type Id. (required)
+        :type vat_type_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "GetVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_vat_type_serialize(
+        self,
+        company_id,
+        vat_type_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["vat_type_id"]:
-            _path_params["vat_type_id"] = _params["vat_type_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if vat_type_id is not None:
+            _path_params["vat_type_id"] = vat_type_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "GetVatTypeResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/vat_types/{vat_type_id}",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/settings/vat_types/{vat_type_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def modify_payment_account(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         modify_payment_account_request: Optional[ModifyPaymentAccountRequest] = None,
-        **kwargs
-    ) -> ModifyPaymentAccountResponse:  # noqa: E501
-        """Modify Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifyPaymentAccountResponse:
+        """Modify Payment Account
 
-        Modifies the specified payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_payment_account(company_id, payment_account_id, modify_payment_account_request, async_req=True)
-        >>> result = thread.get()
+        Modifies the specified payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1661,45 +2507,73 @@ class SettingsApi:
         :type payment_account_id: int
         :param modify_payment_account_request:
         :type modify_payment_account_request: ModifyPaymentAccountRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ModifyPaymentAccountResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the modify_payment_account_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.modify_payment_account_with_http_info(
-            company_id, payment_account_id, modify_payment_account_request, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._modify_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            modify_payment_account_request=modify_payment_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyPaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def modify_payment_account_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_account_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Account Id.")
+            StrictInt, Field(description="The Referred Payment Account Id.")
         ],
         modify_payment_account_request: Optional[ModifyPaymentAccountRequest] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Modify Payment Account  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifyPaymentAccountResponse]:
+        """Modify Payment Account
 
-        Modifies the specified payment account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_payment_account_with_http_info(company_id, payment_account_id, modify_payment_account_request, async_req=True)
-        >>> result = thread.get()
+        Modifies the specified payment account.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1707,141 +2581,209 @@ class SettingsApi:
         :type payment_account_id: int
         :param modify_payment_account_request:
         :type modify_payment_account_request: ModifyPaymentAccountRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ModifyPaymentAccountResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            "company_id",
-            "payment_account_id",
-            "modify_payment_account_request",
-        ]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._modify_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            modify_payment_account_request=modify_payment_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method modify_payment_account" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyPaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def modify_payment_account_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        payment_account_id: Annotated[
+            StrictInt, Field(description="The Referred Payment Account Id.")
+        ],
+        modify_payment_account_request: Optional[ModifyPaymentAccountRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify Payment Account
+
+        Modifies the specified payment account.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param payment_account_id: The Referred Payment Account Id. (required)
+        :type payment_account_id: int
+        :param modify_payment_account_request:
+        :type modify_payment_account_request: ModifyPaymentAccountRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_payment_account_serialize(
+            company_id=company_id,
+            payment_account_id=payment_account_id,
+            modify_payment_account_request=modify_payment_account_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyPaymentAccountResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _modify_payment_account_serialize(
+        self,
+        company_id,
+        payment_account_id,
+        modify_payment_account_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["payment_account_id"]:
-            _path_params["payment_account_id"] = _params["payment_account_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if payment_account_id is not None:
+            _path_params["payment_account_id"] = payment_account_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["modify_payment_account_request"] is not None:
-            _body_params = _params["modify_payment_account_request"]
+        if modify_payment_account_request is not None:
+            _body_params = modify_payment_account_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "ModifyPaymentAccountResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_accounts/{payment_account_id}",
-            "PUT",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/c/{company_id}/settings/payment_accounts/{payment_account_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def modify_payment_method(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         modify_payment_method_request: Optional[ModifyPaymentMethodRequest] = None,
-        **kwargs
-    ) -> ModifyPaymentMethodResponse:  # noqa: E501
-        """Modify Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifyPaymentMethodResponse:
+        """Modify Payment Method
 
-        Modifies the specified payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_payment_method(company_id, payment_method_id, modify_payment_method_request, async_req=True)
-        >>> result = thread.get()
+        Modifies the specified payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1849,45 +2791,73 @@ class SettingsApi:
         :type payment_method_id: int
         :param modify_payment_method_request:
         :type modify_payment_method_request: ModifyPaymentMethodRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ModifyPaymentMethodResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the modify_payment_method_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.modify_payment_method_with_http_info(
-            company_id, payment_method_id, modify_payment_method_request, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._modify_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            modify_payment_method_request=modify_payment_method_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyPaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def modify_payment_method_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         payment_method_id: Annotated[
-            StrictInt, Field(..., description="The Referred Payment Method Id.")
+            StrictInt, Field(description="The Referred Payment Method Id.")
         ],
         modify_payment_method_request: Optional[ModifyPaymentMethodRequest] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Modify Payment Method  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifyPaymentMethodResponse]:
+        """Modify Payment Method
 
-        Modifies the specified payment method.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_payment_method_with_http_info(company_id, payment_method_id, modify_payment_method_request, async_req=True)
-        >>> result = thread.get()
+        Modifies the specified payment method.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -1895,141 +2865,209 @@ class SettingsApi:
         :type payment_method_id: int
         :param modify_payment_method_request:
         :type modify_payment_method_request: ModifyPaymentMethodRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ModifyPaymentMethodResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            "company_id",
-            "payment_method_id",
-            "modify_payment_method_request",
-        ]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._modify_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            modify_payment_method_request=modify_payment_method_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method modify_payment_method" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyPaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def modify_payment_method_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        payment_method_id: Annotated[
+            StrictInt, Field(description="The Referred Payment Method Id.")
+        ],
+        modify_payment_method_request: Optional[ModifyPaymentMethodRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify Payment Method
+
+        Modifies the specified payment method.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param payment_method_id: The Referred Payment Method Id. (required)
+        :type payment_method_id: int
+        :param modify_payment_method_request:
+        :type modify_payment_method_request: ModifyPaymentMethodRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_payment_method_serialize(
+            company_id=company_id,
+            payment_method_id=payment_method_id,
+            modify_payment_method_request=modify_payment_method_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyPaymentMethodResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _modify_payment_method_serialize(
+        self,
+        company_id,
+        payment_method_id,
+        modify_payment_method_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["payment_method_id"]:
-            _path_params["payment_method_id"] = _params["payment_method_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if payment_method_id is not None:
+            _path_params["payment_method_id"] = payment_method_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["modify_payment_method_request"] is not None:
-            _body_params = _params["modify_payment_method_request"]
+        if modify_payment_method_request is not None:
+            _body_params = modify_payment_method_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "ModifyPaymentMethodResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/payment_methods/{payment_method_id}",
-            "PUT",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/c/{company_id}/settings/payment_methods/{payment_method_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def modify_vat_type(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
+            StrictInt, Field(description="The Referred Vat Type Id.")
         ],
         modify_vat_type_request: Optional[ModifyVatTypeRequest] = None,
-        **kwargs
-    ) -> ModifyVatTypeResponse:  # noqa: E501
-        """Modify Vat Type  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifyVatTypeResponse:
+        """Modify Vat Type
 
-        Modifies the specified vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_vat_type(company_id, vat_type_id, modify_vat_type_request, async_req=True)
-        >>> result = thread.get()
+        Modifies the specified vat type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -2037,159 +3075,250 @@ class SettingsApi:
         :type vat_type_id: int
         :param modify_vat_type_request:
         :type modify_vat_type_request: ModifyVatTypeRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ModifyVatTypeResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the modify_vat_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.modify_vat_type_with_http_info(
-            company_id, vat_type_id, modify_vat_type_request, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def modify_vat_type_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        vat_type_id: Annotated[
-            StrictInt, Field(..., description="The Referred Vat Type Id.")
-        ],
-        modify_vat_type_request: Optional[ModifyVatTypeRequest] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Modify Vat Type  # noqa: E501
-
-        Modifies the specified vat type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_vat_type_with_http_info(company_id, vat_type_id, modify_vat_type_request, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param vat_type_id: The Referred Vat Type Id. (required)
-        :type vat_type_id: int
-        :param modify_vat_type_request:
-        :type modify_vat_type_request: ModifyVatTypeRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ModifyVatTypeResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "vat_type_id", "modify_vat_type_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._modify_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            modify_vat_type_request=modify_vat_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method modify_vat_type" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {"200": "ModifyVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        _collection_formats = {}
+    @validate_call
+    def modify_vat_type_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        vat_type_id: Annotated[
+            StrictInt, Field(description="The Referred Vat Type Id.")
+        ],
+        modify_vat_type_request: Optional[ModifyVatTypeRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifyVatTypeResponse]:
+        """Modify Vat Type
+
+        Modifies the specified vat type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param vat_type_id: The Referred Vat Type Id. (required)
+        :type vat_type_id: int
+        :param modify_vat_type_request:
+        :type modify_vat_type_request: ModifyVatTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            modify_vat_type_request=modify_vat_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "ModifyVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def modify_vat_type_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        vat_type_id: Annotated[
+            StrictInt, Field(description="The Referred Vat Type Id.")
+        ],
+        modify_vat_type_request: Optional[ModifyVatTypeRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify Vat Type
+
+        Modifies the specified vat type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param vat_type_id: The Referred Vat Type Id. (required)
+        :type vat_type_id: int
+        :param modify_vat_type_request:
+        :type modify_vat_type_request: ModifyVatTypeRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_vat_type_serialize(
+            company_id=company_id,
+            vat_type_id=vat_type_id,
+            modify_vat_type_request=modify_vat_type_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "ModifyVatTypeResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _modify_vat_type_serialize(
+        self,
+        company_id,
+        vat_type_id,
+        modify_vat_type_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["vat_type_id"]:
-            _path_params["vat_type_id"] = _params["vat_type_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if vat_type_id is not None:
+            _path_params["vat_type_id"] = vat_type_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["modify_vat_type_request"] is not None:
-            _body_params = _params["modify_vat_type_request"]
+        if modify_vat_type_request is not None:
+            _body_params = modify_vat_type_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "ModifyVatTypeResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/settings/vat_types/{vat_type_id}",
-            "PUT",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/c/{company_id}/settings/vat_types/{vat_type_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )

@@ -13,14 +13,20 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Dict, List, Optional, Tuple, Union, Any
 
+try:
+    from typing import Annotated
+except ImportError:
+    from typing_extensions import Annotated
+
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr, conint
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -33,10 +39,7 @@ from fattureincloud_python_sdk.models.modify_client_response import ModifyClient
 
 from fattureincloud_python_sdk.api_client import ApiClient
 from fattureincloud_python_sdk.api_response import ApiResponse
-from fattureincloud_python_sdk.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError,
-)
+from fattureincloud_python_sdk.rest import RESTResponseType
 
 
 class ClientsApi:
@@ -51,366 +54,537 @@ class ClientsApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_client_request: Annotated[
             Optional[CreateClientRequest], Field(description="The client to create")
         ] = None,
-        **kwargs
-    ) -> CreateClientResponse:  # noqa: E501
-        """Create Client  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateClientResponse:
+        """Create Client
 
-        Creates a new client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_client(company_id, create_client_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new client.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_client_request: The client to create
         :type create_client_request: CreateClientRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: CreateClientResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_client_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.create_client_with_http_info(
-            company_id, create_client_request, **kwargs
-        )  # noqa: E501
+        """  # noqa: E501
 
-    @validate_arguments
+        _param = self._create_client_serialize(
+            company_id=company_id,
+            create_client_request=create_client_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateClientResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
     def create_client_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_client_request: Annotated[
             Optional[CreateClientRequest], Field(description="The client to create")
         ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Create Client  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateClientResponse]:
+        """Create Client
 
-        Creates a new client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_client_with_http_info(company_id, create_client_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new client.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_client_request: The client to create
         :type create_client_request: CreateClientRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(CreateClientResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "create_client_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_client_serialize(
+            company_id=company_id,
+            create_client_request=create_client_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_client" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateClientResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def create_client_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_client_request: Annotated[
+            Optional[CreateClientRequest], Field(description="The client to create")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Client
+
+        Creates a new client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param create_client_request: The client to create
+        :type create_client_request: CreateClientRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._create_client_serialize(
+            company_id=company_id,
+            create_client_request=create_client_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {"200": "CreateClientResponse"}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _create_client_serialize(
+        self,
+        company_id,
+        create_client_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["create_client_request"] is not None:
-            _body_params = _params["create_client_request"]
+        if create_client_request is not None:
+            _body_params = create_client_request
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "CreateClientResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/entities/clients",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/entities/clients",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def delete_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete Client  # noqa: E501
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Client
 
-        Deletes the specified client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_client(company_id, client_id, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param client_id: The ID of the client. (required)
-        :type client_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_client_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_client_with_http_info(
-            company_id, client_id, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def delete_client_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete Client  # noqa: E501
-
-        Deletes the specified client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_client_with_http_info(company_id, client_id, async_req=True)
-        >>> result = thread.get()
+        Deletes the specified client.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param client_id: The ID of the client. (required)
         :type client_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "client_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._delete_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_client" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        _collection_formats = {}
+    @validate_call
+    def delete_client_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Client
+
+        Deletes the specified client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_client_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Client
+
+        Deletes the specified client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_client_serialize(
+        self,
+        company_id,
+        client_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["client_id"]:
-            _path_params["client_id"] = _params["client_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if client_id is not None:
+            _path_params["client_id"] = client_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/entities/clients/{client_id}",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/entities/clients/{client_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )
 
-    @validate_arguments
+    @validate_call
     def get_client(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        **kwargs
-    ) -> GetClientResponse:  # noqa: E501
-        """Get Client  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetClientResponse:
+        """Get Client
 
-        Gets the specified client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_client(company_id, client_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
+        Gets the specified client.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
@@ -420,608 +594,954 @@ class ClientsApi:
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetClientResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_client_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_client_with_http_info(
-            company_id, client_id, fields, fieldset, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def get_client_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Client  # noqa: E501
-
-        Gets the specified client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_client_with_http_info(company_id, client_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param client_id: The ID of the client. (required)
-        :type client_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetClientResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "client_id", "fields", "fieldset"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_client" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["client_id"]:
-            _path_params["client_id"] = _params["client_id"]
-
-        # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
-
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
-
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
-
-        # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "GetClientResponse",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/entities/clients/{client_id}",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def list_clients(
+    @validate_call
+    def get_client_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="List of comma-separated fields for result sorting (minus for desc sorting)."
-            ),
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
         ] = None,
-        page: Annotated[
-            Optional[StrictInt], Field(description="The page to retrieve.")
-        ] = None,
-        per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
-            Field(description="The size of the page."),
-        ] = None,
-        q: Annotated[
-            Optional[StrictStr], Field(description="Query for filtering the results.")
-        ] = None,
-        **kwargs
-    ) -> ListClientsResponse:  # noqa: E501
-        """List Clients  # noqa: E501
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetClientResponse]:
+        """Get Client
 
-        Lists the clients.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_clients(company_id, fields, fieldset, sort, page, per_page, q, async_req=True)
-        >>> result = thread.get()
+        Gets the specified client.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
         :param fields: List of comma-separated fields.
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
-        :type sort: str
-        :param page: The page to retrieve.
-        :type page: int
-        :param per_page: The size of the page.
-        :type per_page: int
-        :param q: Query for filtering the results.
-        :type q: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ListClientsResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the list_clients_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.list_clients_with_http_info(
-            company_id, fields, fieldset, sort, page, per_page, q, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def list_clients_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="List of comma-separated fields for result sorting (minus for desc sorting)."
-            ),
-        ] = None,
-        page: Annotated[
-            Optional[StrictInt], Field(description="The page to retrieve.")
-        ] = None,
-        per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
-            Field(description="The size of the page."),
-        ] = None,
-        q: Annotated[
-            Optional[StrictStr], Field(description="Query for filtering the results.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """List Clients  # noqa: E501
-
-        Lists the clients.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_clients_with_http_info(company_id, fields, fieldset, sort, page, per_page, q, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
-        :type sort: str
-        :param page: The page to retrieve.
-        :type page: int
-        :param per_page: The size of the page.
-        :type per_page: int
-        :param q: Query for filtering the results.
-        :type q: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ListClientsResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            "company_id",
-            "fields",
-            "fieldset",
-            "sort",
-            "page",
-            "per_page",
-            "q",
-        ]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_clients" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetClientResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_client_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Client
+
+        Gets the specified client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetClientResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_client_serialize(
+        self,
+        company_id,
+        client_id,
+        fields,
+        fieldset,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if client_id is not None:
+            _path_params["client_id"] = client_id
         # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
+        if fields is not None:
+            _query_params.append(("fields", fields))
 
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
-
-        if _params.get("sort") is not None:  # noqa: E501
-            _query_params.append(("sort", _params["sort"]))
-
-        if _params.get("page") is not None:  # noqa: E501
-            _query_params.append(("page", _params["page"]))
-
-        if _params.get("per_page") is not None:  # noqa: E501
-            _query_params.append(("per_page", _params["per_page"]))
-
-        if _params.get("q") is not None:  # noqa: E501
-            _query_params.append(("q", _params["q"]))
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
 
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/entities/clients/{client_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_clients(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListClientsResponse:
+        """List Clients
+
+        Lists the clients.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param q: Query for filtering the results.
+        :type q: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_clients_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            sort=sort,
+            page=page,
+            per_page=per_page,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListClientsResponse",
             "401": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/entities/clients",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def modify_client(
+    @validate_call
+    def list_clients_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
-        modify_client_request: Annotated[
-            Optional[ModifyClientRequest],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
             Field(
-                description="The modified Client. First level parameters are managed in delta mode."
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
             ),
         ] = None,
-        **kwargs
-    ) -> ModifyClientResponse:  # noqa: E501
-        """Modify Client  # noqa: E501
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListClientsResponse]:
+        """List Clients
 
-        Modifies the specified client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_client(company_id, client_id, modify_client_request, async_req=True)
-        >>> result = thread.get()
+        Lists the clients.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param client_id: The ID of the client. (required)
-        :type client_id: int
-        :param modify_client_request: The modified Client. First level parameters are managed in delta mode.
-        :type modify_client_request: ModifyClientRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ModifyClientResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the modify_client_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.modify_client_with_http_info(
-            company_id, client_id, modify_client_request, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def modify_client_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        client_id: Annotated[
-            StrictInt, Field(..., description="The ID of the client.")
-        ],
-        modify_client_request: Annotated[
-            Optional[ModifyClientRequest],
-            Field(
-                description="The modified Client. First level parameters are managed in delta mode."
-            ),
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Modify Client  # noqa: E501
-
-        Modifies the specified client.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_client_with_http_info(company_id, client_id, modify_client_request, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param client_id: The ID of the client. (required)
-        :type client_id: int
-        :param modify_client_request: The modified Client. First level parameters are managed in delta mode.
-        :type modify_client_request: ModifyClientRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param q: Query for filtering the results.
+        :type q: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ModifyClientResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "client_id", "modify_client_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._list_clients_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            sort=sort,
+            page=page,
+            per_page=per_page,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method modify_client" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListClientsResponse",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def list_clients_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List Clients
+
+        Lists the clients.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param q: Query for filtering the results.
+        :type q: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_clients_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            sort=sort,
+            page=page,
+            per_page=per_page,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListClientsResponse",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _list_clients_serialize(
+        self,
+        company_id,
+        fields,
+        fieldset,
+        sort,
+        page,
+        per_page,
+        q,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["client_id"]:
-            _path_params["client_id"] = _params["client_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
+        if fields is not None:
+            _query_params.append(("fields", fields))
+
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
+
+        if sort is not None:
+            _query_params.append(("sort", sort))
+
+        if page is not None:
+            _query_params.append(("page", page))
+
+        if per_page is not None:
+            _query_params.append(("per_page", per_page))
+
+        if q is not None:
+            _query_params.append(("q", q))
+
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["modify_client_request"] is not None:
-            _body_params = _params["modify_client_request"]
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
         )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/entities/clients",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def modify_client(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        modify_client_request: Annotated[
+            Optional[ModifyClientRequest],
+            Field(
+                description="The modified Client. First level parameters are managed in delta mode."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifyClientResponse:
+        """Modify Client
+
+        Modifies the specified client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
+        :param modify_client_request: The modified Client. First level parameters are managed in delta mode.
+        :type modify_client_request: ModifyClientRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            modify_client_request=modify_client_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "ModifyClientResponse",
             "401": None,
             "404": None,
         }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        return self.api_client.call_api(
-            "/c/{company_id}/entities/clients/{client_id}",
-            "PUT",
-            _path_params,
-            _query_params,
-            _header_params,
+    @validate_call
+    def modify_client_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        modify_client_request: Annotated[
+            Optional[ModifyClientRequest],
+            Field(
+                description="The modified Client. First level parameters are managed in delta mode."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifyClientResponse]:
+        """Modify Client
+
+        Modifies the specified client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
+        :param modify_client_request: The modified Client. First level parameters are managed in delta mode.
+        :type modify_client_request: ModifyClientRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            modify_client_request=modify_client_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyClientResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def modify_client_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        client_id: Annotated[StrictInt, Field(description="The ID of the client.")],
+        modify_client_request: Annotated[
+            Optional[ModifyClientRequest],
+            Field(
+                description="The modified Client. First level parameters are managed in delta mode."
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify Client
+
+        Modifies the specified client.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param client_id: The ID of the client. (required)
+        :type client_id: int
+        :param modify_client_request: The modified Client. First level parameters are managed in delta mode.
+        :type modify_client_request: ModifyClientRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_client_serialize(
+            company_id=company_id,
+            client_id=client_id,
+            modify_client_request=modify_client_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyClientResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _modify_client_serialize(
+        self,
+        company_id,
+        client_id,
+        modify_client_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if client_id is not None:
+            _path_params["client_id"] = client_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if modify_client_request is not None:
+            _body_params = modify_client_request
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/c/{company_id}/entities/clients/{client_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )

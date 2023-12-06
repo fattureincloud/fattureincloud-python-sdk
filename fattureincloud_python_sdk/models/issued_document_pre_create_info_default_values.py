@@ -19,41 +19,47 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class IssuedDocumentPreCreateInfoDefaultValues(BaseModel):
     """
-    Issued document default values # noqa: E501
-    """
+    Issued document default values
+    """  # noqa: E501
 
     default_template: Optional[DocumentTemplate] = None
     dn_template: Optional[DocumentTemplate] = None
     ai_template: Optional[DocumentTemplate] = None
-    notes: Optional[StrictStr] = Field(None, description="Default notes.")
+    notes: Optional[StrictStr] = Field(default=None, description="Default notes.")
     rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default rivalsa percentage."
+        default=None, description="Default rivalsa percentage."
     )
     cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default cassa percentage."
+        default=None, description="Default cassa percentage."
     )
     withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default withholding tax percentage."
+        default=None, description="Default withholding tax percentage."
     )
     withholding_tax_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default withholding tax taxable percentage."
+        default=None, description="Default withholding tax taxable percentage."
     )
     other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Default other withholding tax percentage."
+        default=None, description="Default other withholding tax percentage."
     )
     use_gross_prices: Optional[StrictBool] = Field(
-        None, description="Use gross price by default."
+        default=None, description="Use gross price by default."
     )
     payment_method: Optional[PaymentMethod] = None
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "default_template",
         "dn_template",
         "ai_template",
@@ -67,28 +73,37 @@ class IssuedDocumentPreCreateInfoDefaultValues(BaseModel):
         "payment_method",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentPreCreateInfoDefaultValues:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentPreCreateInfoDefaultValues from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of default_template
         if self.default_template:
             _dict["default_template"] = self.default_template.to_dict()
@@ -104,15 +119,15 @@ class IssuedDocumentPreCreateInfoDefaultValues(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentPreCreateInfoDefaultValues:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentPreCreateInfoDefaultValues from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentPreCreateInfoDefaultValues.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentPreCreateInfoDefaultValues.parse_obj(
+        _obj = cls.model_validate(
             {
                 "default_template": DocumentTemplate.from_dict(
                     obj.get("default_template")
@@ -125,25 +140,13 @@ class IssuedDocumentPreCreateInfoDefaultValues(BaseModel):
                 "ai_template": DocumentTemplate.from_dict(obj.get("ai_template"))
                 if obj.get("ai_template") is not None
                 else None,
-                "notes": obj.get("notes") if obj.get("notes") is not None else None,
-                "rivalsa": float(obj.get("rivalsa"))
-                if obj.get("rivalsa") is not None
-                else None,
-                "cassa": float(obj.get("cassa"))
-                if obj.get("cassa") is not None
-                else None,
-                "withholding_tax": float(obj.get("withholding_tax"))
-                if obj.get("withholding_tax") is not None
-                else None,
-                "withholding_tax_taxable": float(obj.get("withholding_tax_taxable"))
-                if obj.get("withholding_tax_taxable") is not None
-                else None,
-                "other_withholding_tax": float(obj.get("other_withholding_tax"))
-                if obj.get("other_withholding_tax") is not None
-                else None,
-                "use_gross_prices": obj.get("use_gross_prices")
-                if obj.get("use_gross_prices") is not None
-                else None,
+                "notes": obj.get("notes"),
+                "rivalsa": obj.get("rivalsa"),
+                "cassa": obj.get("cassa"),
+                "withholding_tax": obj.get("withholding_tax"),
+                "withholding_tax_taxable": obj.get("withholding_tax_taxable"),
+                "other_withholding_tax": obj.get("other_withholding_tax"),
+                "use_gross_prices": obj.get("use_gross_prices"),
                 "payment_method": PaymentMethod.from_dict(obj.get("payment_method"))
                 if obj.get("payment_method") is not None
                 else None,

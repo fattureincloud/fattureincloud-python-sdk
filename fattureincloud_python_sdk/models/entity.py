@@ -19,90 +19,108 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.entity_type import EntityType
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
 from fattureincloud_python_sdk.models.vat_type import VatType
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class Entity(BaseModel):
     """
     Entity
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Entity id")
-    code: Optional[StrictStr] = Field(None, description="Entity code")
-    name: Optional[StrictStr] = Field(None, description="Entity name")
+    id: Optional[StrictInt] = Field(default=None, description="Entity id")
+    code: Optional[StrictStr] = Field(default=None, description="Entity code")
+    name: Optional[StrictStr] = Field(default=None, description="Entity name")
     type: Optional[EntityType] = None
-    first_name: Optional[StrictStr] = Field(None, description="Entity first name")
-    last_name: Optional[StrictStr] = Field(None, description="Entity last name")
-    contact_person: Optional[StrictStr] = Field(
-        None, description="Entity contact person"
+    first_name: Optional[StrictStr] = Field(
+        default=None, description="Entity first name"
     )
-    vat_number: Optional[StrictStr] = Field(None, description="Entity vat number")
-    tax_code: Optional[StrictStr] = Field(None, description="Entity tax code")
+    last_name: Optional[StrictStr] = Field(default=None, description="Entity last name")
+    contact_person: Optional[StrictStr] = Field(
+        default=None, description="Entity contact person"
+    )
+    vat_number: Optional[StrictStr] = Field(
+        default=None, description="Entity vat number"
+    )
+    tax_code: Optional[StrictStr] = Field(default=None, description="Entity tax code")
     address_street: Optional[StrictStr] = Field(
-        None, description="Entitity address street"
+        default=None, description="Entitity address street"
     )
     address_postal_code: Optional[StrictStr] = Field(
-        None, description="Entity address postal code"
+        default=None, description="Entity address postal code"
     )
-    address_city: Optional[StrictStr] = Field(None, description="Entity address city")
+    address_city: Optional[StrictStr] = Field(
+        default=None, description="Entity address city"
+    )
     address_province: Optional[StrictStr] = Field(
-        None, description="Entity address province"
+        default=None, description="Entity address province"
     )
     address_extra: Optional[StrictStr] = Field(
-        None, description="Entity address extra info"
+        default=None, description="Entity address extra info"
     )
-    country: Optional[StrictStr] = Field(None, description="Entity country")
+    country: Optional[StrictStr] = Field(default=None, description="Entity country")
     country_iso: Optional[StrictStr] = Field(
-        None, description="Entity country iso code"
+        default=None, description="Entity country iso code"
     )
-    email: Optional[StrictStr] = Field(None, description="Entity email")
+    email: Optional[StrictStr] = Field(default=None, description="Entity email")
     certified_email: Optional[StrictStr] = Field(
-        None, description="Entity certified email"
+        default=None, description="Entity certified email"
     )
-    phone: Optional[StrictStr] = Field(None, description="Entity phone")
-    fax: Optional[StrictStr] = Field(None, description="Entity fax")
-    notes: Optional[StrictStr] = Field(None, description="Entity extra")
+    phone: Optional[StrictStr] = Field(default=None, description="Entity phone")
+    fax: Optional[StrictStr] = Field(default=None, description="Entity fax")
+    notes: Optional[StrictStr] = Field(default=None, description="Entity extra")
     default_payment_terms: Optional[StrictInt] = Field(
-        None, description="[Only for client] Client default payment terms"
+        default=None, description="[Only for client] Client default payment terms"
     )
     default_vat: Optional[VatType] = None
     default_payment_terms_type: Optional[PaymentTermsType] = None
     default_payment_method: Optional[PaymentMethod] = None
     bank_name: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client bank name"
+        default=None, description="[Only for client] Client bank name"
     )
     bank_iban: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client bank iban"
+        default=None, description="[Only for client] Client bank iban"
     )
     bank_swift_code: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client bank swift code"
+        default=None, description="[Only for client] Client bank swift code"
     )
     shipping_address: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client Shipping address"
+        default=None, description="[Only for client] Client Shipping address"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="[Only for client] Use e-invoices."
+        default=None, description="[Only for client] Use e-invoices."
     )
     ei_code: Optional[StrictStr] = Field(
-        None, description="[Only for client] E-invoices code."
+        default=None, description="[Only for client] E-invoices code."
     )
     has_intent_declaration: Optional[StrictBool] = Field(
-        None, description="[Only for client] Has intent declaration."
+        default=None, description="[Only for client] Has intent declaration."
     )
     intent_declaration_protocol_number: Optional[StrictStr] = Field(
-        None, description="[Only for client] Client intent declaration protocol number"
+        default=None,
+        description="[Only for client] Client intent declaration protocol number",
     )
     intent_declaration_protocol_date: Optional[date] = Field(
-        None, description="[Only for client] Client intent declaration protocol date"
+        default=None,
+        description="[Only for client] Client intent declaration protocol date",
     )
-    created_at: Optional[StrictStr] = Field(None, description="Entity creation date")
-    updated_at: Optional[StrictStr] = Field(None, description="Entity last update date")
-    __properties = [
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Entity creation date"
+    )
+    updated_at: Optional[StrictStr] = Field(
+        default=None, description="Entity last update date"
+    )
+    __properties: ClassVar[List[str]] = [
         "id",
         "code",
         "name",
@@ -141,28 +159,37 @@ class Entity(BaseModel):
         "updated_at",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Entity:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of Entity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of default_vat
         if self.default_vat:
             _dict["default_vat"] = self.default_vat.to_dict()
@@ -172,66 +199,38 @@ class Entity(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Entity:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Entity from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Entity.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Entity.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "code": obj.get("code") if obj.get("code") is not None else None,
-                "name": obj.get("name") if obj.get("name") is not None else None,
+                "id": obj.get("id"),
+                "code": obj.get("code"),
+                "name": obj.get("name"),
                 "type": obj.get("type"),
-                "first_name": obj.get("first_name")
-                if obj.get("first_name") is not None
-                else None,
-                "last_name": obj.get("last_name")
-                if obj.get("last_name") is not None
-                else None,
-                "contact_person": obj.get("contact_person")
-                if obj.get("contact_person") is not None
-                else None,
-                "vat_number": obj.get("vat_number")
-                if obj.get("vat_number") is not None
-                else None,
-                "tax_code": obj.get("tax_code")
-                if obj.get("tax_code") is not None
-                else None,
-                "address_street": obj.get("address_street")
-                if obj.get("address_street") is not None
-                else None,
-                "address_postal_code": obj.get("address_postal_code")
-                if obj.get("address_postal_code") is not None
-                else None,
-                "address_city": obj.get("address_city")
-                if obj.get("address_city") is not None
-                else None,
-                "address_province": obj.get("address_province")
-                if obj.get("address_province") is not None
-                else None,
-                "address_extra": obj.get("address_extra")
-                if obj.get("address_extra") is not None
-                else None,
-                "country": obj.get("country")
-                if obj.get("country") is not None
-                else None,
-                "country_iso": obj.get("country_iso")
-                if obj.get("country_iso") is not None
-                else None,
-                "email": obj.get("email") if obj.get("email") is not None else None,
-                "certified_email": obj.get("certified_email")
-                if obj.get("certified_email") is not None
-                else None,
-                "phone": obj.get("phone") if obj.get("phone") is not None else None,
-                "fax": obj.get("fax") if obj.get("fax") is not None else None,
-                "notes": obj.get("notes") if obj.get("notes") is not None else None,
-                "default_payment_terms": obj.get("default_payment_terms")
-                if obj.get("default_payment_terms") is not None
-                else None,
+                "first_name": obj.get("first_name"),
+                "last_name": obj.get("last_name"),
+                "contact_person": obj.get("contact_person"),
+                "vat_number": obj.get("vat_number"),
+                "tax_code": obj.get("tax_code"),
+                "address_street": obj.get("address_street"),
+                "address_postal_code": obj.get("address_postal_code"),
+                "address_city": obj.get("address_city"),
+                "address_province": obj.get("address_province"),
+                "address_extra": obj.get("address_extra"),
+                "country": obj.get("country"),
+                "country_iso": obj.get("country_iso"),
+                "email": obj.get("email"),
+                "certified_email": obj.get("certified_email"),
+                "phone": obj.get("phone"),
+                "fax": obj.get("fax"),
+                "notes": obj.get("notes"),
+                "default_payment_terms": obj.get("default_payment_terms"),
                 "default_vat": VatType.from_dict(obj.get("default_vat"))
                 if obj.get("default_vat") is not None
                 else None,
@@ -241,43 +240,21 @@ class Entity(BaseModel):
                 )
                 if obj.get("default_payment_method") is not None
                 else None,
-                "bank_name": obj.get("bank_name")
-                if obj.get("bank_name") is not None
-                else None,
-                "bank_iban": obj.get("bank_iban")
-                if obj.get("bank_iban") is not None
-                else None,
-                "bank_swift_code": obj.get("bank_swift_code")
-                if obj.get("bank_swift_code") is not None
-                else None,
-                "shipping_address": obj.get("shipping_address")
-                if obj.get("shipping_address") is not None
-                else None,
-                "e_invoice": obj.get("e_invoice")
-                if obj.get("e_invoice") is not None
-                else None,
-                "ei_code": obj.get("ei_code")
-                if obj.get("ei_code") is not None
-                else None,
-                "has_intent_declaration": obj.get("has_intent_declaration")
-                if obj.get("has_intent_declaration") is not None
-                else None,
+                "bank_name": obj.get("bank_name"),
+                "bank_iban": obj.get("bank_iban"),
+                "bank_swift_code": obj.get("bank_swift_code"),
+                "shipping_address": obj.get("shipping_address"),
+                "e_invoice": obj.get("e_invoice"),
+                "ei_code": obj.get("ei_code"),
+                "has_intent_declaration": obj.get("has_intent_declaration"),
                 "intent_declaration_protocol_number": obj.get(
                     "intent_declaration_protocol_number"
-                )
-                if obj.get("intent_declaration_protocol_number") is not None
-                else None,
+                ),
                 "intent_declaration_protocol_date": obj.get(
                     "intent_declaration_protocol_date"
-                )
-                if obj.get("intent_declaration_protocol_date") is not None
-                else None,
-                "created_at": obj.get("created_at")
-                if obj.get("created_at") is not None
-                else None,
-                "updated_at": obj.get("updated_at")
-                if obj.get("updated_at") is not None
-                else None,
+                ),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
             }
         )
         return _obj

@@ -19,33 +19,41 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.f24_status import F24Status
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class F24(BaseModel):
     """
     F24
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="F24 id")
-    due_date: Optional[date] = Field(None, description="F24 due date")
+    id: Optional[StrictInt] = Field(default=None, description="F24 id")
+    due_date: Optional[date] = Field(default=None, description="F24 due date")
     status: Optional[F24Status] = None
     payment_account: Optional[PaymentAccount] = None
     amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="F24 amount"
+        default=None, description="F24 amount"
     )
     attachment_url: Optional[StrictStr] = Field(
-        None, description="[Temporary] [Read Only] F24 url of the attached file"
+        default=None, description="[Temporary] [Read Only] F24 url of the attached file"
     )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only]  F24 attachment token returned by POST /taxes/attachment",
     )
-    description: Optional[StrictStr] = Field(None, description="F24 description")
-    __properties = [
+    description: Optional[StrictStr] = Field(
+        default=None, description="F24 description"
+    )
+    __properties: ClassVar[List[str]] = [
         "id",
         "due_date",
         "status",
@@ -56,28 +64,34 @@ class F24(BaseModel):
         "description",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> F24:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of F24 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        _dict = self.model_dump(
             by_alias=True,
             exclude={
                 "attachment_url",
@@ -90,36 +104,26 @@ class F24(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> F24:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of F24 from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return F24.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = F24.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "due_date": obj.get("due_date")
-                if obj.get("due_date") is not None
-                else None,
+                "id": obj.get("id"),
+                "due_date": obj.get("due_date"),
                 "status": obj.get("status"),
                 "payment_account": PaymentAccount.from_dict(obj.get("payment_account"))
                 if obj.get("payment_account") is not None
                 else None,
-                "amount": float(obj.get("amount"))
-                if obj.get("amount") is not None
-                else None,
-                "attachment_url": obj.get("attachment_url")
-                if obj.get("attachment_url") is not None
-                else None,
-                "attachment_token": obj.get("attachment_token")
-                if obj.get("attachment_token") is not None
-                else None,
-                "description": obj.get("description")
-                if obj.get("description") is not None
-                else None,
+                "amount": obj.get("amount"),
+                "attachment_url": obj.get("attachment_url"),
+                "attachment_token": obj.get("attachment_token"),
+                "description": obj.get("description"),
             }
         )
         return _obj

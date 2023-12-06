@@ -19,72 +19,89 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import Field
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class User(BaseModel):
     """
     User
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="User id")
-    name: Optional[StrictStr] = Field(None, description="User full name")
-    first_name: Optional[StrictStr] = Field(None, description="User first name")
-    last_name: Optional[StrictStr] = Field(None, description="User last name")
-    email: Optional[StrictStr] = Field(None, description="User email address")
-    hash: Optional[StrictStr] = Field(None, description="User hash")
-    picture: Optional[StrictStr] = Field(None, description="User picture")
-    __properties = ["id", "name", "first_name", "last_name", "email", "hash", "picture"]
+    id: Optional[StrictInt] = Field(default=None, description="User id")
+    name: Optional[StrictStr] = Field(default=None, description="User full name")
+    first_name: Optional[StrictStr] = Field(default=None, description="User first name")
+    last_name: Optional[StrictStr] = Field(default=None, description="User last name")
+    email: Optional[StrictStr] = Field(default=None, description="User email address")
+    hash: Optional[StrictStr] = Field(default=None, description="User hash")
+    picture: Optional[StrictStr] = Field(default=None, description="User picture")
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "name",
+        "first_name",
+        "last_name",
+        "email",
+        "hash",
+        "picture",
+    ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> User:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of User from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> User:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of User from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return User.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = User.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "name": obj.get("name") if obj.get("name") is not None else None,
-                "first_name": obj.get("first_name")
-                if obj.get("first_name") is not None
-                else None,
-                "last_name": obj.get("last_name")
-                if obj.get("last_name") is not None
-                else None,
-                "email": obj.get("email") if obj.get("email") is not None else None,
-                "hash": obj.get("hash") if obj.get("hash") is not None else None,
-                "picture": obj.get("picture")
-                if obj.get("picture") is not None
-                else None,
+                "id": obj.get("id"),
+                "name": obj.get("name"),
+                "first_name": obj.get("first_name"),
+                "last_name": obj.get("last_name"),
+                "email": obj.get("email"),
+                "hash": obj.get("hash"),
+                "picture": obj.get("picture"),
             }
         )
         return _obj

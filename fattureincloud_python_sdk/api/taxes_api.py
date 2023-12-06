@@ -13,14 +13,20 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Dict, List, Optional, Tuple, Union, Any
 
+try:
+    from typing import Annotated
+except ImportError:
+    from typing_extensions import Annotated
+
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictBytes, StrictInt, StrictStr, conint
+from pydantic import StrictBytes, StrictInt, StrictStr, field_validator
 
 from typing import Optional, Union
 
@@ -36,10 +42,7 @@ from fattureincloud_python_sdk.models.upload_f24_attachment_response import (
 
 from fattureincloud_python_sdk.api_client import ApiClient
 from fattureincloud_python_sdk.api_response import ApiResponse
-from fattureincloud_python_sdk.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError,
-)
+from fattureincloud_python_sdk.rest import RESTResponseType
 
 
 class TaxesApi:
@@ -54,1327 +57,2038 @@ class TaxesApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_f24(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_f24_request: Annotated[
             Optional[CreateF24Request], Field(description="The F24 to create")
         ] = None,
-        **kwargs
-    ) -> CreateF24Response:  # noqa: E501
-        """Create F24  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateF24Response:
+        """Create F24
 
-        Creates a new F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_f24(company_id, create_f24_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new F24.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_f24_request: The F24 to create
         :type create_f24_request: CreateF24Request
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: CreateF24Response
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_f24_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.create_f24_with_http_info(
-            company_id, create_f24_request, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def create_f24_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        create_f24_request: Annotated[
-            Optional[CreateF24Request], Field(description="The F24 to create")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Create F24  # noqa: E501
-
-        Creates a new F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_f24_with_http_info(company_id, create_f24_request, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param create_f24_request: The F24 to create
-        :type create_f24_request: CreateF24Request
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(CreateF24Response, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "create_f24_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_f24_serialize(
+            company_id=company_id,
+            create_f24_request=create_f24_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_f24" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params["create_f24_request"] is not None:
-            _body_params = _params["create_f24_request"]
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
-
-        # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateF24Response",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def delete_f24(
+    @validate_call
+    def create_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete F24  # noqa: E501
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_f24_request: Annotated[
+            Optional[CreateF24Request], Field(description="The F24 to create")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateF24Response]:
+        """Create F24
 
-        Removes the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_f24(company_id, document_id, async_req=True)
-        >>> result = thread.get()
+        Creates a new F24.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_f24_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_f24_with_http_info(
-            company_id, document_id, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def delete_f24_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete F24  # noqa: E501
-
-        Removes the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_f24_with_http_info(company_id, document_id, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param create_f24_request: The F24 to create
+        :type create_f24_request: CreateF24Request
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "document_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_f24_serialize(
+            company_id=company_id,
+            create_f24_request=create_f24_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_f24" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
-
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes/{document_id}",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateF24Response",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
             response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
         )
 
-    @validate_arguments
-    def delete_f24_attachment(
+    @validate_call
+    def create_f24_without_preload_content(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete F24 Attachment  # noqa: E501
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_f24_request: Annotated[
+            Optional[CreateF24Request], Field(description="The F24 to create")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create F24
 
-        Removes the attachment of the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_f24_attachment(company_id, document_id, async_req=True)
-        >>> result = thread.get()
+        Creates a new F24.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_f24_attachment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_f24_attachment_with_http_info(
-            company_id, document_id, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def delete_f24_attachment_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete F24 Attachment  # noqa: E501
-
-        Removes the attachment of the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_f24_attachment_with_http_info(company_id, document_id, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param create_f24_request: The F24 to create
+        :type create_f24_request: CreateF24Request
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "document_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_f24_serialize(
+            company_id=company_id,
+            create_f24_request=create_f24_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_f24_attachment" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateF24Response",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
 
-        _collection_formats = {}
+    def _create_f24_serialize(
+        self,
+        company_id,
+        create_f24_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        if create_f24_request is not None:
+            _body_params = create_f24_request
 
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes/{document_id}/attachment",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
-        )
-
-    @validate_arguments
-    def get_f24(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        **kwargs
-    ) -> GetF24Response:  # noqa: E501
-        """Get F24  # noqa: E501
-
-        Gets the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_f24(company_id, document_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetF24Response
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_f24_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_f24_with_http_info(
-            company_id, document_id, fields, fieldset, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def get_f24_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get F24  # noqa: E501
-
-        Gets the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_f24_with_http_info(company_id, document_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetF24Response, status_code(int), headers(HTTPHeaderDict))
-        """
-
-        _params = locals()
-
-        _all_params = ["company_id", "document_id", "fields", "fieldset"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
-        )
-
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_f24" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
-        # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
-
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
-
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/taxes",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_f24(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete F24
+
+        Removes the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_f24_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete F24
+
+        Removes the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_f24_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete F24
+
+        Removes the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_f24_serialize(
+        self,
+        company_id,
+        document_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/taxes/{document_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_f24_attachment(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete F24 Attachment
+
+        Removes the attachment of the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_f24_attachment_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_f24_attachment_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete F24 Attachment
+
+        Removes the attachment of the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_f24_attachment_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_f24_attachment_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete F24 Attachment
+
+        Removes the attachment of the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_f24_attachment_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_f24_attachment_serialize(
+        self,
+        company_id,
+        document_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/taxes/{document_id}/attachment",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_f24(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetF24Response:
+        """Get F24
+
+        Gets the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "GetF24Response",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes/{document_id}",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def list_f24(
+    @validate_call
+    def get_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
         fields: Annotated[
             Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
         fieldset: Annotated[
             Optional[StrictStr], Field(description="Name of the fieldset.")
         ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="List of comma-separated fields for result sorting (minus for desc sorting)."
-            ),
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
         ] = None,
-        page: Annotated[
-            Optional[StrictInt], Field(description="The page to retrieve.")
-        ] = None,
-        per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
-            Field(description="The size of the page."),
-        ] = None,
-        q: Annotated[
-            Optional[StrictStr], Field(description="Query for filtering the results.")
-        ] = None,
-        **kwargs
-    ) -> ListF24Response:  # noqa: E501
-        """List F24  # noqa: E501
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetF24Response]:
+        """Get F24
 
-        Lists the F24s.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_f24(company_id, fields, fieldset, sort, page, per_page, q, async_req=True)
-        >>> result = thread.get()
+        Gets the specified F24.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
         :param fields: List of comma-separated fields.
         :type fields: str
         :param fieldset: Name of the fieldset.
         :type fieldset: str
-        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
-        :type sort: str
-        :param page: The page to retrieve.
-        :type page: int
-        :param per_page: The size of the page.
-        :type per_page: int
-        :param q: Query for filtering the results.
-        :type q: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ListF24Response
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the list_f24_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.list_f24_with_http_info(
-            company_id, fields, fieldset, sort, page, per_page, q, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def list_f24_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="List of comma-separated fields for result sorting (minus for desc sorting)."
-            ),
-        ] = None,
-        page: Annotated[
-            Optional[StrictInt], Field(description="The page to retrieve.")
-        ] = None,
-        per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
-            Field(description="The size of the page."),
-        ] = None,
-        q: Annotated[
-            Optional[StrictStr], Field(description="Query for filtering the results.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """List F24  # noqa: E501
-
-        Lists the F24s.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_f24_with_http_info(company_id, fields, fieldset, sort, page, per_page, q, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
-        :type sort: str
-        :param page: The page to retrieve.
-        :type page: int
-        :param per_page: The size of the page.
-        :type per_page: int
-        :param q: Query for filtering the results.
-        :type q: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ListF24Response, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            "company_id",
-            "fields",
-            "fieldset",
-            "sort",
-            "page",
-            "per_page",
-            "q",
-        ]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_f24" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetF24Response",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_f24_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get F24
+
+        Gets the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetF24Response",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_f24_serialize(
+        self,
+        company_id,
+        document_id,
+        fields,
+        fieldset,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
         # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
+        if fields is not None:
+            _query_params.append(("fields", fields))
 
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
-
-        if _params.get("sort") is not None:  # noqa: E501
-            _query_params.append(("sort", _params["sort"]))
-
-        if _params.get("page") is not None:  # noqa: E501
-            _query_params.append(("page", _params["page"]))
-
-        if _params.get("per_page") is not None:  # noqa: E501
-            _query_params.append(("per_page", _params["per_page"]))
-
-        if _params.get("q") is not None:  # noqa: E501
-            _query_params.append(("q", _params["q"]))
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
 
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/taxes/{document_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_f24(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListF24Response:
+        """List F24
+
+        Lists the F24s.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param q: Query for filtering the results.
+        :type q: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_f24_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            sort=sort,
+            page=page,
+            per_page=per_page,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListF24Response",
             "401": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def modify_f24(
+    @validate_call
+    def list_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        modify_f24_request: Annotated[
-            Optional[ModifyF24Request], Field(description="The F24")
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
-        **kwargs
-    ) -> ModifyF24Response:  # noqa: E501
-        """Modify F24  # noqa: E501
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListF24Response]:
+        """List F24
 
-        Modifies the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_f24(company_id, document_id, modify_f24_request, async_req=True)
-        >>> result = thread.get()
+        Lists the F24s.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param modify_f24_request: The F24
-        :type modify_f24_request: ModifyF24Request
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ModifyF24Response
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the modify_f24_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.modify_f24_with_http_info(
-            company_id, document_id, modify_f24_request, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def modify_f24_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        modify_f24_request: Annotated[
-            Optional[ModifyF24Request], Field(description="The F24")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Modify F24  # noqa: E501
-
-        Modifies the specified F24.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_f24_with_http_info(company_id, document_id, modify_f24_request, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param modify_f24_request: The F24
-        :type modify_f24_request: ModifyF24Request
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param q: Query for filtering the results.
+        :type q: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ModifyF24Response, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "document_id", "modify_f24_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._list_f24_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            sort=sort,
+            page=page,
+            per_page=per_page,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method modify_f24" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListF24Response",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def list_f24_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List F24
+
+        Lists the F24s.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param q: Query for filtering the results.
+        :type q: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_f24_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            sort=sort,
+            page=page,
+            per_page=per_page,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListF24Response",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _list_f24_serialize(
+        self,
+        company_id,
+        fields,
+        fieldset,
+        sort,
+        page,
+        per_page,
+        q,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
+        if fields is not None:
+            _query_params.append(("fields", fields))
+
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
+
+        if sort is not None:
+            _query_params.append(("sort", sort))
+
+        if page is not None:
+            _query_params.append(("page", page))
+
+        if per_page is not None:
+            _query_params.append(("per_page", per_page))
+
+        if q is not None:
+            _query_params.append(("q", q))
+
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["modify_f24_request"] is not None:
-            _body_params = _params["modify_f24_request"]
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
         )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/taxes",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def modify_f24(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        modify_f24_request: Annotated[
+            Optional[ModifyF24Request], Field(description="The F24")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifyF24Response:
+        """Modify F24
+
+        Modifies the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param modify_f24_request: The F24
+        :type modify_f24_request: ModifyF24Request
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            modify_f24_request=modify_f24_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "ModifyF24Response",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes/{document_id}",
-            "PUT",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def upload_f24_attachment(
+    @validate_call
+    def modify_f24_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        filename: Annotated[
-            Optional[StrictStr], Field(description="Attachment file name")
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        modify_f24_request: Annotated[
+            Optional[ModifyF24Request], Field(description="The F24")
         ] = None,
-        attachment: Annotated[
-            Optional[Union[StrictBytes, StrictStr]],
-            Field(
-                description="Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]"
-            ),
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
         ] = None,
-        **kwargs
-    ) -> UploadF24AttachmentResponse:  # noqa: E501
-        """Upload F24 Attachment  # noqa: E501
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifyF24Response]:
+        """Modify F24
 
-        Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upload_f24_attachment(company_id, filename, attachment, async_req=True)
-        >>> result = thread.get()
+        Modifies the specified F24.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param filename: Attachment file name
-        :type filename: str
-        :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
-        :type attachment: bytearray
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: UploadF24AttachmentResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the upload_f24_attachment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.upload_f24_attachment_with_http_info(
-            company_id, filename, attachment, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def upload_f24_attachment_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        filename: Annotated[
-            Optional[StrictStr], Field(description="Attachment file name")
-        ] = None,
-        attachment: Annotated[
-            Optional[Union[StrictBytes, StrictStr]],
-            Field(
-                description="Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]"
-            ),
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Upload F24 Attachment  # noqa: E501
-
-        Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.upload_f24_attachment_with_http_info(company_id, filename, attachment, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param filename: Attachment file name
-        :type filename: str
-        :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
-        :type attachment: bytearray
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param modify_f24_request: The F24
+        :type modify_f24_request: ModifyF24Request
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(UploadF24AttachmentResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "filename", "attachment"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._modify_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            modify_f24_request=modify_f24_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method upload_f24_attachment" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyF24Response",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def modify_f24_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        modify_f24_request: Annotated[
+            Optional[ModifyF24Request], Field(description="The F24")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify F24
+
+        Modifies the specified F24.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param modify_f24_request: The F24
+        :type modify_f24_request: ModifyF24Request
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_f24_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            modify_f24_request=modify_f24_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyF24Response",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _modify_f24_serialize(
+        self,
+        company_id,
+        document_id,
+        modify_f24_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
         # process the query parameters
-        _query_params = []
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
-        if _params["filename"]:
-            _form_params.append(("filename", _params["filename"]))
-
-        if _params["attachment"]:
-            _files["attachment"] = _params["attachment"]
-
         # process the body parameter
-        _body_params = None
+        if modify_f24_request is not None:
+            _body_params = modify_f24_request
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["multipart/form-data"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
-            "200": "UploadF24AttachmentResponse",
-        }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/taxes/attachment",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/c/{company_id}/taxes/{document_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def upload_f24_attachment(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        filename: Annotated[
+            Optional[StrictStr], Field(description="Attachment file name")
+        ] = None,
+        attachment: Annotated[
+            Optional[Union[StrictBytes, StrictStr]],
+            Field(
+                description="Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]"
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UploadF24AttachmentResponse:
+        """Upload F24 Attachment
+
+        Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param filename: Attachment file name
+        :type filename: str
+        :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
+        :type attachment: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._upload_f24_attachment_serialize(
+            company_id=company_id,
+            filename=filename,
+            attachment=attachment,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "UploadF24AttachmentResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def upload_f24_attachment_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        filename: Annotated[
+            Optional[StrictStr], Field(description="Attachment file name")
+        ] = None,
+        attachment: Annotated[
+            Optional[Union[StrictBytes, StrictStr]],
+            Field(
+                description="Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]"
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UploadF24AttachmentResponse]:
+        """Upload F24 Attachment
+
+        Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param filename: Attachment file name
+        :type filename: str
+        :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
+        :type attachment: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._upload_f24_attachment_serialize(
+            company_id=company_id,
+            filename=filename,
+            attachment=attachment,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "UploadF24AttachmentResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def upload_f24_attachment_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        filename: Annotated[
+            Optional[StrictStr], Field(description="Attachment file name")
+        ] = None,
+        attachment: Annotated[
+            Optional[Union[StrictBytes, StrictStr]],
+            Field(
+                description="Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]"
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Upload F24 Attachment
+
+        Uploads an attachment destined to a F24. The actual association between the document and the attachment must be implemented separately, using the returned token.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param filename: Attachment file name
+        :type filename: str
+        :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
+        :type attachment: bytearray
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._upload_f24_attachment_serialize(
+            company_id=company_id,
+            filename=filename,
+            attachment=attachment,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "UploadF24AttachmentResponse"
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _upload_f24_attachment_serialize(
+        self,
+        company_id,
+        filename,
+        attachment,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if filename is not None:
+            _form_params.append(("filename", filename))
+        if attachment is not None:
+            _files["attachment"] = attachment
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["multipart/form-data"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/taxes/attachment",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
         )
