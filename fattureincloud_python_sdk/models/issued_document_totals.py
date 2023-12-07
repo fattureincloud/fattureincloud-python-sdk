@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt
 from pydantic import Field
 
+from fattureincloud_python_sdk.models.vat_item import VatItem
+
 try:
     from typing import Self
 except ImportError:
