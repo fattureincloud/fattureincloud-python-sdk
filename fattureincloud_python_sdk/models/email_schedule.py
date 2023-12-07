@@ -19,40 +19,46 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.email_schedule_include import EmailScheduleInclude
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class EmailSchedule(BaseModel):
     """
     EmailSchedule
-    """
+    """  # noqa: E501
 
     sender_id: Optional[StrictInt] = Field(
-        None,
+        default=None,
         description="Email sender id [required if **sender_email** is not specified]",
     )
     sender_email: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Email sender address [required if **sender_id** is not specified]",
     )
     recipient_email: Optional[StrictStr] = Field(
-        None, description="Email recipient emails [comma separated]"
+        default=None, description="Email recipient emails [comma separated]"
     )
-    subject: Optional[StrictStr] = Field(None, description="Email subject")
+    subject: Optional[StrictStr] = Field(default=None, description="Email subject")
     body: Optional[StrictStr] = Field(
-        None, description="Email body [HTML Escaped] [max size 50KiB]"
+        default=None, description="Email body [HTML Escaped] [max size 50KiB]"
     )
     include: Optional[EmailScheduleInclude] = None
     attach_pdf: Optional[StrictBool] = Field(
-        None, description="Attach the pdf of the document"
+        default=None, description="Attach the pdf of the document"
     )
     send_copy: Optional[StrictBool] = Field(
-        None,
+        default=None,
         description="Send a copy of the email to the **cc_email** specified by **Get email data**",
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "sender_id",
         "sender_email",
         "recipient_email",
@@ -63,66 +69,63 @@ class EmailSchedule(BaseModel):
         "send_copy",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> EmailSchedule:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of EmailSchedule from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of include
         if self.include:
             _dict["include"] = self.include.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> EmailSchedule:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of EmailSchedule from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return EmailSchedule.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = EmailSchedule.parse_obj(
+        _obj = cls.model_validate(
             {
-                "sender_id": obj.get("sender_id")
-                if obj.get("sender_id") is not None
-                else None,
-                "sender_email": obj.get("sender_email")
-                if obj.get("sender_email") is not None
-                else None,
-                "recipient_email": obj.get("recipient_email")
-                if obj.get("recipient_email") is not None
-                else None,
-                "subject": obj.get("subject")
-                if obj.get("subject") is not None
-                else None,
-                "body": obj.get("body") if obj.get("body") is not None else None,
+                "sender_id": obj.get("sender_id"),
+                "sender_email": obj.get("sender_email"),
+                "recipient_email": obj.get("recipient_email"),
+                "subject": obj.get("subject"),
+                "body": obj.get("body"),
                 "include": EmailScheduleInclude.from_dict(obj.get("include"))
                 if obj.get("include") is not None
                 else None,
-                "attach_pdf": obj.get("attach_pdf")
-                if obj.get("attach_pdf") is not None
-                else None,
-                "send_copy": obj.get("send_copy")
-                if obj.get("send_copy") is not None
-                else None,
+                "attach_pdf": obj.get("attach_pdf"),
+                "send_copy": obj.get("send_copy"),
             }
         )
         return _obj

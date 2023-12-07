@@ -19,77 +19,94 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.company_type import CompanyType
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class ControlledCompany(BaseModel):
     """
     ControlledCompany
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Controlled company id")
-    name: Optional[StrictStr] = Field(None, description="Controlled company id")
+    id: Optional[StrictInt] = Field(default=None, description="Controlled company id")
+    name: Optional[StrictStr] = Field(default=None, description="Controlled company id")
     type: Optional[CompanyType] = None
     access_token: Optional[StrictStr] = Field(
-        None, description="Controlled company access token Only if type=company]"
+        default=None,
+        description="Controlled company access token Only if type=company]",
     )
     connection_id: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Controlled company connection id"
+        default=None, description="Controlled company connection id"
     )
     tax_code: Optional[StrictStr] = Field(
-        None, description="Controlled company tax code"
+        default=None, description="Controlled company tax code"
     )
-    __properties = ["id", "name", "type", "access_token", "connection_id", "tax_code"]
+    __properties: ClassVar[List[str]] = [
+        "id",
+        "name",
+        "type",
+        "access_token",
+        "connection_id",
+        "tax_code",
+    ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ControlledCompany:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of ControlledCompany from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ControlledCompany:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ControlledCompany from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ControlledCompany.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = ControlledCompany.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "name": obj.get("name") if obj.get("name") is not None else None,
+                "id": obj.get("id"),
+                "name": obj.get("name"),
                 "type": obj.get("type"),
-                "access_token": obj.get("access_token")
-                if obj.get("access_token") is not None
-                else None,
-                "connection_id": float(obj.get("connection_id"))
-                if obj.get("connection_id") is not None
-                else None,
-                "tax_code": obj.get("tax_code")
-                if obj.get("tax_code") is not None
-                else None,
+                "access_token": obj.get("access_token"),
+                "connection_id": obj.get("connection_id"),
+                "tax_code": obj.get("tax_code"),
             }
         )
         return _obj

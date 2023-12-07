@@ -62,7 +62,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateCashbookEntryResponse(
@@ -89,7 +89,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_cashbook_entry(2, "12345")
@@ -106,7 +106,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetCashbookEntryResponse(
@@ -137,7 +137,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListCashbookEntriesResponse(
@@ -180,7 +180,7 @@ class TestCashbookApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyCashbookEntryResponse(

@@ -16,14 +16,26 @@
 import unittest
 
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.models.create_webhooks_subscription_response import CreateWebhooksSubscriptionResponse
+from fattureincloud_python_sdk.models.create_webhooks_subscription_response import (
+    CreateWebhooksSubscriptionResponse,
+)
 from fattureincloud_python_sdk.models.event_type import EventType
-from fattureincloud_python_sdk.models.get_webhooks_subscription_response import GetWebhooksSubscriptionResponse
-from fattureincloud_python_sdk.models.list_webhooks_subscriptions_response import ListWebhooksSubscriptionsResponse
-from fattureincloud_python_sdk.models.modify_webhooks_subscription_response import ModifyWebhooksSubscriptionResponse
+from fattureincloud_python_sdk.models.get_webhooks_subscription_response import (
+    GetWebhooksSubscriptionResponse,
+)
+from fattureincloud_python_sdk.models.list_webhooks_subscriptions_response import (
+    ListWebhooksSubscriptionsResponse,
+)
+from fattureincloud_python_sdk.models.modify_webhooks_subscription_response import (
+    ModifyWebhooksSubscriptionResponse,
+)
 from fattureincloud_python_sdk.models.webhooks_subscription import WebhooksSubscription
-from fattureincloud_python_sdk.models.webhooks_subscription_config import WebhooksSubscriptionConfig
-from fattureincloud_python_sdk.models.webhooks_subscription_mapping import WebhooksSubscriptionMapping
+from fattureincloud_python_sdk.models.webhooks_subscription_config import (
+    WebhooksSubscriptionConfig,
+)
+from fattureincloud_python_sdk.models.webhooks_subscription_mapping import (
+    WebhooksSubscriptionMapping,
+)
 import functions
 from fattureincloud_python_sdk.api.webhooks_api import WebhooksApi  # noqa: E501
 from fattureincloud_python_sdk.rest import RESTResponse
@@ -49,16 +61,18 @@ class TestWebhooksApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateWebhooksSubscriptionResponse(
-            data= WebhooksSubscription(
+            data=WebhooksSubscription(
                 id="SUB1234",
                 sink="https://endpoint.test",
                 verified=True,
                 types=[EventType.CASHBOOK_CREATE],
-                config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+                config=WebhooksSubscriptionConfig(
+                    mapping=WebhooksSubscriptionMapping("binary")
+                ),
             )
         )
 
@@ -73,7 +87,7 @@ class TestWebhooksApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_webhooks_subscription(2, "SUB12345")
@@ -90,16 +104,18 @@ class TestWebhooksApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetWebhooksSubscriptionResponse(
-            data= WebhooksSubscription(
+            data=WebhooksSubscription(
                 id="SUB1234",
                 sink="https://endpoint.test",
                 verified=True,
                 types=[EventType.CASHBOOK_CREATE],
-                config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+                config=WebhooksSubscriptionConfig(
+                    mapping=WebhooksSubscriptionMapping("binary")
+                ),
             )
         )
 
@@ -118,25 +134,29 @@ class TestWebhooksApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListWebhooksSubscriptionsResponse(
-            data = [
+            data=[
                 WebhooksSubscription(
                     id="SUB0",
                     sink="https://endpoint.test",
                     verified=True,
                     types=[EventType.CASHBOOK_CREATE],
-                    config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+                    config=WebhooksSubscriptionConfig(
+                        mapping=WebhooksSubscriptionMapping("binary")
+                    ),
                 ),
                 WebhooksSubscription(
                     id="SUB1",
                     sink="https://endpoint.test",
                     verified=True,
                     types=[EventType.CASHBOOK_CREATE],
-                    config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
-                )
+                    config=WebhooksSubscriptionConfig(
+                        mapping=WebhooksSubscriptionMapping("binary")
+                    ),
+                ),
             ]
         )
 
@@ -156,16 +176,18 @@ class TestWebhooksApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyWebhooksSubscriptionResponse(
-            data= WebhooksSubscription(
+            data=WebhooksSubscription(
                 id="SUB1234",
                 sink="https://endpoint.test",
                 verified=True,
                 types=[EventType.CASHBOOK_CREATE],
-                config=WebhooksSubscriptionConfig(mapping=WebhooksSubscriptionMapping('binary')),
+                config=WebhooksSubscriptionConfig(
+                    mapping=WebhooksSubscriptionMapping("binary")
+                ),
             )
         )
 

@@ -19,56 +19,64 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import List, Optional, Union
-from pydantic import (
-    BaseModel,
-    Field,
-    StrictBool,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    conlist,
-)
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.receipt_items_list_item import (
     ReceiptItemsListItem,
 )
 from fattureincloud_python_sdk.models.receipt_type import ReceiptType
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class Receipt(BaseModel):
     """
     Receipt
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Receipt id")
-    var_date: Optional[date] = Field(None, alias="date", description="Receipt date")
-    number: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt number"
+    id: Optional[StrictInt] = Field(default=None, description="Receipt id")
+    var_date: Optional[date] = Field(
+        default=None, description="Receipt date", alias="date"
     )
-    numeration: Optional[StrictStr] = Field(None, description="Receipt numeration")
+    number: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=None, description="Receipt number"
+    )
+    numeration: Optional[StrictStr] = Field(
+        default=None, description="Receipt numeration"
+    )
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt total net amount"
+        default=None, description="Receipt total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt total vat amount"
+        default=None, description="Receipt total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Receipt total gross amount"
+        default=None, description="Receipt total gross amount"
     )
     use_gross_prices: Optional[StrictBool] = Field(
-        None, description="Receipt uses gross prices"
+        default=None, description="Receipt uses gross prices"
     )
     type: Optional[ReceiptType] = None
-    description: Optional[StrictStr] = Field(None, description="Receipt description")
-    rc_center: Optional[StrictStr] = Field(None, description="Receipt revenue center")
-    created_at: Optional[StrictStr] = Field(None, description="Receipt creation date")
+    description: Optional[StrictStr] = Field(
+        default=None, description="Receipt description"
+    )
+    rc_center: Optional[StrictStr] = Field(
+        default=None, description="Receipt revenue center"
+    )
+    created_at: Optional[StrictStr] = Field(
+        default=None, description="Receipt creation date"
+    )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Receipt last update date"
+        default=None, description="Receipt last update date"
     )
     payment_account: Optional[PaymentAccount] = None
-    items_list: Optional[conlist(ReceiptItemsListItem)] = None
-    __properties = [
+    items_list: Optional[List[ReceiptItemsListItem]] = None
+    __properties: ClassVar[List[str]] = [
         "id",
         "date",
         "number",
@@ -86,28 +94,37 @@ class Receipt(BaseModel):
         "items_list",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Receipt:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of Receipt from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of payment_account
         if self.payment_account:
             _dict["payment_account"] = self.payment_account.to_dict()
@@ -121,49 +138,29 @@ class Receipt(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Receipt:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Receipt from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Receipt.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Receipt.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
-                "var_date": obj.get("date") if obj.get("date") is not None else None,
-                "number": float(obj.get("number"))
-                if obj.get("number") is not None
-                else None,
-                "numeration": obj.get("numeration")
-                if obj.get("numeration") is not None
-                else None,
-                "amount_net": float(obj.get("amount_net"))
-                if obj.get("amount_net") is not None
-                else None,
-                "amount_vat": float(obj.get("amount_vat"))
-                if obj.get("amount_vat") is not None
-                else None,
-                "amount_gross": float(obj.get("amount_gross"))
-                if obj.get("amount_gross") is not None
-                else None,
-                "use_gross_prices": obj.get("use_gross_prices")
-                if obj.get("use_gross_prices") is not None
-                else None,
+                "id": obj.get("id"),
+                "date": obj.get("date"),
+                "number": obj.get("number"),
+                "numeration": obj.get("numeration"),
+                "amount_net": obj.get("amount_net"),
+                "amount_vat": obj.get("amount_vat"),
+                "amount_gross": obj.get("amount_gross"),
+                "use_gross_prices": obj.get("use_gross_prices"),
                 "type": obj.get("type"),
-                "description": obj.get("description")
-                if obj.get("description") is not None
-                else None,
-                "rc_center": obj.get("rc_center")
-                if obj.get("rc_center") is not None
-                else None,
-                "created_at": obj.get("created_at")
-                if obj.get("created_at") is not None
-                else None,
-                "updated_at": obj.get("updated_at")
-                if obj.get("updated_at") is not None
-                else None,
+                "description": obj.get("description"),
+                "rc_center": obj.get("rc_center"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
                 "payment_account": PaymentAccount.from_dict(obj.get("payment_account"))
                 if obj.get("payment_account") is not None
                 else None,

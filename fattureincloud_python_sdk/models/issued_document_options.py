@@ -19,31 +19,38 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool, StrictStr
+from pydantic import Field
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class IssuedDocumentOptions(BaseModel):
     """
     IssuedDocumentOptions
-    """
+    """  # noqa: E501
 
     fix_payments: Optional[StrictBool] = Field(
-        None, description="Fixes your last payment amount to match your document total"
+        default=None,
+        description="Fixes your last payment amount to match your document total",
     )
-    create_from: Optional[conlist(StrictStr)] = Field(
-        None, description="Original documents ids [only for join/transform]"
+    create_from: Optional[List[StrictStr]] = Field(
+        default=None, description="Original documents ids [only for join/transform]"
     )
     transform: Optional[StrictBool] = Field(
-        None, description="Tranform a document [only for transform]"
+        default=None, description="Tranform a document [only for transform]"
     )
     keep_copy: Optional[StrictBool] = Field(
-        None, description="Keep original document [only for transform]"
+        default=None, description="Keep original document [only for transform]"
     )
     join_type: Optional[StrictStr] = Field(
-        None, description="Join type [only for join]"
+        default=None, description="Join type [only for join]"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "fix_payments",
         "create_from",
         "transform",
@@ -51,54 +58,55 @@ class IssuedDocumentOptions(BaseModel):
         "join_type",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentOptions:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentOptions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentOptions:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentOptions from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentOptions.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentOptions.parse_obj(
+        _obj = cls.model_validate(
             {
-                "fix_payments": obj.get("fix_payments")
-                if obj.get("fix_payments") is not None
-                else None,
+                "fix_payments": obj.get("fix_payments"),
                 "create_from": obj.get("create_from"),
-                "transform": obj.get("transform")
-                if obj.get("transform") is not None
-                else None,
-                "keep_copy": obj.get("keep_copy")
-                if obj.get("keep_copy") is not None
-                else None,
-                "join_type": obj.get("join_type")
-                if obj.get("join_type") is not None
-                else None,
+                "transform": obj.get("transform"),
+                "keep_copy": obj.get("keep_copy"),
+                "join_type": obj.get("join_type"),
             }
         )
         return _obj

@@ -19,65 +19,75 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt
+from pydantic import Field
+
+from fattureincloud_python_sdk.models.vat_item import VatItem
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class IssuedDocumentTotals(BaseModel):
     """
     IssuedDocumentTotals
-    """
+    """  # noqa: E501
 
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total net amount"
+        default=None, description="Issued document total net amount"
     )
     amount_rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document rivalsa amount"
+        default=None, description="Issued document rivalsa amount"
     )
     amount_net_with_rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document net amount with rivalsa"
+        default=None, description="Issued document net amount with rivalsa"
     )
     amount_cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document cassa amount"
+        default=None, description="Issued document cassa amount"
     )
     taxable_amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable amount"
+        default=None, description="Issued document taxable amount"
     )
     not_taxable_amount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document not taxable amount"
+        default=None, description="Issued document not taxable amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total vat amount"
+        default=None, description="Issued document total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total gross amount"
+        default=None, description="Issued document total gross amount"
     )
     taxable_amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document Taxable withholding tax amount"
+        default=None, description="Issued document Taxable withholding tax amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document withholding tax amount"
+        default=None, description="Issued document withholding tax amount"
     )
     taxable_amount_other_withholding_tax: Optional[
         Union[StrictFloat, StrictInt]
-    ] = Field(None, description="Issued document other withholding tax taxable amount")
+    ] = Field(
+        default=None, description="Issued document other withholding tax taxable amount"
+    )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document other withholding tax amount"
+        default=None, description="Issued document other withholding tax amount"
     )
     stamp_duty: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document stamp duty value [0 if not present]."
+        default=None, description="Issued document stamp duty value [0 if not present]."
     )
     amount_due: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document total amount due"
+        default=None, description="Issued document total amount due"
     )
     is_enasarco_maximal_exceeded: Optional[StrictBool] = Field(
-        None, description="Is enasarco maximal excedeed"
+        default=None, description="Is enasarco maximal excedeed"
     )
     payments_sum: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document payments sum"
+        default=None, description="Issued document payments sum"
     )
-    vat_list: Optional[Dict[str, Dict[str, Any]]] = None
-    __properties = [
+    vat_list: Optional[Dict[str, Union[str, Any]]] = None
+    __properties: ClassVar[List[str]] = [
         "amount_net",
         "amount_rivalsa",
         "amount_net_with_rivalsa",
@@ -97,28 +107,37 @@ class IssuedDocumentTotals(BaseModel):
         "vat_list",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentTotals:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentTotals from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each value in vat_list (dict)
         _field_dict = {}
         if self.vat_list:
@@ -129,70 +148,36 @@ class IssuedDocumentTotals(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentTotals:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentTotals from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentTotals.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentTotals.parse_obj(
+        _obj = cls.model_validate(
             {
-                "amount_net": float(obj.get("amount_net"))
-                if obj.get("amount_net") is not None
-                else None,
-                "amount_rivalsa": float(obj.get("amount_rivalsa"))
-                if obj.get("amount_rivalsa") is not None
-                else None,
-                "amount_net_with_rivalsa": float(obj.get("amount_net_with_rivalsa"))
-                if obj.get("amount_net_with_rivalsa") is not None
-                else None,
-                "amount_cassa": float(obj.get("amount_cassa"))
-                if obj.get("amount_cassa") is not None
-                else None,
-                "taxable_amount": float(obj.get("taxable_amount"))
-                if obj.get("taxable_amount") is not None
-                else None,
-                "not_taxable_amount": float(obj.get("not_taxable_amount"))
-                if obj.get("not_taxable_amount") is not None
-                else None,
-                "amount_vat": float(obj.get("amount_vat"))
-                if obj.get("amount_vat") is not None
-                else None,
-                "amount_gross": float(obj.get("amount_gross"))
-                if obj.get("amount_gross") is not None
-                else None,
-                "taxable_amount_withholding_tax": float(
-                    obj.get("taxable_amount_withholding_tax")
-                )
-                if obj.get("taxable_amount_withholding_tax") is not None
-                else None,
-                "amount_withholding_tax": float(obj.get("amount_withholding_tax"))
-                if obj.get("amount_withholding_tax") is not None
-                else None,
-                "taxable_amount_other_withholding_tax": float(
-                    obj.get("taxable_amount_other_withholding_tax")
-                )
-                if obj.get("taxable_amount_other_withholding_tax") is not None
-                else None,
-                "amount_other_withholding_tax": float(
-                    obj.get("amount_other_withholding_tax")
-                )
-                if obj.get("amount_other_withholding_tax") is not None
-                else None,
-                "stamp_duty": float(obj.get("stamp_duty"))
-                if obj.get("stamp_duty") is not None
-                else None,
-                "amount_due": float(obj.get("amount_due"))
-                if obj.get("amount_due") is not None
-                else None,
-                "is_enasarco_maximal_exceeded": obj.get("is_enasarco_maximal_exceeded")
-                if obj.get("is_enasarco_maximal_exceeded") is not None
-                else None,
-                "payments_sum": float(obj.get("payments_sum"))
-                if obj.get("payments_sum") is not None
-                else None,
+                "amount_net": obj.get("amount_net"),
+                "amount_rivalsa": obj.get("amount_rivalsa"),
+                "amount_net_with_rivalsa": obj.get("amount_net_with_rivalsa"),
+                "amount_cassa": obj.get("amount_cassa"),
+                "taxable_amount": obj.get("taxable_amount"),
+                "not_taxable_amount": obj.get("not_taxable_amount"),
+                "amount_vat": obj.get("amount_vat"),
+                "amount_gross": obj.get("amount_gross"),
+                "taxable_amount_withholding_tax": obj.get(
+                    "taxable_amount_withholding_tax"
+                ),
+                "amount_withholding_tax": obj.get("amount_withholding_tax"),
+                "taxable_amount_other_withholding_tax": obj.get(
+                    "taxable_amount_other_withholding_tax"
+                ),
+                "amount_other_withholding_tax": obj.get("amount_other_withholding_tax"),
+                "stamp_duty": obj.get("stamp_duty"),
+                "amount_due": obj.get("amount_due"),
+                "is_enasarco_maximal_exceeded": obj.get("is_enasarco_maximal_exceeded"),
+                "payments_sum": obj.get("payments_sum"),
                 "vat_list": dict(
                     (_k, VatItem.from_dict(_v))
                     for _k, _v in obj.get("vat_list").items()

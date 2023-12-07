@@ -55,7 +55,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = SendEInvoiceResponse(
@@ -72,7 +72,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = VerifyEInvoiceXmlResponse(
@@ -92,7 +92,7 @@ class TestIssuedEInvoicesApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetEInvoiceRejectionReasonResponse(

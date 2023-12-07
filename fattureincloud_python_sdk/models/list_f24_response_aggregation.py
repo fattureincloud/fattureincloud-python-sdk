@@ -19,58 +19,72 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from fattureincloud_python_sdk.models.list_f24_response_aggregated_data import (
     ListF24ResponseAggregatedData,
 )
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class ListF24ResponseAggregation(BaseModel):
     """
     ListF24ResponseAggregation
-    """
+    """  # noqa: E501
 
     aggregated_data: Optional[ListF24ResponseAggregatedData] = None
-    __properties = ["aggregated_data"]
+    __properties: ClassVar[List[str]] = ["aggregated_data"]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ListF24ResponseAggregation:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of ListF24ResponseAggregation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of aggregated_data
         if self.aggregated_data:
             _dict["aggregated_data"] = self.aggregated_data.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ListF24ResponseAggregation:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ListF24ResponseAggregation from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ListF24ResponseAggregation.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = ListF24ResponseAggregation.parse_obj(
+        _obj = cls.model_validate(
             {
                 "aggregated_data": ListF24ResponseAggregatedData.from_dict(
                     obj.get("aggregated_data")

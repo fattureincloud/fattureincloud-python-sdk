@@ -19,41 +19,53 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.original_document_type import OriginalDocumentType
 from fattureincloud_python_sdk.models.vat_kind import VatKind
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class IssuedDocumentEiData(BaseModel):
     """
-    Issued document e-invoice data [Only if e_invoice=true] # noqa: E501
-    """
+    Issued document e-invoice data [Only if e_invoice=true]
+    """  # noqa: E501
 
     vat_kind: Optional[VatKind] = None
     original_document_type: Optional[OriginalDocumentType] = None
     od_number: Optional[StrictStr] = Field(
-        None, description="E-invoice original document number"
+        default=None, description="E-invoice original document number"
     )
     od_date: Optional[date] = Field(
-        None, description="E-invoice original document date"
+        default=None, description="E-invoice original document date"
     )
-    cig: Optional[StrictStr] = Field(None, description="E-invoice CIG")
-    cup: Optional[StrictStr] = Field(None, description="E-invoice CUP")
+    cig: Optional[StrictStr] = Field(default=None, description="E-invoice CIG")
+    cup: Optional[StrictStr] = Field(default=None, description="E-invoice CUP")
     payment_method: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="E-invoice payment method [required for e-invoices] (see [here](https://www.fatturapa.gov.it/export/documenti/fatturapa/v1.2.2/Rappresentazione_Tabellare_FattOrdinaria_V1.2.2.pdf) for the accepted values of ModalitaPagamento)",
     )
-    bank_name: Optional[StrictStr] = Field(None, description="E-invoice bank name")
-    bank_iban: Optional[StrictStr] = Field(None, description="E-invoice bank IBAN")
+    bank_name: Optional[StrictStr] = Field(
+        default=None, description="E-invoice bank name"
+    )
+    bank_iban: Optional[StrictStr] = Field(
+        default=None, description="E-invoice bank IBAN"
+    )
     bank_beneficiary: Optional[StrictStr] = Field(
-        None, description="E-invoice bank beneficiary"
+        default=None, description="E-invoice bank beneficiary"
     )
     invoice_number: Optional[StrictStr] = Field(
-        None, description="E-invoice invoice number"
+        default=None, description="E-invoice invoice number"
     )
-    invoice_date: Optional[date] = Field(None, description="E-invoice invoice date")
-    __properties = [
+    invoice_date: Optional[date] = Field(
+        default=None, description="E-invoice invoice date"
+    )
+    __properties: ClassVar[List[str]] = [
         "vat_kind",
         "original_document_type",
         "od_number",
@@ -68,69 +80,62 @@ class IssuedDocumentEiData(BaseModel):
         "invoice_date",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentEiData:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentEiData from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentEiData:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentEiData from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentEiData.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentEiData.parse_obj(
+        _obj = cls.model_validate(
             {
                 "vat_kind": obj.get("vat_kind"),
                 "original_document_type": obj.get("original_document_type"),
-                "od_number": obj.get("od_number")
-                if obj.get("od_number") is not None
-                else None,
-                "od_date": obj.get("od_date")
-                if obj.get("od_date") is not None
-                else None,
-                "cig": obj.get("cig") if obj.get("cig") is not None else None,
-                "cup": obj.get("cup") if obj.get("cup") is not None else None,
-                "payment_method": obj.get("payment_method")
-                if obj.get("payment_method") is not None
-                else None,
-                "bank_name": obj.get("bank_name")
-                if obj.get("bank_name") is not None
-                else None,
-                "bank_iban": obj.get("bank_iban")
-                if obj.get("bank_iban") is not None
-                else None,
-                "bank_beneficiary": obj.get("bank_beneficiary")
-                if obj.get("bank_beneficiary") is not None
-                else None,
-                "invoice_number": obj.get("invoice_number")
-                if obj.get("invoice_number") is not None
-                else None,
-                "invoice_date": obj.get("invoice_date")
-                if obj.get("invoice_date") is not None
-                else None,
+                "od_number": obj.get("od_number"),
+                "od_date": obj.get("od_date"),
+                "cig": obj.get("cig"),
+                "cup": obj.get("cup"),
+                "payment_method": obj.get("payment_method"),
+                "bank_name": obj.get("bank_name"),
+                "bank_iban": obj.get("bank_iban"),
+                "bank_beneficiary": obj.get("bank_beneficiary"),
+                "invoice_number": obj.get("invoice_number"),
+                "invoice_date": obj.get("invoice_date"),
             }
         )
         return _obj

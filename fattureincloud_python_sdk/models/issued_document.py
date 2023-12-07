@@ -19,17 +19,16 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from pydantic import (
     BaseModel,
-    Field,
     StrictBool,
     StrictFloat,
     StrictInt,
     StrictStr,
-    conlist,
-    validator,
+    field_validator,
 )
+from pydantic import Field
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 from fattureincloud_python_sdk.models.entity import Entity
@@ -50,252 +49,273 @@ from fattureincloud_python_sdk.models.language import Language
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class IssuedDocument(BaseModel):
     """
     IssuedDocument
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Issued document id")
+    id: Optional[StrictInt] = Field(default=None, description="Issued document id")
     entity: Optional[Entity] = None
     type: Optional[IssuedDocumentType] = None
     number: Optional[StrictInt] = Field(
-        None,
+        default=None,
         description="Issued document number [If not specified, next number is used]",
     )
     numeration: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Issued document numeration [Not available if type=delivery_note]",
     )
     var_date: Optional[date] = Field(
-        None,
-        alias="date",
+        default=None,
         description="Issued document date [defaults to today's date]",
+        alias="date",
     )
-    year: Optional[StrictInt] = Field(None, description="Issued document year")
+    year: Optional[StrictInt] = Field(default=None, description="Issued document year")
     currency: Optional[Currency] = None
     language: Optional[Language] = None
-    subject: Optional[StrictStr] = Field(None, description="Issued document subject")
+    subject: Optional[StrictStr] = Field(
+        default=None, description="Issued document subject"
+    )
     visible_subject: Optional[StrictStr] = Field(
-        None, description="Issued document visible subject"
+        default=None, description="Issued document visible subject"
     )
     rc_center: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="Issued document revenue center [or cost center if type=supplier_order].",
     )
-    notes: Optional[StrictStr] = Field(None, description="Issued document extra notes")
+    notes: Optional[StrictStr] = Field(
+        default=None, description="Issued document extra notes"
+    )
     rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description='Issued document "Rivalsa INPS" percentual value'
+        default=None, description='Issued document "Rivalsa INPS" percentual value'
     )
     cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description='Issued document "Cassa previdenziale" percentual value'
+        default=None,
+        description='Issued document "Cassa previdenziale" percentual value',
     )
     amount_cassa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document cassa amount."
+        default=None, description="[Read Only] Issued document cassa amount."
     )
     cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document cassa taxable percentage"
+        default=None, description="Issued document cassa taxable percentage"
     )
     amount_cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Can be set only if cassa_taxable is NULL] Issued document cassa taxable amount",
     )
     cassa2: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description='Issued document "Cassa previdenziale 2" percentual value'
+        default=None,
+        description='Issued document "Cassa previdenziale 2" percentual value',
     )
     amount_cassa2: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document cassa2 amount"
+        default=None, description="[Read Only] Issued document cassa2 amount"
     )
     cassa2_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document cassa2 taxable percentage"
+        default=None, description="Issued document cassa2 taxable percentage"
     )
     amount_cassa2_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Can be set only if cassa2_taxable is NULL] Issued document cassa2 taxable amount",
     )
     global_cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document global cassa taxable percentage"
+        default=None, description="Issued document global cassa taxable percentage"
     )
     amount_global_cassa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Can be set only if global_cassa_taxable is NULL] Issued document global cassa taxable amount",
     )
     withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="Issued document withholding tax (ritenuta d'acconto) percentual value",
     )
     withholding_tax_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="Issued document withholding tax taxable (imponibile) percentual value",
     )
     other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="Issued document other withholding tax (altra ritenuta) percentual value",
     )
     stamp_duty: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document stamp duty value [0 if not present]"
+        default=None, description="Issued document stamp duty value [0 if not present]"
     )
     payment_method: Optional[PaymentMethod] = None
     use_split_payment: Optional[StrictBool] = Field(
-        None, description="Issued document uses split payment"
+        default=None, description="Issued document uses split payment"
     )
     use_gross_prices: Optional[StrictBool] = Field(
-        None, description="Issued document uses gross prices"
+        default=None, description="Issued document uses gross prices"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="Issued document is an e-invoice."
+        default=None, description="Issued document is an e-invoice."
     )
     ei_data: Optional[IssuedDocumentEiData] = None
-    ei_cassa_type: Optional[StrictStr] = Field(None, description="E-invoice cassa type")
+    ei_cassa_type: Optional[StrictStr] = Field(
+        default=None, description="E-invoice cassa type"
+    )
     ei_cassa2_type: Optional[StrictStr] = Field(
-        None, description="E-invoice cassa2 type"
+        default=None, description="E-invoice cassa2 type"
     )
     ei_withholding_tax_causal: Optional[StrictStr] = Field(
-        None, description="E-invoice withholding tax causal"
+        default=None, description="E-invoice withholding tax causal"
     )
     ei_other_withholding_tax_type: Optional[StrictStr] = Field(
-        None, description="E-invoice other withholding tax type"
+        default=None, description="E-invoice other withholding tax type"
     )
     ei_other_withholding_tax_causal: Optional[StrictStr] = Field(
-        None, description="E-invoice other withholding tax causal"
+        default=None, description="E-invoice other withholding tax causal"
     )
-    items_list: Optional[conlist(IssuedDocumentItemsListItem)] = None
-    payments_list: Optional[conlist(IssuedDocumentPaymentsListItem)] = None
+    items_list: Optional[List[IssuedDocumentItemsListItem]] = None
+    payments_list: Optional[List[IssuedDocumentPaymentsListItem]] = None
     template: Optional[DocumentTemplate] = None
     delivery_note_template: Optional[DocumentTemplate] = None
     acc_inv_template: Optional[DocumentTemplate] = None
     h_margins: Optional[StrictInt] = Field(
-        None, description="Issued document PDF horizontal margins"
+        default=None, description="Issued document PDF horizontal margins"
     )
     v_margins: Optional[StrictInt] = Field(
-        None, description="Issued document PDF vertical margins"
+        default=None, description="Issued document PDF vertical margins"
     )
     show_payments: Optional[StrictBool] = Field(
-        None, description="Show the expiration dates of the payments on the document"
+        default=None,
+        description="Show the expiration dates of the payments on the document",
     )
     show_payment_method: Optional[StrictBool] = Field(
-        None, description="Show the payment method details on the document"
+        default=None, description="Show the payment method details on the document"
     )
     show_totals: Optional[ShowTotalsMode] = None
     show_paypal_button: Optional[StrictBool] = Field(
-        None, description="Show paypal button in the PDF"
+        default=None, description="Show paypal button in the PDF"
     )
     show_notification_button: Optional[StrictBool] = Field(
-        None, description="Show notification button in the PDF"
+        default=None, description="Show notification button in the PDF"
     )
     show_tspay_button: Optional[StrictBool] = Field(
-        None, description="Show ts pay button in the PDF"
+        default=None, description="Show ts pay button in the PDF"
     )
     delivery_note: Optional[StrictBool] = Field(
-        None, description="Issued document has delivery note"
+        default=None, description="Issued document has delivery note"
     )
     accompanying_invoice: Optional[StrictBool] = Field(
-        None, description="Issued document has an accompanying invoice"
+        default=None, description="Issued document has an accompanying invoice"
     )
     dn_number: Optional[StrictInt] = Field(
-        None, description="Issued document attached delivery note number"
+        default=None, description="Issued document attached delivery note number"
     )
     dn_date: Optional[date] = Field(
-        None, description="Issued document attached delivery note date"
+        default=None, description="Issued document attached delivery note date"
     )
     dn_ai_packages_number: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note number of packages"
+        default=None,
+        description="Issued document attached delivery note number of packages",
     )
     dn_ai_weight: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note package weight"
+        default=None,
+        description="Issued document attached delivery note package weight",
     )
     dn_ai_causal: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note causal"
+        default=None, description="Issued document attached delivery note causal"
     )
     dn_ai_destination: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note destination"
+        default=None, description="Issued document attached delivery note destination"
     )
     dn_ai_transporter: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note transporter"
+        default=None, description="Issued document attached delivery note transporter"
     )
     dn_ai_notes: Optional[StrictStr] = Field(
-        None, description="Issued document attached delivery note notes"
+        default=None, description="Issued document attached delivery note notes"
     )
     is_marked: Optional[StrictBool] = Field(
-        None, description="Issued document is marked"
+        default=None, description="Issued document is marked"
     )
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read only] Issued document total net amount"
+        default=None, description="[Read only] Issued document total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document total vat amount"
+        default=None, description="[Read Only] Issued document total vat amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document total gross amount"
+        default=None, description="[Read Only] Issued document total gross amount"
     )
     amount_due_discount: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document amount due discount"
+        default=None, description="Issued document amount due discount"
     )
     amount_rivalsa: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Issued document rivalsa amount"
+        default=None, description="[Read Only] Issued document rivalsa amount"
     )
     amount_rivalsa_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable rivalsa amount"
+        default=None, description="Issued document taxable rivalsa amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Read Only] Issued document withholding tax amount (ritenuta d'acconto).",
     )
     amount_withholding_tax_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable withholding tax amount"
+        default=None, description="Issued document taxable withholding tax amount"
     )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None,
+        default=None,
         description="[Read Only] Issued document other withholding tax amount (altra ritenuta)",
     )
     amount_other_withholding_tax_taxable: Optional[
         Union[StrictFloat, StrictInt]
-    ] = Field(None, description="Issued document taxable other withholding tax amount")
+    ] = Field(
+        default=None, description="Issued document taxable other withholding tax amount"
+    )
     amount_enasarco_taxable: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Issued document taxable enasarco amount"
+        default=None, description="Issued document taxable enasarco amount"
     )
     extra_data: Optional[IssuedDocumentExtraData] = None
-    seen_date: Optional[date] = Field(None, description="Issued document seen date")
+    seen_date: Optional[date] = Field(
+        default=None, description="Issued document seen date"
+    )
     next_due_date: Optional[date] = Field(
-        None, description="Issued document date of the next not paid payment"
+        default=None, description="Issued document date of the next not paid payment"
     )
     url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the document PDF file",
     )
     dn_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the attached delivery note PDF file",
     )
     ai_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the accompanying invoice PDF file",
     )
     attachment_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Issued document url of the attached file",
     )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only] Issued document attachment token returned by POST /issued_documents/attachment",
     )
-    ei_raw: Optional[Dict[str, Any]] = Field(
-        None, description="Issued document advanced raw attributes for e-invoices"
+    ei_raw: Optional[Union[str, Any]] = Field(
+        default=None,
+        description="Issued document advanced raw attributes for e-invoices",
     )
     ei_status: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Read only] Status of the e-invoice.   * **attempt** - We are trying to send the invoice, please wait up to 2 hours   * **missing** - The invoice is missing   * **not_sent** - The invoice has yet to be sent   * **sent** - The invoice was sent   * **pending** - The checks for the digital signature and sending are in progress   * **processing** - The SDI is delivering the invoice to the customer   * **error** - An error occurred while handling the invoice, please try to resend it or contact support   * **discarded** - The invoice has been rejected by the SDI, so it must be corrected and re-sent   * **not_delivered** - The SDI was unable to deliver the invoice   * **accepted** - The customer accepted the invoice   * **rejected** - The customer rejected the invoice, so it must be corrected   * **no_response** - A response has not yet been received whithin the deadline, contact the customer to ascertain the status of the invoice   * **manual_accepted** - The customer accepted the invoice   * **manual_rejected** - The customer rejected the invoice ",
     )
     locked: Optional[StrictBool] = Field(
-        None, description="Issued Document can't be edited"
+        default=None, description="Issued Document can't be edited"
     )
     created_at: Optional[StrictStr] = Field(
-        None, description="Issued document creation date"
+        default=None, description="Issued document creation date"
     )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Issued document last update date"
+        default=None, description="Issued document last update date"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "id",
         "entity",
         "type",
@@ -384,7 +404,7 @@ class IssuedDocument(BaseModel):
         "updated_at",
     ]
 
-    @validator("ei_status")
+    @field_validator("ei_status")
     def ei_status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -411,28 +431,42 @@ class IssuedDocument(BaseModel):
             )
         return value
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocument:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocument from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        _dict = self.model_dump(
             by_alias=True,
             exclude={
                 "amount_cassa",
@@ -491,124 +525,68 @@ class IssuedDocument(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocument:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocument from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocument.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocument.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
+                "id": obj.get("id"),
                 "entity": Entity.from_dict(obj.get("entity"))
                 if obj.get("entity") is not None
                 else None,
                 "type": obj.get("type"),
-                "number": obj.get("number") if obj.get("number") is not None else None,
-                "numeration": obj.get("numeration")
-                if obj.get("numeration") is not None
-                else None,
-                "var_date": obj.get("date") if obj.get("date") is not None else None,
-                "year": obj.get("year") if obj.get("year") is not None else None,
+                "number": obj.get("number"),
+                "numeration": obj.get("numeration"),
+                "date": obj.get("date"),
+                "year": obj.get("year"),
                 "currency": Currency.from_dict(obj.get("currency"))
                 if obj.get("currency") is not None
                 else None,
                 "language": Language.from_dict(obj.get("language"))
                 if obj.get("language") is not None
                 else None,
-                "subject": obj.get("subject")
-                if obj.get("subject") is not None
-                else None,
-                "visible_subject": obj.get("visible_subject")
-                if obj.get("visible_subject") is not None
-                else None,
-                "rc_center": obj.get("rc_center")
-                if obj.get("rc_center") is not None
-                else None,
-                "notes": obj.get("notes") if obj.get("notes") is not None else None,
-                "rivalsa": float(obj.get("rivalsa"))
-                if obj.get("rivalsa") is not None
-                else None,
-                "cassa": float(obj.get("cassa"))
-                if obj.get("cassa") is not None
-                else None,
-                "amount_cassa": float(obj.get("amount_cassa"))
-                if obj.get("amount_cassa") is not None
-                else None,
-                "cassa_taxable": float(obj.get("cassa_taxable"))
-                if obj.get("cassa_taxable") is not None
-                else None,
-                "amount_cassa_taxable": float(obj.get("amount_cassa_taxable"))
-                if obj.get("amount_cassa_taxable") is not None
-                else None,
-                "cassa2": float(obj.get("cassa2"))
-                if obj.get("cassa2") is not None
-                else None,
-                "amount_cassa2": float(obj.get("amount_cassa2"))
-                if obj.get("amount_cassa2") is not None
-                else None,
-                "cassa2_taxable": float(obj.get("cassa2_taxable"))
-                if obj.get("cassa2_taxable") is not None
-                else None,
-                "amount_cassa2_taxable": float(obj.get("amount_cassa2_taxable"))
-                if obj.get("amount_cassa2_taxable") is not None
-                else None,
-                "global_cassa_taxable": float(obj.get("global_cassa_taxable"))
-                if obj.get("global_cassa_taxable") is not None
-                else None,
-                "amount_global_cassa_taxable": float(
-                    obj.get("amount_global_cassa_taxable")
-                )
-                if obj.get("amount_global_cassa_taxable") is not None
-                else None,
-                "withholding_tax": float(obj.get("withholding_tax"))
-                if obj.get("withholding_tax") is not None
-                else None,
-                "withholding_tax_taxable": float(obj.get("withholding_tax_taxable"))
-                if obj.get("withholding_tax_taxable") is not None
-                else None,
-                "other_withholding_tax": float(obj.get("other_withholding_tax"))
-                if obj.get("other_withholding_tax") is not None
-                else None,
-                "stamp_duty": float(obj.get("stamp_duty"))
-                if obj.get("stamp_duty") is not None
-                else None,
+                "subject": obj.get("subject"),
+                "visible_subject": obj.get("visible_subject"),
+                "rc_center": obj.get("rc_center"),
+                "notes": obj.get("notes"),
+                "rivalsa": obj.get("rivalsa"),
+                "cassa": obj.get("cassa"),
+                "amount_cassa": obj.get("amount_cassa"),
+                "cassa_taxable": obj.get("cassa_taxable"),
+                "amount_cassa_taxable": obj.get("amount_cassa_taxable"),
+                "cassa2": obj.get("cassa2"),
+                "amount_cassa2": obj.get("amount_cassa2"),
+                "cassa2_taxable": obj.get("cassa2_taxable"),
+                "amount_cassa2_taxable": obj.get("amount_cassa2_taxable"),
+                "global_cassa_taxable": obj.get("global_cassa_taxable"),
+                "amount_global_cassa_taxable": obj.get("amount_global_cassa_taxable"),
+                "withholding_tax": obj.get("withholding_tax"),
+                "withholding_tax_taxable": obj.get("withholding_tax_taxable"),
+                "other_withholding_tax": obj.get("other_withholding_tax"),
+                "stamp_duty": obj.get("stamp_duty"),
                 "payment_method": PaymentMethod.from_dict(obj.get("payment_method"))
                 if obj.get("payment_method") is not None
                 else None,
-                "use_split_payment": obj.get("use_split_payment")
-                if obj.get("use_split_payment") is not None
-                else None,
-                "use_gross_prices": obj.get("use_gross_prices")
-                if obj.get("use_gross_prices") is not None
-                else None,
-                "e_invoice": obj.get("e_invoice")
-                if obj.get("e_invoice") is not None
-                else None,
+                "use_split_payment": obj.get("use_split_payment"),
+                "use_gross_prices": obj.get("use_gross_prices"),
+                "e_invoice": obj.get("e_invoice"),
                 "ei_data": IssuedDocumentEiData.from_dict(obj.get("ei_data"))
                 if obj.get("ei_data") is not None
                 else None,
-                "ei_cassa_type": obj.get("ei_cassa_type")
-                if obj.get("ei_cassa_type") is not None
-                else None,
-                "ei_cassa2_type": obj.get("ei_cassa2_type")
-                if obj.get("ei_cassa2_type") is not None
-                else None,
-                "ei_withholding_tax_causal": obj.get("ei_withholding_tax_causal")
-                if obj.get("ei_withholding_tax_causal") is not None
-                else None,
+                "ei_cassa_type": obj.get("ei_cassa_type"),
+                "ei_cassa2_type": obj.get("ei_cassa2_type"),
+                "ei_withholding_tax_causal": obj.get("ei_withholding_tax_causal"),
                 "ei_other_withholding_tax_type": obj.get(
                     "ei_other_withholding_tax_type"
-                )
-                if obj.get("ei_other_withholding_tax_type") is not None
-                else None,
+                ),
                 "ei_other_withholding_tax_causal": obj.get(
                     "ei_other_withholding_tax_causal"
-                )
-                if obj.get("ei_other_withholding_tax_causal") is not None
-                else None,
+                ),
                 "items_list": [
                     IssuedDocumentItemsListItem.from_dict(_item)
                     for _item in obj.get("items_list")
@@ -634,129 +612,55 @@ class IssuedDocument(BaseModel):
                 )
                 if obj.get("acc_inv_template") is not None
                 else None,
-                "h_margins": obj.get("h_margins")
-                if obj.get("h_margins") is not None
-                else None,
-                "v_margins": obj.get("v_margins")
-                if obj.get("v_margins") is not None
-                else None,
-                "show_payments": obj.get("show_payments")
-                if obj.get("show_payments") is not None
-                else None,
-                "show_payment_method": obj.get("show_payment_method")
-                if obj.get("show_payment_method") is not None
-                else None,
+                "h_margins": obj.get("h_margins"),
+                "v_margins": obj.get("v_margins"),
+                "show_payments": obj.get("show_payments"),
+                "show_payment_method": obj.get("show_payment_method"),
                 "show_totals": obj.get("show_totals"),
-                "show_paypal_button": obj.get("show_paypal_button")
-                if obj.get("show_paypal_button") is not None
-                else None,
-                "show_notification_button": obj.get("show_notification_button")
-                if obj.get("show_notification_button") is not None
-                else None,
-                "show_tspay_button": obj.get("show_tspay_button")
-                if obj.get("show_tspay_button") is not None
-                else None,
-                "delivery_note": obj.get("delivery_note")
-                if obj.get("delivery_note") is not None
-                else None,
-                "accompanying_invoice": obj.get("accompanying_invoice")
-                if obj.get("accompanying_invoice") is not None
-                else None,
-                "dn_number": obj.get("dn_number")
-                if obj.get("dn_number") is not None
-                else None,
-                "dn_date": obj.get("dn_date")
-                if obj.get("dn_date") is not None
-                else None,
-                "dn_ai_packages_number": obj.get("dn_ai_packages_number")
-                if obj.get("dn_ai_packages_number") is not None
-                else None,
-                "dn_ai_weight": obj.get("dn_ai_weight")
-                if obj.get("dn_ai_weight") is not None
-                else None,
-                "dn_ai_causal": obj.get("dn_ai_causal")
-                if obj.get("dn_ai_causal") is not None
-                else None,
-                "dn_ai_destination": obj.get("dn_ai_destination")
-                if obj.get("dn_ai_destination") is not None
-                else None,
-                "dn_ai_transporter": obj.get("dn_ai_transporter")
-                if obj.get("dn_ai_transporter") is not None
-                else None,
-                "dn_ai_notes": obj.get("dn_ai_notes")
-                if obj.get("dn_ai_notes") is not None
-                else None,
-                "is_marked": obj.get("is_marked")
-                if obj.get("is_marked") is not None
-                else None,
-                "amount_net": float(obj.get("amount_net"))
-                if obj.get("amount_net") is not None
-                else None,
-                "amount_vat": float(obj.get("amount_vat"))
-                if obj.get("amount_vat") is not None
-                else None,
-                "amount_gross": float(obj.get("amount_gross"))
-                if obj.get("amount_gross") is not None
-                else None,
-                "amount_due_discount": float(obj.get("amount_due_discount"))
-                if obj.get("amount_due_discount") is not None
-                else None,
-                "amount_rivalsa": float(obj.get("amount_rivalsa"))
-                if obj.get("amount_rivalsa") is not None
-                else None,
-                "amount_rivalsa_taxable": float(obj.get("amount_rivalsa_taxable"))
-                if obj.get("amount_rivalsa_taxable") is not None
-                else None,
-                "amount_withholding_tax": float(obj.get("amount_withholding_tax"))
-                if obj.get("amount_withholding_tax") is not None
-                else None,
-                "amount_withholding_tax_taxable": float(
-                    obj.get("amount_withholding_tax_taxable")
-                )
-                if obj.get("amount_withholding_tax_taxable") is not None
-                else None,
-                "amount_other_withholding_tax": float(
-                    obj.get("amount_other_withholding_tax")
-                )
-                if obj.get("amount_other_withholding_tax") is not None
-                else None,
-                "amount_other_withholding_tax_taxable": float(
-                    obj.get("amount_other_withholding_tax_taxable")
-                )
-                if obj.get("amount_other_withholding_tax_taxable") is not None
-                else None,
-                "amount_enasarco_taxable": float(obj.get("amount_enasarco_taxable"))
-                if obj.get("amount_enasarco_taxable") is not None
-                else None,
+                "show_paypal_button": obj.get("show_paypal_button"),
+                "show_notification_button": obj.get("show_notification_button"),
+                "show_tspay_button": obj.get("show_tspay_button"),
+                "delivery_note": obj.get("delivery_note"),
+                "accompanying_invoice": obj.get("accompanying_invoice"),
+                "dn_number": obj.get("dn_number"),
+                "dn_date": obj.get("dn_date"),
+                "dn_ai_packages_number": obj.get("dn_ai_packages_number"),
+                "dn_ai_weight": obj.get("dn_ai_weight"),
+                "dn_ai_causal": obj.get("dn_ai_causal"),
+                "dn_ai_destination": obj.get("dn_ai_destination"),
+                "dn_ai_transporter": obj.get("dn_ai_transporter"),
+                "dn_ai_notes": obj.get("dn_ai_notes"),
+                "is_marked": obj.get("is_marked"),
+                "amount_net": obj.get("amount_net"),
+                "amount_vat": obj.get("amount_vat"),
+                "amount_gross": obj.get("amount_gross"),
+                "amount_due_discount": obj.get("amount_due_discount"),
+                "amount_rivalsa": obj.get("amount_rivalsa"),
+                "amount_rivalsa_taxable": obj.get("amount_rivalsa_taxable"),
+                "amount_withholding_tax": obj.get("amount_withholding_tax"),
+                "amount_withholding_tax_taxable": obj.get(
+                    "amount_withholding_tax_taxable"
+                ),
+                "amount_other_withholding_tax": obj.get("amount_other_withholding_tax"),
+                "amount_other_withholding_tax_taxable": obj.get(
+                    "amount_other_withholding_tax_taxable"
+                ),
+                "amount_enasarco_taxable": obj.get("amount_enasarco_taxable"),
                 "extra_data": IssuedDocumentExtraData.from_dict(obj.get("extra_data"))
                 if obj.get("extra_data") is not None
                 else None,
-                "seen_date": obj.get("seen_date")
-                if obj.get("seen_date") is not None
-                else None,
-                "next_due_date": obj.get("next_due_date")
-                if obj.get("next_due_date") is not None
-                else None,
-                "url": obj.get("url") if obj.get("url") is not None else None,
-                "dn_url": obj.get("dn_url") if obj.get("dn_url") is not None else None,
-                "ai_url": obj.get("ai_url") if obj.get("ai_url") is not None else None,
-                "attachment_url": obj.get("attachment_url")
-                if obj.get("attachment_url") is not None
-                else None,
-                "attachment_token": obj.get("attachment_token")
-                if obj.get("attachment_token") is not None
-                else None,
-                "ei_raw": obj.get("ei_raw") if obj.get("ei_raw") is not None else None,
-                "ei_status": obj.get("ei_status")
-                if obj.get("ei_status") is not None
-                else None,
-                "locked": obj.get("locked") if obj.get("locked") is not None else None,
-                "created_at": obj.get("created_at")
-                if obj.get("created_at") is not None
-                else None,
-                "updated_at": obj.get("updated_at")
-                if obj.get("updated_at") is not None
-                else None,
+                "seen_date": obj.get("seen_date"),
+                "next_due_date": obj.get("next_due_date"),
+                "url": obj.get("url"),
+                "dn_url": obj.get("dn_url"),
+                "ai_url": obj.get("ai_url"),
+                "attachment_url": obj.get("attachment_url"),
+                "attachment_token": obj.get("attachment_token"),
+                "ei_raw": obj.get("ei_raw"),
+                "ei_status": obj.get("ei_status"),
+                "locked": obj.get("locked"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
             }
         )
         return _obj

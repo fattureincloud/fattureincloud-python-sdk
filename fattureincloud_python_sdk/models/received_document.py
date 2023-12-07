@@ -19,16 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import List, Optional, Union
-from pydantic import (
-    BaseModel,
-    Field,
-    StrictBool,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    conlist,
-)
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.entity import Entity
 from fattureincloud_python_sdk.models.received_document_items_list_item import (
@@ -39,98 +32,103 @@ from fattureincloud_python_sdk.models.received_document_payments_list_item impor
 )
 from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class ReceivedDocument(BaseModel):
     """
     ReceivedDocument
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Received document id")
+    id: Optional[StrictInt] = Field(default=None, description="Received document id")
     type: Optional[ReceivedDocumentType] = None
     entity: Optional[Entity] = None
     var_date: Optional[date] = Field(
-        None,
-        alias="date",
+        default=None,
         description="Received document date [defaults to today's date]",
+        alias="date",
     )
     category: Optional[StrictStr] = Field(
-        None, description="Received document category"
+        default=None, description="Received document category"
     )
     description: Optional[StrictStr] = Field(
-        None, description="Received document description"
+        default=None, description="Received document description"
     )
     amount_net: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total net amount"
+        default=None, description="Received document total net amount"
     )
     amount_vat: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document total vat amount"
+        default=None, description="Received document total vat amount"
     )
     amount_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document withholding tax amount"
+        default=None, description="Received document withholding tax amount"
     )
     amount_other_withholding_tax: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document other withholding tax amount"
+        default=None, description="Received document other withholding tax amount"
     )
     amount_gross: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="[Read Only] Received document total gross amount"
+        default=None, description="[Read Only] Received document total gross amount"
     )
     amortization: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document amortization value"
+        default=None, description="Received document amortization value"
     )
     rc_center: Optional[StrictStr] = Field(
-        None, description="Received document revenue center"
+        default=None, description="Received document revenue center"
     )
     invoice_number: Optional[StrictStr] = Field(
-        None, description="Received document invoice number"
+        default=None, description="Received document invoice number"
     )
     is_marked: Optional[StrictBool] = Field(
-        None, description="Received document is marked"
+        default=None, description="Received document is marked"
     )
     is_detailed: Optional[StrictBool] = Field(
-        None, description="Received document has items"
+        default=None, description="Received document has items"
     )
     e_invoice: Optional[StrictBool] = Field(
-        None, description="[Read Only] Received document is an e-invoice"
+        default=None, description="[Read Only] Received document is an e-invoice"
     )
     next_due_date: Optional[date] = Field(
-        None,
+        default=None,
         description="[Read Only] Received document date of the next not paid payment",
     )
     currency: Optional[Currency] = None
     tax_deductibility: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document tax deducibility percentage"
+        default=None, description="Received document tax deducibility percentage"
     )
     vat_deductibility: Optional[Union[StrictFloat, StrictInt]] = Field(
-        None, description="Received document vat deducibility percentage"
+        default=None, description="Received document vat deducibility percentage"
     )
-    items_list: Optional[conlist(ReceivedDocumentItemsListItem)] = None
-    payments_list: Optional[conlist(ReceivedDocumentPaymentsListItem)] = None
+    items_list: Optional[List[ReceivedDocumentItemsListItem]] = None
+    payments_list: Optional[List[ReceivedDocumentPaymentsListItem]] = None
     attachment_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Received document url of the attached file",
     )
     attachment_preview_url: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Temporary] [Read Only] Received document url of the attachment preview",
     )
     auto_calculate: Optional[StrictBool] = Field(
-        None,
+        default=None,
         description="Received document total items amount and total payments amount can differ if this field is set to false",
     )
     attachment_token: Optional[StrictStr] = Field(
-        None,
+        default=None,
         description="[Write Only] Received document attachment token returned by POST /received_documents/attachment",
     )
     locked: Optional[StrictBool] = Field(
-        None, description="Received Document can't be edited"
+        default=None, description="Received Document can't be edited"
     )
     created_at: Optional[StrictStr] = Field(
-        None, description="Received document creation date"
+        default=None, description="Received document creation date"
     )
     updated_at: Optional[StrictStr] = Field(
-        None, description="Received document last update date"
+        default=None, description="Received document last update date"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "id",
         "type",
         "entity",
@@ -163,28 +161,37 @@ class ReceivedDocument(BaseModel):
         "updated_at",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ReceivedDocument:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of ReceivedDocument from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        _dict = self.model_dump(
             by_alias=True,
             exclude={
                 "amount_gross",
@@ -217,75 +224,41 @@ class ReceivedDocument(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ReceivedDocument:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ReceivedDocument from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ReceivedDocument.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = ReceivedDocument.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
+                "id": obj.get("id"),
                 "type": obj.get("type"),
                 "entity": Entity.from_dict(obj.get("entity"))
                 if obj.get("entity") is not None
                 else None,
-                "var_date": obj.get("date") if obj.get("date") is not None else None,
-                "category": obj.get("category")
-                if obj.get("category") is not None
-                else None,
-                "description": obj.get("description")
-                if obj.get("description") is not None
-                else None,
-                "amount_net": float(obj.get("amount_net"))
-                if obj.get("amount_net") is not None
-                else None,
-                "amount_vat": float(obj.get("amount_vat"))
-                if obj.get("amount_vat") is not None
-                else None,
-                "amount_withholding_tax": float(obj.get("amount_withholding_tax"))
-                if obj.get("amount_withholding_tax") is not None
-                else None,
-                "amount_other_withholding_tax": float(
-                    obj.get("amount_other_withholding_tax")
-                )
-                if obj.get("amount_other_withholding_tax") is not None
-                else None,
-                "amount_gross": float(obj.get("amount_gross"))
-                if obj.get("amount_gross") is not None
-                else None,
-                "amortization": float(obj.get("amortization"))
-                if obj.get("amortization") is not None
-                else None,
-                "rc_center": obj.get("rc_center")
-                if obj.get("rc_center") is not None
-                else None,
-                "invoice_number": obj.get("invoice_number")
-                if obj.get("invoice_number") is not None
-                else None,
-                "is_marked": obj.get("is_marked")
-                if obj.get("is_marked") is not None
-                else None,
-                "is_detailed": obj.get("is_detailed")
-                if obj.get("is_detailed") is not None
-                else None,
-                "e_invoice": obj.get("e_invoice")
-                if obj.get("e_invoice") is not None
-                else None,
-                "next_due_date": obj.get("next_due_date")
-                if obj.get("next_due_date") is not None
-                else None,
+                "date": obj.get("date"),
+                "category": obj.get("category"),
+                "description": obj.get("description"),
+                "amount_net": obj.get("amount_net"),
+                "amount_vat": obj.get("amount_vat"),
+                "amount_withholding_tax": obj.get("amount_withholding_tax"),
+                "amount_other_withholding_tax": obj.get("amount_other_withholding_tax"),
+                "amount_gross": obj.get("amount_gross"),
+                "amortization": obj.get("amortization"),
+                "rc_center": obj.get("rc_center"),
+                "invoice_number": obj.get("invoice_number"),
+                "is_marked": obj.get("is_marked"),
+                "is_detailed": obj.get("is_detailed"),
+                "e_invoice": obj.get("e_invoice"),
+                "next_due_date": obj.get("next_due_date"),
                 "currency": Currency.from_dict(obj.get("currency"))
                 if obj.get("currency") is not None
                 else None,
-                "tax_deductibility": float(obj.get("tax_deductibility"))
-                if obj.get("tax_deductibility") is not None
-                else None,
-                "vat_deductibility": float(obj.get("vat_deductibility"))
-                if obj.get("vat_deductibility") is not None
-                else None,
+                "tax_deductibility": obj.get("tax_deductibility"),
+                "vat_deductibility": obj.get("vat_deductibility"),
                 "items_list": [
                     ReceivedDocumentItemsListItem.from_dict(_item)
                     for _item in obj.get("items_list")
@@ -298,25 +271,13 @@ class ReceivedDocument(BaseModel):
                 ]
                 if obj.get("payments_list") is not None
                 else None,
-                "attachment_url": obj.get("attachment_url")
-                if obj.get("attachment_url") is not None
-                else None,
-                "attachment_preview_url": obj.get("attachment_preview_url")
-                if obj.get("attachment_preview_url") is not None
-                else None,
-                "auto_calculate": obj.get("auto_calculate")
-                if obj.get("auto_calculate") is not None
-                else None,
-                "attachment_token": obj.get("attachment_token")
-                if obj.get("attachment_token") is not None
-                else None,
-                "locked": obj.get("locked") if obj.get("locked") is not None else None,
-                "created_at": obj.get("created_at")
-                if obj.get("created_at") is not None
-                else None,
-                "updated_at": obj.get("updated_at")
-                if obj.get("updated_at") is not None
-                else None,
+                "attachment_url": obj.get("attachment_url"),
+                "attachment_preview_url": obj.get("attachment_preview_url"),
+                "auto_calculate": obj.get("auto_calculate"),
+                "attachment_token": obj.get("attachment_token"),
+                "locked": obj.get("locked"),
+                "created_at": obj.get("created_at"),
+                "updated_at": obj.get("updated_at"),
             }
         )
         return _obj

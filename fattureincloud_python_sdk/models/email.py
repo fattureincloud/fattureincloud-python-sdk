@@ -19,37 +19,55 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.email_attachment import EmailAttachment
 from fattureincloud_python_sdk.models.email_recipient_status import EmailRecipientStatus
 from fattureincloud_python_sdk.models.email_status import EmailStatus
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class Email(BaseModel):
     """
     Email
-    """
+    """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(None, description="Email id")
+    id: Optional[StrictInt] = Field(default=None, description="Email id")
     status: Optional[EmailStatus] = None
-    sent_date: Optional[datetime] = Field(None, description="Email sent date")
-    errors_count: Optional[StrictInt] = Field(None, description="Email errors count")
-    error_log: Optional[StrictStr] = Field(None, description="Email errors log")
-    from_email: Optional[StrictStr] = Field(None, description="Email sender email")
-    from_name: Optional[StrictStr] = Field(None, description="Email sender name")
-    to_email: Optional[StrictStr] = Field(None, description="Email recipient email")
-    to_name: Optional[StrictStr] = Field(None, description="Email receipient name")
-    subject: Optional[StrictStr] = Field(None, description="Email subject")
-    content: Optional[StrictStr] = Field(None, description="Email content")
-    copy_to: Optional[StrictStr] = Field(None, description="Email cc")
-    recipient_status: Optional[EmailRecipientStatus] = None
-    recipient_date: Optional[datetime] = Field(None, description="Email recipient date")
-    kind: Optional[StrictStr] = Field(None, description="Email kind")
-    attachments: Optional[conlist(EmailAttachment)] = Field(
-        None, description="Email attachments"
+    sent_date: Optional[datetime] = Field(default=None, description="Email sent date")
+    errors_count: Optional[StrictInt] = Field(
+        default=None, description="Email errors count"
     )
-    __properties = [
+    error_log: Optional[StrictStr] = Field(default=None, description="Email errors log")
+    from_email: Optional[StrictStr] = Field(
+        default=None, description="Email sender email"
+    )
+    from_name: Optional[StrictStr] = Field(
+        default=None, description="Email sender name"
+    )
+    to_email: Optional[StrictStr] = Field(
+        default=None, description="Email recipient email"
+    )
+    to_name: Optional[StrictStr] = Field(
+        default=None, description="Email receipient name"
+    )
+    subject: Optional[StrictStr] = Field(default=None, description="Email subject")
+    content: Optional[StrictStr] = Field(default=None, description="Email content")
+    copy_to: Optional[StrictStr] = Field(default=None, description="Email cc")
+    recipient_status: Optional[EmailRecipientStatus] = None
+    recipient_date: Optional[datetime] = Field(
+        default=None, description="Email recipient date"
+    )
+    kind: Optional[StrictStr] = Field(default=None, description="Email kind")
+    attachments: Optional[List[EmailAttachment]] = Field(
+        default=None, description="Email attachments"
+    )
+    __properties: ClassVar[List[str]] = [
         "id",
         "status",
         "sent_date",
@@ -68,28 +86,37 @@ class Email(BaseModel):
         "attachments",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Email:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of Email from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in attachments (list)
         _items = []
         if self.attachments:
@@ -100,53 +127,31 @@ class Email(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Email:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of Email from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Email.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Email.parse_obj(
+        _obj = cls.model_validate(
             {
-                "id": obj.get("id") if obj.get("id") is not None else None,
+                "id": obj.get("id"),
                 "status": obj.get("status"),
-                "sent_date": obj.get("sent_date")
-                if obj.get("sent_date") is not None
-                else None,
-                "errors_count": obj.get("errors_count")
-                if obj.get("errors_count") is not None
-                else None,
-                "error_log": obj.get("error_log")
-                if obj.get("error_log") is not None
-                else None,
-                "from_email": obj.get("from_email")
-                if obj.get("from_email") is not None
-                else None,
-                "from_name": obj.get("from_name")
-                if obj.get("from_name") is not None
-                else None,
-                "to_email": obj.get("to_email")
-                if obj.get("to_email") is not None
-                else None,
-                "to_name": obj.get("to_name")
-                if obj.get("to_name") is not None
-                else None,
-                "subject": obj.get("subject")
-                if obj.get("subject") is not None
-                else None,
-                "content": obj.get("content")
-                if obj.get("content") is not None
-                else None,
-                "copy_to": obj.get("copy_to")
-                if obj.get("copy_to") is not None
-                else None,
+                "sent_date": obj.get("sent_date"),
+                "errors_count": obj.get("errors_count"),
+                "error_log": obj.get("error_log"),
+                "from_email": obj.get("from_email"),
+                "from_name": obj.get("from_name"),
+                "to_email": obj.get("to_email"),
+                "to_name": obj.get("to_name"),
+                "subject": obj.get("subject"),
+                "content": obj.get("content"),
+                "copy_to": obj.get("copy_to"),
                 "recipient_status": obj.get("recipient_status"),
-                "recipient_date": obj.get("recipient_date")
-                if obj.get("recipient_date") is not None
-                else None,
-                "kind": obj.get("kind") if obj.get("kind") is not None else None,
+                "recipient_date": obj.get("recipient_date"),
+                "kind": obj.get("kind"),
                 "attachments": [
                     EmailAttachment.from_dict(_item) for _item in obj.get("attachments")
                 ]

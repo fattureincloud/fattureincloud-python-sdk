@@ -47,7 +47,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateProductResponse(
@@ -92,7 +92,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_product(2, 12345)
@@ -109,7 +109,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetProductResponse(
@@ -158,7 +158,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListProductsResponse(
@@ -239,7 +239,7 @@ class TestProductsApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyProductResponse(

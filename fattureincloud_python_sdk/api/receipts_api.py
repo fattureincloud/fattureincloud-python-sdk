@@ -13,14 +13,20 @@
 """  # noqa: E501
 
 
-import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Dict, List, Optional, Tuple, Union, Any
 
+try:
+    from typing import Annotated
+except ImportError:
+    from typing_extensions import Annotated
+
+from pydantic import Field
 from typing_extensions import Annotated
-from pydantic import Field, StrictInt, StrictStr, conint
+from pydantic import StrictInt, StrictStr, field_validator
 
 from typing import Optional
 
@@ -43,10 +49,7 @@ from fattureincloud_python_sdk.models.modify_receipt_response import (
 
 from fattureincloud_python_sdk.api_client import ApiClient
 from fattureincloud_python_sdk.api_response import ApiResponse
-from fattureincloud_python_sdk.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError,
-)
+from fattureincloud_python_sdk.rest import RESTResponseType
 
 
 class ReceiptsApi:
@@ -61,1306 +64,2020 @@ class ReceiptsApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_receipt(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
         create_receipt_request: Annotated[
             Optional[CreateReceiptRequest], Field(description="The Receipt to create.")
         ] = None,
-        **kwargs
-    ) -> CreateReceiptResponse:  # noqa: E501
-        """Create Receipt  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CreateReceiptResponse:
+        """Create Receipt
 
-        Creates a new receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_receipt(company_id, create_receipt_request, async_req=True)
-        >>> result = thread.get()
+        Creates a new receipt.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
         :param create_receipt_request: The Receipt to create.
         :type create_receipt_request: CreateReceiptRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: CreateReceiptResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the create_receipt_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.create_receipt_with_http_info(
-            company_id, create_receipt_request, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def create_receipt_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        create_receipt_request: Annotated[
-            Optional[CreateReceiptRequest], Field(description="The Receipt to create.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Create Receipt  # noqa: E501
-
-        Creates a new receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_receipt_with_http_info(company_id, create_receipt_request, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param create_receipt_request: The Receipt to create.
-        :type create_receipt_request: CreateReceiptRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(CreateReceiptResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "create_receipt_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_receipt_serialize(
+            company_id=company_id,
+            create_receipt_request=create_receipt_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method create_receipt" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        if _params["create_receipt_request"] is not None:
-            _body_params = _params["create_receipt_request"]
-
-        # set the HTTP header `Accept`
-        _header_params["Accept"] = self.api_client.select_header_accept(
-            ["application/json"]
-        )  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
-        )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
-
-        # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
-
-        _response_types_map = {
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "CreateReceiptResponse",
             "401": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts",
-            "POST",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def delete_receipt(
+    @validate_call
+    def create_receipt_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        **kwargs
-    ) -> None:  # noqa: E501
-        """Delete Receipt  # noqa: E501
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_receipt_request: Annotated[
+            Optional[CreateReceiptRequest], Field(description="The Receipt to create.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CreateReceiptResponse]:
+        """Create Receipt
 
-        Deletes the specified receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_receipt(company_id, document_id, async_req=True)
-        >>> result = thread.get()
+        Creates a new receipt.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the delete_receipt_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.delete_receipt_with_http_info(
-            company_id, document_id, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def delete_receipt_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Delete Receipt  # noqa: E501
-
-        Deletes the specified receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_receipt_with_http_info(company_id, document_id, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param create_receipt_request: The Receipt to create.
+        :type create_receipt_request: CreateReceiptRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: None
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "document_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_receipt_serialize(
+            company_id=company_id,
+            create_receipt_request=create_receipt_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete_receipt" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
-
-        _collection_formats = {}
-
-        # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
-        # process the query parameters
-        _query_params = []
-        # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
-        # process the form parameters
-        _form_params = []
-        _files = {}
-        # process the body parameter
-        _body_params = None
-        # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
-
-        _response_types_map = {}
-
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts/{document_id}",
-            "DELETE",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateReceiptResponse",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
             response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
         )
 
-    @validate_arguments
-    def get_receipt(
+    @validate_call
+    def create_receipt_without_preload_content(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        create_receipt_request: Annotated[
+            Optional[CreateReceiptRequest], Field(description="The Receipt to create.")
         ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
         ] = None,
-        **kwargs
-    ) -> GetReceiptResponse:  # noqa: E501
-        """Get Receipt  # noqa: E501
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Receipt
 
-        Gets the specified receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_receipt(company_id, document_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
+        Creates a new receipt.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetReceiptResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_receipt_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_receipt_with_http_info(
-            company_id, document_id, fields, fieldset, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def get_receipt_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Receipt  # noqa: E501
-
-        Gets the specified receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_receipt_with_http_info(company_id, document_id, fields, fieldset, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param create_receipt_request: The Receipt to create.
+        :type create_receipt_request: CreateReceiptRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetReceiptResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "document_id", "fields", "fieldset"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._create_receipt_serialize(
+            company_id=company_id,
+            create_receipt_request=create_receipt_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_receipt" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "CreateReceiptResponse",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
 
-        _collection_formats = {}
+    def _create_receipt_serialize(
+        self,
+        company_id,
+        create_receipt_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
-
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
-
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+        if create_receipt_request is not None:
+            _body_params = create_receipt_request
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/c/{company_id}/receipts",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_receipt(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Delete Receipt
+
+        Deletes the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_receipt_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Delete Receipt
+
+        Deletes the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_receipt_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete Receipt
+
+        Deletes the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {}
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_receipt_serialize(
+        self,
+        company_id,
+        document_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/c/{company_id}/receipts/{document_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_receipt(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetReceiptResponse:
+        """Get Receipt
+
+        Gets the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "GetReceiptResponse",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts/{document_id}",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def get_receipt_pre_create_info(
+    @validate_call
+    def get_receipt_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        **kwargs
-    ) -> GetReceiptPreCreateInfoResponse:  # noqa: E501
-        """Get Receipt Pre-Create Info  # noqa: E501
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetReceiptResponse]:
+        """Get Receipt
 
-        Retrieves the information useful while creating a new receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_receipt_pre_create_info(company_id, async_req=True)
-        >>> result = thread.get()
+        Gets the specified receipt.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetReceiptPreCreateInfoResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_receipt_pre_create_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_receipt_pre_create_info_with_http_info(
-            company_id, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def get_receipt_pre_create_info_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Receipt Pre-Create Info  # noqa: E501
-
-        Retrieves the information useful while creating a new receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_receipt_pre_create_info_with_http_info(company_id, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetReceiptPreCreateInfoResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_receipt_pre_create_info" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetReceiptResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_receipt_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Receipt
+
+        Gets the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            fields=fields,
+            fieldset=fieldset,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetReceiptResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_receipt_serialize(
+        self,
+        company_id,
+        document_id,
+        fields,
+        fieldset,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
         # process the query parameters
-        _query_params = []
+        if fields is not None:
+            _query_params.append(("fields", fields))
+
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
+
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/receipts/{document_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_receipt_pre_create_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetReceiptPreCreateInfoResponse:
+        """Get Receipt Pre-Create Info
+
+        Retrieves the information useful while creating a new receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_receipt_pre_create_info_serialize(
+            company_id=company_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "GetReceiptPreCreateInfoResponse",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts/info",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def get_receipts_monthly_totals(
+    @validate_call
+    def get_receipt_pre_create_info_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        type: Annotated[StrictStr, Field(..., description="Receipt Type")],
-        year: Annotated[
-            StrictStr, Field(..., description="Year for which you want monthly totals")
-        ],
-        **kwargs
-    ) -> GetReceiptsMonthlyTotalsResponse:  # noqa: E501
-        """Get Receipts Monthly Totals  # noqa: E501
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetReceiptPreCreateInfoResponse]:
+        """Get Receipt Pre-Create Info
 
-        Returns the monthly totals by year and receipt type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_receipts_monthly_totals(company_id, type, year, async_req=True)
-        >>> result = thread.get()
+        Retrieves the information useful while creating a new receipt.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param type: Receipt Type (required)
-        :type type: str
-        :param year: Year for which you want monthly totals (required)
-        :type year: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: GetReceiptsMonthlyTotalsResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the get_receipts_monthly_totals_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.get_receipts_monthly_totals_with_http_info(
-            company_id, type, year, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def get_receipts_monthly_totals_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        type: Annotated[StrictStr, Field(..., description="Receipt Type")],
-        year: Annotated[
-            StrictStr, Field(..., description="Year for which you want monthly totals")
-        ],
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Get Receipts Monthly Totals  # noqa: E501
-
-        Returns the monthly totals by year and receipt type.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_receipts_monthly_totals_with_http_info(company_id, type, year, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param type: Receipt Type (required)
-        :type type: str
-        :param year: Year for which you want monthly totals (required)
-        :type year: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(GetReceiptsMonthlyTotalsResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "type", "year"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_receipt_pre_create_info_serialize(
+            company_id=company_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_receipts_monthly_totals" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetReceiptPreCreateInfoResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_receipt_pre_create_info_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Receipt Pre-Create Info
+
+        Retrieves the information useful while creating a new receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_receipt_pre_create_info_serialize(
+            company_id=company_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetReceiptPreCreateInfoResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_receipt_pre_create_info_serialize(
+        self,
+        company_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
-        if _params.get("type") is not None:  # noqa: E501
-            _query_params.append(("type", _params["type"]))
-
-        if _params.get("year") is not None:  # noqa: E501
-            _query_params.append(("year", _params["year"]))
-
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/receipts/info",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_receipts_monthly_totals(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        type: Annotated[StrictStr, Field(description="Receipt Type")],
+        year: Annotated[
+            StrictStr, Field(description="Year for which you want monthly totals")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> GetReceiptsMonthlyTotalsResponse:
+        """Get Receipts Monthly Totals
+
+        Returns the monthly totals by year and receipt type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param type: Receipt Type (required)
+        :type type: str
+        :param year: Year for which you want monthly totals (required)
+        :type year: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_receipts_monthly_totals_serialize(
+            company_id=company_id,
+            type=type,
+            year=year,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "GetReceiptsMonthlyTotalsResponse",
             "401": None,
             "404": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts/monthly_totals",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def list_receipts(
+    @validate_call
+    def get_receipts_monthly_totals_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        type: Annotated[StrictStr, Field(description="Receipt Type")],
+        year: Annotated[
+            StrictStr, Field(description="Year for which you want monthly totals")
         ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
         ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        page: Annotated[
-            Optional[StrictInt], Field(description="The page to retrieve.")
-        ] = None,
-        per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
-            Field(description="The size of the page."),
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="List of comma-separated fields for result sorting (minus for desc sorting)."
-            ),
-        ] = None,
-        q: Annotated[
-            Optional[StrictStr], Field(description="Query for filtering the results.")
-        ] = None,
-        **kwargs
-    ) -> ListReceiptsResponse:  # noqa: E501
-        """List Receipts  # noqa: E501
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetReceiptsMonthlyTotalsResponse]:
+        """Get Receipts Monthly Totals
 
-        Lists the receipts.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_receipts(company_id, fields, fieldset, page, per_page, sort, q, async_req=True)
-        >>> result = thread.get()
+        Returns the monthly totals by year and receipt type.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param page: The page to retrieve.
-        :type page: int
-        :param per_page: The size of the page.
-        :type per_page: int
-        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
-        :type sort: str
-        :param q: Query for filtering the results.
-        :type q: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ListReceiptsResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the list_receipts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.list_receipts_with_http_info(
-            company_id, fields, fieldset, page, per_page, sort, q, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def list_receipts_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        fields: Annotated[
-            Optional[StrictStr], Field(description="List of comma-separated fields.")
-        ] = None,
-        fieldset: Annotated[
-            Optional[StrictStr], Field(description="Name of the fieldset.")
-        ] = None,
-        page: Annotated[
-            Optional[StrictInt], Field(description="The page to retrieve.")
-        ] = None,
-        per_page: Annotated[
-            Optional[conint(strict=True, le=100, ge=1)],
-            Field(description="The size of the page."),
-        ] = None,
-        sort: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="List of comma-separated fields for result sorting (minus for desc sorting)."
-            ),
-        ] = None,
-        q: Annotated[
-            Optional[StrictStr], Field(description="Query for filtering the results.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """List Receipts  # noqa: E501
-
-        Lists the receipts.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_receipts_with_http_info(company_id, fields, fieldset, page, per_page, sort, q, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param fields: List of comma-separated fields.
-        :type fields: str
-        :param fieldset: Name of the fieldset.
-        :type fieldset: str
-        :param page: The page to retrieve.
-        :type page: int
-        :param per_page: The size of the page.
-        :type per_page: int
-        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
-        :type sort: str
-        :param q: Query for filtering the results.
-        :type q: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param type: Receipt Type (required)
+        :type type: str
+        :param year: Year for which you want monthly totals (required)
+        :type year: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ListReceiptsResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            "company_id",
-            "fields",
-            "fieldset",
-            "page",
-            "per_page",
-            "sort",
-            "q",
-        ]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._get_receipts_monthly_totals_serialize(
+            company_id=company_id,
+            type=type,
+            year=year,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method list_receipts" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetReceiptsMonthlyTotalsResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def get_receipts_monthly_totals_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        type: Annotated[StrictStr, Field(description="Receipt Type")],
+        year: Annotated[
+            StrictStr, Field(description="Year for which you want monthly totals")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get Receipts Monthly Totals
+
+        Returns the monthly totals by year and receipt type.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param type: Receipt Type (required)
+        :type type: str
+        :param year: Year for which you want monthly totals (required)
+        :type year: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_receipts_monthly_totals_serialize(
+            company_id=company_id,
+            type=type,
+            year=year,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "GetReceiptsMonthlyTotalsResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_receipts_monthly_totals_serialize(
+        self,
+        company_id,
+        type,
+        year,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
-        if _params.get("fields") is not None:  # noqa: E501
-            _query_params.append(("fields", _params["fields"]))
+        if type is not None:
+            _query_params.append(("type", type))
 
-        if _params.get("fieldset") is not None:  # noqa: E501
-            _query_params.append(("fieldset", _params["fieldset"]))
-
-        if _params.get("page") is not None:  # noqa: E501
-            _query_params.append(("page", _params["page"]))
-
-        if _params.get("per_page") is not None:  # noqa: E501
-            _query_params.append(("per_page", _params["per_page"]))
-
-        if _params.get("sort") is not None:  # noqa: E501
-            _query_params.append(("sort", _params["sort"]))
-
-        if _params.get("q") is not None:  # noqa: E501
-            _query_params.append(("q", _params["q"]))
+        if year is not None:
+            _query_params.append(("year", year))
 
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
+
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
+        )
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/receipts/monthly_totals",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_receipts(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ListReceiptsResponse:
+        """List Receipts
+
+        Lists the receipts.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param q: Query for filtering the results.
+        :type q: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_receipts_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            page=page,
+            per_page=per_page,
+            sort=sort,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "ListReceiptsResponse",
             "401": None,
         }
-
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts",
-            "GET",
-            _path_params,
-            _query_params,
-            _header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            response_types_map=_response_types_map,
-            auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
-            collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
         )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-    @validate_arguments
-    def modify_receipt(
+    @validate_call
+    def list_receipts_with_http_info(
         self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        modify_receipt_request: Annotated[
-            Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
         ] = None,
-        **kwargs
-    ) -> ModifyReceiptResponse:  # noqa: E501
-        """Modify Receipt  # noqa: E501
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ListReceiptsResponse]:
+        """List Receipts
 
-        Modifies the specified receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_receipt(company_id, document_id, modify_receipt_request, async_req=True)
-        >>> result = thread.get()
+        Lists the receipts.
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param modify_receipt_request: Modified receipt.
-        :type modify_receipt_request: ModifyReceiptRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-                If one number provided, it will be total request
-                timeout. It can also be a pair (tuple) of
-                (connection, read)
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: ModifyReceiptResponse
-        """
-        kwargs["_return_http_data_only"] = True
-        if "_preload_content" in kwargs:
-            message = "Error! Please call the modify_receipt_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-        return self.modify_receipt_with_http_info(
-            company_id, document_id, modify_receipt_request, **kwargs
-        )  # noqa: E501
-
-    @validate_arguments
-    def modify_receipt_with_http_info(
-        self,
-        company_id: Annotated[
-            StrictInt, Field(..., description="The ID of the company.")
-        ],
-        document_id: Annotated[
-            StrictInt, Field(..., description="The ID of the document.")
-        ],
-        modify_receipt_request: Annotated[
-            Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
-        ] = None,
-        **kwargs
-    ) -> ApiResponse:  # noqa: E501
-        """Modify Receipt  # noqa: E501
-
-        Modifies the specified receipt.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.modify_receipt_with_http_info(company_id, document_id, modify_receipt_request, async_req=True)
-        >>> result = thread.get()
-
-        :param company_id: The ID of the company. (required)
-        :type company_id: int
-        :param document_id: The ID of the document. (required)
-        :type document_id: int
-        :param modify_receipt_request: Modified receipt.
-        :type modify_receipt_request: ModifyReceiptRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param q: Query for filtering the results.
+        :type q: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(ModifyReceiptResponse, status_code(int), headers(HTTPHeaderDict))
-        """
+        """  # noqa: E501
 
-        _params = locals()
-
-        _all_params = ["company_id", "document_id", "modify_receipt_request"]
-        _all_params.extend(
-            [
-                "async_req",
-                "_return_http_data_only",
-                "_preload_content",
-                "_request_timeout",
-                "_request_auth",
-                "_content_type",
-                "_headers",
-            ]
+        _param = self._list_receipts_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            page=page,
+            per_page=per_page,
+            sort=sort,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
         )
 
-        # validate the arguments
-        for _key, _val in _params["kwargs"].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method modify_receipt" % _key
-                )
-            _params[_key] = _val
-        del _params["kwargs"]
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListReceiptsResponse",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        _collection_formats = {}
+    @validate_call
+    def list_receipts_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        fields: Annotated[
+            Optional[StrictStr], Field(description="List of comma-separated fields.")
+        ] = None,
+        fieldset: Annotated[
+            Optional[StrictStr], Field(description="Name of the fieldset.")
+        ] = None,
+        page: Annotated[
+            Optional[StrictInt], Field(description="The page to retrieve.")
+        ] = None,
+        per_page: Annotated[
+            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Field(description="The size of the page."),
+        ] = None,
+        sort: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="List of comma-separated fields for result sorting (minus for desc sorting)."
+            ),
+        ] = None,
+        q: Annotated[
+            Optional[StrictStr], Field(description="Query for filtering the results.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List Receipts
+
+        Lists the receipts.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param fields: List of comma-separated fields.
+        :type fields: str
+        :param fieldset: Name of the fieldset.
+        :type fieldset: str
+        :param page: The page to retrieve.
+        :type page: int
+        :param per_page: The size of the page.
+        :type per_page: int
+        :param sort: List of comma-separated fields for result sorting (minus for desc sorting).
+        :type sort: str
+        :param q: Query for filtering the results.
+        :type q: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_receipts_serialize(
+            company_id=company_id,
+            fields=fields,
+            fieldset=fieldset,
+            page=page,
+            per_page=per_page,
+            sort=sort,
+            q=q,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ListReceiptsResponse",
+            "401": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _list_receipts_serialize(
+        self,
+        company_id,
+        fields,
+        fieldset,
+        page,
+        per_page,
+        sort,
+        q,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
 
         # process the path parameters
-        _path_params = {}
-        if _params["company_id"]:
-            _path_params["company_id"] = _params["company_id"]
-
-        if _params["document_id"]:
-            _path_params["document_id"] = _params["document_id"]
-
+        if company_id is not None:
+            _path_params["company_id"] = company_id
         # process the query parameters
-        _query_params = []
+        if fields is not None:
+            _query_params.append(("fields", fields))
+
+        if fieldset is not None:
+            _query_params.append(("fieldset", fieldset))
+
+        if page is not None:
+            _query_params.append(("page", page))
+
+        if per_page is not None:
+            _query_params.append(("per_page", per_page))
+
+        if sort is not None:
+            _query_params.append(("sort", sort))
+
+        if q is not None:
+            _query_params.append(("q", q))
+
         # process the header parameters
-        _header_params = dict(_params.get("_headers", {}))
         # process the form parameters
-        _form_params = []
-        _files = {}
         # process the body parameter
-        _body_params = None
-        if _params["modify_receipt_request"] is not None:
-            _body_params = _params["modify_receipt_request"]
 
         # set the HTTP header `Accept`
         _header_params["Accept"] = self.api_client.select_header_accept(
             ["application/json"]
-        )  # noqa: E501
-
-        # set the HTTP header `Content-Type`
-        _content_types_list = _params.get(
-            "_content_type",
-            self.api_client.select_header_content_type(["application/json"]),
         )
-        if _content_types_list:
-            _header_params["Content-Type"] = _content_types_list
 
         # authentication setting
-        _auth_settings = ["OAuth2AuthenticationCodeFlow"]  # noqa: E501
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
 
-        _response_types_map = {
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/c/{company_id}/receipts",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def modify_receipt(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        modify_receipt_request: Annotated[
+            Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ModifyReceiptResponse:
+        """Modify Receipt
+
+        Modifies the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param modify_receipt_request: Modified receipt.
+        :type modify_receipt_request: ModifyReceiptRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            modify_receipt_request=modify_receipt_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
             "200": "ModifyReceiptResponse",
             "401": None,
             "404": None,
         }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        return self.api_client.call_api(
-            "/c/{company_id}/receipts/{document_id}",
-            "PUT",
-            _path_params,
-            _query_params,
-            _header_params,
+    @validate_call
+    def modify_receipt_with_http_info(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        modify_receipt_request: Annotated[
+            Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ModifyReceiptResponse]:
+        """Modify Receipt
+
+        Modifies the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param modify_receipt_request: Modified receipt.
+        :type modify_receipt_request: ModifyReceiptRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            modify_receipt_request=modify_receipt_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyReceiptResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def modify_receipt_without_preload_content(
+        self,
+        company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
+        document_id: Annotated[StrictInt, Field(description="The ID of the document.")],
+        modify_receipt_request: Annotated[
+            Optional[ModifyReceiptRequest], Field(description="Modified receipt.")
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Modify Receipt
+
+        Modifies the specified receipt.
+
+        :param company_id: The ID of the company. (required)
+        :type company_id: int
+        :param document_id: The ID of the document. (required)
+        :type document_id: int
+        :param modify_receipt_request: Modified receipt.
+        :type modify_receipt_request: ModifyReceiptRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._modify_receipt_serialize(
+            company_id=company_id,
+            document_id=document_id,
+            modify_receipt_request=modify_receipt_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ModifyReceiptResponse",
+            "401": None,
+            "404": None,
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _modify_receipt_serialize(
+        self,
+        company_id,
+        document_id,
+        modify_receipt_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> Tuple:
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, str] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if company_id is not None:
+            _path_params["company_id"] = company_id
+        if document_id is not None:
+            _path_params["document_id"] = document_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if modify_receipt_request is not None:
+            _body_params = modify_receipt_request
+
+        # set the HTTP header `Accept`
+        _header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2AuthenticationCodeFlow"]
+
+        return self.api_client.param_serialize(
+            method="PUT",
+            resource_path="/c/{company_id}/receipts/{document_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get("async_req"),
-            _return_http_data_only=_params.get("_return_http_data_only"),  # noqa: E501
-            _preload_content=_params.get("_preload_content", True),
-            _request_timeout=_params.get("_request_timeout"),
             collection_formats=_collection_formats,
-            _request_auth=_params.get("_request_auth"),
+            _host=_host,
+            _request_auth=_request_auth,
         )

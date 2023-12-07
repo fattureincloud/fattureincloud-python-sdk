@@ -58,7 +58,7 @@ class TestArchiveApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = CreateArchiveDocumentResponse(
@@ -81,7 +81,7 @@ class TestArchiveApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.delete_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         actual = self.api.delete_archive_document(2, 12345)
@@ -98,7 +98,7 @@ class TestArchiveApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = GetArchiveDocumentResponse(
@@ -125,7 +125,7 @@ class TestArchiveApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.get_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ListArchiveDocumentsResponse(
@@ -161,7 +161,7 @@ class TestArchiveApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.put_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = ModifyArchiveDocumentResponse(
@@ -188,7 +188,7 @@ class TestArchiveApi(unittest.TestCase):
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
-        self.api.api_client.rest_client.post_request = unittest.mock.MagicMock(
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
             return_value=mock_resp
         )
         expected = UploadArchiveAttachmentResponse(

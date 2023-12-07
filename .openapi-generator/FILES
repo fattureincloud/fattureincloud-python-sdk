@@ -507,5 +507,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_webhooks_subscription_config.py
-test/test_webhooks_subscription_mapping.py

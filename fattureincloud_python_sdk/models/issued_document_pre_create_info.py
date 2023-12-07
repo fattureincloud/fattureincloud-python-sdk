@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 
-from typing import Dict, List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.currency import Currency
 from fattureincloud_python_sdk.models.document_template import DocumentTemplate
 from fattureincloud_python_sdk.models.issued_document_pre_create_info_default_values import (
@@ -37,11 +38,16 @@ from fattureincloud_python_sdk.models.payment_account import PaymentAccount
 from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.vat_type import VatType
 
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
+
 
 class IssuedDocumentPreCreateInfo(BaseModel):
     """
     IssuedDocumentPreCreateInfo
-    """
+    """  # noqa: E501
 
     numerations: Optional[Dict[str, Dict[str, StrictInt]]] = None
     dn_numerations: Optional[Dict[str, Dict[str, StrictInt]]] = None
@@ -50,34 +56,34 @@ class IssuedDocumentPreCreateInfo(BaseModel):
         IssuedDocumentPreCreateInfoExtraDataDefaultValues
     ] = None
     items_default_values: Optional[IssuedDocumentPreCreateInfoItemsDefaultValues] = None
-    countries_list: Optional[conlist(StrictStr)] = Field(
-        None, description="Countries list"
+    countries_list: Optional[List[StrictStr]] = Field(
+        default=None, description="Countries list"
     )
-    currencies_list: Optional[conlist(Currency)] = Field(
-        None, description="Currencies list"
+    currencies_list: Optional[List[Currency]] = Field(
+        default=None, description="Currencies list"
     )
-    templates_list: Optional[conlist(DocumentTemplate)] = Field(
-        None, description="Document templates list"
+    templates_list: Optional[List[DocumentTemplate]] = Field(
+        default=None, description="Document templates list"
     )
-    dn_templates_list: Optional[conlist(DocumentTemplate)] = Field(
-        None, description="Delivery note templates list"
+    dn_templates_list: Optional[List[DocumentTemplate]] = Field(
+        default=None, description="Delivery note templates list"
     )
-    ai_templates_list: Optional[conlist(DocumentTemplate)] = Field(
-        None, description="Accompanying invoice templates list"
+    ai_templates_list: Optional[List[DocumentTemplate]] = Field(
+        default=None, description="Accompanying invoice templates list"
     )
-    payment_methods_list: Optional[conlist(PaymentMethod)] = Field(
-        None, description="Payment methods list"
+    payment_methods_list: Optional[List[PaymentMethod]] = Field(
+        default=None, description="Payment methods list"
     )
-    payment_accounts_list: Optional[conlist(PaymentAccount)] = Field(
-        None, description="Payment accounts list"
+    payment_accounts_list: Optional[List[PaymentAccount]] = Field(
+        default=None, description="Payment accounts list"
     )
-    vat_types_list: Optional[conlist(VatType)] = Field(
-        None, description="Vat types list"
+    vat_types_list: Optional[List[VatType]] = Field(
+        default=None, description="Vat types list"
     )
-    languages_list: Optional[conlist(Language)] = Field(
-        None, description="Languages list"
+    languages_list: Optional[List[Language]] = Field(
+        default=None, description="Languages list"
     )
-    __properties = [
+    __properties: ClassVar[List[str]] = [
         "numerations",
         "dn_numerations",
         "default_values",
@@ -94,28 +100,37 @@ class IssuedDocumentPreCreateInfo(BaseModel):
         "languages_list",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssuedDocumentPreCreateInfo:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of IssuedDocumentPreCreateInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of default_values
         if self.default_values:
             _dict["default_values"] = self.default_values.to_dict()
@@ -186,15 +201,15 @@ class IssuedDocumentPreCreateInfo(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssuedDocumentPreCreateInfo:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of IssuedDocumentPreCreateInfo from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssuedDocumentPreCreateInfo.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IssuedDocumentPreCreateInfo.parse_obj(
+        _obj = cls.model_validate(
             {
                 "numerations": obj.get("numerations"),
                 "dn_numerations": obj.get("dn_numerations"),

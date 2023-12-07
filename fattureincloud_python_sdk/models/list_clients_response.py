@@ -19,33 +19,55 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import Field
 from fattureincloud_python_sdk.models.client import Client
+
+try:
+    from typing import Self
+except ImportError:
+    from typing_extensions import Self
 
 
 class ListClientsResponse(BaseModel):
     """
     ListClientsResponse
-    """
+    """  # noqa: E501
 
-    current_page: Optional[StrictInt] = Field(None, description="Current page number.")
-    first_page_url: Optional[StrictStr] = Field(None, description="First page url.")
+    current_page: Optional[StrictInt] = Field(
+        default=None, description="Current page number."
+    )
+    first_page_url: Optional[StrictStr] = Field(
+        default=None, description="First page url."
+    )
     var_from: Optional[StrictInt] = Field(
-        None, alias="from", description="First result of the page."
+        default=None, description="First result of the page.", alias="from"
     )
-    last_page: Optional[StrictInt] = Field(None, description="Last page number.")
-    last_page_url: Optional[StrictStr] = Field(None, description="Last page url.")
-    next_page_url: Optional[StrictStr] = Field(None, description="Next page url")
-    path: Optional[StrictStr] = Field(None, description="Request path.")
+    last_page: Optional[StrictInt] = Field(
+        default=None, description="Last page number."
+    )
+    last_page_url: Optional[StrictStr] = Field(
+        default=None, description="Last page url."
+    )
+    next_page_url: Optional[StrictStr] = Field(
+        default=None, description="Next page url"
+    )
+    path: Optional[StrictStr] = Field(default=None, description="Request path.")
     per_page: Optional[StrictInt] = Field(
-        None, description="Number of result per page."
+        default=None, description="Number of result per page."
     )
-    prev_page_url: Optional[StrictStr] = Field(None, description="Previous page url.")
-    to: Optional[StrictInt] = Field(None, description="Last result of the page.")
-    total: Optional[StrictInt] = Field(None, description="Total number of results")
-    data: Optional[conlist(Client)] = None
-    __properties = [
+    prev_page_url: Optional[StrictStr] = Field(
+        default=None, description="Previous page url."
+    )
+    to: Optional[StrictInt] = Field(
+        default=None, description="Last result of the page."
+    )
+    total: Optional[StrictInt] = Field(
+        default=None, description="Total number of results"
+    )
+    data: Optional[List[Client]] = None
+    __properties: ClassVar[List[str]] = [
         "current_page",
         "first_page_url",
         "from",
@@ -60,28 +82,37 @@ class ListClientsResponse(BaseModel):
         "data",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = {"populate_by_name": True, "validate_assignment": True}
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ListClientsResponse:
+    def from_json(cls, json_str: str) -> Self:
         """Create an instance of ListClientsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude={},
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in data (list)
         _items = []
         if self.data:
@@ -92,41 +123,27 @@ class ListClientsResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ListClientsResponse:
+    def from_dict(cls, obj: Dict) -> Self:
         """Create an instance of ListClientsResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ListClientsResponse.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = ListClientsResponse.parse_obj(
+        _obj = cls.model_validate(
             {
-                "current_page": obj.get("current_page")
-                if obj.get("current_page") is not None
-                else None,
-                "first_page_url": obj.get("first_page_url")
-                if obj.get("first_page_url") is not None
-                else None,
-                "var_from": obj.get("from") if obj.get("from") is not None else None,
-                "last_page": obj.get("last_page")
-                if obj.get("last_page") is not None
-                else None,
-                "last_page_url": obj.get("last_page_url")
-                if obj.get("last_page_url") is not None
-                else None,
-                "next_page_url": obj.get("next_page_url")
-                if obj.get("next_page_url") is not None
-                else None,
-                "path": obj.get("path") if obj.get("path") is not None else None,
-                "per_page": obj.get("per_page")
-                if obj.get("per_page") is not None
-                else None,
-                "prev_page_url": obj.get("prev_page_url")
-                if obj.get("prev_page_url") is not None
-                else None,
-                "to": obj.get("to") if obj.get("to") is not None else None,
-                "total": obj.get("total") if obj.get("total") is not None else None,
+                "current_page": obj.get("current_page"),
+                "first_page_url": obj.get("first_page_url"),
+                "from": obj.get("from"),
+                "last_page": obj.get("last_page"),
+                "last_page_url": obj.get("last_page_url"),
+                "next_page_url": obj.get("next_page_url"),
+                "path": obj.get("path"),
+                "per_page": obj.get("per_page"),
+                "prev_page_url": obj.get("prev_page_url"),
+                "to": obj.get("to"),
+                "total": obj.get("total"),
                 "data": [Client.from_dict(_item) for _item in obj.get("data")]
                 if obj.get("data") is not None
                 else None,
