@@ -219,7 +219,7 @@ class TestOAuth2(unittest.TestCase):
         self.oa2device._http.request = unittest.mock.MagicMock(return_value=resp)
 
         with self.assertRaises(OAuth2Error) as context:
-            self.oa2device.get_device_code("EXAMPLE_ERR_CODE")
+            self.oa2device.get_device_code(scopes)
         assert "An error occurred while retrieving token: I'm a teapot" == "{0}".format(
             context.exception
         )
