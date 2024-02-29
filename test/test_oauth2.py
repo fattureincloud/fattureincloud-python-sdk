@@ -179,6 +179,8 @@ class TestOAuth2(unittest.TestCase):
         assert scopes_str == "settings:a issued_documents.invoices:r"
 
     def testOAuth2DeviceCodeGetDeviceCode(self):
+        scopes = [Scope.SITUATION_READ, Scope.SETTINGS_ALL]
+
         scope = {}
         scope["situation"] = "r"
         scope["settings"] = "a"
@@ -191,7 +193,7 @@ class TestOAuth2(unittest.TestCase):
 
         self.oa2device._http.request = unittest.mock.MagicMock(return_value=resp)
 
-        result = self.oa2device.get_device_code("LION")
+        result = self.oa2device.get_device_code(scopes)
         assert result.device_code == "PAPAYA"
         assert result.user_code == "TEDDY_BEAR"
         assert result.scope == scope
@@ -275,7 +277,7 @@ class TestOAuth2(unittest.TestCase):
         assert result.refresh_token == "r/REFRESH_TOKEN"
         assert result.expires_in == 86400
 
-        exp_body = b'{"grant_type": "refresh_token", "client_id": "CLIENT_ID", "client_secret": "CLIENT_SECRET", "refresh_token": "r/RT"}'
+        exp_body = b'{"grant_type": "refresh_token", "client_id": "CLIENT_ID", "refresh_token": "r/RT"}'
 
         self.oa2device._http.request.assert_called_once_with(
             "POST",
