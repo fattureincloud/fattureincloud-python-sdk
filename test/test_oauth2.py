@@ -187,7 +187,7 @@ class TestOAuth2(unittest.TestCase):
 
         resp = unittest.mock.MagicMock(
             status=200,
-            data=b'{"device_code":"PAPAYA","user_code":"TEDDY-BEAR,"scope":{"situation":"r","settings":"a"},"verification_uri":"https://fattureincloud.it/connetti","interval":5,"expires_in":300}',
+            data=b'{"device_code":"PAPAYA","user_code":"TEDDY-BEAR","scope":{"situation":"r","settings":"a"},"verification_uri":"https://fattureincloud.it/connetti","interval":5,"expires_in":300}',
             reason="OK",
         )
 
