@@ -3,6 +3,7 @@
 Issued document original document type
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Company id | [optional] 
@@ -9,6 +10,8 @@ Name | Type | Description | Notes
 **email** | **str** | Company email | [optional] 
 **type** | [**CompanyType**](CompanyType.md) |  | [optional] 
 **access_info** | [**CompanyInfoAccessInfo**](CompanyInfoAccessInfo.md) |  | [optional] 
+**fic_license_expire** | **date** |  | [optional] 
+**fic_plan_name** | [**FattureInCloudPlanType**](FattureInCloudPlanType.md) |  | [optional] 
 **plan_info** | [**CompanyInfoPlanInfo**](CompanyInfoPlanInfo.md) |  | [optional] 
 **accountant_id** | **int** | Company accountant id | [optional] 
 **is_accountant** | **bool** | Is the logged account an accountant. | [optional] 

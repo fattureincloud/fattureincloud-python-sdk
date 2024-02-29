@@ -3,6 +3,7 @@
 Received document items default values
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vat** | **float** | Vat default value | [optional] 

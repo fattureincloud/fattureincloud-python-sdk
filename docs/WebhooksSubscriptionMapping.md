@@ -3,6 +3,7 @@
 Webhooks Subscription mapping
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

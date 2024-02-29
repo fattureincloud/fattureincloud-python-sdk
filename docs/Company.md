@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Company id | [optional] 
@@ -9,6 +10,8 @@ Name | Type | Description | Notes
 **type** | [**CompanyType**](CompanyType.md) |  | [optional] 
 **access_token** | **str** | Company authentication token for this company. [Only if type&#x3D;company] | [optional] 
 **controlled_companies** | [**List[ControlledCompany]**](ControlledCompany.md) | Company list of controlled companies [Only if type&#x3D;accountant] | [optional] 
+**fic_license_expire** | **date** |  | [optional] 
+**fic_plan** | [**FattureInCloudPlanType**](FattureInCloudPlanType.md) |  | [optional] 
 **connection_id** | **int** | Company connection id | [optional] 
 **tax_code** | **str** | Company tax code | [optional] 
 

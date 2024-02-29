@@ -3,6 +3,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fic_situation** | [**PermissionLevel**](PermissionLevel.md) |  | [optional] 

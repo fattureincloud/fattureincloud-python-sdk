@@ -3,6 +3,7 @@
 Show totals mode
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

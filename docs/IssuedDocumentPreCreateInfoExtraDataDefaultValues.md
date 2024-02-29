@@ -3,6 +3,7 @@
 Issued document extra data default values
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts_communication** | **bool** |  | [optional] 

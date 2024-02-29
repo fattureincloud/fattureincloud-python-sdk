@@ -3,6 +3,7 @@
 Company plan limits
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **clients** | **int** | Company plan clients limits | [optional] 

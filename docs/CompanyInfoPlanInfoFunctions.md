@@ -3,6 +3,7 @@
 Access to functions for this company.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **archive** | **bool** |  | [optional] 

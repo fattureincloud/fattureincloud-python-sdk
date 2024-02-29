@@ -3,6 +3,7 @@
 F24 status
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

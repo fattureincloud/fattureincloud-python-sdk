@@ -3,6 +3,7 @@
 Default sender email. (Other emails can be found in **sender_emails_list**)
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Default sender email id | [optional] 

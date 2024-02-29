@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **numerations** | **Dict[str, Dict[str, int]]** |  | [optional] 

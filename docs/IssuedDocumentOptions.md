@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fix_payments** | **bool** | Fixes your last payment amount to match your document total | [optional] 

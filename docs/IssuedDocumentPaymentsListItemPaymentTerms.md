@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **days** | **int** | Issued document payment number of days by which the payment must be made | [optional] 
