@@ -27,6 +27,7 @@ class OAuth2Manager:
             raise OAuth2Error(
                 resp.status, res["error"], res["error_description"]
             )
+        return res
 
     @staticmethod
     def _get_scope_str(scopes: Iterable[Scope]):
