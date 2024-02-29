@@ -195,7 +195,7 @@ class TestOAuth2(unittest.TestCase):
 
         result = self.oa2device.get_device_code(scopes)
         assert result.device_code == "PAPAYA"
-        assert result.user_code == "TEDDY_BEAR"
+        assert result.user_code == "TEDDY-BEAR"
         assert result.scope == scope
         assert result.verification_uri == "https://fattureincloud.it/connetti"
         assert result.interval == 5
