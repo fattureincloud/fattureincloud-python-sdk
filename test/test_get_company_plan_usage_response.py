@@ -12,12 +12,15 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
+import json
 import unittest
 
+from fattureincloud_python_sdk.models.company_plan_usage import CompanyPlanUsage
 from fattureincloud_python_sdk.models.get_company_plan_usage_response import (
     GetCompanyPlanUsageResponse,
 )
+from functions import json_serial
+
 
 
 class TestGetCompanyPlanUsageResponse(unittest.TestCase):
@@ -29,30 +32,16 @@ class TestGetCompanyPlanUsageResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetCompanyPlanUsageResponse:
-        """Test GetCompanyPlanUsageResponse
-        include_option is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `GetCompanyPlanUsageResponse`
-        """
-        model = GetCompanyPlanUsageResponse()
-        if include_optional:
-            return GetCompanyPlanUsageResponse(
-                data = fattureincloud_python_sdk.models.company_plan_usage.CompanyPlanUsage(
-                    limit = 1.337, 
-                    usage = 1.337, )
-            )
-        else:
-            return GetCompanyPlanUsageResponse(
-        )
-        """
-
     def testGetCompanyPlanUsageResponse(self):
         """Test GetCompanyPlanUsageResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
-
+        model = GetCompanyPlanUsageResponse(
+            data = CompanyPlanUsage(
+                limit = 1.337,
+                usage = 1.337, )
+            )
+        expected_json = '{"data": {"limit": 1.337, "usage": 1.337}}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 if __name__ == "__main__":
     unittest.main()

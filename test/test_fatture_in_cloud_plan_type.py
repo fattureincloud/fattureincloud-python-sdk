@@ -31,8 +31,10 @@ class TestFattureInCloudPlanType(unittest.TestCase):
 
     def testFattureInCloudPlanType(self):
         """Test FattureInCloudPlanType"""
-        # inst = FattureInCloudPlanType()
-
+        model = FattureInCloudPlanType("standard")
+        expected_json = "standard"
+        actual_json = model.value
+        assert actual_json == expected_json
 
 if __name__ == "__main__":
     unittest.main()
