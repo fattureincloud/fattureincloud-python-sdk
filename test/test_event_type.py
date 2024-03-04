@@ -32,7 +32,7 @@ class TestEventType(unittest.TestCase):
 
     def testEventType(self):
         """Test EventType"""
-        model = EventType.CASHBOOK_CREATE
+        model = EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE
         expected_json = "it.fattureincloud.webhooks.cashbook.create"
         actual_json = model.value
         assert actual_json == expected_json
