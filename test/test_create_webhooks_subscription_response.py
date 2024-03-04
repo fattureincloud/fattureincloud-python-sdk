@@ -45,7 +45,7 @@ class TestCreateWebhooksSubscriptionResponse(unittest.TestCase):
                 id="SUB123",
                 sink="https://endpoint.test",
                 verified=True,
-                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE],
+                types=[EventType.CASHBOOK_CREATE],
             ),
             warnings=["error"],
         )

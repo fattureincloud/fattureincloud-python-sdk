@@ -69,7 +69,7 @@ class TestWebhooksApi(unittest.TestCase):
                 id="SUB1234",
                 sink="https://endpoint.test",
                 verified=True,
-                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE],
+                types=[EventType.CASHBOOK_CREATE],
                 config=WebhooksSubscriptionConfig(
                     mapping=WebhooksSubscriptionMapping("binary")
                 ),
@@ -112,7 +112,7 @@ class TestWebhooksApi(unittest.TestCase):
                 id="SUB1234",
                 sink="https://endpoint.test",
                 verified=True,
-                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE],
+                types=[EventType.CASHBOOK_CREATE],
                 config=WebhooksSubscriptionConfig(
                     mapping=WebhooksSubscriptionMapping("binary")
                 ),
@@ -143,7 +143,7 @@ class TestWebhooksApi(unittest.TestCase):
                     id="SUB0",
                     sink="https://endpoint.test",
                     verified=True,
-                    types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE],
+                    types=[EventType.CASHBOOK_CREATE],
                     config=WebhooksSubscriptionConfig(
                         mapping=WebhooksSubscriptionMapping("binary")
                     ),
@@ -152,7 +152,7 @@ class TestWebhooksApi(unittest.TestCase):
                     id="SUB1",
                     sink="https://endpoint.test",
                     verified=True,
-                    types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE],
+                    types=[EventType.CASHBOOK_CREATE],
                     config=WebhooksSubscriptionConfig(
                         mapping=WebhooksSubscriptionMapping("binary")
                     ),
@@ -184,7 +184,7 @@ class TestWebhooksApi(unittest.TestCase):
                 id="SUB1234",
                 sink="https://endpoint.test",
                 verified=True,
-                types=[EventType.IT_DOT_FATTUREINCLOUD_DOT_WEBHOOKS_DOT_CASHBOOK_DOT_CREATE],
+                types=[EventType.CASHBOOK_CREATE],
                 config=WebhooksSubscriptionConfig(
                     mapping=WebhooksSubscriptionMapping("binary")
                 ),
