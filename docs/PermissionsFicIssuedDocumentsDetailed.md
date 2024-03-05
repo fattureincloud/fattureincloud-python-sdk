@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **quotes** | [**PermissionLevel**](PermissionLevel.md) |  | [optional] 

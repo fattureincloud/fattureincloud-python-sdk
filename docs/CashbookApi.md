@@ -21,9 +21,8 @@ Creates a new cashbook entry.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.create_cashbook_entry_request import CreateCashbookEntryRequest
 from fattureincloud_python_sdk.models.create_cashbook_entry_response import CreateCashbookEntryResponse
@@ -63,6 +62,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -82,6 +82,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The created Cashbook Entry. |  -  |
@@ -100,9 +101,8 @@ Deletes the specified cashbook entry.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
@@ -138,6 +138,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -157,6 +158,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed. |  -  |
@@ -175,9 +177,8 @@ Gets the specified cashbook entry.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_cashbook_entry_response import GetCashbookEntryResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -218,6 +219,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -239,6 +241,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Cashbook Entry. |  -  |
@@ -257,9 +260,8 @@ Lists the cashbook entries.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.list_cashbook_entries_response import ListCashbookEntriesResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -302,6 +304,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -325,6 +328,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Results list. |  -  |
@@ -343,9 +347,8 @@ Modifies the specified cashbook entry.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.modify_cashbook_entry_request import ModifyCashbookEntryRequest
 from fattureincloud_python_sdk.models.modify_cashbook_entry_response import ModifyCashbookEntryResponse
@@ -386,6 +389,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -406,6 +410,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The modified Cashbook Entry |  -  |

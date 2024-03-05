@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**List[DetailedCountry]**](DetailedCountry.md) |  | [optional] 

@@ -3,6 +3,7 @@
 Issued document extra data [TS fields follow the technical specifications provided by \"Sistema Tessera Sanitaria\"]
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **show_sofort_button** | **bool** |  | [optional] 

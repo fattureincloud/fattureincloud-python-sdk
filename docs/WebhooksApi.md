@@ -21,9 +21,8 @@ Register some webhooks Subscriptions.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.create_webhooks_subscription_request import CreateWebhooksSubscriptionRequest
 from fattureincloud_python_sdk.models.create_webhooks_subscription_response import CreateWebhooksSubscriptionResponse
@@ -63,6 +62,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -82,6 +82,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -98,9 +99,8 @@ Delete a webhooks subscription.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
@@ -136,6 +136,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -155,6 +156,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -171,9 +173,8 @@ Get a webhooks subscription.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_webhooks_subscription_response import GetWebhooksSubscriptionResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -212,6 +213,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -231,6 +233,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -247,9 +250,8 @@ List active webhooks subscriptions.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.list_webhooks_subscriptions_response import ListWebhooksSubscriptionsResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -287,6 +289,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -305,6 +308,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -321,9 +325,8 @@ Edit a webhooks subscription.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.modify_webhooks_subscription_request import ModifyWebhooksSubscriptionRequest
 from fattureincloud_python_sdk.models.modify_webhooks_subscription_response import ModifyWebhooksSubscriptionResponse
@@ -364,6 +367,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -384,6 +388,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |

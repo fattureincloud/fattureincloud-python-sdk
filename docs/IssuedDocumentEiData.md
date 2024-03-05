@@ -3,6 +3,7 @@
 Issued document e-invoice data [Only if e_invoice=true]
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **vat_kind** | [**VatKind**](VatKind.md) |  | [optional] 

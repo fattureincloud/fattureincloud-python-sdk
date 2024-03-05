@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cassa_type** | **str** | Value of TipoCassa used (optional, override the company default value). | [optional] 

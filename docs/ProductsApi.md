@@ -21,9 +21,8 @@ Creates a new product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.create_product_request import CreateProductRequest
 from fattureincloud_python_sdk.models.create_product_response import CreateProductResponse
@@ -63,6 +62,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -82,6 +82,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -98,9 +99,8 @@ Deletes the specified product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
@@ -136,6 +136,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -155,6 +156,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Product removed. |  -  |
@@ -173,9 +175,8 @@ Gets the specified product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_product_response import GetProductResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -216,6 +217,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -237,6 +239,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -255,9 +258,8 @@ Lists the products.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.list_products_response import ListProductsResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -301,6 +303,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -325,6 +328,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Products List. |  -  |
@@ -342,9 +346,8 @@ Modifies the specified product.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.modify_product_request import ModifyProductRequest
 from fattureincloud_python_sdk.models.modify_product_response import ModifyProductResponse
@@ -385,6 +388,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -405,6 +409,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |

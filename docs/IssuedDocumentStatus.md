@@ -3,6 +3,7 @@
 Issued document status
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

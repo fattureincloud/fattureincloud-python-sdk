@@ -3,6 +3,7 @@
 Cashbook kind
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

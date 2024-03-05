@@ -3,6 +3,7 @@
 Company plan info
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **limits** | [**CompanyInfoPlanInfoLimits**](CompanyInfoPlanInfoLimits.md) |  | [optional] 

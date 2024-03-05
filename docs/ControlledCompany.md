@@ -2,12 +2,15 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Controlled company id | [optional] 
 **name** | **str** | Controlled company id | [optional] 
 **type** | [**CompanyType**](CompanyType.md) |  | [optional] 
 **access_token** | **str** | Controlled company access token Only if type&#x3D;company] | [optional] 
+**fic_license_expire** | **date** |  | [optional] 
+**fic_plan** | [**FattureInCloudPlanType**](FattureInCloudPlanType.md) |  | [optional] 
 **connection_id** | **float** | Controlled company connection id | [optional] 
 **tax_code** | **str** | Controlled company tax code | [optional] 
 

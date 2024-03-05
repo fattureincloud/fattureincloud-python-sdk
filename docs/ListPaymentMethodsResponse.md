@@ -3,6 +3,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**List[PaymentMethod]**](PaymentMethod.md) |  | [optional] 

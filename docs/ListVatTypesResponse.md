@@ -3,6 +3,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**List[VatType]**](VatType.md) |  | [optional] 

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sender_id** | **int** | Email sender id [required if **sender_email** is not specified] | [optional] 

@@ -3,6 +3,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data** | [**List[City]**](City.md) |  | [optional] 

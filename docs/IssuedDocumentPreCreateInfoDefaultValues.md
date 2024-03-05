@@ -3,6 +3,7 @@
 Issued document default values
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_template** | [**DocumentTemplate**](DocumentTemplate.md) |  | [optional] 

@@ -3,6 +3,7 @@
 Permission level
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

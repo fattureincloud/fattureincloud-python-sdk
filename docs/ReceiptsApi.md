@@ -23,9 +23,8 @@ Creates a new receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.create_receipt_request import CreateReceiptRequest
 from fattureincloud_python_sdk.models.create_receipt_response import CreateReceiptResponse
@@ -65,6 +64,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -84,6 +84,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Created Receipt. |  -  |
@@ -101,9 +102,8 @@ Deletes the specified receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
@@ -139,6 +139,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -158,6 +159,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed. |  -  |
@@ -176,9 +178,8 @@ Gets the specified receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_receipt_response import GetReceiptResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -219,6 +220,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -240,6 +242,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Receipt Details. |  -  |
@@ -258,9 +261,8 @@ Retrieves the information useful while creating a new receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_receipt_pre_create_info_response import GetReceiptPreCreateInfoResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -298,6 +300,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -316,6 +319,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Pre-create info. |  -  |
@@ -334,9 +338,8 @@ Returns the monthly totals by year and receipt type.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_receipts_monthly_totals_response import GetReceiptsMonthlyTotalsResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -376,6 +379,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -396,6 +400,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Monthly Totals. |  -  |
@@ -414,9 +419,8 @@ Lists the receipts.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.list_receipts_response import ListReceiptsResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -460,6 +464,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -484,6 +489,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Receipts list. |  -  |
@@ -501,9 +507,8 @@ Modifies the specified receipt.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.modify_receipt_request import ModifyReceiptRequest
 from fattureincloud_python_sdk.models.modify_receipt_response import ModifyReceiptResponse
@@ -544,6 +549,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -564,6 +570,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Modified receipt. |  -  |

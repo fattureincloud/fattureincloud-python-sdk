@@ -3,6 +3,7 @@
 Received document default values
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **detailed** | **bool** |  | [optional] 

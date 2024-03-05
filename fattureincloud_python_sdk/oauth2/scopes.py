@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class Scope(Enum):
+
     # Read permission to the Clients registry
     ENTITY_CLIENTS_READ = "entity.clients:r"
 

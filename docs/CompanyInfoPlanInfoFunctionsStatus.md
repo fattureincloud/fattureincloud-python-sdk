@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ts_digital** | [**FunctionStatus**](FunctionStatus.md) |  | [optional] 

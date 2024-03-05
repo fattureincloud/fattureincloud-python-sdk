@@ -18,9 +18,8 @@ Gets the current user's info.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_user_info_response import GetUserInfoResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -56,6 +55,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -72,6 +72,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** |  |  -  |
@@ -89,9 +90,8 @@ Lists the companies controlled by the current user.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.list_user_companies_response import ListUserCompaniesResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -127,6 +127,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -143,6 +144,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | User Companies. |  -  |

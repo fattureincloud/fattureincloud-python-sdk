@@ -3,6 +3,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pending_id** | **int** | Pending received document id of the document from which the new document is created. | [optional] 

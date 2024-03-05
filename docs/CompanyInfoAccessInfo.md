@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **role** | [**UserCompanyRole**](UserCompanyRole.md) |  | [optional] 

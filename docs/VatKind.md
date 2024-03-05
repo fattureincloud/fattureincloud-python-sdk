@@ -3,6 +3,7 @@
 Vat kind [esigibilità IVA]
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

@@ -3,6 +3,7 @@
 Payment method type
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 

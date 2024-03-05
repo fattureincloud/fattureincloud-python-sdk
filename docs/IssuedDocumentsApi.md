@@ -30,9 +30,8 @@ Creates a new document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.create_issued_document_request import CreateIssuedDocumentRequest
 from fattureincloud_python_sdk.models.create_issued_document_response import CreateIssuedDocumentResponse
@@ -72,6 +71,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -91,6 +91,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document created. |  -  |
@@ -108,9 +109,8 @@ Deletes the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
@@ -146,6 +146,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -165,6 +166,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document removed |  -  |
@@ -183,9 +185,8 @@ Removes the attachment of the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
@@ -221,6 +222,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -240,6 +242,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | File removed. |  -  |
@@ -258,9 +261,8 @@ Gets the pre-compiled email details.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_email_data_response import GetEmailDataResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -299,6 +301,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -318,6 +321,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | EmailData |  -  |
@@ -334,9 +338,8 @@ Returns the totals for a specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_existing_issued_document_totals_request import GetExistingIssuedDocumentTotalsRequest
 from fattureincloud_python_sdk.models.get_existing_issued_document_totals_response import GetExistingIssuedDocumentTotalsResponse
@@ -377,6 +380,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -397,6 +401,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Totals. |  -  |
@@ -415,9 +420,8 @@ Gets the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_issued_document_response import GetIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -458,6 +462,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -479,6 +484,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document Details. |  -  |
@@ -497,9 +503,8 @@ Retrieves the information useful while creating a new document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_issued_document_pre_create_info_response import GetIssuedDocumentPreCreateInfoResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -538,6 +543,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -557,6 +563,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Pre-create info. |  -  |
@@ -573,9 +580,8 @@ Returns the totals for a new document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.get_new_issued_document_totals_request import GetNewIssuedDocumentTotalsRequest
 from fattureincloud_python_sdk.models.get_new_issued_document_totals_response import GetNewIssuedDocumentTotalsResponse
@@ -615,6 +621,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -634,6 +641,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Totals. |  -  |
@@ -651,9 +659,8 @@ Joins issued documents.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.join_issued_documents_response import JoinIssuedDocumentsResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -694,6 +701,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -715,6 +723,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -731,9 +740,8 @@ Lists the issued documents.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.list_issued_documents_response import ListIssuedDocumentsResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -779,6 +787,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -805,6 +814,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Results list. |  -  |
@@ -823,9 +833,8 @@ Modifies the specified document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.modify_issued_document_request import ModifyIssuedDocumentRequest
 from fattureincloud_python_sdk.models.modify_issued_document_response import ModifyIssuedDocumentResponse
@@ -866,6 +875,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -886,6 +896,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document edited |  -  |
@@ -904,9 +915,8 @@ Schedules the sending of a document by email.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.schedule_email_request import ScheduleEmailRequest
 from fattureincloud_python_sdk.rest import ApiException
@@ -944,6 +954,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -964,6 +975,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -982,9 +994,8 @@ Transforms the document.
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.transform_issued_document_response import TransformIssuedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -1026,6 +1037,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -1048,6 +1060,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Example response |  -  |
@@ -1064,9 +1077,8 @@ Uploads an attachment destined to an issued document. The actual association bet
 ### Example
 
 * OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
 ```python
-import time
-import os
 import fattureincloud_python_sdk
 from fattureincloud_python_sdk.models.upload_issued_document_attachment_response import UploadIssuedDocumentAttachmentResponse
 from fattureincloud_python_sdk.rest import ApiException
@@ -1106,6 +1118,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
@@ -1126,6 +1139,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Attachment Token. |  -  |

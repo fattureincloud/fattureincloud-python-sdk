@@ -3,6 +3,7 @@
 Entity type
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 
