@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fattureincloud_python_sdk"
-version = "2.0.18"
+version = "2.0.19"
 description = "Fatture in Cloud API v2 - API Reference"
 authors = ["Fatture in Cloud <info@fattureincloud.it>"]
 license = "MIT"
