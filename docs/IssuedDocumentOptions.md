@@ -21,12 +21,12 @@ json = "{}"
 # create an instance of IssuedDocumentOptions from a JSON string
 issued_document_options_instance = IssuedDocumentOptions.from_json(json)
 # print the JSON string representation of the object
-print IssuedDocumentOptions.to_json()
+print(IssuedDocumentOptions.to_json())
 
 # convert the object into a dict
 issued_document_options_dict = issued_document_options_instance.to_dict()
 # create an instance of IssuedDocumentOptions from a dict
-issued_document_options_form_dict = issued_document_options.from_dict(issued_document_options_dict)
+issued_document_options_from_dict = IssuedDocumentOptions.from_dict(issued_document_options_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

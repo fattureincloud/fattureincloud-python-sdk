@@ -30,12 +30,12 @@ json = "{}"
 # create an instance of IssuedDocumentPreCreateInfo from a JSON string
 issued_document_pre_create_info_instance = IssuedDocumentPreCreateInfo.from_json(json)
 # print the JSON string representation of the object
-print IssuedDocumentPreCreateInfo.to_json()
+print(IssuedDocumentPreCreateInfo.to_json())
 
 # convert the object into a dict
 issued_document_pre_create_info_dict = issued_document_pre_create_info_instance.to_dict()
 # create an instance of IssuedDocumentPreCreateInfo from a dict
-issued_document_pre_create_info_form_dict = issued_document_pre_create_info.from_dict(issued_document_pre_create_info_dict)
+issued_document_pre_create_info_from_dict = IssuedDocumentPreCreateInfo.from_dict(issued_document_pre_create_info_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

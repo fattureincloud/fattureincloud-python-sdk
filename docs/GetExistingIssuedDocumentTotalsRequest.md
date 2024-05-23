@@ -17,12 +17,12 @@ json = "{}"
 # create an instance of GetExistingIssuedDocumentTotalsRequest from a JSON string
 get_existing_issued_document_totals_request_instance = GetExistingIssuedDocumentTotalsRequest.from_json(json)
 # print the JSON string representation of the object
-print GetExistingIssuedDocumentTotalsRequest.to_json()
+print(GetExistingIssuedDocumentTotalsRequest.to_json())
 
 # convert the object into a dict
 get_existing_issued_document_totals_request_dict = get_existing_issued_document_totals_request_instance.to_dict()
 # create an instance of GetExistingIssuedDocumentTotalsRequest from a dict
-get_existing_issued_document_totals_request_form_dict = get_existing_issued_document_totals_request.from_dict(get_existing_issued_document_totals_request_dict)
+get_existing_issued_document_totals_request_from_dict = GetExistingIssuedDocumentTotalsRequest.from_dict(get_existing_issued_document_totals_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

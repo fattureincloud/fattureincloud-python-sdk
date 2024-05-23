@@ -26,12 +26,12 @@ json = "{}"
 # create an instance of PermissionsFicIssuedDocumentsDetailed from a JSON string
 permissions_fic_issued_documents_detailed_instance = PermissionsFicIssuedDocumentsDetailed.from_json(json)
 # print the JSON string representation of the object
-print PermissionsFicIssuedDocumentsDetailed.to_json()
+print(PermissionsFicIssuedDocumentsDetailed.to_json())
 
 # convert the object into a dict
 permissions_fic_issued_documents_detailed_dict = permissions_fic_issued_documents_detailed_instance.to_dict()
 # create an instance of PermissionsFicIssuedDocumentsDetailed from a dict
-permissions_fic_issued_documents_detailed_form_dict = permissions_fic_issued_documents_detailed.from_dict(permissions_fic_issued_documents_detailed_dict)
+permissions_fic_issued_documents_detailed_from_dict = PermissionsFicIssuedDocumentsDetailed.from_dict(permissions_fic_issued_documents_detailed_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

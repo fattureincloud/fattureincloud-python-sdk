@@ -18,12 +18,12 @@ json = "{}"
 # create an instance of ModifyCashbookEntryResponse from a JSON string
 modify_cashbook_entry_response_instance = ModifyCashbookEntryResponse.from_json(json)
 # print the JSON string representation of the object
-print ModifyCashbookEntryResponse.to_json()
+print(ModifyCashbookEntryResponse.to_json())
 
 # convert the object into a dict
 modify_cashbook_entry_response_dict = modify_cashbook_entry_response_instance.to_dict()
 # create an instance of ModifyCashbookEntryResponse from a dict
-modify_cashbook_entry_response_form_dict = modify_cashbook_entry_response.from_dict(modify_cashbook_entry_response_dict)
+modify_cashbook_entry_response_from_dict = ModifyCashbookEntryResponse.from_dict(modify_cashbook_entry_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -18,12 +18,12 @@ json = "{}"
 # create an instance of ModifyClientRequest from a JSON string
 modify_client_request_instance = ModifyClientRequest.from_json(json)
 # print the JSON string representation of the object
-print ModifyClientRequest.to_json()
+print(ModifyClientRequest.to_json())
 
 # convert the object into a dict
 modify_client_request_dict = modify_client_request_instance.to_dict()
 # create an instance of ModifyClientRequest from a dict
-modify_client_request_form_dict = modify_client_request.from_dict(modify_client_request_dict)
+modify_client_request_from_dict = ModifyClientRequest.from_dict(modify_client_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

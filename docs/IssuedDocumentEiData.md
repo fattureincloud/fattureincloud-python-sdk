@@ -29,12 +29,12 @@ json = "{}"
 # create an instance of IssuedDocumentEiData from a JSON string
 issued_document_ei_data_instance = IssuedDocumentEiData.from_json(json)
 # print the JSON string representation of the object
-print IssuedDocumentEiData.to_json()
+print(IssuedDocumentEiData.to_json())
 
 # convert the object into a dict
 issued_document_ei_data_dict = issued_document_ei_data_instance.to_dict()
 # create an instance of IssuedDocumentEiData from a dict
-issued_document_ei_data_form_dict = issued_document_ei_data.from_dict(issued_document_ei_data_dict)
+issued_document_ei_data_from_dict = IssuedDocumentEiData.from_dict(issued_document_ei_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

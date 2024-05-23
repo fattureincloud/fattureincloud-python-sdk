@@ -31,10 +31,7 @@ class TestCompanyPlanUsage(unittest.TestCase):
 
     def testCompanyPlanUsage(self):
         """Test CompanyPlanUsage"""
-        model = CompanyPlanUsage(
-                limit = 1.337,
-                usage = 1.337
-                )
+        model = CompanyPlanUsage(limit=1.337, usage=1.337)
         expected_json = '{"limit": 1.337, "usage": 1.337}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json

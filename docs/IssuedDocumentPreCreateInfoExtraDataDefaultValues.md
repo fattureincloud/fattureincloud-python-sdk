@@ -21,12 +21,12 @@ json = "{}"
 # create an instance of IssuedDocumentPreCreateInfoExtraDataDefaultValues from a JSON string
 issued_document_pre_create_info_extra_data_default_values_instance = IssuedDocumentPreCreateInfoExtraDataDefaultValues.from_json(json)
 # print the JSON string representation of the object
-print IssuedDocumentPreCreateInfoExtraDataDefaultValues.to_json()
+print(IssuedDocumentPreCreateInfoExtraDataDefaultValues.to_json())
 
 # convert the object into a dict
 issued_document_pre_create_info_extra_data_default_values_dict = issued_document_pre_create_info_extra_data_default_values_instance.to_dict()
 # create an instance of IssuedDocumentPreCreateInfoExtraDataDefaultValues from a dict
-issued_document_pre_create_info_extra_data_default_values_form_dict = issued_document_pre_create_info_extra_data_default_values.from_dict(issued_document_pre_create_info_extra_data_default_values_dict)
+issued_document_pre_create_info_extra_data_default_values_from_dict = IssuedDocumentPreCreateInfoExtraDataDefaultValues.from_dict(issued_document_pre_create_info_extra_data_default_values_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

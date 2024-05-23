@@ -23,12 +23,12 @@ json = "{}"
 # create an instance of ReceivedDocumentTotals from a JSON string
 received_document_totals_instance = ReceivedDocumentTotals.from_json(json)
 # print the JSON string representation of the object
-print ReceivedDocumentTotals.to_json()
+print(ReceivedDocumentTotals.to_json())
 
 # convert the object into a dict
 received_document_totals_dict = received_document_totals_instance.to_dict()
 # create an instance of ReceivedDocumentTotals from a dict
-received_document_totals_form_dict = received_document_totals.from_dict(received_document_totals_dict)
+received_document_totals_from_dict = ReceivedDocumentTotals.from_dict(received_document_totals_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

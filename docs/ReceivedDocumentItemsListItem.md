@@ -26,12 +26,12 @@ json = "{}"
 # create an instance of ReceivedDocumentItemsListItem from a JSON string
 received_document_items_list_item_instance = ReceivedDocumentItemsListItem.from_json(json)
 # print the JSON string representation of the object
-print ReceivedDocumentItemsListItem.to_json()
+print(ReceivedDocumentItemsListItem.to_json())
 
 # convert the object into a dict
 received_document_items_list_item_dict = received_document_items_list_item_instance.to_dict()
 # create an instance of ReceivedDocumentItemsListItem from a dict
-received_document_items_list_item_form_dict = received_document_items_list_item.from_dict(received_document_items_list_item_dict)
+received_document_items_list_item_from_dict = ReceivedDocumentItemsListItem.from_dict(received_document_items_list_item_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

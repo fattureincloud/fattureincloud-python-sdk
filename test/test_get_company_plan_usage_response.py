@@ -22,7 +22,6 @@ from fattureincloud_python_sdk.models.get_company_plan_usage_response import (
 from functions import json_serial
 
 
-
 class TestGetCompanyPlanUsageResponse(unittest.TestCase):
     """GetCompanyPlanUsageResponse unit test stubs"""
 
@@ -35,13 +34,15 @@ class TestGetCompanyPlanUsageResponse(unittest.TestCase):
     def testGetCompanyPlanUsageResponse(self):
         """Test GetCompanyPlanUsageResponse"""
         model = GetCompanyPlanUsageResponse(
-            data = CompanyPlanUsage(
-                limit = 1.337,
-                usage = 1.337, )
+            data=CompanyPlanUsage(
+                limit=1.337,
+                usage=1.337,
             )
+        )
         expected_json = '{"data": {"limit": 1.337, "usage": 1.337}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
+
 
 if __name__ == "__main__":
     unittest.main()

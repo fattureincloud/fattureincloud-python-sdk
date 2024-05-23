@@ -36,5 +36,6 @@ class TestFattureInCloudPlanType(unittest.TestCase):
         actual_json = model.value
         assert actual_json == expected_json
 
+
 if __name__ == "__main__":
     unittest.main()

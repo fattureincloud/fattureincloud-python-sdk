@@ -19,12 +19,12 @@ json = "{}"
 # create an instance of EmailDataDefaultSenderEmail from a JSON string
 email_data_default_sender_email_instance = EmailDataDefaultSenderEmail.from_json(json)
 # print the JSON string representation of the object
-print EmailDataDefaultSenderEmail.to_json()
+print(EmailDataDefaultSenderEmail.to_json())
 
 # convert the object into a dict
 email_data_default_sender_email_dict = email_data_default_sender_email_instance.to_dict()
 # create an instance of EmailDataDefaultSenderEmail from a dict
-email_data_default_sender_email_form_dict = email_data_default_sender_email.from_dict(email_data_default_sender_email_dict)
+email_data_default_sender_email_from_dict = EmailDataDefaultSenderEmail.from_dict(email_data_default_sender_email_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

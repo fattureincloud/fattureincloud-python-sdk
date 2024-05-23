@@ -53,7 +53,6 @@ Name | Type | Description | Notes
 **show_payments** | **bool** | Show the expiration dates of the payments on the document | [optional] 
 **show_payment_method** | **bool** | Show the payment method details on the document | [optional] 
 **show_totals** | [**ShowTotalsMode**](ShowTotalsMode.md) |  | [optional] 
-**show_paypal_button** | **bool** | Show paypal button in the PDF | [optional] 
 **show_notification_button** | **bool** | Show notification button in the PDF | [optional] 
 **show_tspay_button** | **bool** | Show ts pay button in the PDF | [optional] 
 **delivery_note** | **bool** | Issued document has delivery note | [optional] 
@@ -102,12 +101,12 @@ json = "{}"
 # create an instance of IssuedDocument from a JSON string
 issued_document_instance = IssuedDocument.from_json(json)
 # print the JSON string representation of the object
-print IssuedDocument.to_json()
+print(IssuedDocument.to_json())
 
 # convert the object into a dict
 issued_document_dict = issued_document_instance.to_dict()
 # create an instance of IssuedDocument from a dict
-issued_document_form_dict = issued_document.from_dict(issued_document_dict)
+issued_document_from_dict = IssuedDocument.from_dict(issued_document_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
