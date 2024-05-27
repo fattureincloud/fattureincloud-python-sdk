@@ -33,6 +33,10 @@ class TestOperator(unittest.TestCase):
 
         assert "contains" == Operator.CONTAINS.value
 
+        assert "not like" == Operator.NOT_LIKE.value
+
+        assert "not contains" == Operator.NOT_CONTAINS.value
+
         assert "starts with" == Operator.STARTS_WITH.value
 
         assert "ends with" == Operator.ENDS_WITH.value
