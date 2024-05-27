@@ -28,12 +28,12 @@ json = "{}"
 # create an instance of ListIssuedDocumentsResponse from a JSON string
 list_issued_documents_response_instance = ListIssuedDocumentsResponse.from_json(json)
 # print the JSON string representation of the object
-print ListIssuedDocumentsResponse.to_json()
+print(ListIssuedDocumentsResponse.to_json())
 
 # convert the object into a dict
 list_issued_documents_response_dict = list_issued_documents_response_instance.to_dict()
 # create an instance of ListIssuedDocumentsResponse from a dict
-list_issued_documents_response_form_dict = list_issued_documents_response.from_dict(list_issued_documents_response_dict)
+list_issued_documents_response_from_dict = ListIssuedDocumentsResponse.from_dict(list_issued_documents_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

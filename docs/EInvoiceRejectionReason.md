@@ -21,12 +21,12 @@ json = "{}"
 # create an instance of EInvoiceRejectionReason from a JSON string
 e_invoice_rejection_reason_instance = EInvoiceRejectionReason.from_json(json)
 # print the JSON string representation of the object
-print EInvoiceRejectionReason.to_json()
+print(EInvoiceRejectionReason.to_json())
 
 # convert the object into a dict
 e_invoice_rejection_reason_dict = e_invoice_rejection_reason_instance.to_dict()
 # create an instance of EInvoiceRejectionReason from a dict
-e_invoice_rejection_reason_form_dict = e_invoice_rejection_reason.from_dict(e_invoice_rejection_reason_dict)
+e_invoice_rejection_reason_from_dict = EInvoiceRejectionReason.from_dict(e_invoice_rejection_reason_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

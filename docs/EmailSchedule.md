@@ -24,12 +24,12 @@ json = "{}"
 # create an instance of EmailSchedule from a JSON string
 email_schedule_instance = EmailSchedule.from_json(json)
 # print the JSON string representation of the object
-print EmailSchedule.to_json()
+print(EmailSchedule.to_json())
 
 # convert the object into a dict
 email_schedule_dict = email_schedule_instance.to_dict()
 # create an instance of EmailSchedule from a dict
-email_schedule_form_dict = email_schedule.from_dict(email_schedule_dict)
+email_schedule_from_dict = EmailSchedule.from_dict(email_schedule_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

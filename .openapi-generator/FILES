@@ -513,6 +513,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_company_plan_usage.py
-test/test_fatture_in_cloud_plan_type.py
-test/test_get_company_plan_usage_response.py

@@ -18,12 +18,12 @@ json = "{}"
 # create an instance of VerifyEInvoiceXmlErrorResponse from a JSON string
 verify_e_invoice_xml_error_response_instance = VerifyEInvoiceXmlErrorResponse.from_json(json)
 # print the JSON string representation of the object
-print VerifyEInvoiceXmlErrorResponse.to_json()
+print(VerifyEInvoiceXmlErrorResponse.to_json())
 
 # convert the object into a dict
 verify_e_invoice_xml_error_response_dict = verify_e_invoice_xml_error_response_instance.to_dict()
 # create an instance of VerifyEInvoiceXmlErrorResponse from a dict
-verify_e_invoice_xml_error_response_form_dict = verify_e_invoice_xml_error_response.from_dict(verify_e_invoice_xml_error_response_dict)
+verify_e_invoice_xml_error_response_from_dict = VerifyEInvoiceXmlErrorResponse.from_dict(verify_e_invoice_xml_error_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

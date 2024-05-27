@@ -24,12 +24,12 @@ json = "{}"
 # create an instance of ControlledCompany from a JSON string
 controlled_company_instance = ControlledCompany.from_json(json)
 # print the JSON string representation of the object
-print ControlledCompany.to_json()
+print(ControlledCompany.to_json())
 
 # convert the object into a dict
 controlled_company_dict = controlled_company_instance.to_dict()
 # create an instance of ControlledCompany from a dict
-controlled_company_form_dict = controlled_company.from_dict(controlled_company_dict)
+controlled_company_from_dict = ControlledCompany.from_dict(controlled_company_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

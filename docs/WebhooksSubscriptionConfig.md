@@ -17,12 +17,12 @@ json = "{}"
 # create an instance of WebhooksSubscriptionConfig from a JSON string
 webhooks_subscription_config_instance = WebhooksSubscriptionConfig.from_json(json)
 # print the JSON string representation of the object
-print WebhooksSubscriptionConfig.to_json()
+print(WebhooksSubscriptionConfig.to_json())
 
 # convert the object into a dict
 webhooks_subscription_config_dict = webhooks_subscription_config_instance.to_dict()
 # create an instance of WebhooksSubscriptionConfig from a dict
-webhooks_subscription_config_form_dict = webhooks_subscription_config.from_dict(webhooks_subscription_config_dict)
+webhooks_subscription_config_from_dict = WebhooksSubscriptionConfig.from_dict(webhooks_subscription_config_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

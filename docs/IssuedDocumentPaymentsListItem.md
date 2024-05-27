@@ -24,12 +24,12 @@ json = "{}"
 # create an instance of IssuedDocumentPaymentsListItem from a JSON string
 issued_document_payments_list_item_instance = IssuedDocumentPaymentsListItem.from_json(json)
 # print the JSON string representation of the object
-print IssuedDocumentPaymentsListItem.to_json()
+print(IssuedDocumentPaymentsListItem.to_json())
 
 # convert the object into a dict
 issued_document_payments_list_item_dict = issued_document_payments_list_item_instance.to_dict()
 # create an instance of IssuedDocumentPaymentsListItem from a dict
-issued_document_payments_list_item_form_dict = issued_document_payments_list_item.from_dict(issued_document_payments_list_item_dict)
+issued_document_payments_list_item_from_dict = IssuedDocumentPaymentsListItem.from_dict(issued_document_payments_list_item_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

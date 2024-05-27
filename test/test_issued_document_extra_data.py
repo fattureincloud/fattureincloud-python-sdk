@@ -32,7 +32,6 @@ class TestIssuedDocumentExtraData(unittest.TestCase):
     def testIssuedDocumentExtraData(self):
         """Test IssuedDocumentExtraData"""
         model = IssuedDocumentExtraData(
-            show_sofort_button=True,
             multifatture_sent=1,
             ts_communication=True,
             ts_flag_tipo_spesa=3.14,
@@ -45,7 +44,7 @@ class TestIssuedDocumentExtraData(unittest.TestCase):
             ts_full_amount=True,
             imported_by="imported_by_example",
         )
-        expected_json = '{"show_sofort_button": true, "multifatture_sent": 1, "ts_communication": true, "ts_flag_tipo_spesa": 3.14, "ts_pagamento_tracciato": true, "ts_tipo_spesa": "ts_tipo_spesa_example", "ts_opposizione": true, "ts_status": 1, "ts_file_id": "ts_file_id_example", "ts_sent_date": "2022-01-01", "ts_full_amount": true, "imported_by": "imported_by_example"}'
+        expected_json = '{"multifatture_sent": 1, "ts_communication": true, "ts_flag_tipo_spesa": 3.14, "ts_pagamento_tracciato": true, "ts_tipo_spesa": "ts_tipo_spesa_example", "ts_opposizione": true, "ts_status": 1, "ts_file_id": "ts_file_id_example", "ts_sent_date": "2022-01-01", "ts_full_amount": true, "imported_by": "imported_by_example"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

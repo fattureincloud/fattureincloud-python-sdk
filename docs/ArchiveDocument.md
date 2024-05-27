@@ -22,12 +22,12 @@ json = "{}"
 # create an instance of ArchiveDocument from a JSON string
 archive_document_instance = ArchiveDocument.from_json(json)
 # print the JSON string representation of the object
-print ArchiveDocument.to_json()
+print(ArchiveDocument.to_json())
 
 # convert the object into a dict
 archive_document_dict = archive_document_instance.to_dict()
 # create an instance of ArchiveDocument from a dict
-archive_document_form_dict = archive_document.from_dict(archive_document_dict)
+archive_document_from_dict = ArchiveDocument.from_dict(archive_document_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

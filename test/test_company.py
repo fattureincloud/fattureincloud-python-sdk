@@ -44,6 +44,7 @@ class TestCompany(unittest.TestCase):
             access_token="zpaiefapfjaojf56546456456",
             connection_id=2,
             tax_code="0123456789",
+            vat_number="01234567890",
             fic_plan=FattureInCloudPlanType("standard"),
             fic_license_expire="2024-10-10",
             controlled_companies=[
@@ -65,7 +66,7 @@ class TestCompany(unittest.TestCase):
                 ),
             ],
         )
-        expected_json = '{"id": 1, "name": "mario srl", "type": "company", "access_token": "zpaiefapfjaojf56546456456", "controlled_companies": [{"id": 2, "name": "mario2 srl", "type": "company", "access_token": "zpaiefadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567d9"}, {"id": 3, "name": "mario4 srl", "type": "company", "access_token": "zpa4efadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567df"}], "fic_license_expire": "2024-10-10", "fic_plan": "standard", "connection_id": 2, "tax_code": "0123456789"}'
+        expected_json = '{"id": 1, "name": "mario srl", "type": "company", "access_token": "zpaiefapfjaojf56546456456", "controlled_companies": [{"id": 2, "name": "mario2 srl", "type": "company", "access_token": "zpaiefadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567d9"}, {"id": 3, "name": "mario4 srl", "type": "company", "access_token": "zpa4efadpfjaojf56546456456", "connection_id": 2.0, "tax_code": "01234567df"}], "fic_license_expire": "2024-10-10", "fic_plan": "standard", "connection_id": 2, "tax_code": "0123456789", "vat_number": "01234567890"}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

@@ -27,12 +27,12 @@ json = "{}"
 # create an instance of CashbookEntry from a JSON string
 cashbook_entry_instance = CashbookEntry.from_json(json)
 # print the JSON string representation of the object
-print CashbookEntry.to_json()
+print(CashbookEntry.to_json())
 
 # convert the object into a dict
 cashbook_entry_dict = cashbook_entry_instance.to_dict()
 # create an instance of CashbookEntry from a dict
-cashbook_entry_form_dict = cashbook_entry.from_dict(cashbook_entry_dict)
+cashbook_entry_from_dict = CashbookEntry.from_dict(cashbook_entry_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -30,12 +30,12 @@ json = "{}"
 # create an instance of ListF24Response from a JSON string
 list_f24_response_instance = ListF24Response.from_json(json)
 # print the JSON string representation of the object
-print ListF24Response.to_json()
+print(ListF24Response.to_json())
 
 # convert the object into a dict
 list_f24_response_dict = list_f24_response_instance.to_dict()
 # create an instance of ListF24Response from a dict
-list_f24_response_form_dict = list_f24_response.from_dict(list_f24_response_dict)
+list_f24_response_from_dict = ListF24Response.from_dict(list_f24_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

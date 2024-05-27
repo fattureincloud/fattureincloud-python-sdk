@@ -20,12 +20,12 @@ json = "{}"
 # create an instance of EmailScheduleInclude from a JSON string
 email_schedule_include_instance = EmailScheduleInclude.from_json(json)
 # print the JSON string representation of the object
-print EmailScheduleInclude.to_json()
+print(EmailScheduleInclude.to_json())
 
 # convert the object into a dict
 email_schedule_include_dict = email_schedule_include_instance.to_dict()
 # create an instance of EmailScheduleInclude from a dict
-email_schedule_include_form_dict = email_schedule_include.from_dict(email_schedule_include_dict)
+email_schedule_include_from_dict = EmailScheduleInclude.from_dict(email_schedule_include_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
