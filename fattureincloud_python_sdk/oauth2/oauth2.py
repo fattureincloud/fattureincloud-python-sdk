@@ -126,7 +126,7 @@ class OAuth2DeviceCodeManager(OAuth2Manager):
             "scope": scope,
         }
 
-        res = self.execute_post(token_uri, data)
+        res = self.execute_post(token_uri, data)["data"]
         return OAuth2DeviceCodeResponse(
             res["device_code"],
             res["user_code"],
