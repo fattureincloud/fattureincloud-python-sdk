@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **notes** | **str** | Client extra | [optional] 
 **default_vat** | [**VatType**](VatType.md) |  | [optional] 
 **default_payment_terms** | **int** | Client default payment terms | [optional] 
-**default_payment_terms_type** | [**PaymentTermsType**](PaymentTermsType.md) |  | [optional] 
+**default_payment_terms_type** | [**PaymentTermsType**](PaymentTermsType.md) |  | [optional] [default to PaymentTermsType.STANDARD]
 **default_payment_method** | [**PaymentMethod**](PaymentMethod.md) |  | [optional] 
 **bank_name** | **str** | Client bank name | [optional] 
 **bank_iban** | **str** | Client bank iban | [optional] 

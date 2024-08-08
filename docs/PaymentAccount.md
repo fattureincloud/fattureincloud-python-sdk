@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Payment account id | [optional] 
 **name** | **str** | Payment account name | [optional] 
-**type** | [**PaymentAccountType**](PaymentAccountType.md) |  | [optional] 
+**type** | [**PaymentAccountType**](PaymentAccountType.md) |  | [optional] [default to PaymentAccountType.STANDARD]
 **iban** | **str** | Payment account iban | [optional] 
 **sia** | **str** | Payment account sia | [optional] 
 **cuc** | **str** | Payment account cuc | [optional] 
