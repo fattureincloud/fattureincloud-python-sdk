@@ -19,6 +19,8 @@ from fattureincloud_python_sdk.models.issued_document_options import (
 from fattureincloud_python_sdk.models.join_issued_documents_response import (
     JoinIssuedDocumentsResponse,
 )
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 from fattureincloud_python_sdk.models.transform_issued_document_response import (
     TransformIssuedDocumentResponse,
 )
@@ -120,6 +122,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL,
             )
         )
         actual = self.api.create_issued_document(2)
@@ -253,6 +256,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL,
             )
         )
         actual = self.api.get_issued_document(2, 12345)
@@ -431,6 +435,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL,
             )
         )
         actual = self.api.modify_issued_document(2, 12345)
@@ -501,6 +506,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                     country="Italia",
                     certified_email="mary@pec.red.com",
                     ei_code="ABCXCR1",
+                    default_payment_terms_type=PaymentTermsType.STANDARD
                 ),
                 number=1,
                 numeration="/A",
@@ -519,6 +525,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL
             ),
             options=IssuedDocumentOptions(create_from=["12345"], keep_copy=True),
         )
@@ -556,6 +563,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                     country="Italia",
                     certified_email="mary@pec.red.com",
                     ei_code="ABCXCR1",
+                    default_payment_terms_type=PaymentTermsType.STANDARD
                 ),
                 number=1,
                 numeration="/A",
@@ -574,6 +582,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL
             ),
             options=IssuedDocumentOptions(create_from=["12345", "54321"]),
         )

@@ -21,6 +21,8 @@ from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.issued_document_options import (
     IssuedDocumentOptions,
 )
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 from functions import json_serial
 
 globals()["IssuedDocument"] = IssuedDocument
@@ -58,6 +60,7 @@ class TestJoinIssuedDocumentsResponse(unittest.TestCase):
                     country="Italia",
                     certified_email="mary@pec.red.com",
                     ei_code="ABCXCR1",
+                    default_payment_terms_type=PaymentTermsType.STANDARD
                 ),
                 number=1,
                 numeration="/A",
@@ -76,6 +79,7 @@ class TestJoinIssuedDocumentsResponse(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL
             ),
             options=IssuedDocumentOptions(create_from=["12345", "54321"]),
         )

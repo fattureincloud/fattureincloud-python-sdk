@@ -9,6 +9,7 @@
 """
 
 import datetime
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 import functions
 import unittest
 import unittest.mock
@@ -75,7 +76,7 @@ class TestCashbookApi(unittest.TestCase):
                 entity_name="name",
                 document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(id=1, name="banca"),
+                payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
             )
         )
         actual = self.api.create_cashbook_entry(2)
@@ -119,7 +120,7 @@ class TestCashbookApi(unittest.TestCase):
                 entity_name="name",
                 document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(id=1, name="banca"),
+                payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
             )
         )
         actual = self.api.get_cashbook_entry(2, "12345")
@@ -151,7 +152,7 @@ class TestCashbookApi(unittest.TestCase):
                     entity_name="name",
                     document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                     amount_in=10.0,
-                    payment_account_in=PaymentAccount(id=1, name="banca"),
+                    payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
                 )
             ],
             current_page=10,
@@ -193,7 +194,7 @@ class TestCashbookApi(unittest.TestCase):
                 entity_name="name",
                 document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(id=1, name="banca"),
+                payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
             )
         )
         actual = self.api.modify_cashbook_entry(2, "12345")

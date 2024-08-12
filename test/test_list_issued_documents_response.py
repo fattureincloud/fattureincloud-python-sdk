@@ -13,6 +13,7 @@ import sys
 import unittest
 import datetime
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.models.issued_document import IssuedDocument
@@ -63,6 +64,7 @@ class TestListIssuedDocumentsResponse(unittest.TestCase):
                     amount_cassa2_taxable=3.14,
                     global_cassa_taxable=0.0,
                     amount_global_cassa_taxable=3.14,
+                    show_totals=ShowTotalsMode.ALL
                 ),
                 IssuedDocument(
                     id=2,
@@ -84,6 +86,7 @@ class TestListIssuedDocumentsResponse(unittest.TestCase):
                     amount_cassa2_taxable=3.14,
                     global_cassa_taxable=0.0,
                     amount_global_cassa_taxable=3.14,
+                    show_totals=ShowTotalsMode.ALL
                 ),
             ],
             current_page=10,
