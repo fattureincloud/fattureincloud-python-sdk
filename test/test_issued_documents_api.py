@@ -90,7 +90,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_create_issued_document(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}}',
+            "data": b'{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}}',
             "reason": "OK",
         }
 
@@ -224,7 +224,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_get_issued_document(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}}',
+            "data": b'{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}}',
             "reason": "OK",
         }
 
@@ -338,7 +338,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_list_issued_documents(self):
         resp = {
             "status": 200,
-            "data": b'{"data": [{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14},{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}]}',
+            "data": b'{"data": [{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"},{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}]}',
             "reason": "OK",
         }
 
@@ -371,6 +371,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                     amount_cassa2_taxable=3.14,
                     global_cassa_taxable=0.0,
                     amount_global_cassa_taxable=3.14,
+                    show_totals=ShowTotalsMode.ALL
                 ),
                 IssuedDocument(
                     id=2,
@@ -392,6 +393,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
                     amount_cassa2_taxable=3.14,
                     global_cassa_taxable=0.0,
                     amount_global_cassa_taxable=3.14,
+                    show_totals=ShowTotalsMode.ALL
                 ),
             ]
         )
@@ -403,7 +405,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_modify_issued_document(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}}',
+            "data": b'{"data": {"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}}',
             "reason": "OK",
         }
 
@@ -478,7 +480,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_transform_issued_document(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": 1, "type": "invoice", "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1"}, "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}, "options": {"create_from": ["12345"], "keep_copy": true}}',
+            "data": b'{"data": {"id": 1, "type": "invoice", "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1", "default_payment_terms_type": "standard"}, "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}, "options": {"create_from": ["12345"], "keep_copy": true}}',
             "reason": "OK",
         }
 
@@ -535,7 +537,7 @@ class TestIssuedDocumentsApi(unittest.TestCase):
     def test_join_issued_documents(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": 1, "type": "invoice", "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1"}, "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}, "options": {"create_from": ["12345", "54321"]}}',
+            "data": b'{"data": {"id": 1, "type": "invoice", "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1", "default_payment_terms_type": "standard"}, "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}, "options": {"create_from": ["12345", "54321"]}}',
             "reason": "OK",
         }
 

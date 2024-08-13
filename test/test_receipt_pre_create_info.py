@@ -43,7 +43,7 @@ class TestReceiptPreCreateInfo(unittest.TestCase):
             categories_list=["cat5", "cat6"],
             vat_types_list=[VatType(value=22.0)],
         )
-        expected_json = '{"numerations_list": ["a/", "b/"], "rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}'
+        expected_json = '{"numerations_list": ["a/", "b/"], "rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank", "type": "standard"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
