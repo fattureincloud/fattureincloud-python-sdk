@@ -48,7 +48,7 @@ class TestReceivedDocumentPaymentsListItem(unittest.TestCase):
             status="ok",
             payment_account=PaymentAccount(id=1, name="bank"),
         )
-        expected_json = '{"id": 1, "amount": 10.0, "due_date": "2022-01-01", "paid_date": "2022-01-01", "status": "ok", "payment_account": {"id": 1, "name": "bank"}}'
+        expected_json = '{"id": 1, "amount": 10.0, "due_date": "2022-01-01", "paid_date": "2022-01-01", "status": "ok", "payment_account": {"id": 1, "name": "bank", "type": "standard"}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

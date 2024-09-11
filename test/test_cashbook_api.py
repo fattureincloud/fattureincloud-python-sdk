@@ -9,6 +9,7 @@
 """
 
 import datetime
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
 import functions
 import unittest
 import unittest.mock
@@ -54,7 +55,7 @@ class TestCashbookApi(unittest.TestCase):
     def test_create_cashbook_entry(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}}',
+            "data": b'{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca", "type": "standard"}}}',
             "reason": "OK",
         }
 
@@ -75,7 +76,7 @@ class TestCashbookApi(unittest.TestCase):
                 entity_name="name",
                 document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(id=1, name="banca"),
+                payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
             )
         )
         actual = self.api.create_cashbook_entry(2)
@@ -98,7 +99,7 @@ class TestCashbookApi(unittest.TestCase):
     def test_get_cashbook_entry(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}}',
+            "data": b'{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca", "type": "standard"}}}',
             "reason": "OK",
         }
 
@@ -119,7 +120,7 @@ class TestCashbookApi(unittest.TestCase):
                 entity_name="name",
                 document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(id=1, name="banca"),
+                payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
             )
         )
         actual = self.api.get_cashbook_entry(2, "12345")
@@ -129,7 +130,7 @@ class TestCashbookApi(unittest.TestCase):
     def test_list_cashbook_entries(self):
         resp = {
             "status": 200,
-            "data": b'{"data": [{"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}',
+            "data": b'{"data": [{"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca", "type": "standard"}}], "current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10}',
             "reason": "OK",
         }
 
@@ -151,7 +152,7 @@ class TestCashbookApi(unittest.TestCase):
                     entity_name="name",
                     document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                     amount_in=10.0,
-                    payment_account_in=PaymentAccount(id=1, name="banca"),
+                    payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
                 )
             ],
             current_page=10,
@@ -172,7 +173,7 @@ class TestCashbookApi(unittest.TestCase):
     def test_modify_cashbook_entry(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}}}',
+            "data": b'{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "path": "/path", "type": "doc"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca", "type": "standard"}}}',
             "reason": "OK",
         }
 
@@ -193,7 +194,7 @@ class TestCashbookApi(unittest.TestCase):
                 entity_name="name",
                 document=CashbookEntryDocument(id=1, path="/path", type="doc"),
                 amount_in=10.0,
-                payment_account_in=PaymentAccount(id=1, name="banca"),
+                payment_account_in=PaymentAccount(id=1, name="banca", type=PaymentAccountType.STANDARD),
             )
         )
         actual = self.api.modify_cashbook_entry(2, "12345")

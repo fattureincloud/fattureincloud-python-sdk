@@ -19,9 +19,7 @@ class TestOAuth2(unittest.TestCase):
         self.oa2auth = OAuth2AuthorizationCodeManager(
             "CLIENT_ID", "CLIENT_SECRET", "http://localhost:3000/redirect"
         )
-        self.oa2device = OAuth2DeviceCodeManager(
-            "CLIENT_ID"
-        )
+        self.oa2device = OAuth2DeviceCodeManager("CLIENT_ID")
         pass
 
     def tearDown(self):
@@ -57,9 +55,7 @@ class TestOAuth2(unittest.TestCase):
         assert params.expires_in == 86400
 
     def testOAuth2Error(self):
-        err = OAuth2Error(
-            418, "I'm a teapot", "I'm a teapot, but a really evil one."
-        )
+        err = OAuth2Error(418, "I'm a teapot", "I'm a teapot, but a really evil one.")
         assert err.status == 418
         assert err.error == "I'm a teapot"
         assert err.error_description == "I'm a teapot, but a really evil one."

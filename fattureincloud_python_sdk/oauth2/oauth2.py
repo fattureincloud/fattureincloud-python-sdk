@@ -15,7 +15,7 @@ class OAuth2Manager:
         self._http = urllib3.PoolManager()
         self.client_id = client_id
         self.base_uri = base_uri
-    
+
     def execute_post(self, uri: str, data: Dict[str, str]):
         body = json.dumps(data).encode("utf-8")
 
@@ -24,9 +24,7 @@ class OAuth2Manager:
         )
         res = json.loads(resp.data.decode("utf-8"))
         if resp.status != 200:
-            raise OAuth2Error(
-                resp.status, res["error"], res["error_description"]
-            )
+            raise OAuth2Error(resp.status, res["error"], res["error_description"])
         return res
 
     @staticmethod
@@ -35,6 +33,7 @@ class OAuth2Manager:
             return " "
 
         return " ".join(map(lambda x: x.value, scopes))
+
 
 class OAuth2AuthorizationCodeManager(OAuth2Manager):
     def __init__(
@@ -108,7 +107,8 @@ class OAuth2AuthorizationCodeManager(OAuth2Manager):
             res["refresh_token"],
             res["expires_in"],
         )
-    
+
+
 class OAuth2DeviceCodeManager(OAuth2Manager):
     def __init__(
         self,
@@ -171,14 +171,22 @@ class OAuth2DeviceCodeManager(OAuth2Manager):
             res["expires_in"],
         )
 
+
 class OAuth2AuthorizationCodeParams:
     def __init__(self, authorization_code: str, state: str):
         self.authorization_code = authorization_code
         self.state = state
 
+
 class OAuth2DeviceCodeResponse:
     def __init__(
-        self, device_code: str, user_code: str, scope: Dict[str, str], verification_uri: str, interval: int, expires_in: int
+        self,
+        device_code: str,
+        user_code: str,
+        scope: Dict[str, str],
+        verification_uri: str,
+        interval: int,
+        expires_in: int,
     ):
         self.device_code = device_code
         self.user_code = user_code
@@ -186,6 +194,7 @@ class OAuth2DeviceCodeResponse:
         self.verification_uri = verification_uri
         self.interval = interval
         self.expires_in = expires_in
+
 
 class OAuth2TokenResponse:
     def __init__(

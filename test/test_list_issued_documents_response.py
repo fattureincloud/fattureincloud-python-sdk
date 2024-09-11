@@ -13,6 +13,7 @@ import sys
 import unittest
 import datetime
 import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 from functions import json_serial
 from functions import create_from_json
 from fattureincloud_python_sdk.models.issued_document import IssuedDocument
@@ -63,6 +64,7 @@ class TestListIssuedDocumentsResponse(unittest.TestCase):
                     amount_cassa2_taxable=3.14,
                     global_cassa_taxable=0.0,
                     amount_global_cassa_taxable=3.14,
+                    show_totals=ShowTotalsMode.ALL
                 ),
                 IssuedDocument(
                     id=2,
@@ -84,6 +86,7 @@ class TestListIssuedDocumentsResponse(unittest.TestCase):
                     amount_cassa2_taxable=3.14,
                     global_cassa_taxable=0.0,
                     amount_global_cassa_taxable=3.14,
+                    show_totals=ShowTotalsMode.ALL
                 ),
             ],
             current_page=10,
@@ -97,7 +100,7 @@ class TestListIssuedDocumentsResponse(unittest.TestCase):
             to=10,
             total=10,
         )
-        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}, {"id": 2, "type": "invoice", "number": 2, "numeration": "/A", "date": "2022-01-02", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}]}'
+        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}, {"id": 2, "type": "invoice", "number": 2, "numeration": "/A", "date": "2022-01-02", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

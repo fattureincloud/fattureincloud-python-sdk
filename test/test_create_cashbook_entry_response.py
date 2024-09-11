@@ -55,7 +55,7 @@ class TestCreateCashbookEntryResponse(unittest.TestCase):
                 payment_account_out=PaymentAccount(id=1, name="banca"),
             )
         )
-        expected_json = '{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "type": "doc", "path": "/path"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca"}, "amount_out": 0.0, "payment_account_out": {"id": 1, "name": "banca"}}}'
+        expected_json = '{"data": {"id": "1", "date": "2022-02-02", "description": "description", "kind": "cashbook", "type": "in", "entity_name": "name", "document": {"id": 1, "type": "doc", "path": "/path"}, "amount_in": 10.0, "payment_account_in": {"id": 1, "name": "banca", "type": "standard"}, "amount_out": 0.0, "payment_account_out": {"id": 1, "name": "banca", "type": "standard"}}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

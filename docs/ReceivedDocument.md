@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Received document id | [optional] 
-**type** | [**ReceivedDocumentType**](ReceivedDocumentType.md) |  | [optional] 
+**type** | [**ReceivedDocumentType**](ReceivedDocumentType.md) |  | [optional] [default to ReceivedDocumentType.EXPENSE]
 **entity** | [**Entity**](Entity.md) |  | [optional] 
 **var_date** | **date** | Received document date [defaults to today&#39;s date] | [optional] 
 **category** | **str** | Received document category | [optional] 

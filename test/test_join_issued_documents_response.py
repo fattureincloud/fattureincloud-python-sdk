@@ -21,6 +21,8 @@ from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.issued_document_options import (
     IssuedDocumentOptions,
 )
+from fattureincloud_python_sdk.models.payment_terms_type import PaymentTermsType
+from fattureincloud_python_sdk.models.show_totals_mode import ShowTotalsMode
 from functions import json_serial
 
 globals()["IssuedDocument"] = IssuedDocument
@@ -58,6 +60,7 @@ class TestJoinIssuedDocumentsResponse(unittest.TestCase):
                     country="Italia",
                     certified_email="mary@pec.red.com",
                     ei_code="ABCXCR1",
+                    default_payment_terms_type=PaymentTermsType.STANDARD
                 ),
                 number=1,
                 numeration="/A",
@@ -76,10 +79,11 @@ class TestJoinIssuedDocumentsResponse(unittest.TestCase):
                 amount_cassa2_taxable=3.14,
                 global_cassa_taxable=0.0,
                 amount_global_cassa_taxable=3.14,
+                show_totals=ShowTotalsMode.ALL
             ),
             options=IssuedDocumentOptions(create_from=["12345", "54321"]),
         )
-        expected_json = '{"data": {"id": 1, "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "ei_code": "ABCXCR1"}, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14}, "options": {"create_from": ["12345", "54321"]}}'
+        expected_json = '{"data": {"id": 1, "entity": {"id": 54321, "name": "Mary Red S.r.L.", "vat_number": "IT05432181211", "tax_code": "IT05432181211", "address_street": "Corso impero, 66", "address_postal_code": "20900", "address_city": "Milano", "address_province": "MI", "address_extra": "", "country": "Italia", "certified_email": "mary@pec.red.com", "default_payment_terms_type": "standard", "ei_code": "ABCXCR1"}, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}, "options": {"create_from": ["12345", "54321"]}}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

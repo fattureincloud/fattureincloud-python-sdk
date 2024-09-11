@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Issued document id | [optional] 
 **entity** | [**Entity**](Entity.md) |  | [optional] 
-**type** | [**IssuedDocumentType**](IssuedDocumentType.md) |  | [optional] 
+**type** | [**IssuedDocumentType**](IssuedDocumentType.md) |  | [optional] [default to IssuedDocumentType.INVOICE]
 **number** | **int** | Issued document number [If not specified, next number is used] | [optional] 
 **numeration** | **str** | Issued document numeration [Not available if type&#x3D;delivery_note] | [optional] 
 **var_date** | **date** | Issued document date [defaults to today&#39;s date] | [optional] 
@@ -52,7 +52,7 @@ Name | Type | Description | Notes
 **v_margins** | **int** | Issued document PDF vertical margins | [optional] 
 **show_payments** | **bool** | Show the expiration dates of the payments on the document | [optional] 
 **show_payment_method** | **bool** | Show the payment method details on the document | [optional] 
-**show_totals** | [**ShowTotalsMode**](ShowTotalsMode.md) |  | [optional] 
+**show_totals** | [**ShowTotalsMode**](ShowTotalsMode.md) |  | [optional] [default to ShowTotalsMode.ALL]
 **show_notification_button** | **bool** | Show notification button in the PDF | [optional] 
 **show_tspay_button** | **bool** | Show ts pay button in the PDF | [optional] 
 **delivery_note** | **bool** | Issued document has delivery note | [optional] 
