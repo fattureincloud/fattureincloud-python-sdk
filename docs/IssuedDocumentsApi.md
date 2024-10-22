@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **join_issued_documents**
-> JoinIssuedDocumentsResponse join_issued_documents(company_id, ids, group=group, e_invoice=e_invoice)
+> JoinIssuedDocumentsResponse join_issued_documents(company_id, ids, group=group, parameter=parameter)
 
 Join Issued Documents
 
@@ -686,11 +686,11 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     company_id = 12345 # int | The ID of the company.
     ids = '1,2,3,4' # str | Ids of the documents.
     group = 56 # int | Group items. (optional)
-    e_invoice = 56 # int | New document e_invoice. (optional)
+    parameter = 'delivery_notes, orders, quotes, work_reports' # str | Type of the parameters to be joined (optional)
 
     try:
         # Join Issued Documents
-        api_response = api_instance.join_issued_documents(company_id, ids, group=group, e_invoice=e_invoice)
+        api_response = api_instance.join_issued_documents(company_id, ids, group=group, parameter=parameter)
         print("The response of IssuedDocumentsApi->join_issued_documents:\n")
         pprint(api_response)
     except Exception as e:
@@ -707,7 +707,7 @@ Name | Type | Description  | Notes
  **company_id** | **int**| The ID of the company. | 
  **ids** | **str**| Ids of the documents. | 
  **group** | **int**| Group items. | [optional] 
- **e_invoice** | **int**| New document e_invoice. | [optional] 
+ **parameter** | **str**| Type of the parameters to be joined | [optional] 
 
 ### Return type
 
@@ -985,7 +985,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transform_issued_document**
-> TransformIssuedDocumentResponse transform_issued_document(company_id, original_document_id, new_type, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
+> TransformIssuedDocumentResponse transform_issued_document(company_id, original_document_id, new_type, parameter=parameter, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
 
 Transform Issued Document
 
@@ -1021,12 +1021,13 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     company_id = 12345 # int | The ID of the company.
     original_document_id = 56 # int | Original document id.
     new_type = 'new_type_example' # str | New document type.
+    parameter = 'parameter_example' # str | Old document type. (optional)
     e_invoice = 56 # int | New document e_invoice. (optional)
     transform_keep_copy = 56 # int | Keep the old document. (optional)
 
     try:
         # Transform Issued Document
-        api_response = api_instance.transform_issued_document(company_id, original_document_id, new_type, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
+        api_response = api_instance.transform_issued_document(company_id, original_document_id, new_type, parameter=parameter, e_invoice=e_invoice, transform_keep_copy=transform_keep_copy)
         print("The response of IssuedDocumentsApi->transform_issued_document:\n")
         pprint(api_response)
     except Exception as e:
@@ -1043,6 +1044,7 @@ Name | Type | Description  | Notes
  **company_id** | **int**| The ID of the company. | 
  **original_document_id** | **int**| Original document id. | 
  **new_type** | **str**| New document type. | 
+ **parameter** | **str**| Old document type. | [optional] 
  **e_invoice** | **int**| New document e_invoice. | [optional] 
  **transform_keep_copy** | **int**| Keep the old document. | [optional] 
 

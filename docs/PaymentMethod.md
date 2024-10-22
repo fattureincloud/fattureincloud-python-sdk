@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Payment method id | [optional] 
 **name** | **str** | Payment method name | [optional] 
-**type** | [**PaymentMethodType**](PaymentMethodType.md) |  | [optional] 
+**type** | [**PaymentMethodType**](PaymentMethodType.md) |  | [optional] [default to PaymentMethodType.STANDARD]
 **is_default** | **bool** | Payment method is default | [optional] 
 **default_payment_account** | [**PaymentAccount**](PaymentAccount.md) |  | [optional] 
 **details** | [**List[PaymentMethodDetails]**](PaymentMethodDetails.md) | Payment method details | [optional] 

@@ -1044,7 +1044,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.InfoApi(api_client)
-    type = 'all' # str | Type of the templates. (optional) (default to 'all')
+    type = all # str | Type of the templates. (optional) (default to all)
     by_type = False # bool | [Only if type=all] If true, splits the list in objects, grouping templates by type. (optional) (default to False)
 
     try:
@@ -1063,7 +1063,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type** | **str**| Type of the templates. | [optional] [default to &#39;all&#39;]
+ **type** | **str**| Type of the templates. | [optional] [default to all]
  **by_type** | **bool**| [Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type. | [optional] [default to False]
 
 ### Return type

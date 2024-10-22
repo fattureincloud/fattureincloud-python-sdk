@@ -2,10 +2,11 @@
 
 Payment method type
 
-## Properties
+## Enum
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+* `STANDARD` (value: `'standard'`)
+
+* `RIBA` (value: `'riba'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
