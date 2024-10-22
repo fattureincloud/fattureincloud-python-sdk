@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ei_description** | **str** | Vat type e-invoice description | [optional] 
 **editable** | **bool** | [Read Only] Is the vat type is editable. | [optional] [readonly] 
 **is_disabled** | **bool** | Is the vat type disabled | [optional] 
+**default** | **bool** | If the vat type is default | [optional] 
 
 ## Example
 
