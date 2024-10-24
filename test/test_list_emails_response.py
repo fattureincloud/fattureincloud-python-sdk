@@ -45,9 +45,7 @@ class TestListEmailsResponse(unittest.TestCase):
                 Email(
                     id=1,
                     status=EmailStatus("sent"),
-                    sent_date=datetime.datetime.strptime(
-                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
-                    ),
+                    sent_date="2022-07-17 13:53:12",
                     errors_count=0,
                     error_log="",
                     from_email="test@mail.it",
@@ -67,9 +65,7 @@ class TestListEmailsResponse(unittest.TestCase):
                 Email(
                     id=2,
                     status=EmailStatus("sent"),
-                    sent_date=datetime.datetime.strptime(
-                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
-                    ),
+                    sent_date="2022-07-17 13:53:12",
                     errors_count=0,
                     error_log="",
                     from_email="test@mail.it",
@@ -98,7 +94,7 @@ class TestListEmailsResponse(unittest.TestCase):
             to=10,
             total=10,
         )
-        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "status": "sent", "sent_date": "2022-07-17T13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}, {"id": 2, "status": "sent", "sent_date": "2022-07-17T13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}]}'
+        expected_json = '{"current_page": 10, "first_page_url": "http://url.com", "last_page": 10, "last_page_url": "http://url.com", "next_page_url": "http://url.com", "path": "http://url.com", "per_page": 10, "prev_page_url": "http://url.com", "to": 10, "total": 10, "data": [{"id": 1, "status": "sent", "sent_date": "2022-07-17 13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}, {"id": 2, "status": "sent", "sent_date": "2022-07-17 13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 
