@@ -9,7 +9,6 @@
 """
 
 import json
-from pipes import Template
 import sys
 import unittest
 

@@ -18,6 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
+from fattureincloud_python_sdk.models.vat_item import VatItem
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
