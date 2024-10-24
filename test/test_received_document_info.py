@@ -54,7 +54,7 @@ class TestReceivedDocumentInfo(unittest.TestCase):
             categories_list=["cat5", "cat6"],
             vat_types_list=[VatType(value=22.0)],
         )
-        expected_json = '{"default_values": {"detailed": true}, "items_default_values": {"vat": 22.0}, "countries_list": ["IT", "US"], "categories_list": ["cat5", "cat6"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "vat_types_list": [{"value": 22.0}]}'
+        expected_json = '{"default_values": {"detailed": true}, "items_default_values": {"vat": 22.0}, "countries_list": ["IT", "US"], "categories_list": ["cat5", "cat6"], "payment_accounts_list": [{"id": 1, "name": "bank", "type": "standard"}], "vat_types_list": [{"value": 22.0}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

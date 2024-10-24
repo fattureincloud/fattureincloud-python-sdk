@@ -41,9 +41,7 @@ class TestListEmailsResponsePage(unittest.TestCase):
                 Email(
                     id=1,
                     status=EmailStatus("sent"),
-                    sent_date=datetime.datetime.strptime(
-                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
-                    ),
+                    sent_date="2022-07-17 13:53:12",
                     errors_count=0,
                     error_log="",
                     from_email="test@mail.it",
@@ -63,9 +61,7 @@ class TestListEmailsResponsePage(unittest.TestCase):
                 Email(
                     id=2,
                     status=EmailStatus("sent"),
-                    sent_date=datetime.datetime.strptime(
-                        "2022-07-17 13:53:12", "%Y-%m-%d %H:%M:%S"
-                    ),
+                    sent_date="2022-07-17 13:53:12",
                     errors_count=0,
                     error_log="",
                     from_email="test@mail.it",
@@ -84,7 +80,7 @@ class TestListEmailsResponsePage(unittest.TestCase):
                 ),
             ]
         )
-        expected_json = '{"data": [{"id": 1, "status": "sent", "sent_date": "2022-07-17T13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}, {"id": 2, "status": "sent", "sent_date": "2022-07-17T13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}]}'
+        expected_json = '{"data": [{"id": 1, "status": "sent", "sent_date": "2022-07-17 13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}, {"id": 2, "status": "sent", "sent_date": "2022-07-17 13:53:12", "errors_count": 0, "error_log": "", "from_email": "test@mail.it", "from_name": "Test mail", "to_email": "mail@test.it", "to_name": "Mario", "subject": "Test", "content": "Test send email", "copy_to": "", "recipient_status": "unknown", "recipient_date": "2022-07-17T13:53:12", "kind": "Fatture", "attachments": []}]}'
         actual_json = json.dumps(model.to_dict(), default=json_serial)
         assert actual_json == expected_json
 

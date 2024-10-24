@@ -96,6 +96,7 @@ docs/GetReceiptsMonthlyTotalsResponse.md
 docs/GetReceivedDocumentPreCreateInfoResponse.md
 docs/GetReceivedDocumentResponse.md
 docs/GetSupplierResponse.md
+docs/GetTaxProfileResponse.md
 docs/GetUserInfoResponse.md
 docs/GetUserInfoResponseEmailConfirmationState.md
 docs/GetUserInfoResponseInfo.md
@@ -227,6 +228,7 @@ docs/ShowTotalsMode.md
 docs/Supplier.md
 docs/SupplierType.md
 docs/SuppliersApi.md
+docs/TaxProfile.md
 docs/TaxesApi.md
 docs/TransformIssuedDocumentResponse.md
 docs/UploadArchiveAttachmentResponse.md
@@ -363,6 +365,7 @@ fattureincloud_python_sdk/models/get_receipts_monthly_totals_response.py
 fattureincloud_python_sdk/models/get_received_document_pre_create_info_response.py
 fattureincloud_python_sdk/models/get_received_document_response.py
 fattureincloud_python_sdk/models/get_supplier_response.py
+fattureincloud_python_sdk/models/get_tax_profile_response.py
 fattureincloud_python_sdk/models/get_user_info_response.py
 fattureincloud_python_sdk/models/get_user_info_response_email_confirmation_state.py
 fattureincloud_python_sdk/models/get_user_info_response_info.py
@@ -486,6 +489,7 @@ fattureincloud_python_sdk/models/sender_email.py
 fattureincloud_python_sdk/models/show_totals_mode.py
 fattureincloud_python_sdk/models/supplier.py
 fattureincloud_python_sdk/models/supplier_type.py
+fattureincloud_python_sdk/models/tax_profile.py
 fattureincloud_python_sdk/models/transform_issued_document_response.py
 fattureincloud_python_sdk/models/upload_archive_attachment_response.py
 fattureincloud_python_sdk/models/upload_f24_attachment_response.py
@@ -513,3 +517,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_get_tax_profile_response.py
+test/test_tax_profile.py

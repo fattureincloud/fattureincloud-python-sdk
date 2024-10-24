@@ -192,7 +192,7 @@ class TestReceiptsApi(unittest.TestCase):
     def test_get_receipt_pre_create_info(self):
         resp = {
             "status": 200,
-            "data": b'{"data": {"numerations_list": ["a/", "b/"], "rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}}',
+            "data": b'{"data": {"numerations_list": ["a/", "b/"], "rc_centers_list": ["bg", "mi"], "payment_accounts_list": [{"id": 1, "name": "bank", "type": "standard"}], "categories_list": ["cat5", "cat6"], "vat_types_list": [{"value": 22.0}]}}',
             "reason": "OK",
         }
 
