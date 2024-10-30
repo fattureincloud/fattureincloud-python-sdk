@@ -517,5 +517,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_get_tax_profile_response.py
-test/test_tax_profile.py
