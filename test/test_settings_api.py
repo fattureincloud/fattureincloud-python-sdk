@@ -20,6 +20,8 @@ from fattureincloud_python_sdk.models.payment_method import PaymentMethod
 from fattureincloud_python_sdk.models.payment_method_details import PaymentMethodDetails
 from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
 from fattureincloud_python_sdk.models.vat_type import VatType
+from fattureincloud_python_sdk.models.get_tax_profile_response import GetTaxProfileResponse
+from fattureincloud_python_sdk.models.tax_profile import TaxProfile
 from fattureincloud_python_sdk.models.create_payment_account_response import (
     CreatePaymentAccountResponse,
 )
@@ -405,6 +407,57 @@ class TestSettingsApi(unittest.TestCase):
         )
         actual = self.api.modify_vat_type(2, 12345)
         actual.data.id = 2
+        assert actual == expected
+    
+    def test_get_tax_profile(self):
+        resp = {
+            "status": 200,
+            "data": b'{"data": {"company_type": "individual","company_subtype": "artigiani","profession": "test","regime": "forfettario_5","rivalsa_name": "","default_rivalsa": 0,"cassa_name": "","default_cassa": 0,"default_cassa_taxable": 100,"cassa2_name": "","default_cassa2": 0,"default_cassa2_taxable": 0,"default_withholding_tax": 0,"default_withholding_tax_taxable": 100,"enasarco": false,"enasarco_type": "test","contributions_percentage": 0,"med": false,"default_vat": {"id": 66,"value": 0,"description": "Contribuenti forfettari","notes": "Operazione non soggetta a IVA ai sensi dell\'art. 1, commi 54-89, Legge n. 190\/2014 e succ. modifiche\/integrazioni","e_invoice": true,"ei_type": "2.2","ei_description": "Non soggetta art. 1\/54-89 L. 190\/2014 e succ. modifiche\/integrazioni","editable": false,"is_disabled": false,"default": true}}}',
+            "reason": "OK",
+        }
+
+        mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
+        mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
+
+        self.api.api_client.rest_client.request = unittest.mock.MagicMock(
+            return_value=mock_resp
+        )
+        expected = GetTaxProfileResponse(
+            data = TaxProfile(
+            company_type="individual",
+            company_subtype="artigiani",
+            profession="test",
+            regime="forfettario_5",
+            rivalsa_name="",
+            default_rivalsa=0,
+            cassa_name="",
+            default_cassa=0,
+            default_cassa_taxable=100,
+            cassa2_name="",
+            default_cassa2=0,
+            default_cassa2_taxable=0,
+            default_withholding_tax=0,
+            default_withholding_tax_taxable=100,
+            enasarco=False,
+            enasarco_type="test",
+            contributions_percentage=0,
+            med=False,
+            default_vat={
+                "id": 66,
+                "value": 0,
+                "description": "Contribuenti forfettari",
+                "notes": "Operazione non soggetta a IVA ai sensi dell'art. 1, commi 54-89, Legge n. 190/2014 e succ. modifiche/integrazioni",
+                "e_invoice": True,
+                "ei_type": "2.2",
+                "ei_description": "Non soggetta art. 1/54-89 L. 190/2014 e succ. modifiche/integrazioni",
+                "editable": False,
+                "is_disabled": False,
+                "default": True,
+            }
+            )
+        )
+        actual = self.api.get_tax_profile(2)
         assert actual == expected
 
 

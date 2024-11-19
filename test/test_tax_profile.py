@@ -12,8 +12,11 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
+import json
 import unittest
+import fattureincloud_python_sdk
+from functions import json_serial
+
 
 from fattureincloud_python_sdk.models.tax_profile import TaxProfile
 
@@ -27,57 +30,46 @@ class TestTaxProfile(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> TaxProfile:
-        """Test TaxProfile
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `TaxProfile`
-        """
-        model = TaxProfile()
-        if include_optional:
-            return TaxProfile(
-                company_type = '',
-                company_subtype = '',
-                profession = '',
-                regime = '',
-                rivalsa_name = '',
-                default_rivalsa = 1.337,
-                cassa_name = '',
-                default_cassa = 1.337,
-                default_cassa_taxable = 1.337,
-                cassa2_name = '',
-                default_cassa2 = 1.337,
-                default_cassa2_taxable = 1.337,
-                default_withholding_tax = 1.337,
-                default_withholding_tax_taxable = 1.337,
-                default_other_withholding_tax = 1.337,
-                enasarco = True,
-                enasarco_type = '',
-                contributions_percentage = 1.337,
-                profit_coefficient = 1.337,
-                med = True,
-                default_vat = fattureincloud_python_sdk.models.vat_type.VatType(
-                    id = 56, 
-                    value = 22, 
-                    description = 'Non imponibile art. 123', 
-                    notes = 'IVA non imponibile ai sensi dell'articolo 123, comma 2', 
-                    e_invoice = True, 
-                    ei_type = '2', 
-                    ei_description = '', 
-                    editable = True, 
-                    is_disabled = True, 
-                    default = True, )
-            )
-        else:
-            return TaxProfile(
-        )
-        """
+    
 
     def testTaxProfile(self):
         """Test TaxProfile"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = TaxProfile(
+            company_type="individual",
+            company_subtype="artigiani",
+            profession="test",
+            regime="forfettario_5",
+            rivalsa_name="",
+            default_rivalsa=0,
+            cassa_name="",
+            default_cassa=0,
+            default_cassa_taxable=100,
+            cassa2_name="",
+            default_cassa2=0,
+            default_cassa2_taxable=0,
+            default_withholding_tax=0,
+            default_withholding_tax_taxable=100,
+            default_other_withholding_tax=0,
+            enasarco=False,
+            enasarco_type="test",
+            contributions_percentage=0,
+            med=False,
+            default_vat={
+                "id": 66,
+                "value": 0,
+                "description": "Contribuenti forfettari",
+                "notes": "Operazione non soggetta a IVA ai sensi dell'art. 1, commi 54-89, Legge n. 190/2014 e succ. modifiche/integrazioni",
+                "e_invoice": True,
+                "ei_type": "2.2",
+                "ei_description": "Non soggetta art. 1/54-89 L. 190/2014 e succ. modifiche/integrazioni",
+                "is_disabled": False,
+                "default": True,
+            }
+        )
+        
+        expected_json = '{"company_type": "individual", "company_subtype": "artigiani", "profession": "test", "regime": "forfettario_5", "rivalsa_name": "", "default_rivalsa": 0, "cassa_name": "", "default_cassa": 0, "default_cassa_taxable": 100, "cassa2_name": "", "default_cassa2": 0, "default_cassa2_taxable": 0, "default_withholding_tax": 0, "default_withholding_tax_taxable": 100, "default_other_withholding_tax": 0, "enasarco": false, "enasarco_type": "test", "contributions_percentage": 0, "med": false, "default_vat": {"id": 66, "value": 0, "description": "Contribuenti forfettari", "notes": "Operazione non soggetta a IVA ai sensi dell\'art. 1, commi 54-89, Legge n. 190/2014 e succ. modifiche/integrazioni", "e_invoice": true, "ei_type": "2.2", "ei_description": "Non soggetta art. 1/54-89 L. 190/2014 e succ. modifiche/integrazioni", "is_disabled": false, "default": true}}';
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":
