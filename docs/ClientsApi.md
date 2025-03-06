@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_client**](ClientsApi.md#create_client) | **POST** /c/{company_id}/entities/clients | Create Client
 [**delete_client**](ClientsApi.md#delete_client) | **DELETE** /c/{company_id}/entities/clients/{client_id} | Delete Client
 [**get_client**](ClientsApi.md#get_client) | **GET** /c/{company_id}/entities/clients/{client_id} | Get Client
+[**get_client_info**](ClientsApi.md#get_client_info) | **GET** /c/{company_id}/entities/clients/info | Get Client info
 [**list_clients**](ClientsApi.md#list_clients) | **GET** /c/{company_id}/entities/clients | List Clients
 [**modify_client**](ClientsApi.md#modify_client) | **PUT** /c/{company_id}/entities/clients/{client_id} | Modify Client
 
@@ -47,7 +48,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    create_client_request = {"data":{"code":"AE86","name":"Avv. Maria Rossi","type":"person","first_name":"Maria","last_name":"Rossi","contact_person":"","vat_number":"IT12345640962","tax_code":"BLTGNI5ABCDA794E","address_street":"Via Roma, 1","address_postal_code":"20900","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"maria.rossi@example.com","certified_email":"maria.rossi@pec.example.com","phone":"1234567890","fax":"","notes":"","default_payment_terms":1,"default_payment_terms_type":"standard","bank_name":"Indesa","bank_iban":"IT40P123456781000000123456","bank_swift_code":"AK86PCT","shipping_address":"Corso Magellano 4","e_invoice":true,"ei_code":"111111","default_vat":{"id":54321,"value":45,"description":"","is_disabled":false}}} # CreateClientRequest | The client to create (optional)
+    create_client_request = {"data":{"code":"AE86","name":"Avv. Maria Rossi","type":"person","first_name":"Maria","last_name":"Rossi","contact_person":"","vat_number":"IT12345640962","tax_code":"BLTGNI5ABCDA794E","address_street":"Via Roma, 1","address_postal_code":"20900","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"maria.rossi@example.com","certified_email":"maria.rossi@pec.example.com","phone":"1234567890","fax":"","notes":"","default_payment_terms":1,"default_payment_terms_type":"standard","bank_name":"Indesa","bank_iban":"IT40P123456781000000123456","bank_swift_code":"AK86PCT","shipping_address":"Corso Magellano 4","e_invoice":true,"ei_code":"111111","default_vat":{"id":54321,"value":45,"description":"","is_disabled":false},"price_list_id":"10"}} # CreateClientRequest | The client to create (optional)
 
     try:
         # Create Client
@@ -248,6 +249,83 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_client_info**
+> GetEntityClientPreCreateInfoResponse get_client_info(company_id)
+
+Get Client info
+
+Retrieves the information useful while creating a new Client.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_entity_client_pre_create_info_response import GetEntityClientPreCreateInfoResponse
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+
+    try:
+        # Get Client info
+        api_response = api_instance.get_client_info(company_id)
+        print("The response of ClientsApi->get_client_info:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ClientsApi->get_client_info: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+
+### Return type
+
+[**GetEntityClientPreCreateInfoResponse**](GetEntityClientPreCreateInfoResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Example response |  -  |
+**401** | Unauthorized |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_clients**
 > ListClientsResponse list_clients(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
@@ -373,7 +451,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     api_instance = fattureincloud_python_sdk.ClientsApi(api_client)
     company_id = 12345 # int | The ID of the company.
     client_id = 56 # int | The ID of the client.
-    modify_client_request = {"data":{"code":"AE86","name":"Avv. Maria Rossi","type":"person","first_name":"Maria","last_name":"Rossi","contact_person":"","vat_number":"IT12345640962","tax_code":"BLTGNI5ABCDA794E","address_street":"Via Roma, 1","address_postal_code":"20900","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"maria.rossi@example.com","certified_email":"maria.rossi@pec.example.com","phone":"1234567890","fax":"","notes":"","default_payment_terms":1,"default_payment_terms_type":"standard","bank_name":"Indesa","bank_iban":"IT40P123456781000000123456","bank_swift_code":"AK86PCT","shipping_address":"Corso Magellano 4","e_invoice":true,"ei_code":"111111","default_vat":{"id":54321,"value":45,"description":"","is_disabled":false}}} # ModifyClientRequest | The modified Client. First level parameters are managed in delta mode. (optional)
+    modify_client_request = {"data":{"code":"AE86","name":"Avv. Maria Rossi","type":"person","first_name":"Maria","last_name":"Rossi","contact_person":"","vat_number":"IT12345640962","tax_code":"BLTGNI5ABCDA794E","address_street":"Via Roma, 1","address_postal_code":"20900","address_city":"Milano","address_province":"MI","address_extra":"","country":"Italia","email":"maria.rossi@example.com","certified_email":"maria.rossi@pec.example.com","phone":"1234567890","fax":"","notes":"","default_payment_terms":1,"default_payment_terms_type":"standard","bank_name":"Indesa","bank_iban":"IT40P123456781000000123456","bank_swift_code":"AK86PCT","shipping_address":"Corso Magellano 4","e_invoice":true,"ei_code":"111111","default_vat":{"id":54321,"value":45,"description":"","is_disabled":false},"price_list_id":"10"}} # ModifyClientRequest | The modified Client. First level parameters are managed in delta mode. (optional)
 
     try:
         # Modify Client

@@ -5,14 +5,18 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_received_document**](ReceivedDocumentsApi.md#create_received_document) | **POST** /c/{company_id}/received_documents | Create Received Document
+[**delete_bin_received_document**](ReceivedDocumentsApi.md#delete_bin_received_document) | **DELETE** /c/{company_id}/bin/received_documents/{document_id} | 
 [**delete_received_document**](ReceivedDocumentsApi.md#delete_received_document) | **DELETE** /c/{company_id}/received_documents/{document_id} | Delete Received Document
 [**delete_received_document_attachment**](ReceivedDocumentsApi.md#delete_received_document_attachment) | **DELETE** /c/{company_id}/received_documents/{document_id}/attachment | Delete Received Document Attachment
+[**get_bin_received_document**](ReceivedDocumentsApi.md#get_bin_received_document) | **GET** /c/{company_id}/bin/received_documents/{document_id} | Get Bin Received Documents List
 [**get_existing_received_document_totals**](ReceivedDocumentsApi.md#get_existing_received_document_totals) | **POST** /c/{company_id}/received_documents/{document_id}/totals | Get Existing Received Document Totals
 [**get_new_received_document_totals**](ReceivedDocumentsApi.md#get_new_received_document_totals) | **POST** /c/{company_id}/received_documents/totals | Get New Received Document Totals
 [**get_received_document**](ReceivedDocumentsApi.md#get_received_document) | **GET** /c/{company_id}/received_documents/{document_id} | Get Received Document
 [**get_received_document_pre_create_info**](ReceivedDocumentsApi.md#get_received_document_pre_create_info) | **GET** /c/{company_id}/received_documents/info | Get Received Document Pre-Create Info
+[**list_bin_received_documents**](ReceivedDocumentsApi.md#list_bin_received_documents) | **GET** /c/{company_id}/bin/received_documents | Get Bin Received Documents List
 [**list_received_documents**](ReceivedDocumentsApi.md#list_received_documents) | **GET** /c/{company_id}/received_documents | List Received Documents
 [**modify_received_document**](ReceivedDocumentsApi.md#modify_received_document) | **PUT** /c/{company_id}/received_documents/{document_id} | Modify Received Document
+[**recover_bin_received_document**](ReceivedDocumentsApi.md#recover_bin_received_document) | **POST** /c/{company_id}/bin/received_documents/{document_id}/recover | 
 [**upload_received_document_attachment**](ReceivedDocumentsApi.md#upload_received_document_attachment) | **POST** /c/{company_id}/received_documents/attachment | Upload Received Document Attachment
 
 
@@ -91,6 +95,80 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Document created. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_bin_received_document**
+> delete_bin_received_document(company_id, document_id)
+
+
+
+Delete Bin Received Document
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    document_id = 56 # int | The ID of the document.
+
+    try:
+        # 
+        api_instance.delete_bin_received_document(company_id, document_id)
+    except Exception as e:
+        print("Exception when calling ReceivedDocumentsApi->delete_bin_received_document: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -243,6 +321,83 @@ void (empty response body)
 **200** | File removed |  -  |
 **401** | Unauthorized |  -  |
 **404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_bin_received_document**
+> GetBinIssuedDocumentResponse get_bin_received_document(company_id, document_id)
+
+Get Bin Received Documents List
+
+Get bin issued documents detail
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_bin_issued_document_response import GetBinIssuedDocumentResponse
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    document_id = 56 # int | The ID of the document.
+
+    try:
+        # Get Bin Received Documents List
+        api_response = api_instance.get_bin_received_document(company_id, document_id)
+        print("The response of ReceivedDocumentsApi->get_bin_received_document:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ReceivedDocumentsApi->get_bin_received_document: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+
+### Return type
+
+[**GetBinIssuedDocumentResponse**](GetBinIssuedDocumentResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Bin issued document details |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -566,6 +721,81 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_bin_received_documents**
+> ListBinReceivedDocuments list_bin_received_documents(company_id)
+
+Get Bin Received Documents List
+
+Get bin Received documents list
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_bin_received_documents import ListBinReceivedDocuments
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+
+    try:
+        # Get Bin Received Documents List
+        api_response = api_instance.list_bin_received_documents(company_id)
+        print("The response of ReceivedDocumentsApi->list_bin_received_documents:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ReceivedDocumentsApi->list_bin_received_documents: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+
+### Return type
+
+[**ListBinReceivedDocuments**](ListBinReceivedDocuments.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Example response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_received_documents**
 > ListReceivedDocumentsResponse list_received_documents(company_id, type, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
@@ -735,6 +965,80 @@ Name | Type | Description  | Notes
 **200** | Modified document. |  -  |
 **401** | Unauthorized |  -  |
 **404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **recover_bin_received_document**
+> recover_bin_received_document(company_id, document_id)
+
+
+
+Recover Received Document From The Bin
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    document_id = 56 # int | The ID of the document.
+
+    try:
+        # 
+        api_instance.recover_bin_received_document(company_id, document_id)
+    except Exception as e:
+        print("Exception when calling ReceivedDocumentsApi->recover_bin_received_document: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

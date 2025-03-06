@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **list_emails**
-> ListEmailsResponse list_emails(company_id)
+> ListEmailsResponse list_emails(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
 
 List Emails
 
@@ -42,10 +42,16 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.EmailsApi(api_client)
     company_id = 12345 # int | The ID of the company.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
 
     try:
         # List Emails
-        api_response = api_instance.list_emails(company_id)
+        api_response = api_instance.list_emails(company_id, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
         print("The response of EmailsApi->list_emails:\n")
         pprint(api_response)
     except Exception as e:
@@ -60,6 +66,12 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
 
 ### Return type
 
