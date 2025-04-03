@@ -13,11 +13,19 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import datetime
+import json
 import unittest
 
+from fattureincloud_python_sdk.models.entity import Entity
 from fattureincloud_python_sdk.models.get_bin_received_document_response import (
     GetBinReceivedDocumentResponse,
 )
+from fattureincloud_python_sdk.models.received_document import ReceivedDocument
+from fattureincloud_python_sdk.models.received_document_items_list_item import ReceivedDocumentItemsListItem
+from fattureincloud_python_sdk.models.received_document_type import ReceivedDocumentType
+from fattureincloud_python_sdk.models.vat_type import VatType
+from functions import json_serial
 
 
 class TestGetBinReceivedDocumentResponse(unittest.TestCase):
@@ -29,163 +37,59 @@ class TestGetBinReceivedDocumentResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetBinReceivedDocumentResponse:
-        """Test GetBinReceivedDocumentResponse
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `GetBinReceivedDocumentResponse`
-        """
-        model = GetBinReceivedDocumentResponse()
-        if include_optional:
-            return GetBinReceivedDocumentResponse(
-                data = fattureincloud_python_sdk.models.received_document.ReceivedDocument(
-                    id = 56, 
-                    type = 'expense', 
-                    entity = fattureincloud_python_sdk.models.entity.Entity(
-                        id = 56, 
-                        code = '123', 
-                        name = 'Rossi S.r.l.', 
-                        first_name = '', 
-                        last_name = '', 
-                        contact_person = '', 
-                        vat_number = 'IT01234567890', 
-                        tax_code = 'RSSMRA44A12E890Q', 
-                        address_street = 'Via dei tigli, 12', 
-                        address_postal_code = '24010', 
-                        address_city = 'Bergamo', 
-                        address_province = 'BG', 
-                        address_extra = '', 
-                        country = 'Italia', 
-                        country_iso = 'Italia', 
-                        email = 'mario.rossi@example.it', 
-                        certified_email = 'mario.rossi@pec.example.it', 
-                        phone = '', 
-                        fax = '', 
-                        notes = '', 
-                        default_payment_terms = 30, 
-                        default_vat = fattureincloud_python_sdk.models.vat_type.VatType(
-                            id = 56, 
-                            value = 22, 
-                            description = 'Non imponibile art. 123', 
-                            notes = 'IVA non imponibile ai sensi dell'articolo 123, comma 2', 
-                            e_invoice = True, 
-                            ei_type = '2', 
-                            ei_description = '', 
-                            editable = True, 
-                            is_disabled = True, 
-                            default = True, ), 
-                        default_payment_terms_type = 'standard', 
-                        default_payment_method = fattureincloud_python_sdk.models.payment_method.PaymentMethod(
-                            id = 56, 
-                            name = '', 
-                            is_default = True, 
-                            default_payment_account = fattureincloud_python_sdk.models.payment_account.PaymentAccount(
-                                id = 56, 
-                                name = 'Conto Banca Intesa', 
-                                iban = '', 
-                                sia = '', 
-                                cuc = '', 
-                                virtual = True, ), 
-                            details = [
-                                fattureincloud_python_sdk.models.payment_method_details.PaymentMethodDetails(
-                                    title = '', 
-                                    description = '', )
-                                ], 
-                            bank_iban = '', 
-                            bank_name = '', 
-                            bank_beneficiary = '', 
-                            ei_payment_method = '', ), 
-                        bank_name = '', 
-                        bank_iban = '', 
-                        bank_swift_code = '', 
-                        shipping_address = '', 
-                        e_invoice = True, 
-                        ei_code = '', 
-                        has_intent_declaration = True, 
-                        intent_declaration_protocol_number = '', 
-                        intent_declaration_protocol_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                        created_at = '', 
-                        updated_at = '', ), 
-                    date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                    category = '', 
-                    description = '', 
-                    amount_net = 1.337, 
-                    amount_vat = 1.337, 
-                    amount_withholding_tax = 1.337, 
-                    amount_other_withholding_tax = 1.337, 
-                    amount_gross = 1.337, 
-                    amortization = 1.337, 
-                    rc_center = '', 
-                    invoice_number = '', 
-                    is_marked = True, 
-                    is_detailed = True, 
-                    e_invoice = True, 
-                    next_due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                    currency = fattureincloud_python_sdk.models.currency.Currency(
-                        id = 'EUR', 
-                        symbol = '€', 
-                        exchange_rate = '1', 
-                        html_symbol = 'EUR', ), 
-                    tax_deductibility = 1.337, 
-                    vat_deductibility = 1.337, 
-                    items_list = [
-                        fattureincloud_python_sdk.models.received_document_items_list_item.ReceivedDocumentItemsListItem(
-                            id = 56, 
-                            product_id = 56, 
-                            code = '', 
-                            name = '', 
-                            measure = '', 
-                            net_price = 1.337, 
-                            category = '', 
-                            qty = 1.337, 
-                            vat = fattureincloud_python_sdk.models.vat_type.VatType(
-                                id = 56, 
-                                value = 22, 
-                                description = 'Non imponibile art. 123', 
-                                notes = 'IVA non imponibile ai sensi dell'articolo 123, comma 2', 
-                                e_invoice = True, 
-                                ei_type = '2', 
-                                ei_description = '', 
-                                editable = True, 
-                                is_disabled = True, 
-                                default = True, ), 
-                            stock = 1.337, )
-                        ], 
-                    payments_list = [
-                        fattureincloud_python_sdk.models.received_document_payments_list_item.ReceivedDocumentPaymentsListItem(
-                            id = 56, 
-                            amount = 1.337, 
-                            due_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                            paid_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                            payment_terms = fattureincloud_python_sdk.models.received_document_payments_list_item_payment_terms.ReceivedDocumentPaymentsListItem_payment_terms(
-                                days = 56, ), 
-                            status = '', 
-                            payment_account = fattureincloud_python_sdk.models.payment_account.PaymentAccount(
-                                id = 56, 
-                                name = 'Conto Banca Intesa', 
-                                iban = '', 
-                                sia = '', 
-                                cuc = '', 
-                                virtual = True, ), )
-                        ], 
-                    attachment_url = '', 
-                    attachment_preview_url = '', 
-                    auto_calculate = True, 
-                    attachment_token = '', 
-                    locked = True, 
-                    created_at = '', 
-                    updated_at = '', )
-            )
-        else:
-            return GetBinReceivedDocumentResponse(
-        )
-        """
-
     def testGetBinReceivedDocumentResponse(self):
         """Test GetBinReceivedDocumentResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = GetBinReceivedDocumentResponse(
+            data=ReceivedDocument(
+                    id=1,
+                    type=ReceivedDocumentType("expense"),
+                    entity=Entity(
+                        id=1,
+                        name="name_example",
+                    ),
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                    category="category_example",
+                    description="description_example",
+                    amount_net=3.14,
+                    amount_vat=3.14,
+                    amount_withholding_tax=3.14,
+                    amount_other_withholding_tax=3.14,
+                    amortization=3.14,
+                    rc_center="rc_center_example",
+                    invoice_number="invoice_number_example",
+                    is_marked=True,
+                    is_detailed=True,
+                    e_invoice=True,
+                    tax_deductibility=0.0,
+                    vat_deductibility=0.0,
+                    items_list=[
+                        ReceivedDocumentItemsListItem(
+                            id=1,
+                            product_id=1,
+                            code="code_example",
+                            name="name_example",
+                            measure="measure_example",
+                            net_price=3.14,
+                            category="category_example",
+                            qty=3.14,
+                            vat=VatType(
+                                id=1,
+                                value=22.0,
+                                description="Non imponibile art. 123",
+                                notes="IVA non imponibile ai sensi dell articolo 123, comma 2",
+                                e_invoice=True,
+                                ei_type="2",
+                                ei_description="ei_description_example",
+                                is_disabled=True,
+                            ),
+                            stock=3.14,
+                        )
+                    ],
+                )
+        )
+        expected_json = '{"data": {"id": 1, "type": "expense", "entity": {"id": 1, "name": "name_example", "default_payment_terms_type": "standard"}, "date": "2022-01-01", "category": "category_example", "description": "description_example", "amount_net": 3.14, "amount_vat": 3.14, "amount_withholding_tax": 3.14, "amount_other_withholding_tax": 3.14, "amortization": 3.14, "rc_center": "rc_center_example", "invoice_number": "invoice_number_example", "is_marked": true, "is_detailed": true, "e_invoice": true, "tax_deductibility": 0.0, "vat_deductibility": 0.0, "items_list": [{"id": 1, "product_id": 1, "code": "code_example", "name": "name_example", "measure": "measure_example", "net_price": 3.14, "category": "category_example", "qty": 3.14, "vat": {"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}, "stock": 3.14}]}}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
+from fattureincloud_python_sdk.models.price_list_item import PriceListItem
+
 
 class GetPriceListItemsResponse(BaseModel):
     """

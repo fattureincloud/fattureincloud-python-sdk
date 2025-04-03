@@ -29,7 +29,10 @@ class TestPriceListType(unittest.TestCase):
 
     def testPriceListType(self):
         """Test PriceListType"""
-        # inst = PriceListType()
+        model = PriceListType("sell")
+        expected_json = "sell"
+        actual_json = model.value
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

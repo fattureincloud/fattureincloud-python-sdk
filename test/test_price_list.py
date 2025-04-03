@@ -13,9 +13,11 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
 from fattureincloud_python_sdk.models.price_list import PriceList
+from functions import json_serial
 
 
 class TestPriceList(unittest.TestCase):
@@ -27,33 +29,20 @@ class TestPriceList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PriceList:
-        """Test PriceList
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `PriceList`
-        """
-        model = PriceList()
-        if include_optional:
-            return PriceList(
-                id = '',
-                name = '123',
-                prices_type = 'net',
-                is_default = True,
-                valid_from = '',
-                valid_to = '',
-                type = 'sell'
-            )
-        else:
-            return PriceList(
-        )
-        """
-
     def testPriceList(self):
         """Test PriceList"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = PriceList(
+            id="12345",
+            name="Listino 1",
+            prices_type="net",
+            is_default=True,
+            valid_from="2021-01-01",
+            valid_to="2021-12-31",
+            type="sell",
+        )
+        expected_json = '{"id": "12345", "name": "Listino 1", "prices_type": "net", "is_default": true, "valid_from": "2021-01-01", "valid_to": "2021-12-31", "type": "sell"}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

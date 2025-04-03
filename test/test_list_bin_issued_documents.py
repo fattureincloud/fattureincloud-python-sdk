@@ -13,11 +13,16 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import datetime
+import json
 import unittest
 
+from fattureincloud_python_sdk.models.issued_document import IssuedDocument
+from fattureincloud_python_sdk.models.issued_document_type import IssuedDocumentType
 from fattureincloud_python_sdk.models.list_bin_issued_documents import (
     ListBinIssuedDocuments,
 )
+from functions import json_serial
 
 
 class TestListBinIssuedDocuments(unittest.TestCase):
@@ -29,28 +34,57 @@ class TestListBinIssuedDocuments(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ListBinIssuedDocuments:
-        """Test ListBinIssuedDocuments
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `ListBinIssuedDocuments`
-        """
-        model = ListBinIssuedDocuments()
-        if include_optional:
-            return ListBinIssuedDocuments(
-                data = ERROR_TO_EXAMPLE_VALUE
-            )
-        else:
-            return ListBinIssuedDocuments(
-        )
-        """
-
     def testListBinIssuedDocuments(self):
         """Test ListBinIssuedDocuments"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
-
+        model = ListBinIssuedDocuments(
+            data=[
+                IssuedDocument(
+                    id=1,
+                    type=IssuedDocumentType("invoice"),
+                    number=1,
+                    numeration="/A",
+                    date=datetime.datetime.strptime("2022-01-01", "%Y-%m-%d").date(),
+                    year=1,
+                    subject="subject_example",
+                    visible_subject="visible_subject_example",
+                    rc_center="rc_center_example",
+                    notes="notes_example",
+                    rivalsa=0.0,
+                    cassa=0.0,
+                    cassa_taxable=0.0,
+                    amount_cassa_taxable=3.14,
+                    cassa2=0.0,
+                    cassa2_taxable=0.0,
+                    amount_cassa2_taxable=3.14,
+                    global_cassa_taxable=0.0,
+                    amount_global_cassa_taxable=3.14,
+                ),
+                IssuedDocument(
+                    id=2,
+                    type=IssuedDocumentType("invoice"),
+                    number=2,
+                    numeration="/A",
+                    date=datetime.datetime.strptime("2022-01-02", "%Y-%m-%d").date(),
+                    year=1,
+                    subject="subject_example",
+                    visible_subject="visible_subject_example",
+                    rc_center="rc_center_example",
+                    notes="notes_example",
+                    rivalsa=0.0,
+                    cassa=0.0,
+                    cassa_taxable=0.0,
+                    amount_cassa_taxable=3.14,
+                    cassa2=0.0,
+                    cassa2_taxable=0.0,
+                    amount_cassa2_taxable=3.14,
+                    global_cassa_taxable=0.0,
+                    amount_global_cassa_taxable=3.14,
+                ),
+            ],
+        )
+        expected_json = '{"data": [{"id": 1, "type": "invoice", "number": 1, "numeration": "/A", "date": "2022-01-01", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}, {"id": 2, "type": "invoice", "number": 2, "numeration": "/A", "date": "2022-01-02", "year": 1, "subject": "subject_example", "visible_subject": "visible_subject_example", "rc_center": "rc_center_example", "notes": "notes_example", "rivalsa": 0.0, "cassa": 0.0, "cassa_taxable": 0.0, "amount_cassa_taxable": 3.14, "cassa2": 0.0, "cassa2_taxable": 0.0, "amount_cassa2_taxable": 3.14, "global_cassa_taxable": 0.0, "amount_global_cassa_taxable": 3.14, "show_totals": "all"}]}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 if __name__ == "__main__":
     unittest.main()

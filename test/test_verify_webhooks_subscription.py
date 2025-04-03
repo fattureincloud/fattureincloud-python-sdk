@@ -13,11 +13,13 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
 from fattureincloud_python_sdk.models.verify_webhooks_subscription import (
     VerifyWebhooksSubscription,
 )
+from functions import json_serial
 
 
 class TestVerifyWebhooksSubscription(unittest.TestCase):
@@ -29,29 +31,15 @@ class TestVerifyWebhooksSubscription(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> VerifyWebhooksSubscription:
-        """Test VerifyWebhooksSubscription
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `VerifyWebhooksSubscription`
-        """
-        model = VerifyWebhooksSubscription()
-        if include_optional:
-            return VerifyWebhooksSubscription(
-                id = '',
-                verification_method = 'header'
-            )
-        else:
-            return VerifyWebhooksSubscription(
-        )
-        """
-
     def testVerifyWebhooksSubscription(self):
         """Test VerifyWebhooksSubscription"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
-
+        model = VerifyWebhooksSubscription(
+            id = '12345',
+            verification_method = 'header'
+        )
+        expected_json = '{"id": "12345", "verification_method": "header"}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 if __name__ == "__main__":
     unittest.main()
