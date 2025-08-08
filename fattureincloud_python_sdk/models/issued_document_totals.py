@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
+from fattureincloud_python_sdk.models.vat_item import VatItem
+
 
 class IssuedDocumentTotals(BaseModel):
     """
