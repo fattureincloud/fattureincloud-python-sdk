@@ -13,11 +13,14 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
+from fattureincloud_python_sdk.models.verify_webhooks_subscription import VerifyWebhooksSubscription
 from fattureincloud_python_sdk.models.verify_webhooks_subscription_request import (
     VerifyWebhooksSubscriptionRequest,
 )
+from functions import json_serial
 
 
 class TestVerifyWebhooksSubscriptionRequest(unittest.TestCase):
@@ -29,29 +32,17 @@ class TestVerifyWebhooksSubscriptionRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> VerifyWebhooksSubscriptionRequest:
-        """Test VerifyWebhooksSubscriptionRequest
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `VerifyWebhooksSubscriptionRequest`
-        """
-        model = VerifyWebhooksSubscriptionRequest()
-        if include_optional:
-            return VerifyWebhooksSubscriptionRequest(
-                data = fattureincloud_python_sdk.models.verify_webhooks_subscription.VerifyWebhooksSubscription(
-                    id = '', 
-                    verification_method = 'header', )
-            )
-        else:
-            return VerifyWebhooksSubscriptionRequest(
-        )
-        """
-
     def testVerifyWebhooksSubscriptionRequest(self):
         """Test VerifyWebhooksSubscriptionRequest"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = VerifyWebhooksSubscriptionRequest(
+            data = VerifyWebhooksSubscription(
+                id = '12345',
+                verification_method = 'header'
+            )
+        )
+        expected_json = '{"data": {"id": "12345", "verification_method": "header"}}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

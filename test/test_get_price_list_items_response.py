@@ -13,11 +13,14 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
 from fattureincloud_python_sdk.models.get_price_list_items_response import (
     GetPriceListItemsResponse,
 )
+from fattureincloud_python_sdk.models.price_list_item import PriceListItem
+from functions import json_serial
 
 
 class TestGetPriceListItemsResponse(unittest.TestCase):
@@ -29,30 +32,14 @@ class TestGetPriceListItemsResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetPriceListItemsResponse:
-        """Test GetPriceListItemsResponse
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `GetPriceListItemsResponse`
-        """
-        model = GetPriceListItemsResponse()
-        if include_optional:
-            return GetPriceListItemsResponse(
-                data = {
-                    'key' : fattureincloud_python_sdk.models.price_list_item.PriceListItem(
-                        price = 1.337, )
-                    }
-            )
-        else:
-            return GetPriceListItemsResponse(
-        )
-        """
 
     def testGetPriceListItemsResponse(self):
         """Test GetPriceListItemsResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        # json = '{"data": {"1": {"price": 3}}}'
+        # model = GetPriceListItemsResponse.from_json(json)
+        # expected_json = '{"data": {"1": {"price": 3}, "2": {"price": 4}}}'
+        # actual_json = json.dumps(model.to_dict(), default=json_serial)
+        # assert actual_json == expected_json
 
 
 if __name__ == "__main__":

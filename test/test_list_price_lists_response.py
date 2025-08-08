@@ -13,11 +13,14 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
 from fattureincloud_python_sdk.models.list_price_lists_response import (
     ListPriceListsResponse,
 )
+from fattureincloud_python_sdk.models.price_list import PriceList
+from functions import json_serial
 
 
 class TestListPriceListsResponse(unittest.TestCase):
@@ -29,36 +32,33 @@ class TestListPriceListsResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> ListPriceListsResponse:
-        """Test ListPriceListsResponse
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `ListPriceListsResponse`
-        """
-        model = ListPriceListsResponse()
-        if include_optional:
-            return ListPriceListsResponse(
-                data = [
-                    fattureincloud_python_sdk.models.price_list.PriceList(
-                        id = '', 
-                        name = '123', 
-                        prices_type = 'net', 
-                        is_default = True, 
-                        valid_from = '', 
-                        valid_to = '', 
-                        type = 'sell', )
-                    ]
-            )
-        else:
-            return ListPriceListsResponse(
-        )
-        """
-
     def testListPriceListsResponse(self):
         """Test ListPriceListsResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = ListPriceListsResponse(
+            data = [
+                PriceList(
+                    id= '10',
+                    name= 'listino',
+                    prices_type= 'net',
+                    is_default= True,
+                    valid_from= '2025-01-01',
+                    valid_to= '2025-12-01',
+                    type= 'sell'
+                ),
+                PriceList(
+                    id= '11',
+                    name= 'listino-test',
+                    prices_type= 'gross',
+                    is_default= True,
+                    valid_from= '2025-01-01',
+                    valid_to= '2025-01-01',
+                    type= 'purchase'
+                )
+            ]
+        )
+        expected_json = '{"data": [{"id": "10", "name": "listino", "prices_type": "net", "is_default": true, "valid_from": "2025-01-01", "valid_to": "2025-12-01", "type": "sell"}, {"id": "11", "name": "listino-test", "prices_type": "gross", "is_default": true, "valid_from": "2025-01-01", "valid_to": "2025-01-01", "type": "purchase"}]}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

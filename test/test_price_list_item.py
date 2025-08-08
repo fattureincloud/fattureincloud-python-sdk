@@ -13,9 +13,11 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
 from fattureincloud_python_sdk.models.price_list_item import PriceListItem
+from functions import json_serial
 
 
 class TestPriceListItem(unittest.TestCase):
@@ -27,27 +29,14 @@ class TestPriceListItem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> PriceListItem:
-        """Test PriceListItem
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `PriceListItem`
-        """
-        model = PriceListItem()
-        if include_optional:
-            return PriceListItem(
-                price = 1.337
-            )
-        else:
-            return PriceListItem(
-        )
-        """
-
     def testPriceListItem(self):
         """Test PriceListItem"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+        model = PriceListItem(
+            price=10.0
+        )
+        expected_json = '{"price": 10.0}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 
 if __name__ == "__main__":

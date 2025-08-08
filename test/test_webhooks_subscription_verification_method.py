@@ -31,8 +31,10 @@ class TestWebhooksSubscriptionVerificationMethod(unittest.TestCase):
 
     def testWebhooksSubscriptionVerificationMethod(self):
         """Test WebhooksSubscriptionVerificationMethod"""
-        # inst = WebhooksSubscriptionVerificationMethod()
-
+        model = WebhooksSubscriptionVerificationMethod("header")
+        expected_json = "header"
+        actual_json = model.value
+        assert actual_json == expected_json
 
 if __name__ == "__main__":
     unittest.main()

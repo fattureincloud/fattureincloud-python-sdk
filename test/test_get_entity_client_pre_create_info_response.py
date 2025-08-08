@@ -13,11 +13,20 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
+import json
 import unittest
 
+from fattureincloud_python_sdk.models.entity_client_pre_create_info import EntityClientPreCreateInfo
 from fattureincloud_python_sdk.models.get_entity_client_pre_create_info_response import (
     GetEntityClientPreCreateInfoResponse,
 )
+from fattureincloud_python_sdk.models.payment_account import PaymentAccount
+from fattureincloud_python_sdk.models.payment_account_type import PaymentAccountType
+from fattureincloud_python_sdk.models.payment_method import PaymentMethod
+from fattureincloud_python_sdk.models.payment_method_type import PaymentMethodType
+from fattureincloud_python_sdk.models.price_list import PriceList
+from fattureincloud_python_sdk.models.vat_type import VatType
+from functions import json_serial
 
 
 class TestGetEntityClientPreCreateInfoResponse(unittest.TestCase):
@@ -29,87 +38,62 @@ class TestGetEntityClientPreCreateInfoResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetEntityClientPreCreateInfoResponse:
-        """Test GetEntityClientPreCreateInfoResponse
-        include_optional is a boolean, when False only required
-        params are included, when True both required and
-        optional params are included"""
-        # uncomment below to create an instance of `GetEntityClientPreCreateInfoResponse`
-        """
-        model = GetEntityClientPreCreateInfoResponse()
-        if include_optional:
-            return GetEntityClientPreCreateInfoResponse(
-                data = fattureincloud_python_sdk.models.entity_client_pre_create_info.EntityClientPreCreateInfo(
-                    countries_list = [
-                        ''
-                        ], 
-                    payment_methods_list = [
-                        fattureincloud_python_sdk.models.payment_method.PaymentMethod(
-                            id = 56, 
-                            name = '', 
-                            type = 'standard', 
-                            is_default = True, 
-                            default_payment_account = fattureincloud_python_sdk.models.payment_account.PaymentAccount(
-                                id = 56, 
-                                name = 'Conto Banca Intesa', 
-                                iban = '', 
-                                sia = '', 
-                                cuc = '', 
-                                virtual = True, ), 
-                            details = [
-                                fattureincloud_python_sdk.models.payment_method_details.PaymentMethodDetails(
-                                    title = '', 
-                                    description = '', )
-                                ], 
-                            bank_iban = '', 
-                            bank_name = '', 
-                            bank_beneficiary = '', 
-                            ei_payment_method = '', )
-                        ], 
-                    payment_accounts_list = [
-                        fattureincloud_python_sdk.models.payment_account.PaymentAccount(
-                            id = 56, 
-                            name = 'Conto Banca Intesa', 
-                            iban = '', 
-                            sia = '', 
-                            cuc = '', 
-                            virtual = True, )
-                        ], 
-                    vat_types_list = [
-                        fattureincloud_python_sdk.models.vat_type.VatType(
-                            id = 56, 
-                            value = 22, 
-                            description = 'Non imponibile art. 123', 
-                            notes = 'IVA non imponibile ai sensi dell'articolo 123, comma 2', 
-                            e_invoice = True, 
-                            ei_type = '2', 
-                            ei_description = '', 
-                            editable = True, 
-                            is_disabled = True, 
-                            default = True, )
-                        ], 
-                    price_lists = [
-                        fattureincloud_python_sdk.models.price_list.PriceList(
-                            id = '', 
-                            name = '123', 
-                            prices_type = 'net', 
-                            is_default = True, 
-                            valid_from = '', 
-                            valid_to = '', )
-                        ], 
-                    limit = 1.337, 
-                    usage = 1.337, )
-            )
-        else:
-            return GetEntityClientPreCreateInfoResponse(
-        )
-        """
-
     def testGetEntityClientPreCreateInfoResponse(self):
         """Test GetEntityClientPreCreateInfoResponse"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
-
+        model = GetEntityClientPreCreateInfoResponse(
+            data=EntityClientPreCreateInfo(
+                countries_list= [
+                    'Italy'
+                ],
+                payment_methods_list= [
+                    PaymentMethod(
+                        id=1,
+                        name="name_example",
+                        type=PaymentMethodType("standard"),
+                        is_default=False,
+                    )
+                ],
+                payment_accounts_list= [
+                    PaymentAccount(
+                        id=1,
+                        name="Conto Banca Intesa",
+                        type=PaymentAccountType("standard"),
+                        iban="iban_example",
+                        sia="sia_example",
+                        cuc="cuc_example",
+                        virtual=True,
+                    )
+                ],
+                vat_types_list= [
+                    VatType(
+                        id=1,
+                        value=22.0,
+                        description="Non imponibile art. 123",
+                        notes="IVA non imponibile ai sensi dell articolo 123, comma 2",
+                        e_invoice=True,
+                        ei_type="2",
+                        ei_description="ei_description_example",
+                        is_disabled=True,
+                    )
+                ],
+                price_lists= [
+                    PriceList(
+                        id="12345",
+                        name="Listino 1",
+                        prices_type="net",
+                        is_default=True,
+                        valid_from="2021-01-01",
+                        valid_to="2021-12-31",
+                        type="sell",
+                    )
+                ],
+                limit= 10,
+                usage= 10
+            )
+        )
+        expected_json = '{"data": {"countries_list": ["Italy"], "payment_methods_list": [{"id": 1, "name": "name_example", "type": "standard", "is_default": false}], "payment_accounts_list": [{"id": 1, "name": "Conto Banca Intesa", "type": "standard", "iban": "iban_example", "sia": "sia_example", "cuc": "cuc_example", "virtual": true}], "vat_types_list": [{"id": 1, "value": 22.0, "description": "Non imponibile art. 123", "notes": "IVA non imponibile ai sensi dell articolo 123, comma 2", "e_invoice": true, "ei_type": "2", "ei_description": "ei_description_example", "is_disabled": true}], "price_lists": [{"id": "12345", "name": "Listino 1", "prices_type": "net", "is_default": true, "valid_from": "2021-01-01", "valid_to": "2021-12-31", "type": "sell"}], "limit": 10, "usage": 10}}'
+        actual_json = json.dumps(model.to_dict(), default=json_serial)
+        assert actual_json == expected_json
 
 if __name__ == "__main__":
     unittest.main()
