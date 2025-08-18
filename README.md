@@ -16,7 +16,7 @@ For more information, please visit [https://www.fattureincloud.it](https://www.f
 
 ## Requirements.
 
-Python >= 3.10
+Python >= 3.7
 
 ## Installation & Usage
 ### pip install
