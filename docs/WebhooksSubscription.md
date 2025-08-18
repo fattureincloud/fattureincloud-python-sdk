@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **verified** | **bool** | [Read Only] True if the webhooks subscription has been verified. | [optional] 
 **types** | [**List[EventType]**](EventType.md) | Webhooks events types. | [optional] 
 **config** | [**WebhooksSubscriptionConfig**](WebhooksSubscriptionConfig.md) |  | [optional] 
+**verification_method** | [**WebhooksSubscriptionVerificationMethod**](WebhooksSubscriptionVerificationMethod.md) |  | [optional] 
 
 ## Example
 

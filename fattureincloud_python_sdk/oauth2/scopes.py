@@ -99,6 +99,12 @@ class Scope(Enum):
     # Write permission to the Receipts
     RECEIPTS_ALL = "receipts:a"
 
+    # Read permission to the Calendar
+    CALENDAR_READ = "calendar:r"
+
+    # Write permission to the Calendar
+    CALENDAR_ALL = "calendar:a"
+
     # Read permission to the Taxes
     TAXES_READ = "taxes:r"
 
@@ -110,6 +116,9 @@ class Scope(Enum):
 
     # Read permission to the Archive Documents
     ARCHIVE_ALL = "archive:a"
+
+    # Read permission to the Emails
+    EMAILS_READ = "emails:r"
 
     # Read permission to the Cashbook
     CASHBOOK_READ = "cashbook:r"

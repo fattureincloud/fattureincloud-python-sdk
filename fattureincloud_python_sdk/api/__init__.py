@@ -9,6 +9,7 @@ from fattureincloud_python_sdk.api.emails_api import EmailsApi
 from fattureincloud_python_sdk.api.info_api import InfoApi
 from fattureincloud_python_sdk.api.issued_documents_api import IssuedDocumentsApi
 from fattureincloud_python_sdk.api.issued_e_invoices_api import IssuedEInvoicesApi
+from fattureincloud_python_sdk.api.price_lists_api import PriceListsApi
 from fattureincloud_python_sdk.api.products_api import ProductsApi
 from fattureincloud_python_sdk.api.receipts_api import ReceiptsApi
 from fattureincloud_python_sdk.api.received_documents_api import ReceivedDocumentsApi
