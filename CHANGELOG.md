@@ -4,11 +4,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 2.1.3 (2025-08-18)
 
-
-### Bug Fixes
-
-* yq download changed ([1cf1854](https://github.com/fattureincloud/fattureincloud-python-sdk/commit/1cf1854a7b65b1bdff98b17d86d5dcf8ffee8812))
-
 ### 2.1.2 (2024-10-30)
 
 ### 2.1.1 (2024-10-24)
