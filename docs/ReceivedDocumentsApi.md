@@ -5,7 +5,7 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_received_document**](ReceivedDocumentsApi.md#create_received_document) | **POST** /c/{company_id}/received_documents | Create Received Document
-[**delete_bin_received_document**](ReceivedDocumentsApi.md#delete_bin_received_document) | **DELETE** /c/{company_id}/bin/received_documents/{document_id} | 
+[**delete_bin_received_document**](ReceivedDocumentsApi.md#delete_bin_received_document) | **DELETE** /c/{company_id}/bin/received_documents/{document_id} | Delete Bin Received Document
 [**delete_received_document**](ReceivedDocumentsApi.md#delete_received_document) | **DELETE** /c/{company_id}/received_documents/{document_id} | Delete Received Document
 [**delete_received_document_attachment**](ReceivedDocumentsApi.md#delete_received_document_attachment) | **DELETE** /c/{company_id}/received_documents/{document_id}/attachment | Delete Received Document Attachment
 [**get_bin_received_document**](ReceivedDocumentsApi.md#get_bin_received_document) | **GET** /c/{company_id}/bin/received_documents/{document_id} | Get Bin Received Documents List
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**list_bin_received_documents**](ReceivedDocumentsApi.md#list_bin_received_documents) | **GET** /c/{company_id}/bin/received_documents | Get Bin Received Documents List
 [**list_received_documents**](ReceivedDocumentsApi.md#list_received_documents) | **GET** /c/{company_id}/received_documents | List Received Documents
 [**modify_received_document**](ReceivedDocumentsApi.md#modify_received_document) | **PUT** /c/{company_id}/received_documents/{document_id} | Modify Received Document
-[**recover_bin_received_document**](ReceivedDocumentsApi.md#recover_bin_received_document) | **POST** /c/{company_id}/bin/received_documents/{document_id}/recover | 
+[**recover_bin_received_document**](ReceivedDocumentsApi.md#recover_bin_received_document) | **POST** /c/{company_id}/bin/received_documents/{document_id}/recover | Recover Received Document From The Bin
 [**upload_received_document_attachment**](ReceivedDocumentsApi.md#upload_received_document_attachment) | **POST** /c/{company_id}/received_documents/attachment | Upload Received Document Attachment
 
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 # **delete_bin_received_document**
 > delete_bin_received_document(company_id, document_id)
 
-
+Delete Bin Received Document
 
 Delete Bin Received Document
 
@@ -135,7 +135,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Delete Bin Received Document
         api_instance.delete_bin_received_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_bin_received_document: %s\n" % e)
@@ -971,7 +971,7 @@ Name | Type | Description  | Notes
 # **recover_bin_received_document**
 > recover_bin_received_document(company_id, document_id)
 
-
+Recover Received Document From The Bin
 
 Recover Received Document From The Bin
 
@@ -1005,7 +1005,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Recover Received Document From The Bin
         api_instance.recover_bin_received_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->recover_bin_received_document: %s\n" % e)
