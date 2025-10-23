@@ -5,7 +5,7 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_issued_document**](IssuedDocumentsApi.md#create_issued_document) | **POST** /c/{company_id}/issued_documents | Create Issued Document
-[**delete_bin_issued_document**](IssuedDocumentsApi.md#delete_bin_issued_document) | **DELETE** /c/{company_id}/bin/issued_documents/{document_id} | 
+[**delete_bin_issued_document**](IssuedDocumentsApi.md#delete_bin_issued_document) | **DELETE** /c/{company_id}/bin/issued_documents/{document_id} | Delete Bin Issued Document
 [**delete_issued_document**](IssuedDocumentsApi.md#delete_issued_document) | **DELETE** /c/{company_id}/issued_documents/{document_id} | Delete Issued Document
 [**delete_issued_document_attachment**](IssuedDocumentsApi.md#delete_issued_document_attachment) | **DELETE** /c/{company_id}/issued_documents/{document_id}/attachment | Delete Issued Document Attachment
 [**get_bin_issued_document**](IssuedDocumentsApi.md#get_bin_issued_document) | **GET** /c/{company_id}/bin/issued_documents/{document_id} | Get Bin Issued Documents List
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**list_bin_issued_documents**](IssuedDocumentsApi.md#list_bin_issued_documents) | **GET** /c/{company_id}/bin/issued_documents | Get Bin Issued Documents List
 [**list_issued_documents**](IssuedDocumentsApi.md#list_issued_documents) | **GET** /c/{company_id}/issued_documents | List Issued Documents
 [**modify_issued_document**](IssuedDocumentsApi.md#modify_issued_document) | **PUT** /c/{company_id}/issued_documents/{document_id} | Modify Issued Document
-[**recover_bin_issued_document**](IssuedDocumentsApi.md#recover_bin_issued_document) | **POST** /c/{company_id}/bin/issued_documents/{document_id}/recover | 
+[**recover_bin_issued_document**](IssuedDocumentsApi.md#recover_bin_issued_document) | **POST** /c/{company_id}/bin/issued_documents/{document_id}/recover | Recover Issued Document From The Bin
 [**schedule_email**](IssuedDocumentsApi.md#schedule_email) | **POST** /c/{company_id}/issued_documents/{document_id}/email | Schedule Email
 [**transform_issued_document**](IssuedDocumentsApi.md#transform_issued_document) | **GET** /c/{company_id}/issued_documents/transform | Transform Issued Document
 [**upload_issued_document_attachment**](IssuedDocumentsApi.md#upload_issued_document_attachment) | **POST** /c/{company_id}/issued_documents/attachment | Upload Issued Document Attachment
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 # **delete_bin_issued_document**
 > delete_bin_issued_document(company_id, document_id)
 
-
+Delete Bin Issued Document
 
 Delete Bin Issued Document
 
@@ -140,7 +140,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Delete Bin Issued Document
         api_instance.delete_bin_issued_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->delete_bin_issued_document: %s\n" % e)
@@ -1139,7 +1139,7 @@ Name | Type | Description  | Notes
 # **recover_bin_issued_document**
 > recover_bin_issued_document(company_id, document_id)
 
-
+Recover Issued Document From The Bin
 
 Recover Issued Document From The Bin
 
@@ -1173,7 +1173,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Recover Issued Document From The Bin
         api_instance.recover_bin_issued_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->recover_bin_issued_document: %s\n" % e)
