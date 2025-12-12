@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**list_cost_centers**](InfoApi.md#list_cost_centers) | **GET** /c/{company_id}/info/cost_centers | List Cost Centers
 [**list_countries**](InfoApi.md#list_countries) | **GET** /info/countries | List Countries
 [**list_currencies**](InfoApi.md#list_currencies) | **GET** /info/currencies | List Currencies
+[**list_default_templates**](InfoApi.md#list_default_templates) | **GET** /info/templates | List Default Templates
 [**list_delivery_notes_default_causals**](InfoApi.md#list_delivery_notes_default_causals) | **GET** /info/dn_causals | List Delivery Notes Default Causals
 [**list_detailed_countries**](InfoApi.md#list_detailed_countries) | **GET** /info/detailed_countries | List Detailed Countries
 [**list_languages**](InfoApi.md#list_languages) | **GET** /info/languages | List Languages
@@ -17,7 +18,6 @@ Method | HTTP request | Description
 [**list_product_categories**](InfoApi.md#list_product_categories) | **GET** /c/{company_id}/info/product_categories | List Product Categories
 [**list_received_document_categories**](InfoApi.md#list_received_document_categories) | **GET** /c/{company_id}/info/received_document_categories | List Received Document Categories
 [**list_revenue_centers**](InfoApi.md#list_revenue_centers) | **GET** /c/{company_id}/info/revenue_centers | List Revenue Centers
-[**list_templates**](InfoApi.md#list_templates) | **GET** /info/templates | List Templates
 [**list_units_of_measure**](InfoApi.md#list_units_of_measure) | **GET** /info/measures | List Units of Measure
 [**list_vat_types**](InfoApi.md#list_vat_types) | **GET** /c/{company_id}/info/vat_types | List Vat Types
 
@@ -93,9 +93,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Archive Categories list. |  -  |
+**200** | Archive Categories list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -172,7 +174,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Cities List. |  -  |
+**200** | Cities List. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -247,9 +251,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of Cost Centers |  -  |
+**200** | List of Cost Centers |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -320,8 +326,10 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of countries |  -  |
+**200** | List of countries |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -392,8 +400,90 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Currencies List. |  -  |
+**200** | Currencies List. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_default_templates**
+> ListTemplatesResponse list_default_templates(type=type, by_type=by_type)
+
+List Default Templates
+
+Lists the default available templates.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_templates_response import ListTemplatesResponse
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
+    type = all # str | Type of the templates. (optional) (default to all)
+    by_type = False # bool | [Only if type=all] If true, splits the list in objects, grouping templates by type. (optional) (default to False)
+
+    try:
+        # List Default Templates
+        api_response = api_instance.list_default_templates(type=type, by_type=by_type)
+        print("The response of InfoApi->list_default_templates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling InfoApi->list_default_templates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **type** | **str**| Type of the templates. | [optional] [default to all]
+ **by_type** | **bool**| [Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type. | [optional] [default to False]
+
+### Return type
+
+[**ListTemplatesResponse**](ListTemplatesResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Templates list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -464,8 +554,10 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of Delivery Notes Default Causals |  -  |
+**200** | List of Delivery Notes Default Causals |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -536,8 +628,10 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of detailed countries |  -  |
+**200** | List of detailed countries |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -608,8 +702,10 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | LanguagesList |  -  |
+**200** | LanguagesList |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -690,9 +786,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Payment accounts list. |  -  |
+**200** | Payment accounts list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -773,9 +871,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Payment methods list. |  -  |
+**200** | Payment methods list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -852,9 +952,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Product Categories List |  -  |
+**200** | Product Categories List |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -929,7 +1031,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Received Document Categories List |  -  |
+**200** | Received Document Categories List |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1004,87 +1108,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of Revenue Centers |  -  |
+**200** | List of Revenue Centers |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_templates**
-> ListTemplatesResponse list_templates(type=type, by_type=by_type)
-
-List Templates
-
-Lists the available templates.
-
-### Example
-
-* OAuth Authentication (OAuth2AuthenticationCodeFlow):
-
-```python
-import fattureincloud_python_sdk
-from fattureincloud_python_sdk.models.list_templates_response import ListTemplatesResponse
-from fattureincloud_python_sdk.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
-# See configuration.py for a list of all supported configuration parameters.
-configuration = fattureincloud_python_sdk.Configuration(
-    host = "https://api-v2.fattureincloud.it"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = fattureincloud_python_sdk.InfoApi(api_client)
-    type = all # str | Type of the templates. (optional) (default to all)
-    by_type = False # bool | [Only if type=all] If true, splits the list in objects, grouping templates by type. (optional) (default to False)
-
-    try:
-        # List Templates
-        api_response = api_instance.list_templates(type=type, by_type=by_type)
-        print("The response of InfoApi->list_templates:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling InfoApi->list_templates: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | **str**| Type of the templates. | [optional] [default to all]
- **by_type** | **bool**| [Only if type&#x3D;all] If true, splits the list in objects, grouping templates by type. | [optional] [default to False]
-
-### Return type
-
-[**ListTemplatesResponse**](ListTemplatesResponse.md)
-
-### Authorization
-
-[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Templates list. |  -  |
-**401** | Unauthorized |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1155,8 +1183,10 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Units of measure. |  -  |
+**200** | Units of measure. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1233,9 +1263,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of Vat Types. |  -  |
+**200** | List of Vat Types. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

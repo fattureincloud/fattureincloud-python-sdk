@@ -102,6 +102,7 @@ docs/GetReceivedDocumentPreCreateInfoResponse.md
 docs/GetReceivedDocumentResponse.md
 docs/GetSupplierResponse.md
 docs/GetTaxProfileResponse.md
+docs/GetTemplatesResponse.md
 docs/GetUserInfoResponse.md
 docs/GetUserInfoResponseEmailConfirmationState.md
 docs/GetUserInfoResponseInfo.md
@@ -243,6 +244,7 @@ docs/SupplierType.md
 docs/SuppliersApi.md
 docs/TaxProfile.md
 docs/TaxesApi.md
+docs/TemplateType.md
 docs/TransformIssuedDocumentResponse.md
 docs/UploadArchiveAttachmentResponse.md
 docs/UploadF24AttachmentResponse.md
@@ -388,6 +390,7 @@ fattureincloud_python_sdk/models/get_received_document_pre_create_info_response.
 fattureincloud_python_sdk/models/get_received_document_response.py
 fattureincloud_python_sdk/models/get_supplier_response.py
 fattureincloud_python_sdk/models/get_tax_profile_response.py
+fattureincloud_python_sdk/models/get_templates_response.py
 fattureincloud_python_sdk/models/get_user_info_response.py
 fattureincloud_python_sdk/models/get_user_info_response_email_confirmation_state.py
 fattureincloud_python_sdk/models/get_user_info_response_info.py
@@ -519,6 +522,7 @@ fattureincloud_python_sdk/models/show_totals_mode.py
 fattureincloud_python_sdk/models/supplier.py
 fattureincloud_python_sdk/models/supplier_type.py
 fattureincloud_python_sdk/models/tax_profile.py
+fattureincloud_python_sdk/models/template_type.py
 fattureincloud_python_sdk/models/transform_issued_document_response.py
 fattureincloud_python_sdk/models/upload_archive_attachment_response.py
 fattureincloud_python_sdk/models/upload_f24_attachment_response.py
@@ -549,19 +553,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_entity_client_pre_create_info.py
-test/test_get_bin_issued_document_response.py
-test/test_get_bin_received_document_response.py
-test/test_get_entity_client_pre_create_info_response.py
-test/test_get_price_list_items_response.py
-test/test_list_bin_issued_documents.py
-test/test_list_bin_received_documents.py
-test/test_list_price_lists_response.py
-test/test_price_list.py
-test/test_price_list_item.py
-test/test_price_list_prices_type.py
-test/test_price_list_type.py
-test/test_price_lists_api.py
-test/test_verify_webhooks_subscription.py
-test/test_verify_webhooks_subscription_request.py
-test/test_webhooks_subscription_verification_method.py
+test/test_get_templates_response.py
+test/test_template_type.py

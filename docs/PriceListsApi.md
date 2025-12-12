@@ -43,7 +43,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.PriceListsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    price_list_id = 'price_list_id_example' # str | 
+    price_list_id = 'price_list_id_example' # str | The ID of the price
 
     try:
         # Get PriceList Items List
@@ -62,7 +62,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
- **price_list_id** | **str**|  | 
+ **price_list_id** | **str**| The ID of the price | 
 
 ### Return type
 
@@ -81,9 +81,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Example response |  -  |
+**200** | Example response |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -158,9 +160,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Example response |  -  |
+**200** | Example response |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
 **401** | Unauthorized |  -  |
+**403** | Forbidden - Rate limit exceeded |  * Retry-After -  <br>  |
 **404** | Not Found |  -  |
+**429** | Too Many Requests |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
