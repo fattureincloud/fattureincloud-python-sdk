@@ -1,20 +1,23 @@
 name: Release Python SDK
-on: 
+on:
   workflow_dispatch:
     inputs:
       env:
-        default: 'test' 
-        description: 'PyPi env'    
+        default: "test"
+        description: "PyPi env"
         required: true
         type: choice
         options:
-        - dev
-        - test
-        - prod
+          - dev
+          - test
+          - prod
 jobs:
   release-version:
     runs-on: ubuntu-latest
     name: Release sdk
+    permissions:
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
     steps:
       - id: checkout
         name: Checkout repo
@@ -36,7 +39,7 @@ jobs:
         name: Set up Python 3.9
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - id: install-dependencies
         name: Install dependencies
@@ -105,7 +108,7 @@ jobs:
           --wheel
           --outdir dist/
           .
-        
+
       - id: skip-pypi-publish
         name: Skipping publishing
         if: ${{ env.ACT || github.event.inputs.env == 'dev' }}
@@ -117,12 +120,9 @@ jobs:
         if: ${{ !env.ACT && github.event.inputs.env == 'test' }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
 
       - id: pypi-publish
         name: Publish to PyPI
         if: ${{ !env.ACT && github.event.inputs.env == 'prod' }}
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
