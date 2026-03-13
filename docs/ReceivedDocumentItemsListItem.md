@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **qty** | **float** | Received document item quantity | [optional] 
 **vat** | [**VatType**](VatType.md) |  | [optional] 
 **stock** | **float** | Received document item product number of items in stock | [optional] 
+**deductibility_vat_percentage** | **float** | Received document item deductibility vat percentage | [optional] 
 
 ## Example
 

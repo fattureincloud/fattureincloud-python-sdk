@@ -5,7 +5,7 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_issued_document**](IssuedDocumentsApi.md#create_issued_document) | **POST** /c/{company_id}/issued_documents | Create Issued Document
-[**delete_bin_issued_document**](IssuedDocumentsApi.md#delete_bin_issued_document) | **DELETE** /c/{company_id}/bin/issued_documents/{document_id} | 
+[**delete_bin_issued_document**](IssuedDocumentsApi.md#delete_bin_issued_document) | **DELETE** /c/{company_id}/bin/issued_documents/{document_id} | Delete Bin Issued Document
 [**delete_issued_document**](IssuedDocumentsApi.md#delete_issued_document) | **DELETE** /c/{company_id}/issued_documents/{document_id} | Delete Issued Document
 [**delete_issued_document_attachment**](IssuedDocumentsApi.md#delete_issued_document_attachment) | **DELETE** /c/{company_id}/issued_documents/{document_id}/attachment | Delete Issued Document Attachment
 [**get_bin_issued_document**](IssuedDocumentsApi.md#get_bin_issued_document) | **GET** /c/{company_id}/bin/issued_documents/{document_id} | Get Bin Issued Documents List
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**list_bin_issued_documents**](IssuedDocumentsApi.md#list_bin_issued_documents) | **GET** /c/{company_id}/bin/issued_documents | Get Bin Issued Documents List
 [**list_issued_documents**](IssuedDocumentsApi.md#list_issued_documents) | **GET** /c/{company_id}/issued_documents | List Issued Documents
 [**modify_issued_document**](IssuedDocumentsApi.md#modify_issued_document) | **PUT** /c/{company_id}/issued_documents/{document_id} | Modify Issued Document
-[**recover_bin_issued_document**](IssuedDocumentsApi.md#recover_bin_issued_document) | **POST** /c/{company_id}/bin/issued_documents/{document_id}/recover | 
+[**recover_bin_issued_document**](IssuedDocumentsApi.md#recover_bin_issued_document) | **POST** /c/{company_id}/bin/issued_documents/{document_id}/recover | Recover Issued Document From The Bin
 [**schedule_email**](IssuedDocumentsApi.md#schedule_email) | **POST** /c/{company_id}/issued_documents/{document_id}/email | Schedule Email
 [**transform_issued_document**](IssuedDocumentsApi.md#transform_issued_document) | **GET** /c/{company_id}/issued_documents/transform | Transform Issued Document
 [**upload_issued_document_attachment**](IssuedDocumentsApi.md#upload_issued_document_attachment) | **POST** /c/{company_id}/issued_documents/attachment | Upload Issued Document Attachment
@@ -98,15 +98,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document created. |  -  |
-**401** | Unauthorized |  -  |
+**200** | Document created. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_bin_issued_document**
 > delete_bin_issued_document(company_id, document_id)
 
-
+Delete Bin Issued Document
 
 Delete Bin Issued Document
 
@@ -140,7 +148,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Delete Bin Issued Document
         api_instance.delete_bin_issued_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->delete_bin_issued_document: %s\n" % e)
@@ -167,13 +175,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | OK |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -241,15 +258,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document removed |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document removed |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -317,15 +341,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | File removed. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | File removed. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -402,7 +433,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Bin issued document details |  -  |
+**200** | Bin issued document details |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -479,7 +519,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | EmailData |  -  |
+**200** | EmailData |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -559,9 +608,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Totals. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Totals. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -643,9 +699,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document Details. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document Details. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -722,7 +785,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Pre-create info. |  -  |
+**200** | Pre-create info. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -800,8 +872,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Totals. |  -  |
-**401** | Unauthorized |  -  |
+**200** | Totals. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -882,7 +962,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Example response |  -  |
+**200** | Example response |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -957,7 +1046,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Bin Issued Documents List |  -  |
+**200** | Bin Issued Documents List |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1048,9 +1146,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Results list. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Results list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1130,16 +1235,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document edited |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document edited |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **recover_bin_issued_document**
 > recover_bin_issued_document(company_id, document_id)
 
-
+Recover Issued Document From The Bin
 
 Recover Issued Document From The Bin
 
@@ -1173,7 +1285,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Recover Issued Document From The Bin
         api_instance.recover_bin_issued_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling IssuedDocumentsApi->recover_bin_issued_document: %s\n" % e)
@@ -1200,13 +1312,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | OK |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1277,15 +1398,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | OK |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1370,7 +1498,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Example response |  -  |
+**200** | Example response |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1449,8 +1586,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Attachment Token. |  -  |
-**401** | Unauthorized |  -  |
+**200** | Attachment Token. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

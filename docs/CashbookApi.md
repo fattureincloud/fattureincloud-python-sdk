@@ -85,9 +85,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The created Cashbook Entry. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | The created Cashbook Entry. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -155,15 +162,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document removed. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document removed. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -244,9 +258,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Cashbook Entry. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Cashbook Entry. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -331,9 +352,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Results list. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Results list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -413,9 +441,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The modified Cashbook Entry |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | The modified Cashbook Entry |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
