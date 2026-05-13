@@ -59,6 +59,7 @@ class TestCashbookApi(unittest.TestCase):
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.response.headers = {}
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
@@ -86,6 +87,7 @@ class TestCashbookApi(unittest.TestCase):
         resp = {"status": 200, "data": b"{}", "reason": "OK"}
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.response.headers = {}
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
@@ -103,6 +105,7 @@ class TestCashbookApi(unittest.TestCase):
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.response.headers = {}
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
@@ -134,6 +137,7 @@ class TestCashbookApi(unittest.TestCase):
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.response.headers = {}
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
@@ -177,6 +181,7 @@ class TestCashbookApi(unittest.TestCase):
         }
 
         mock_resp = RESTResponse(functions.Dict2Class(resp))
+        mock_resp.response.headers = {}
         mock_resp.getheader = unittest.mock.MagicMock(return_value=None)
         mock_resp.getheaders = unittest.mock.MagicMock(return_value=None)
 
