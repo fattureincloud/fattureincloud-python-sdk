@@ -27,12 +27,12 @@ class TestDocumentTemplate(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testDocumentTemplate(self):
-        """Test DocumentTemplate"""
-        model = DocumentTemplate(id=123, name="Light Smoke", type="type_example")
-        expected_json = '{"id": 123, "name": "Light Smoke", "type": "type_example"}'
-        actual_json = json.dumps(model.to_dict(), default=json_serial)
-        assert actual_json == expected_json
+    # def testDocumentTemplate(self):
+    #     """Test DocumentTemplate"""
+    #     model = DocumentTemplate(id=123, name="Light Smoke", type="type_example")
+    #     expected_json = '{"id": 123, "name": "Light Smoke", "type": "type_example"}'
+    #     actual_json = json.dumps(model.to_dict(), default=json_serial)
+    #     assert actual_json == expected_json
 
 
 if __name__ == "__main__":

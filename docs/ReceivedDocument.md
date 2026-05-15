@@ -35,6 +35,8 @@ Name | Type | Description | Notes
 **locked** | **bool** | Received Document can&#39;t be edited | [optional] 
 **created_at** | **str** | Received document creation date | [optional] 
 **updated_at** | **str** | Received document last update date | [optional] 
+**ei_reception_date** | **str** | [Read Only] Received document e-invoice reception date, needs fic_view  fieldset | [optional] [readonly] 
+**is_from_pending_expenses** | **bool** | [Read Only] True if received document is generated from pending expenses,  needs fic_view fieldset | [optional] [readonly] 
 
 ## Example
 

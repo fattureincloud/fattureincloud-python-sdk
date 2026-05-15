@@ -6,8 +6,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Template id | [optional] 
+**privacy** | **str** | Template privacy | [optional] 
+**type** | [**TemplateType**](TemplateType.md) |  | [optional] 
 **name** | **str** | Template name | [optional] 
-**type** | **str** | Template type | [optional] 
+**can_disable_watermark** | **bool** | Can disable watermark | [optional] 
+**author** | **str** | Template author | [optional] 
+**content** | **str** | Template definition content | [optional] 
+**supports_custom_taxable** | **bool** | Supports custom taxable | [optional] 
 
 ## Example
 

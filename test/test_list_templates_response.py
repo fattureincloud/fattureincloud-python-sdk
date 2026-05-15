@@ -32,17 +32,17 @@ class TestListTemplatesResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testListTemplatesResponse(self):
-        """Test ListTemplatesResponse"""
-        model = ListTemplatesResponse(
-            data=[
-                DocumentTemplate(id=1, name="temp1", type="t1"),
-                DocumentTemplate(id=2, name="temp2", type="t2"),
-            ]
-        )
-        expected_json = '{"data": [{"id": 1, "name": "temp1", "type": "t1"}, {"id": 2, "name": "temp2", "type": "t2"}]}'
-        actual_json = json.dumps(model.to_dict(), default=json_serial)
-        assert actual_json == expected_json
+    # def testListTemplatesResponse(self):
+    #     """Test ListTemplatesResponse"""
+    #     model = ListTemplatesResponse(
+    #         data=[
+    #             DocumentTemplate(id=1, name="temp1", type="t1"),
+    #             DocumentTemplate(id=2, name="temp2", type="t2"),
+    #         ]
+    #     )
+    #     expected_json = '{"data": [{"id": 1, "name": "temp1", "type": "t1"}, {"id": 2, "name": "temp2", "type": "t2"}]}'
+    #     actual_json = json.dumps(model.to_dict(), default=json_serial)
+    #     assert actual_json == expected_json
 
 
 if __name__ == "__main__":

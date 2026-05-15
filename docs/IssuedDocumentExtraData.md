@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **ts_sent_date** | **date** | Issued document ts sent date | [optional] 
 **ts_full_amount** | **bool** | Issued document ts total amount | [optional] 
 **imported_by** | **str** | Issued document imported by software | [optional] 
+**debt_vat_detect** | **bool** | Issued document debt VAT detect | [optional] 
+**revenue_detect** | **bool** | Issued document revenue detect | [optional] 
 
 ## Example
 

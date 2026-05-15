@@ -1,0 +1,29 @@
+# ListPendingReceivedDocumentsResponsePage
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**data** | [**List[PendingReceivedDocument]**](PendingReceivedDocument.md) |  | [optional] 
+
+## Example
+
+```python
+from fattureincloud_python_sdk.models.list_pending_received_documents_response_page import ListPendingReceivedDocumentsResponsePage
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of ListPendingReceivedDocumentsResponsePage from a JSON string
+list_pending_received_documents_response_page_instance = ListPendingReceivedDocumentsResponsePage.from_json(json)
+# print the JSON string representation of the object
+print(ListPendingReceivedDocumentsResponsePage.to_json())
+
+# convert the object into a dict
+list_pending_received_documents_response_page_dict = list_pending_received_documents_response_page_instance.to_dict()
+# create an instance of ListPendingReceivedDocumentsResponsePage from a dict
+list_pending_received_documents_response_page_from_dict = ListPendingReceivedDocumentsResponsePage.from_dict(list_pending_received_documents_response_page_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

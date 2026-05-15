@@ -5,18 +5,20 @@ All URIs are relative to *https://api-v2.fattureincloud.it*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_received_document**](ReceivedDocumentsApi.md#create_received_document) | **POST** /c/{company_id}/received_documents | Create Received Document
-[**delete_bin_received_document**](ReceivedDocumentsApi.md#delete_bin_received_document) | **DELETE** /c/{company_id}/bin/received_documents/{document_id} | 
+[**delete_bin_received_document**](ReceivedDocumentsApi.md#delete_bin_received_document) | **DELETE** /c/{company_id}/bin/received_documents/{document_id} | Delete Bin Received Document
 [**delete_received_document**](ReceivedDocumentsApi.md#delete_received_document) | **DELETE** /c/{company_id}/received_documents/{document_id} | Delete Received Document
 [**delete_received_document_attachment**](ReceivedDocumentsApi.md#delete_received_document_attachment) | **DELETE** /c/{company_id}/received_documents/{document_id}/attachment | Delete Received Document Attachment
 [**get_bin_received_document**](ReceivedDocumentsApi.md#get_bin_received_document) | **GET** /c/{company_id}/bin/received_documents/{document_id} | Get Bin Received Documents List
 [**get_existing_received_document_totals**](ReceivedDocumentsApi.md#get_existing_received_document_totals) | **POST** /c/{company_id}/received_documents/{document_id}/totals | Get Existing Received Document Totals
 [**get_new_received_document_totals**](ReceivedDocumentsApi.md#get_new_received_document_totals) | **POST** /c/{company_id}/received_documents/totals | Get New Received Document Totals
+[**get_pending_received_document**](ReceivedDocumentsApi.md#get_pending_received_document) | **GET** /c/{company_id}/received_documents/pending/{document_id} | Get Pending Received Document
 [**get_received_document**](ReceivedDocumentsApi.md#get_received_document) | **GET** /c/{company_id}/received_documents/{document_id} | Get Received Document
 [**get_received_document_pre_create_info**](ReceivedDocumentsApi.md#get_received_document_pre_create_info) | **GET** /c/{company_id}/received_documents/info | Get Received Document Pre-Create Info
 [**list_bin_received_documents**](ReceivedDocumentsApi.md#list_bin_received_documents) | **GET** /c/{company_id}/bin/received_documents | Get Bin Received Documents List
+[**list_pending_received_documents**](ReceivedDocumentsApi.md#list_pending_received_documents) | **GET** /c/{company_id}/received_documents/pending | List Pending Received Documents
 [**list_received_documents**](ReceivedDocumentsApi.md#list_received_documents) | **GET** /c/{company_id}/received_documents | List Received Documents
 [**modify_received_document**](ReceivedDocumentsApi.md#modify_received_document) | **PUT** /c/{company_id}/received_documents/{document_id} | Modify Received Document
-[**recover_bin_received_document**](ReceivedDocumentsApi.md#recover_bin_received_document) | **POST** /c/{company_id}/bin/received_documents/{document_id}/recover | 
+[**recover_bin_received_document**](ReceivedDocumentsApi.md#recover_bin_received_document) | **POST** /c/{company_id}/bin/received_documents/{document_id}/recover | Recover Received Document From The Bin
 [**upload_received_document_attachment**](ReceivedDocumentsApi.md#upload_received_document_attachment) | **POST** /c/{company_id}/received_documents/attachment | Upload Received Document Attachment
 
 
@@ -94,14 +96,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document created. |  -  |
+**200** | Document created. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_bin_received_document**
 > delete_bin_received_document(company_id, document_id)
 
-
+Delete Bin Received Document
 
 Delete Bin Received Document
 
@@ -135,7 +146,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Delete Bin Received Document
         api_instance.delete_bin_received_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->delete_bin_received_document: %s\n" % e)
@@ -162,13 +173,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | OK |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -236,15 +256,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document removed. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document removed. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -312,20 +339,27 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | File removed |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | File removed |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_bin_received_document**
-> GetBinIssuedDocumentResponse get_bin_received_document(company_id, document_id)
+> GetBinReceivedDocumentResponse get_bin_received_document(company_id, document_id)
 
 Get Bin Received Documents List
 
@@ -337,7 +371,7 @@ Get bin issued documents detail
 
 ```python
 import fattureincloud_python_sdk
-from fattureincloud_python_sdk.models.get_bin_issued_document_response import GetBinIssuedDocumentResponse
+from fattureincloud_python_sdk.models.get_bin_received_document_response import GetBinReceivedDocumentResponse
 from fattureincloud_python_sdk.rest import ApiException
 from pprint import pprint
 
@@ -382,7 +416,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetBinIssuedDocumentResponse**](GetBinIssuedDocumentResponse.md)
+[**GetBinReceivedDocumentResponse**](GetBinReceivedDocumentResponse.md)
 
 ### Authorization
 
@@ -397,7 +431,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Bin issued document details |  -  |
+**200** | Bin received document details |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -477,7 +520,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document Totals. |  -  |
+**200** | Document Totals. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -555,9 +607,106 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document Totals. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document Totals. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_pending_received_document**
+> GetPendingReceivedDocumentResponse get_pending_received_document(company_id, document_id, fields=fields, fieldset=fieldset)
+
+Get Pending Received Document
+
+Gets the specified pending received document.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.get_pending_received_document_response import GetPendingReceivedDocumentResponse
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    document_id = 56 # int | The ID of the document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+
+    try:
+        # Get Pending Received Document
+        api_response = api_instance.get_pending_received_document(company_id, document_id, fields=fields, fieldset=fieldset)
+        print("The response of ReceivedDocumentsApi->get_pending_received_document:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ReceivedDocumentsApi->get_pending_received_document: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+ **document_id** | **int**| The ID of the document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+
+### Return type
+
+[**GetPendingReceivedDocumentResponse**](GetPendingReceivedDocumentResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Document details. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -638,9 +787,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Document details. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Document details. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -717,7 +873,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Pre-create info |  -  |
+**200** | Pre-create info |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -792,7 +957,114 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Example response |  -  |
+**200** | Example response |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_pending_received_documents**
+> ListPendingReceivedDocumentsResponse list_pending_received_documents(company_id, type, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+
+List Pending Received Documents
+
+Lists the pending received documents.
+
+### Example
+
+* OAuth Authentication (OAuth2AuthenticationCodeFlow):
+
+```python
+import fattureincloud_python_sdk
+from fattureincloud_python_sdk.models.list_pending_received_documents_response import ListPendingReceivedDocumentsResponse
+from fattureincloud_python_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api-v2.fattureincloud.it
+# See configuration.py for a list of all supported configuration parameters.
+configuration = fattureincloud_python_sdk.Configuration(
+    host = "https://api-v2.fattureincloud.it"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = fattureincloud_python_sdk.ReceivedDocumentsApi(api_client)
+    company_id = 12345 # int | The ID of the company.
+    type = 'type_example' # str | The type of the pending received document.
+    fields = 'fields_example' # str | List of comma-separated fields. (optional)
+    fieldset = 'fieldset_example' # str | Name of the fieldset. (optional)
+    sort = 'sort_example' # str | List of comma-separated fields for result sorting (minus for desc sorting). (optional)
+    page = 1 # int | The page to retrieve. (optional) (default to 1)
+    per_page = 5 # int | The size of the page. (optional) (default to 5)
+    q = 'q_example' # str | Query for filtering the results. (optional)
+
+    try:
+        # List Pending Received Documents
+        api_response = api_instance.list_pending_received_documents(company_id, type, fields=fields, fieldset=fieldset, sort=sort, page=page, per_page=per_page, q=q)
+        print("The response of ReceivedDocumentsApi->list_pending_received_documents:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ReceivedDocumentsApi->list_pending_received_documents: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **company_id** | **int**| The ID of the company. | 
+ **type** | **str**| The type of the pending received document. | 
+ **fields** | **str**| List of comma-separated fields. | [optional] 
+ **fieldset** | **str**| Name of the fieldset. | [optional] 
+ **sort** | **str**| List of comma-separated fields for result sorting (minus for desc sorting). | [optional] 
+ **page** | **int**| The page to retrieve. | [optional] [default to 1]
+ **per_page** | **int**| The size of the page. | [optional] [default to 5]
+ **q** | **str**| Query for filtering the results. | [optional] 
+
+### Return type
+
+[**ListPendingReceivedDocumentsResponse**](ListPendingReceivedDocumentsResponse.md)
+
+### Authorization
+
+[OAuth2AuthenticationCodeFlow](../README.md#OAuth2AuthenticationCodeFlow)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Results list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -881,8 +1153,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Results list. |  -  |
-**401** | Unauthorized |  -  |
+**200** | Results list. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -962,16 +1242,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Modified document. |  -  |
-**401** | Unauthorized |  -  |
-**404** | Not Found |  -  |
+**200** | Modified document. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **recover_bin_received_document**
 > recover_bin_received_document(company_id, document_id)
 
-
+Recover Received Document From The Bin
 
 Recover Received Document From The Bin
 
@@ -1005,7 +1292,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     document_id = 56 # int | The ID of the document.
 
     try:
-        # 
+        # Recover Received Document From The Bin
         api_instance.recover_bin_received_document(company_id, document_id)
     except Exception as e:
         print("Exception when calling ReceivedDocumentsApi->recover_bin_received_document: %s\n" % e)
@@ -1032,13 +1319,22 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | OK |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1117,8 +1413,16 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Attachment Token. |  -  |
-**401** | Unauthorized |  -  |
+**200** | Attachment Token. |  * RateLimit-HourlyRemaining -  <br>  * RateLimit-HourlyLimit -  <br>  * RateLimit-MonthlyRemaining -  <br>  * RateLimit-MonthlyLimit -  <br>  |
+**400** | ErrorResponse |  * Retry-After -  <br>  |
+**401** | ErrorResponse |  * Retry-After -  <br>  |
+**403** | ErrorResponse |  * Retry-After -  <br>  |
+**404** | ErrorResponse |  * Retry-After -  <br>  |
+**405** | ErrorResponse |  * Retry-After -  <br>  |
+**409** | ErrorResponse |  * Retry-After -  <br>  |
+**422** | ErrorResponse |  * Retry-After -  <br>  |
+**429** | ErrorResponse |  * Retry-After -  <br>  |
+**500** | ErrorResponse |  * Retry-After -  <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
