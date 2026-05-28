@@ -573,15 +573,3 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_attachment.py
-test/test_get_pending_received_document_response.py
-test/test_get_templates_response.py
-test/test_list_pending_received_documents_response.py
-test/test_list_pending_received_documents_response_page.py
-test/test_pending_received_document.py
-test/test_pending_received_document_extracted_data.py
-test/test_pending_received_document_extracted_data_mining.py
-test/test_pending_received_document_payments_list_item.py
-test/test_pending_received_document_payments_list_item_payment_terms.py
-test/test_pending_received_document_type.py
-test/test_template_type.py

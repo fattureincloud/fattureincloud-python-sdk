@@ -577,7 +577,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     api_instance = fattureincloud_python_sdk.TaxesApi(api_client)
     company_id = 12345 # int | The ID of the company.
     filename = 'filename_example' # str | Attachment file name (optional)
-    attachment = None # bytearray | Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] (optional)
+    attachment = None # bytes | Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] (optional)
 
     try:
         # Upload F24 Attachment
@@ -597,7 +597,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
  **filename** | **str**| Attachment file name | [optional] 
- **attachment** | **bytearray**| Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] | [optional] 
+ **attachment** | **bytes**| Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx] | [optional] 
 
 ### Return type
 

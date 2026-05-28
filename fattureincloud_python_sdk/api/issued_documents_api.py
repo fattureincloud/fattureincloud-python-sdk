@@ -125,11 +125,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -210,11 +205,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -295,11 +285,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -456,11 +441,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -541,11 +521,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -626,11 +601,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -774,11 +744,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -859,11 +824,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -944,11 +904,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1092,11 +1047,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1177,11 +1127,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1262,11 +1207,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1410,11 +1350,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1495,11 +1430,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1580,11 +1510,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1728,11 +1653,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1813,11 +1733,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -1898,11 +1813,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2050,11 +1960,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2139,11 +2044,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2228,11 +2128,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2400,11 +2295,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2493,11 +2383,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2586,11 +2471,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2744,11 +2624,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2829,11 +2704,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -2914,11 +2784,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3064,11 +2929,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3149,11 +3009,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3234,11 +3089,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3403,11 +3253,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3496,11 +3341,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3589,11 +3429,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3745,11 +3580,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3826,11 +3656,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -3907,11 +3732,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4080,11 +3900,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4193,11 +4008,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4306,11 +4116,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4495,11 +4300,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4584,11 +4384,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4673,11 +4468,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4837,11 +4627,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -4922,11 +4707,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5007,11 +4787,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5159,11 +4934,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5248,11 +5018,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5337,11 +5102,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5517,11 +5277,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5618,11 +5373,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5719,11 +5469,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5848,7 +5593,7 @@ class IssuedDocumentsApi:
         :param filename: Attachment file name
         :type filename: str
         :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
-        :type attachment: bytearray
+        :type attachment: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5893,11 +5638,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -5937,7 +5677,7 @@ class IssuedDocumentsApi:
         :param filename: Attachment file name
         :type filename: str
         :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
-        :type attachment: bytearray
+        :type attachment: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -5982,11 +5722,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -6026,7 +5761,7 @@ class IssuedDocumentsApi:
         :param filename: Attachment file name
         :type filename: str
         :param attachment: Attachment file [.png, .jpg, .gif, .pdf, .zip, .xls, .xlsx, .doc, .docx]
-        :type attachment: bytearray
+        :type attachment: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6071,11 +5806,6 @@ class IssuedDocumentsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout

@@ -43,7 +43,7 @@ class PriceListsApi:
     def get_price_list_items(
         self,
         company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
-        price_list_id: Annotated[StrictStr, Field(description="The ID of the price")],
+        price_list_id: Annotated[StrictStr, Field(description="The price list ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -63,7 +63,7 @@ class PriceListsApi:
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param price_list_id: The ID of the price (required)
+        :param price_list_id: The price list ID (required)
         :type price_list_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -108,11 +108,6 @@ class PriceListsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -128,7 +123,7 @@ class PriceListsApi:
     def get_price_list_items_with_http_info(
         self,
         company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
-        price_list_id: Annotated[StrictStr, Field(description="The ID of the price")],
+        price_list_id: Annotated[StrictStr, Field(description="The price list ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -148,7 +143,7 @@ class PriceListsApi:
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param price_list_id: The ID of the price (required)
+        :param price_list_id: The price list ID (required)
         :type price_list_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -193,11 +188,6 @@ class PriceListsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -213,7 +203,7 @@ class PriceListsApi:
     def get_price_list_items_without_preload_content(
         self,
         company_id: Annotated[StrictInt, Field(description="The ID of the company.")],
-        price_list_id: Annotated[StrictStr, Field(description="The ID of the price")],
+        price_list_id: Annotated[StrictStr, Field(description="The price list ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -233,7 +223,7 @@ class PriceListsApi:
 
         :param company_id: The ID of the company. (required)
         :type company_id: int
-        :param price_list_id: The ID of the price (required)
+        :param price_list_id: The price list ID (required)
         :type price_list_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -278,11 +268,6 @@ class PriceListsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -422,11 +407,6 @@ class PriceListsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -503,11 +483,6 @@ class PriceListsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
@@ -584,11 +559,6 @@ class PriceListsApi:
             '429': "Dict[str, object]",
             '500': "Dict[str, object]",
         }
-
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
         response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
