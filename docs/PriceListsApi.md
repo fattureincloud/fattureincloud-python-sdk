@@ -43,7 +43,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = fattureincloud_python_sdk.PriceListsApi(api_client)
     company_id = 12345 # int | The ID of the company.
-    price_list_id = 'price_list_id_example' # str | The ID of the price
+    price_list_id = 'price_list_id_example' # str | The price list ID
 
     try:
         # Get PriceList Items List
@@ -62,7 +62,7 @@ with fattureincloud_python_sdk.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **company_id** | **int**| The ID of the company. | 
- **price_list_id** | **str**| The ID of the price | 
+ **price_list_id** | **str**| The price list ID | 
 
 ### Return type
 
